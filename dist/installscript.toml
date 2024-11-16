@@ -1,0 +1,345 @@
+# 言語インストールスクリプト
+#
+# 言語をインストールするためのスクリプトをTOML形式で記述していただきます
+# 各キー/値ごとにコメントで
+#   キー: キー名
+#   型:   そのキーに対する値の型
+#   要否: そのキーが必須であるか任意であるか
+#   説明: そのキーの説明
+#   例:   そのキーの値として指定するものの例
+# が記述してあるので、 必須 の項目については必ず記述してください
+# 直後にそのキー/値の例が記述してあるので参考にしてください
+#
+# 実行環境は以下の通りとなっています
+#
+#   OS:                   Ubuntu 24.04.1
+#   カレントディレクトリ: /judge
+#   環境変数:             HOME=/home/runner
+#                         LANG=C.UTF-8
+#                         PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+#                         ATCODER=1
+
+# キー: language
+# 型:   文字列
+# 要否: 必須
+# 説明: プログラミング言語の名前
+# 例:   'C'
+#       'C++'
+#       'Java'
+#       'Python3'
+language = 'Swift'
+
+# キー: name
+# 型:   文字列
+# 要否: 必須
+# 説明: コンパイラ/インタプリタの名前
+#       コンパイラ、インタプリタの実装名を記述してください
+# 例:   'GCC'
+#       'Clang'
+#       'OpenJDK'
+name = 'Swift'
+
+# キー: version
+# 型:   文字列
+# 要否: 必須
+# 説明: コンパイラ/インタプリタのバージョン番号
+#       コンパイラ、インタプリタの実装バージョンを記述してください
+# 例:   '14.2'
+#       '18.1.8'
+#       '23'
+version = '6.0.2'
+
+# キー: license
+# 型:   配列
+#       配列内の各要素はテーブルで、1要素が1つのライセンス
+#       テーブルに記述するキー/値は以下の通り
+#           キー: name
+#           型:   文字列
+#           要否: 必須
+#           説明: ライセンス名
+#           例:   'GPLv3+ with GCC Runtime Library Exception'
+#                 'Apache License v2.0 with LLVM Exceptions'
+#                 'GNU General Public License, version 2, with the Classpath Exception'
+#
+#           キー: url
+#           型:   文字列
+#           要否: 必須
+#           説明: ライセンスが確認できるURL
+#           例:   'https://gcc.gnu.org/git/?p=gcc.git;a=blob;f=COPYING3;hb=refs/heads/master'
+#                 'https://github.com/llvm/llvm-project/blob/main/clang/LICENSE.TXT'
+#                 'https://openjdk.org/legal/gplv2+ce.html'
+# 要否: 必須
+# 説明: コンパイラ/インタプリタのライセンス
+#       コンパイラ、インタプリタの実装のライセンスを記述してください
+#       デュアルライセンスなど、ライセンスが複数ある場合はすべて記述してください
+license = [
+    { name = 'Apache-2.0 license', url = 'https://github.com/swiftlang/swift/blob/main/LICENSE.txt' }
+]
+
+# キー: library
+# 型:   テーブル
+#       テーブル内の各キー/値はライブラリ1つを表し、キーにはライブラリ名を、値はテーブル型でライブラリの詳細を記述
+#       ライブラリの詳細として記述できるキー/値は以下の通り
+#           キー: license
+#           型:   テーブルの配列
+#                 ここに記述する型/値は上記licenseと同様なのでそちらを参照
+#           要否: 必須
+#           説明: ライブラリのライセンス
+#
+#           キー: version
+#           型:   文字列
+#           要否: 任意
+#           説明: ライブラリのバージョン番号
+#       基本的にコンパイラ/インタプリタで指定するものと同じものをライブラリでも記述すること
+#       バージョンに関してはコンパイラ/インタプリタと違い任意であるが、ユーザが確認できなくなるためどうしてもわからない場合などを除き記述すること
+# 要否: 任意
+# 説明: 追加でインストールされるライブラリ一覧
+#       ここに記述されたものは言語一覧などの表示に使用されるものでありインストールなどには影響しません
+#       そのためインストールスクリプトで記述されるものと一致するようにしてください
+# 例:   boost = { license = [ { name = 'Boost Software License', url = 'https://www.boost.org/LICENSE_1_0.txt' } ], version = '1.86.0' }
+
+swift-algorithms = { license = [
+    { name = 'Apache-2.0 license', url = 'https://github.com/apple/swift-algorithms/blob/main/LICENSE.txt' },
+], version = '1.2.0' }
+swift-collections = { license = [
+    { name = 'Apache-2.0 license', url = 'https://github.com/apple/swift-collections/blob/main/LICENSE.txt' },
+], version = '1.1.4' }
+swift-numerics = { license = [
+    { name = 'Apache-2.0 license', url = 'https://github.com/apple/swift-numerics/blob/main/LICENSE.txt' },
+] }
+swift-ac-library = { license = [
+    { name = 'CC0-1.0 license', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },
+] }
+
+# キー: filename
+# 型:   文字列
+# 要否: 必須
+# 説明: 配置するファイル名
+#       提出されたソースコードがこの名前でカレントディレクトリに作成されます
+#       基本的には Main + 拡張子 で統一してください
+#       ただしファイル名に意味がある場合やプロジェクトファイルを用いる場合は適切にファイルパスを指定してください
+# 例:   'Main.c'
+#       'Main.cpp'
+#       'src/main.rs'
+filename = 'Main.swift'
+
+# キー: install
+# 型:   文字列
+# 要否: 必須
+# 説明: インストールスクリプト
+#       このスクリプトでは言語環境のイメージを作成するために使用されます
+#       そのためコンパイラ/インタプリタやライブラリのインストールだけでなく、プロジェクトの生成やプリコンパイルといった、提出によらずにすべてで行うべき工程はこのインストールスクリプトで行ってください
+#       ネットワークアクセスができるのはこのタイミングだけです
+#       後述のコンパイルスクリプト、および実行コマンドではネットワークアクセスができないため、必要なファイルがインターネットにある場合はこのスクリプトでダウンロードを行っておいてください
+#
+#       ここで記述されたスクリプトはbashに渡されて実行されます
+#       シェル変数などは通常通り使用可能ですが、コンパイルスクリプト、実行コマンドには引き継がれないので注意してください
+#       コンパイルスクリプトにおいては同様にbashで実行されるため、同じ内容を記述してください
+#       実行コマンドはシェルを介さず直接起動されるため、環境変数の修正が必要な場合は後述のenvironmentを使用してください
+#
+#       またイメージを最小化するために、インストール作業には必要だが最終成果物として不要なものは /tmp においてください
+#       インストールスクリプトが終了したあとで /tmp 以下のものは削除されます
+install = '''
+
+## 公式手順を参考にしています。
+## 量が多いので, 可能であれば./setup.shなどで実行することをお勧めします。
+## 手元のDocker(M1 Mac上, Ubuntu(Intel CPU)上)のubuntu:22.10環境で確認済み。
+
+## References
+## https://www.swift.org/getting-started/
+## https://www.swift.org/download/
+## https://github.com/apple/swift-docker/blob/59e3cc2532e57bb75b406bb9c589b62bd12edd5c/5.7/ubuntu/22.04/Dockerfile
+
+sudo apt update
+export DEBIAN_FRONTEND=noninteractive
+
+## don't use apt!
+sudo apt-get install -y \
+binutils \
+git \
+gnupg2 \
+libc6-dev \
+libcurl4-openssl-dev \
+libedit2 \
+libgcc-9-dev \
+libpython3.8 \
+libsqlite3-0 \
+libstdc++-9-dev \
+libxml2-dev \
+libz3-dev \
+pkg-config \
+tzdata \
+unzip \
+zlib1g-dev
+## 依存packagesの公式インストール方法だが、libpython3.8がデフォルトでubuntu22ではapt repositoryに存在しない。
+## aptだと一つでも存在しなかったらエラーで強制終了するため、apt-getにしている。libpython3.8の行を消してもいいかも。
+## libpython3.8はなくても問題ないことを確認済み。
+
+export SWIFT_PLATFORM=ubuntu22.04
+export SWIFT_VERSION_NUMBER=5.8.1
+export SWIFT_BRANCH=swift-$SWIFT_VERSION_NUMBER-release
+export SWIFT_VERSION=swift-$SWIFT_VERSION_NUMBER-RELEASE
+export SWIFT_WEBROOT=https://download.swift.org
+
+## check architecture
+## CPUなど低レイヤーの環境が不明のため。
+set -e
+ARCH_NAME="$(dpkg --print-architecture)"
+url=
+case "${ARCH_NAME##*-}" in
+'amd64')
+OS_ARCH_SUFFIX=''
+;;
+'arm64')
+OS_ARCH_SUFFIX='-aarch64'
+;;
+*)
+echo >&2 "error: unsupported architecture: '$ARCH_NAME'"
+exit 1
+;;
+esac
+
+export SWIFT_WEBDIR="$SWIFT_WEBROOT/$SWIFT_BRANCH/$(echo $SWIFT_PLATFORM | tr -d .)$OS_ARCH_SUFFIX"
+export FILE_NAME="$SWIFT_VERSION-$SWIFT_PLATFORM$OS_ARCH_SUFFIX"
+export SWIFT_BIN_URL="$SWIFT_WEBDIR/$SWIFT_VERSION/$FILE_NAME.tar.gz"
+
+sudo apt install -y wget
+
+wget -O - "$SWIFT_BIN_URL" | sudo tar -xzC /usr/local/ \
+--transform=s/$FILE_NAME/swift/
+
+## echo 'export PATH=/usr/local/swift/usr/bin:$PATH' >>~/.bashrc
+
+## verify swift command.
+## source ~/.bashrc
+export PATH=/usr/local/swift/usr/bin:$PATH
+swift --version
+## 正しく表示されればswiftcも使えます。
+
+## create project
+## mkdir swift
+## cd swift
+swift package init --name Main --type executable
+cat << 'EOF' > Package.swift
+// swift-tools-version: 6.0.2
+import PackageDescription
+
+let package = Package(
+  name: "Main",
+  dependencies: [
+    .package(
+      url: "https://github.com/apple/swift-collections.git",
+      exact: "1.1.4"
+    ),
+    .package(
+      url: "https://github.com/apple/swift-algorithms.git",
+      exact: "1.2.0"
+    ),
+    .package(
+      url: "https://github.com/apple/swift-numerics",
+      branch: "main"),
+    .package(
+      url: "swift-ac-library",
+      branch: "main"),
+  ],
+  targets: [
+    .executableTarget(
+      name: "Main",
+      dependencies: [
+        .product(name: "Collections", package: "swift-collections"),
+        .product(name: "Algorithms", package: "swift-algorithms"),
+        .product(name: "Numerics", package: "swift-numerics"),
+        .product(name: "AtCoder", package: "swift-ac-library"),
+      ],
+      path: "Sources"
+    )
+  ]
+)
+EOF
+## install library
+swift build -Xswiftc -O -Xlinker -lm -c release
+rm .build/release/Main
+
+'''
+
+# キー: compile
+# 型:   文字列
+# 要否: 任意
+# 説明: コンパイルスクリプト
+#       コンパイルを行う言語の場合はコンパイルコマンドを記入してください
+#
+#       ここで記述されたスクリプトはbashに渡されて実行されます
+#       シェル変数などは通常通り使用可能ですが、実行コマンドには引き継がれないので注意してください
+#       実行コマンドはシェルを介さず直接起動されるため、環境変数の修正が必要な場合は後述のenvironmentを使用してください
+#
+#       コンパイルを行わない言語の場合は記述不要です
+#       ただしコンパイルを行う必要のない言語の場合でも、構文チェックなどをコンパイル代わりに行わせることが可能です
+#       成功時に後述の object で指定するファイルが生成されるようにコマンドを記述してください
+compile = '''
+
+export PATH=/usr/local/swift/usr/bin:$PATH
+swift build -Xswiftc -O -Xlinker -lm -c release 1>&2
+
+'''
+
+# キー: object
+# 型:   文字列
+# 要否: 任意
+# 説明: コンパイル成否を判断するためのファイルパス
+#       コンパイルが成功したかどうかの判定に行うファイルを/judgeからの相対パスで記入してください
+#       コンパイルの成否はこのファイルの存在で判定を行います
+#       コンパイラの出力内容や、コンパイラの終了コードでは判定を行いませんので注意してください
+#       またこの仕様を用いて、インタプリタ言語で構文チェックなどを行うことが可能です
+#       例えばコンパイルコマンドとして構文チェックを行い、その成否に応じてここで指定するファイルを生成する/しないを行えば、インタプリタ言語でもコンパイルエラーで実行を中断させることが可能です
+# 例:   'a.out'
+#       'publish/Main'
+#       'target/release/main'
+object = '.build/release/Main'
+
+# キー: environment
+# 型:   テーブル
+#       テーブル内の各キー/値は環境変数1つを表し、キーには環境変数名を、値は文字列型で環境変数の内容を記述
+# 要否: 任意
+# 説明: 実行時の環境変数
+#       実行はシェルを介さず直接実行されるためシェルと同じ方法では環境変数を設定できません
+#       そのため環境変数を修正する場合はenvironmentテーブル内にキー/値を記述してください
+#
+#       デフォルトでは以下の環境変数が設定されています
+#           environment.PATH    = '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+#           environment.HOME    = '/home/runner'
+#           environment.LANG    = 'C.UTF-8'
+#           environment.ATCODER = '1'
+#
+#       ここで指定する環境変数は実行時のみ影響するものです
+#       インストールスクリプト、コンパイルスクリプトには影響しません
+#       それぞれで環境変数を変更する場合はそれぞれのスクリプト内で直接変更するようにしてください
+#
+#       また以下の文字列は実行直前にジャッジシステムによって置換されます:
+#           {memory:b}     問題のメモリ制限の数値（単位: バイト）
+#           {memory:kb}    問題のメモリ制限の数値（単位: KiB）
+#           {memory:mb}    問題のメモリ制限の数値（単位: MiB）
+#       インタプリタ言語など、環境変数によって実行環境の設定を行う場合に使用できます
+
+# environment.HOGE       = "fuga"
+# environment.FOO        = "bar"
+# environment.max-memory = "{memory:mb}M"
+
+# キー: execution
+# 型:   配列
+#       配列内の各要素は文字列で、実行コマンドとして渡される各引数
+# 要否: 任意
+# 説明: 実行コマンド
+#       実行を行うときのコマンドを配列で指定してください
+#       実行はオーバーヘッドを取り除くためにシェルなどを使わずに直接起動させます
+#       そのためシェルの構文などは一切使えません
+#       ただし以下の文字列は実行直前にジャッジシステムによって置換されます:
+#           {memory:b}     問題のメモリ制限の数値（単位: バイト）
+#           {memory:kb}    問題のメモリ制限の数値（単位: KiB）
+#           {memory:mb}    問題のメモリ制限の数値（単位: MiB）
+#       インタプリタ言語など、実行環境の設定を行う場合に使用できます
+# 例:   [ './a.out' ]
+#       [ './target/release/main' ]
+#       [ 'java', '-Xss{memory:mb}M', 'Main' ]
+execution = [
+    './.build/release/Main',
+]
