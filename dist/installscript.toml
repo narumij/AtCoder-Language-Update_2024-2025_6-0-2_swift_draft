@@ -155,28 +155,30 @@ export DEBIAN_FRONTEND=noninteractive
 
 ## don't use apt!
 sudo apt-get install -y \
-binutils \
-git \
-gnupg2 \
-libc6-dev \
-libcurl4-openssl-dev \
-libedit2 \
-libgcc-9-dev \
-libpython3.8 \
-libsqlite3-0 \
-libstdc++-9-dev \
-libxml2-dev \
-libz3-dev \
-pkg-config \
-tzdata \
-unzip \
-zlib1g-dev
+          binutils \
+          git \
+          gnupg2 \
+          libc6-dev \
+          libcurl4-openssl-dev \
+          libedit2 \
+          libgcc-13-dev \
+          libncurses-dev \
+          libpython3-dev \
+          libsqlite3-0 \
+          libstdc++-13-dev \
+          libxml2-dev \
+          libz3-dev \
+          pkg-config \
+          tzdata \
+          unzip \
+          zlib1g-dev
+
 ## 依存packagesの公式インストール方法だが、libpython3.8がデフォルトでubuntu22ではapt repositoryに存在しない。
 ## aptだと一つでも存在しなかったらエラーで強制終了するため、apt-getにしている。libpython3.8の行を消してもいいかも。
 ## libpython3.8はなくても問題ないことを確認済み。
 
-export SWIFT_PLATFORM=ubuntu22.04
-export SWIFT_VERSION_NUMBER=5.8.1
+export SWIFT_PLATFORM=ubuntu24.04
+export SWIFT_VERSION_NUMBER=6.0.2
 export SWIFT_BRANCH=swift-$SWIFT_VERSION_NUMBER-release
 export SWIFT_VERSION=swift-$SWIFT_VERSION_NUMBER-RELEASE
 export SWIFT_WEBROOT=https://download.swift.org
@@ -215,6 +217,8 @@ wget -O - "$SWIFT_BIN_URL" | sudo tar -xzC /usr/local/ \
 export PATH=/usr/local/swift/usr/bin:$PATH
 swift --version
 ## 正しく表示されればswiftcも使えます。
+
+swift sdk install https://download.swift.org/swift-6.0.2-release/static-sdk/swift-6.0.2-RELEASE/swift-6.0.2-RELEASE_static-linux-0.0.1.artifactbundle.tar.gz --checksum aa5515476a403797223fc2aad4ca0c3bf83995d5427fb297cab1d93c68cee075
 
 ## create project
 ## mkdir swift
