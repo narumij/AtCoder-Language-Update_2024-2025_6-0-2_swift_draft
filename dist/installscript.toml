@@ -107,6 +107,12 @@ swift-collections = { license = [
 swift-numerics = { license = [
     { name = 'Apache-2.0 license', url = 'https://github.com/apple/swift-numerics/blob/main/LICENSE.txt' },
 ] }
+swift-async-algorithms = { license = [
+    { name = 'Apache-2.0 license', url = 'https://github.com/apple/swift-async-algorithms/blob/main/LICENSE.txt' },
+] }
+swift-system = { license = [
+    { name = 'Apache-2.0 license', url = 'https://github.com/apple/swift-system/blob/main/LICENSE.txt' },
+] }
 swift-ac-library = { license = [
     { name = 'CC0-1.0 license', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },
 ] }
@@ -243,7 +249,13 @@ let package = Package(
       url: "https://github.com/apple/swift-numerics",
       branch: "main"),
     .package(
-      url: "swift-ac-library",
+      url: "https://github.com/apple/swift-async-algorithms",
+      exact: "1.0"),
+    .package(
+      url: "https://github.com/apple/swift-system",
+      exact: "1.4.0"),
+    .package(
+      url: "https://github.com/narumij/swift-ac-library",
       branch: "main"),
   ],
   targets: [
@@ -253,6 +265,8 @@ let package = Package(
         .product(name: "Collections", package: "swift-collections"),
         .product(name: "Algorithms", package: "swift-algorithms"),
         .product(name: "Numerics", package: "swift-numerics"),
+        .product(name: "AsyncAlgorithms", package: "swift-async-algorithms"),
+        .product(name: "SystemPackage", package: "swift-system"),
         .product(name: "AtCoder", package: "swift-ac-library"),
       ],
       path: "Sources"
@@ -279,6 +293,7 @@ rm .build/release/Main
 #       コンパイルを行わない言語の場合は記述不要です
 #       ただしコンパイルを行う必要のない言語の場合でも、構文チェックなどをコンパイル代わりに行わせることが可能です
 #       成功時に後述の object で指定するファイルが生成されるようにコマンドを記述してください
+
 compile = '''
 
 export PATH=/usr/local/swift/usr/bin:$PATH
@@ -298,6 +313,7 @@ swift build -Xswiftc -O -Xlinker -lm -c release 1>&2
 # 例:   'a.out'
 #       'publish/Main'
 #       'target/release/main'
+
 object = '.build/release/Main'
 
 # キー: environment
@@ -344,6 +360,7 @@ object = '.build/release/Main'
 # 例:   [ './a.out' ]
 #       [ './target/release/main' ]
 #       [ 'java', '-Xss{memory:mb}M', 'Main' ]
+
 execution = [
     './.build/release/Main',
 ]
