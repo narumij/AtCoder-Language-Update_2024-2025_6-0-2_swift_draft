@@ -67,7 +67,9 @@ sudo apt-get install -y \
 ## aptだと一つでも存在しなかったらエラーで強制終了するため、apt-getにしている。libpython3.8の行を消してもいいかも。
 ## libpython3.8はなくても問題ないことを確認済み。
 
+## (6.0.2) 修正箇所
 export SWIFT_PLATFORM=ubuntu24.04
+## (6.0.2) 修正箇所
 export SWIFT_VERSION_NUMBER=6.0.2
 export SWIFT_BRANCH=swift-$SWIFT_VERSION_NUMBER-release
 export SWIFT_VERSION=swift-$SWIFT_VERSION_NUMBER-RELEASE
