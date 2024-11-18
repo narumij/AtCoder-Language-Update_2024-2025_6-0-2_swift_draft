@@ -99,22 +99,22 @@ license = [
 #       そのためインストールスクリプトで記述されるものと一致するようにしてください
 # 例:   boost = { license = [ { name = 'Boost Software License', url = 'https://www.boost.org/LICENSE_1_0.txt' } ], version = '1.86.0' }
 
-swift-algorithms = { license = [
+library.swift-algorithms = { license = [
     { name = 'Apache-2.0 license', url = 'https://github.com/apple/swift-algorithms/blob/main/LICENSE.txt' },
 ], version = '1.2.0' }
-swift-collections = { license = [
+library.swift-collections = { license = [
     { name = 'Apache-2.0 license', url = 'https://github.com/apple/swift-collections/blob/main/LICENSE.txt' },
 ], version = '1.1.4' }
-swift-numerics = { license = [
+library.swift-numerics = { license = [
     { name = 'Apache-2.0 license', url = 'https://github.com/apple/swift-numerics/blob/main/LICENSE.txt' },
 ] }
-swift-async-algorithms = { license = [
+library.swift-async-algorithms = { license = [
     { name = 'Apache-2.0 license', url = 'https://github.com/apple/swift-async-algorithms/blob/main/LICENSE.txt' },
 ] }
-swift-system = { license = [
+library.swift-system = { license = [
     { name = 'Apache-2.0 license', url = 'https://github.com/apple/swift-system/blob/main/LICENSE.txt' },
 ] }
-swift-ac-library = { license = [
+library.swift-ac-library = { license = [
     { name = 'CC0-1.0 license', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },
 ] }
 
