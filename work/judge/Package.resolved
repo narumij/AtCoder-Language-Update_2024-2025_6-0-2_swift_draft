@@ -1,0 +1,69 @@
+{
+  "originHash" : "ee89f38b90568863b7c584d3dfd9a9d9714fea14705f6dbef7e7c672dd89a706",
+  "pins" : [
+    {
+      "identity" : "bigint",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/attaswift/BigInt",
+      "state" : {
+        "revision" : "a7ee11486233ba45f5ceee0b8cb3d6629ed450ef",
+        "version" : "5.5.0"
+      }
+    },
+    {
+      "identity" : "swift-ac-library",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/narumij/swift-ac-library",
+      "state" : {
+        "branch" : "main",
+        "revision" : "4cfbc16a31f788bbb9f8f015c2b57a3d57cfd1d8"
+      }
+    },
+    {
+      "identity" : "swift-algorithms",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-algorithms.git",
+      "state" : {
+        "revision" : "f6919dfc309e7f1b56224378b11e28bab5bccc42",
+        "version" : "1.2.0"
+      }
+    },
+    {
+      "identity" : "swift-bignum",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/dankogai/swift-bignum.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "7905f4e520bb601ed02a163d3c7410aa20f39c71"
+      }
+    },
+    {
+      "identity" : "swift-collections",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-collections.git",
+      "state" : {
+        "revision" : "671108c96644956dddcd89dd59c203dcdb36cec7",
+        "version" : "1.1.4"
+      }
+    },
+    {
+      "identity" : "swift-numerics",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-numerics",
+      "state" : {
+        "branch" : "main",
+        "revision" : "e30276bff2ff5ed80566fbdca49f50aa160b0e83"
+      }
+    },
+    {
+      "identity" : "swift-system",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-system",
+      "state" : {
+        "revision" : "c8a44d836fe7913603e246acab7c528c2e780168",
+        "version" : "1.4.0"
+      }
+    }
+  ],
+  "version" : 3
+}

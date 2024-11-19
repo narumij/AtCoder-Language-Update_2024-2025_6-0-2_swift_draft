@@ -16,12 +16,6 @@ let package = Package(
       url: "https://github.com/apple/swift-numerics",
       branch: "main"),
     .package(
-      url: "https://github.com/apple/swift-async-algorithms",
-      exact: "1.0"),
-    .package(
-      url: "https://github.com/apple/swift-system",
-      exact: "1.4.0"),
-    .package(
       url: "https://github.com/apple/swift-system",
       exact: "1.4.0"),
     .package(
@@ -41,10 +35,9 @@ let package = Package(
         .product(name: "Collections", package: "swift-collections"),
         .product(name: "Algorithms", package: "swift-algorithms"),
         .product(name: "Numerics", package: "swift-numerics"),
-        .product(name: "AsyncAlgorithms", package: "swift-async-algorithms"),
         .product(name: "SystemPackage", package: "swift-system"),
         .product(name: "BigInt", package: "BigInt"),
-        .product(name: "BigNum", package: "BigNum"),
+        .product(name: "BigNum", package: "swift-bignum"),
         .product(name: "AtCoder", package: "swift-ac-library"),
       ],
       path: "Sources"
