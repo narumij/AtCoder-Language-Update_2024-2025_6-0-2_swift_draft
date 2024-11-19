@@ -20,12 +20,18 @@ library.swift-async-algorithms = { license = [
 library.swift-system = { license = [
     { name = 'Apache-2.0 license', url = 'https://github.com/apple/swift-system/blob/main/LICENSE.txt' },
 ] }
+library.BigInt = { license = [
+    { name = 'MIT license', url = 'https://github.com/attaswift/BigInt/blob/master/LICENSE.md' },
+] }
+library.swift-bignum = { license = [
+    { name = 'MIT license', url = 'https://github.com/dankogai/swift-bignum/blob/main/LICENSE' },
+] }
 library.swift-ac-library = { license = [
     { name = 'CC0-1.0 license', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },
 ] }
 
 ## (6.0.2) パッケージ内のソースの位置に修正しています。
-filename = 'Sources/Main/Main.swift'
+filename = 'Sources/main.swift'
 
 ## (6.0.2) 5.8.1のインストールスクリプトをコピーし、6.0.2向けに修正しています。
 install = '''
@@ -119,7 +125,7 @@ swift sdk install https://download.swift.org/swift-6.0.2-release/static-sdk/swif
 swift package init --name Main --type executable
 ## (6.0.2) 修正箇所
 cat << 'EOF' > Package.swift
-// swift-tools-version: 6.0.2
+// swift-tools-version: 6.0
 import PackageDescription
 
 let package = Package(
@@ -143,6 +149,15 @@ let package = Package(
       url: "https://github.com/apple/swift-system",
       exact: "1.4.0"),
     .package(
+      url: "https://github.com/apple/swift-system",
+      exact: "1.4.0"),
+    .package(
+      url: "https://github.com/attaswift/BigInt.git",
+      from: "5.4.0"),
+    .package(
+      url: "https://github.com/dankogai/swift-bignum.git",
+      branch: "main"),
+    .package(
       url: "https://github.com/narumij/swift-ac-library",
       branch: "main"),
   ],
@@ -155,6 +170,8 @@ let package = Package(
         .product(name: "Numerics", package: "swift-numerics"),
         .product(name: "AsyncAlgorithms", package: "swift-async-algorithms"),
         .product(name: "SystemPackage", package: "swift-system"),
+        .product(name: "BigInt", package: "BigInt"),
+        .product(name: "BigNum", package: "BigNum"),
         .product(name: "AtCoder", package: "swift-ac-library"),
       ],
       path: "Sources"
