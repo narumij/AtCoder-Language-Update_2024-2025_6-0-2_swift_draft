@@ -22,3 +22,5 @@ var s = RedBlackTreeSet<Int>(A)
 print(s.contains(3) ? "Yes" : "No")
 
 print(gcd(12, 16))
+
+//typealias modint = modi
