@@ -18,7 +18,7 @@ let package = Package(
       exact: "1.4.0"),
     .package(
       url: "https://github.com/attaswift/BigInt.git",
-      from: "5.4.1"),
+      from: "5.4.0"),
     .package(
       url: "https://github.com/dankogai/swift-bignum.git",
       from: "5.4.1"),
@@ -30,8 +30,11 @@ let package = Package(
       branch: "main"),
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
+      exact: "0.0.1"),
+    .package(
+      url: "https://github.com/narumij/swift-tree",
       branch: "main"),
-  ],
+],
   targets: [
     .executableTarget(
       name: "Main",
@@ -45,6 +48,7 @@ let package = Package(
         .product(name: "SwiftGraph", package: "SwiftGraph"),
         .product(name: "AtCoder", package: "swift-ac-library"),
         .product(name: "AcFoundation", package: "swift-ac-foundation"),
+        .product(name: "AcCollections", package: "swift-tree"),
       ],
       path: "Sources"
     )

@@ -35,6 +35,9 @@ library.swift-ac-library = { license = [
 library.swift-ac-foundation = { license = [
     { name = 'CC0-1.0 license', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' },
 ] }
+library.swift-tree = { license = [
+    { name = 'CC0-1.0 license', url = 'https://github.com/narumij/swift-tree/blob/main/LICENSE' },
+] }
 
 ## (6.0.2) パッケージ内のソースの位置に修正しています。
 filename = 'Sources/main.swift'
@@ -139,12 +142,10 @@ let package = Package(
   dependencies: [
     .package(
       url: "https://github.com/apple/swift-collections.git",
-      exact: "1.1.4"
-    ),
+      exact: "1.1.4"),
     .package(
       url: "https://github.com/apple/swift-algorithms.git",
-      exact: "1.2.0"
-    ),
+      exact: "1.2.0"),
     .package(
       url: "https://github.com/apple/swift-numerics",
       branch: "main"),
@@ -153,7 +154,7 @@ let package = Package(
       exact: "1.4.0"),
     .package(
       url: "https://github.com/attaswift/BigInt.git",
-      from: "5.4.1"),
+      from: "5.4.0"),
     .package(
       url: "https://github.com/dankogai/swift-bignum.git",
       from: "5.4.1"),
@@ -165,8 +166,11 @@ let package = Package(
       branch: "main"),
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
+      exact: "0.0.1"),
+    .package(
+      url: "https://github.com/narumij/swift-tree",
       branch: "main"),
-  ],
+],
   targets: [
     .executableTarget(
       name: "Main",
@@ -180,6 +184,7 @@ let package = Package(
         .product(name: "SwiftGraph", package: "SwiftGraph"),
         .product(name: "AtCoder", package: "swift-ac-library"),
         .product(name: "AcFoundation", package: "swift-ac-foundation"),
+        .product(name: "AcCollections", package: "swift-tree"),
       ],
       path: "Sources"
     )
