@@ -1,5 +1,5 @@
 {
-  "originHash" : "08bc817f439cb7e11372491f08d7aefd28183f935478d84f8a23e21c1fa6d2f5",
+  "originHash" : "103e1ee3c4ee86ecf07b45d2b126056510266596577ee6951dbd3be79bd41be9",
   "pins" : [
     {
       "identity" : "bigint",
@@ -16,7 +16,7 @@
       "location" : "https://github.com/narumij/swift-ac-foundation",
       "state" : {
         "branch" : "main",
-        "revision" : "579434b5d46d25c420dd19c7fdb6533a98b1b15c"
+        "revision" : "30015025271d04555663ece3ed071d9b37c2d2f6"
       }
     },
     {

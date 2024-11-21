@@ -6,12 +6,10 @@ let package = Package(
   dependencies: [
     .package(
       url: "https://github.com/apple/swift-collections.git",
-      exact: "1.1.4"
-    ),
+      exact: "1.1.4"),
     .package(
       url: "https://github.com/apple/swift-algorithms.git",
-      exact: "1.2.0"
-    ),
+      exact: "1.2.0"),
     .package(
       url: "https://github.com/apple/swift-numerics",
       branch: "main"),

@@ -1,4 +1,9 @@
-// The Swift Programming Language
-// https://docs.swift.org/swift-book
+import Foundation
+import AtCoder
+import AcFoundation
 
-print("Hello, world!")
+let N = Int.stdin
+let A = [Int].stdin(columns: N)
+
+print(N)
+print(A)
