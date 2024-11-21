@@ -30,6 +30,9 @@ let package = Package(
     .package(
       url: "https://github.com/narumij/swift-ac-library",
       branch: "main"),
+    .package(
+      url: "https://github.com/narumij/swift-ac-foundation",
+      branch: "main"),
   ],
   targets: [
     .executableTarget(
@@ -43,6 +46,7 @@ let package = Package(
         .product(name: "BigNum", package: "swift-bignum"),
         .product(name: "SwiftGraph", package: "SwiftGraph"),
         .product(name: "AtCoder", package: "swift-ac-library"),
+        .product(name: "AcFoundation", package: "swift-ac-foundation"),
       ],
       path: "Sources"
     )

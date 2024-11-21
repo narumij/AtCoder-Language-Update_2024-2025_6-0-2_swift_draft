@@ -26,8 +26,14 @@ library.BigInt = { license = [
 library.swift-bignum = { license = [
     { name = 'MIT license', url = 'https://github.com/dankogai/swift-bignum/blob/main/LICENSE' },
 ] }
+library.SwiftGraph = { license = [
+    { name = 'Apache-2.0 license', url = 'https://github.com/davecom/SwiftGraph/blob/master/LICENSE' },
+] }
 library.swift-ac-library = { license = [
     { name = 'CC0-1.0 license', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },
+] }
+library.swift-ac-foundation = { license = [
+    { name = 'CC0-1.0 license', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' },
 ] }
 
 ## (6.0.2) パッケージ内のソースの位置に修正しています。
@@ -147,12 +153,18 @@ let package = Package(
       exact: "1.4.0"),
     .package(
       url: "https://github.com/attaswift/BigInt.git",
-      from: "5.4.0"),
+      from: "5.4.1"),
     .package(
       url: "https://github.com/dankogai/swift-bignum.git",
-      branch: "main"),
+      from: "5.4.1"),
+    .package(
+      url: "https://github.com/davecom/SwiftGraph",
+      exact: "3.1.0"),
     .package(
       url: "https://github.com/narumij/swift-ac-library",
+      branch: "main"),
+    .package(
+      url: "https://github.com/narumij/swift-ac-foundation",
       branch: "main"),
   ],
   targets: [
@@ -165,7 +177,9 @@ let package = Package(
         .product(name: "SystemPackage", package: "swift-system"),
         .product(name: "BigInt", package: "BigInt"),
         .product(name: "BigNum", package: "swift-bignum"),
+        .product(name: "SwiftGraph", package: "SwiftGraph"),
         .product(name: "AtCoder", package: "swift-ac-library"),
+        .product(name: "AcFoundation", package: "swift-ac-foundation"),
       ],
       path: "Sources"
     )
