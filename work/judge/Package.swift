@@ -33,7 +33,7 @@ let package = Package(
       exact: "0.0.1"),
     .package(
       url: "https://github.com/narumij/swift-tree",
-      branch: "main"),
+      exact: "0.0.1"),
 ],
   targets: [
     .executableTarget(
