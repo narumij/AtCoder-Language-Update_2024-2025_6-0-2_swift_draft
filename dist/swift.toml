@@ -142,34 +142,34 @@ let package = Package(
   dependencies: [
     .package(
       url: "https://github.com/apple/swift-collections.git",
-      exact: "1.1.4"),
+      from: "1.1.4"),
     .package(
       url: "https://github.com/apple/swift-algorithms.git",
-      exact: "1.2.0"),
+      from: "1.2.0"),
     .package(
       url: "https://github.com/apple/swift-numerics",
       branch: "main"),
     .package(
       url: "https://github.com/apple/swift-system",
-      exact: "1.4.0"),
+      from: "1.4.0"),
     .package(
       url: "https://github.com/attaswift/BigInt.git",
-      from: "5.4.0"),
+      from: "5.5.0"),
     .package(
       url: "https://github.com/dankogai/swift-bignum.git",
       from: "5.4.1"),
     .package(
       url: "https://github.com/davecom/SwiftGraph",
-      exact: "3.1.0"),
+      from: "3.1.0"),
     .package(
       url: "https://github.com/narumij/swift-ac-library",
       branch: "main"),
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
-      exact: "0.0.1"),
+      from: "0.0.1"),
     .package(
       url: "https://github.com/narumij/swift-tree",
-      exact: "0.0.1"),
+      from: "0.0.1"),
 ],
   targets: [
     .executableTarget(
