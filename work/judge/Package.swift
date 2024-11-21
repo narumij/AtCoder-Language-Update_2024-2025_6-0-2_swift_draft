@@ -33,8 +33,8 @@ let package = Package(
       from: "0.0.3"),
     .package(
       url: "https://github.com/narumij/swift-tree",
-      from: "0.0.2"),
-],
+      from: "0.0.3"),
+  ],
   targets: [
     .executableTarget(
       name: "Main",

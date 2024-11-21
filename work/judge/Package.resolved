@@ -1,5 +1,5 @@
 {
-  "originHash" : "fd6a8ed4e625b57e7f8a8ad8b59ead2c63d935b2ef350a0040271b730d3adf4d",
+  "originHash" : "cb755520574652181e9056b7e8aa444ca4c304e712860bb1c3c8dd2b78720ef6",
   "pins" : [
     {
       "identity" : "bigint",
@@ -78,8 +78,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-tree",
       "state" : {
-        "revision" : "4cc9ef7ce002212b2d2758b2a8746ab6f5693f66",
-        "version" : "0.0.2"
+        "revision" : "4195026c8a291d71cb2b6eeddf32c249698f2dc9",
+        "version" : "0.0.3"
       }
     },
     {
