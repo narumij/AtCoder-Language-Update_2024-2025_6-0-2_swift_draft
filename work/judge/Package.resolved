@@ -1,5 +1,5 @@
 {
-  "originHash" : "c49ee236a65cfd60a70e24b623d8a5e8cfaa8944601217731eda6e012610c090",
+  "originHash" : "fd6a8ed4e625b57e7f8a8ad8b59ead2c63d935b2ef350a0040271b730d3adf4d",
   "pins" : [
     {
       "identity" : "bigint",
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-foundation",
       "state" : {
-        "revision" : "e1b0b81ad60c05b32f18292777e7631f06af5175",
-        "version" : "0.0.2"
+        "revision" : "b4f8792744b2386eda300b9bd4ada9f71be50d9f",
+        "version" : "0.0.3"
       }
     },
     {
@@ -78,8 +78,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-tree",
       "state" : {
-        "revision" : "fe3119f999a6e1a5a566a223da06175a4fe79850",
-        "version" : "0.0.1"
+        "revision" : "4cc9ef7ce002212b2d2758b2a8746ab6f5693f66",
+        "version" : "0.0.2"
       }
     },
     {

@@ -30,10 +30,10 @@ let package = Package(
       branch: "main"),
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
-      from: "0.0.2"),
+      from: "0.0.3"),
     .package(
       url: "https://github.com/narumij/swift-tree",
-      from: "0.0.1"),
+      from: "0.0.2"),
 ],
   targets: [
     .executableTarget(
