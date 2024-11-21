@@ -20,10 +20,13 @@ let package = Package(
       exact: "1.4.0"),
     .package(
       url: "https://github.com/attaswift/BigInt.git",
-      from: "5.4.0"),
+      from: "5.4.1"),
     .package(
       url: "https://github.com/dankogai/swift-bignum.git",
-      branch: "main"),
+      from: "5.4.1"),
+    .package(
+      url: "https://github.com/davecom/SwiftGraph",
+      exact: "3.1.0"),
     .package(
       url: "https://github.com/narumij/swift-ac-library",
       branch: "main"),
@@ -38,6 +41,7 @@ let package = Package(
         .product(name: "SystemPackage", package: "swift-system"),
         .product(name: "BigInt", package: "BigInt"),
         .product(name: "BigNum", package: "swift-bignum"),
+        .product(name: "SwiftGraph", package: "SwiftGraph"),
         .product(name: "AtCoder", package: "swift-ac-library"),
       ],
       path: "Sources"
