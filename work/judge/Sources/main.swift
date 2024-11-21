@@ -1,6 +1,8 @@
 import Foundation
 import Collections
 import Algorithms
+import Numerics
+import IntegerUtilities
 import AtCoder
 import AcFoundation
 import AcCollections
@@ -18,3 +20,5 @@ print(A)
 var s = RedBlackTreeSet<Int>(A)
 
 print(s.contains(3) ? "Yes" : "No")
+
+print(gcd(12, 16))
