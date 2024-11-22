@@ -14,6 +14,9 @@ let package = Package(
       url: "https://github.com/apple/swift-numerics",
       branch: "main"),
     .package(
+      url: "https://github.com/apple/swift-atomics",
+      from: "1.2.0"),
+    .package(
       url: "https://github.com/apple/swift-system",
       from: "1.4.0"),
     .package(
@@ -42,6 +45,7 @@ let package = Package(
         .product(name: "Collections", package: "swift-collections"),
         .product(name: "Algorithms", package: "swift-algorithms"),
         .product(name: "Numerics", package: "swift-numerics"),
+        .product(name: "Atomics", package: "swift-atomics"),
         .product(name: "SystemPackage", package: "swift-system"),
         .product(name: "BigInt", package: "BigInt"),
         .product(name: "BigNum", package: "swift-bignum"),
