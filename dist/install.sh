@@ -27,7 +27,8 @@ sudo apt-get install -y \
              zlib1g-dev
 
 # 公式 2. Download the latest binary release (6.0.2).
-curl -s -O https://download.swift.org/swift-6.0.2-release/ubuntu2404/swift-6.0.2-RELEASE/swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
+curl -s -O \
+  https://download.swift.org/swift-6.0.2-release/ubuntu2404/swift-6.0.2-RELEASE/swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
 
 # 公式 3. Import and verify the PGP signature:
 # $ gpg --keyserver hkp://keyserver.ubuntu.com \
@@ -54,8 +55,9 @@ tar xzf swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
 # Once that is out of the way, actually installing the Static Linux SDK is easy; at a prompt, enter
 # の部分です。
 
-./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift sdk \
-  install https://download.swift.org/swift-6.0.2-release/static-sdk/swift-6.0.2-RELEASE/swift-6.0.2-RELEASE_static-linux-0.0.1.artifactbundle.tar.gz \
+./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift \
+ sdk install \
+ https://download.swift.org/swift-6.0.2-release/static-sdk/swift-6.0.2-RELEASE/swift-6.0.2-RELEASE_static-linux-0.0.1.artifactbundle.tar.gz \
   --checksum aa5515476a403797223fc2aad4ca0c3bf83995d5427fb297cab1d93c68cee075
 
 # Swift will download and install the SDK on your system. You can get a list of installed SDKs with
@@ -131,6 +133,9 @@ let package = Package(
   ]
 )
 EOF
+
+# 念の為に、クリーニングします
+./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift clean
 
 # 依存パッケージの解決とパッケージのビルドを事前に行うため、以下のコマンドを実行します。
 ./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift build -c release --swift-sdk x86_64-swift-linux-musl
