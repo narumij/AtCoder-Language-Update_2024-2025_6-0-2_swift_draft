@@ -141,7 +141,7 @@ EOF
 # 念の為に、クリーニングします
 ./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift package clean
 
-# 依存パッケージの解決とパッケージのビルドを事前に行うため、以下のコマンドを実行します。
+# 依存パッケージの解決とパッケージのビルドを事前に行います
 ./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift build -c release --swift-sdk x86_64-swift-linux-musl
 
 # ビルド判定が正しく行われるよう、ビルド結果を削除します
