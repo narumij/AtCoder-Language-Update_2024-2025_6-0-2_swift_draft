@@ -140,5 +140,5 @@ ls -al .build/release/Main
 ls -al .build/x86_64-swift-linux-musl/release/Main
 
 # ビルド判定が正しく行われるよう、ビルド結果を削除します
-# rm .build/x86_64-swift-linux-musl/release/Main
-rm .build/release/Main
+rm .build/x86_64-swift-linux-musl/release/Main
+#rm .build/release/Main

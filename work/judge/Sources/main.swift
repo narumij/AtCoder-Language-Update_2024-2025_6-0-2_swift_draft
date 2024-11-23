@@ -29,6 +29,8 @@ typealias modint = modint998244353
 
 print(modint(12))
 
+print(cos(Double.pi))
+
 #if os(macOS) || os(iOS)
     print("Hello, Apple platform!")
 #elseif canImport(Glibc)

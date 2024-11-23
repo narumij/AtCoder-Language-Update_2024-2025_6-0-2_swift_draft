@@ -44,14 +44,19 @@ EOF
 # export PATH=/usr/local/swift/usr/bin:$PATH
 ./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift build -c release --swift-sdk x86_64-swift-linux-musl 1>&2
 
-ls -al .build/release/Main
-ls -al .build/x86_64-swift-linux-musl/release/Main
+# ls -al .build/release
+# ls -al .build/x86_64-swift-linux-musl/release
+# ls -al .build/release/Main
+# ls -al .build/x86_64-swift-linux-musl/release/Main
 
-cat << 'EOF' | ./.build/release/Main
+# 標準的なパスは、.build/release/Mainですが、
+# .build/release/が、Static Linux SDKの影響で、.build/x86_64-swift-linux-musl/release/へのシンボリックリンクとなっています。
+# Static Linux SDKのInstructionに載っている方を採用し、直接削除します。
+
+cat << 'EOF' | .build/x86_64-swift-linux-musl/release/Main
 3
 1 2 3
 EOF
 
-# .build/x86_64-swift-linux-musl/release/Main
-
+#.build/x86_64-swift-linux-musl/release/Main
 #swift run --configuration release Main
