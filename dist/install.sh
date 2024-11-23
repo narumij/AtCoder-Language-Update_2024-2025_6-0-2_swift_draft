@@ -75,6 +75,7 @@ rm swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
 # 作業パッケージの初期化を行います。パッケージ名はMain、実行可能なプログラムとして初期化します。
 ./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift package init --name Main --type executable
 
+# Package.swiftを更新し、AtCoderで使用するパッケージを追加します。
 cat << 'EOF' > Package.swift
 // swift-tools-version: 6.0
 import PackageDescription
