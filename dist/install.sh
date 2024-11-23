@@ -61,30 +61,36 @@ export SWIFT_WEBDIR="$SWIFT_WEBROOT/$SWIFT_BRANCH/$(echo $SWIFT_PLATFORM | tr -d
 export FILE_NAME="$SWIFT_VERSION-$SWIFT_PLATFORM$OS_ARCH_SUFFIX"
 export SWIFT_BIN_URL="$SWIFT_WEBDIR/$SWIFT_VERSION/$FILE_NAME.tar.gz"
 
-sudo apt install -y wget
+# sudo apt install -y wget
 
-wget -O - "$SWIFT_BIN_URL" | sudo tar -xzC /usr/local/ \
---transform=s/$FILE_NAME/swift/
+# wget -O - "$SWIFT_BIN_URL" | sudo tar -xzC /usr/local/ \
+# --transform=s/$FILE_NAME/swift/
+
+wget -O - https://download.swift.org/swift-6.0.2-release/ubuntu2404/swift-6.0.2-RELEASE/swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
+
+tar xzf swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
+
+rm swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
 
 ## echo 'export PATH=/usr/local/swift/usr/bin:$PATH' >>~/.bashrc
 
 ## verify swift command.
 ## source ~/.bashrc
-export PATH=/usr/local/swift/usr/bin:$PATH
-swift --version
+# export PATH=/usr/local/swift/usr/bin:$PATH
+./usr/bin/swift --version
 ## 正しく表示されればswiftcも使えます。
 
 ## (6.0.2) 追加箇所
-swift sdk \
+./usr/bin/swift sdk \
   install https://download.swift.org/swift-6.0.2-release/static-sdk/swift-6.0.2-RELEASE/swift-6.0.2-RELEASE_static-linux-0.0.1.artifactbundle.tar.gz \
   --checksum aa5515476a403797223fc2aad4ca0c3bf83995d5427fb297cab1d93c68cee075
 
-swift sdk list
+./usr/bin/swift sdk list
 
 ## create project
 ## mkdir swift
 ## cd swift
-swift package init --name Main --type executable
+./usr/bin/swift package init --name Main --type executable
 ## (6.0.2) 修正箇所
 cat << 'EOF' > Package.swift
 // swift-tools-version: 6.0
@@ -150,5 +156,5 @@ let package = Package(
 EOF
 ## install library
 #swift build -Xswiftc -O -Xlinker -lm -c release --swift-sdk x86_64-swift-linux-musl
-swift build -c release --swift-sdk x86_64-swift-linux-musl
+./usr/bin/swift build -c release --swift-sdk x86_64-swift-linux-musl
 rm .build/release/Main
