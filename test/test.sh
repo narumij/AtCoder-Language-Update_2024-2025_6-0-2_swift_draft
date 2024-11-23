@@ -44,6 +44,7 @@ EOF
 # export PATH=/usr/local/swift/usr/bin:$PATH
 ./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift build -c release --swift-sdk x86_64-swift-linux-musl 1>&2
 
-.build/x86_64-swift-linux-musl/release/Main
+./.build/release/Main
+# .build/x86_64-swift-linux-musl/release/Main
 
 #swift run --configuration release Main

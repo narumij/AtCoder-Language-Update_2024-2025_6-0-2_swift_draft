@@ -134,5 +134,5 @@ EOF
 ./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift build -c release --swift-sdk x86_64-swift-linux-musl
 
 # ビルド判定が正しく行われるよう、ビルド結果を削除します
-rm .build/x86_64-swift-linux-musl/release/Main
-# rm .build/release/Main
+# rm .build/x86_64-swift-linux-musl/release/Main
+rm .build/release/Main
