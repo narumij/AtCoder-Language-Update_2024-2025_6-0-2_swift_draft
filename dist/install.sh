@@ -150,6 +150,6 @@ let package = Package(
 EOF
 ## install library
 #swift build -Xswiftc -O -Xlinker -lm -c release --swift-sdk x86_64-swift-linux-musl
-swift resolve
+swift packge resolve
 swift build -c release --swift-sdk x86_64-swift-linux-musl
 rm .build/release/Main
