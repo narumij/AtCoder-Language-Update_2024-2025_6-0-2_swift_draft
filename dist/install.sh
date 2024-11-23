@@ -2,6 +2,12 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
+# このスクリプトでは、まず言語環境を構築し、その後ビルド環境を構築します。
+
+# ここから、言語環境の構築を開始します。
+# 言語環境の構築では、Swift toolchainの展開と、Static Linux SDKのインストールを行います。
+# 構築手順は、Swift公式サイトのGETTING STARTのINSTALL SWIFTに従います。
+
 # Linuxへのインストールの公式情報は以下です。
 # https://www.swift.org/install/linux/tarball/
 
@@ -48,7 +54,7 @@ tar xzf swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
 # インストール結果を確認します
 ./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift --version
 
-# Static Linux SDKの公式手順は、以下です
+# Static Linux SDKの公式情報は、以下です
 # https://www.swift.org/documentation/articles/static-linux-getting-started.html
 
 # Once that is out of the way, actually installing the Static Linux SDK is easy; at a prompt, enter
@@ -65,13 +71,14 @@ tar xzf swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
 ./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift sdk list
 
 # SDKのインストールは以上です
-# AtCoderからの要請で不要なファイルを削除するように指示があるため、削除します
+# AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
 rm swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
-# 言語環境の構築は完了しました
+# これで言語環境の構築は完了しました
 
 # 続いて、コンパイル環境の構築を行います
+# コンパイル環境の構築では、AtCoderで使用するSwiftパッケージの初期化と事前ビルドを行います
 
-# 作業パッケージの初期化を行います。パッケージ名はMain、実行可能なプログラムとして初期化します
+# ジャッジがビルドを行う作業パッケージの初期化を行います。パッケージ名はMain、実行可能なプログラムとして初期化します
 ./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift package init --name Main --type executable
 
 # Package.swiftを更新し、AtCoderで使用する依存パッケージを作業パッケージに追加します
@@ -148,6 +155,7 @@ EOF
 
 # ビルド判定が正しく行われるよう、ビルド結果を削除します
 # 標準的なパスは、.build/release/Mainですが、
-# .build/release/が、Static Linux SDKの影響で、.build/x86_64-swift-linux-musl/release/へのシンボリックリンクとなっています
+# .build/release/が、Static Linux SDKの影響で、
+# .build/x86_64-swift-linux-musl/release/へのシンボリックリンクとなっています
 # Static Linux SDKのInstructionに載っている方を採用し、直接削除します
 rm .build/x86_64-swift-linux-musl/release/Main
