@@ -1,0 +1,38 @@
+name: Run test
+run-name: ${{ github.workflow }} (${{ github.ref_name }})
+
+on:
+    push:
+        branches:
+            - main
+            - test/**
+    pull_request:
+    workflow_dispatch:
+
+concurrency:
+    group: |
+        test-${{
+            startsWith(github.ref_name, 'test') && github.ref_name ||
+            github.run_id
+        }}
+    cancel-in-progress: true
+
+jobs:
+    run:
+        runs-on: ${{ vars.RUNNER_IMAGE }}
+
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  ref: ${{ github.head_ref || github.ref_name }}
+                  fetch-depth: 0
+
+            - name: Use ccache
+              uses: hendrikmuhs/ccache-action@v1.2
+              with:
+                  create-symlink: true
+
+            - name: Install
+              run: |
+                  chmod +x ./dist/install.sh
+                  ./dist/install.sh
