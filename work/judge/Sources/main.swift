@@ -14,6 +14,7 @@ import SwiftGraph
 #if false
 let N = Int.stdin
 let A = [Int].stdin(columns: N)
+#endif
 
 print(N)
 print(A)
@@ -27,7 +28,6 @@ print(gcd(12, 16))
 typealias modint = modint998244353
 
 print(modint(12))
-#endif
 
 #if os(macOS) || os(iOS)
     print("Hello, Apple platform!")
