@@ -2,8 +2,6 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
-# apt update
-
 # Linuxへのインストールの公式情報は以下です。
 # https://www.swift.org/install/linux/tarball/
 
@@ -133,12 +131,8 @@ EOF
 # 依存パッケージの解決とパッケージのビルドを事前に行うため、以下のコマンドを実行します。
 ./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift build -c release --swift-sdk x86_64-swift-linux-musl
 
-ls -al .build/release
-ls -al .build/x86_64-swift-linux-musl/release
-
-ls -al .build/release/Main
-ls -al .build/x86_64-swift-linux-musl/release/Main
-
 # ビルド判定が正しく行われるよう、ビルド結果を削除します
+# 標準的なパスは、.build/release/Mainですが、
+# .build/release/が、Static Linux SDKの影響で、.build/x86_64-swift-linux-musl/release/へのシンボリックリンクとなっています。
+# Static Linux SDKのInstructionに載っている方を採用し、直接削除します。
 rm .build/x86_64-swift-linux-musl/release/Main
-#rm .build/release/Main

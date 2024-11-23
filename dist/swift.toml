@@ -39,101 +39,77 @@ library.swift-tree = { license = [
     { name = 'CC0-1.0 license', url = 'https://github.com/narumij/swift-tree/blob/main/LICENSE' },
 ] }
 
-## (6.0.2) パッケージ内のソースの位置に修正しています。
+## (6.0.2) パッケージ内のソースの位置に修正しました
 filename = 'Sources/main.swift'
 
-## (6.0.2) 5.8.1のインストールスクリプトをコピーし、6.0.2向けに修正しています。
+## (6.0.2) インストールスクリプトの大幅な修正を行いました
 install = '''
 
-## 公式手順を参考にしています。
-## 量が多いので, 可能であれば./setup.shなどで実行することをお勧めします。
-## 手元のDocker(M1 Mac上, Ubuntu(Intel CPU)上)のubuntu:22.10環境で確認済み。
-
-## References
-## https://www.swift.org/getting-started/
-## https://www.swift.org/download/
-## https://github.com/apple/swift-docker/blob/59e3cc2532e57bb75b406bb9c589b62bd12edd5c/5.7/ubuntu/22.04/Dockerfile
-
-sudo apt update
 export DEBIAN_FRONTEND=noninteractive
 
-## (6.0.2) 修正箇所
-## don't use apt!
+# Linuxへのインストールの公式情報は以下です。
+# https://www.swift.org/install/linux/tarball/
+
+# 公式 1. Install required dependencies:
+
 sudo apt-get install -y \
-          binutils \
-          git \
-          gnupg2 \
-          libc6-dev \
-          libcurl4-openssl-dev \
-          libedit2 \
-          libgcc-13-dev \
-          libncurses-dev \
-          libpython3-dev \
-          libsqlite3-0 \
-          libstdc++-13-dev \
-          libxml2-dev \
-          libz3-dev \
-          pkg-config \
-          tzdata \
-          unzip \
-          zlib1g-dev
+             binutils \
+             git \
+             gnupg2 \
+             libc6-dev \
+             libcurl4-openssl-dev \
+             libedit2 \
+             libgcc-13-dev \
+             libncurses-dev \
+             libpython3-dev \
+             libsqlite3-0 \
+             libstdc++-13-dev \
+             libxml2-dev \
+             libz3-dev \
+             pkg-config \
+             tzdata \
+             unzip \
+             zlib1g-dev
 
-## (6.0.2) 修正箇所:レビュー指摘で22を24に修正
-## 依存packagesの公式インストール方法だが、libpython3.8がデフォルトでubuntu24ではapt repositoryに存在しない。
-## aptだと一つでも存在しなかったらエラーで強制終了するため、apt-getにしている。libpython3.8の行を消してもいいかも。
-## libpython3.8はなくても問題ないことを確認済み。
+# 公式 2. Download the latest binary release (6.0.2).
+curl -s -O https://download.swift.org/swift-6.0.2-release/ubuntu2404/swift-6.0.2-RELEASE/swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
 
-## (6.0.2) 修正箇所
-export SWIFT_PLATFORM=ubuntu24.04
-## (6.0.2) 修正箇所
-export SWIFT_VERSION_NUMBER=6.0.2
-export SWIFT_BRANCH=swift-$SWIFT_VERSION_NUMBER-release
-export SWIFT_VERSION=swift-$SWIFT_VERSION_NUMBER-RELEASE
-export SWIFT_WEBROOT=https://download.swift.org
+# 公式 3. Import and verify the PGP signature:
+# この手順は省略します
 
-## check architecture
-## CPUなど低レイヤーの環境が不明のため。
-set -e
-ARCH_NAME="$(dpkg --print-architecture)"
-url=
-case "${ARCH_NAME##*-}" in
-'amd64')
-OS_ARCH_SUFFIX=''
-;;
-'arm64')
-OS_ARCH_SUFFIX='-aarch64'
-;;
-*)
-echo >&2 "error: unsupported architecture: '$ARCH_NAME'"
-exit 1
-;;
-esac
+# 公式 4. Extract the archive with the following command:
+tar xzf swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
 
-export SWIFT_WEBDIR="$SWIFT_WEBROOT/$SWIFT_BRANCH/$(echo $SWIFT_PLATFORM | tr -d .)$OS_ARCH_SUFFIX"
-export FILE_NAME="$SWIFT_VERSION-$SWIFT_PLATFORM$OS_ARCH_SUFFIX"
-export SWIFT_BIN_URL="$SWIFT_WEBDIR/$SWIFT_VERSION/$FILE_NAME.tar.gz"
+# 公式 5. Add the Swift toolchain to your path as follows:
+# $ export PATH=/path/to/usr/bin:"${PATH}"
+# 前回のやり取りの中で何か問題となっていたようなので、いったん行いません
 
-sudo apt install -y wget
+# 公式のインストール手順は以上です。
 
-wget -O - "$SWIFT_BIN_URL" | sudo tar -xzC /usr/local/ \
---transform=s/$FILE_NAME/swift/
+# インストール結果を確認します
+./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift --version
 
-## echo 'export PATH=/usr/local/swift/usr/bin:$PATH' >>~/.bashrc
+# Static Linux SDKの公式手順は、以下です。
+# https://www.swift.org/documentation/articles/static-linux-getting-started.html
 
-## verify swift command.
-## source ~/.bashrc
-export PATH=/usr/local/swift/usr/bin:$PATH
-swift --version
-## 正しく表示されればswiftcも使えます。
+# Once that is out of the way, actually installing the Static Linux SDK is easy; at a prompt, enter
+# の部分です。
 
-## (6.0.2) 追加箇所
-swift sdk install https://download.swift.org/swift-6.0.2-release/static-sdk/swift-6.0.2-RELEASE/swift-6.0.2-RELEASE_static-linux-0.0.1.artifactbundle.tar.gz --checksum aa5515476a403797223fc2aad4ca0c3bf83995d5427fb297cab1d93c68cee075
+./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift sdk \
+  install https://download.swift.org/swift-6.0.2-release/static-sdk/swift-6.0.2-RELEASE/swift-6.0.2-RELEASE_static-linux-0.0.1.artifactbundle.tar.gz \
+  --checksum aa5515476a403797223fc2aad4ca0c3bf83995d5427fb297cab1d93c68cee075
 
-## create project
-## mkdir swift
-## cd swift
-swift package init --name Main --type executable
-## (6.0.2) 修正箇所
+# Swift will download and install the SDK on your system. You can get a list of installed SDKs with
+# の部分です。
+
+./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift sdk list
+
+# AtCoderからの要請で不要なファイルを削除するように指示があるため、削除します。
+rm swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
+
+# 作業パッケージの初期化を行います。パッケージ名はMain、実行可能なプログラムとして初期化します。
+./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift package init --name Main --type executable
+
 cat << 'EOF' > Package.swift
 // swift-tools-version: 6.0
 import PackageDescription
@@ -196,18 +172,29 @@ let package = Package(
   ]
 )
 EOF
-## install library
-swift build -Xswiftc -O -Xlinker -lm -c release
-rm .build/release/Main
+
+# 依存パッケージの解決とパッケージのビルドを事前に行うため、以下のコマンドを実行します。
+./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift build -c release --swift-sdk x86_64-swift-linux-musl
+
+# ビルド判定が正しく行われるよう、ビルド結果を削除します
+# 標準的なパスは、.build/release/Mainですが、
+# .build/release/が、Static Linux SDKの影響で、.build/x86_64-swift-linux-musl/release/へのシンボリックリンクとなっています。
+# Static Linux SDKのInstructionに載っている方を採用し、直接削除します。
+rm .build/x86_64-swift-linux-musl/release/Main
 '''
 
 compile = '''
-export PATH=/usr/local/swift/usr/bin:$PATH
-swift build -Xswiftc -O -Xlinker -lm -c release 1>&2
+./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift \
+    build -c \
+    release --swift-sdk \
+    x86_64-swift-linux-musl \
+    1>&2
 '''
 
-object = '.build/release/Main'
+## (6.0.2) Static Linux SDKのInstructionで指定されているパスに変更しました
+object = '.build/x86_64-swift-linux-musl/release/Main'
 
+## (6.0.2) Static Linux SDKのInstructionで指定されているパスに変更しました
 execution = [
-    './.build/release/Main',
+    '.build/x86_64-swift-linux-musl/release/Main',
 ]
