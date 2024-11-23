@@ -1,11 +1,15 @@
 #!/bin/sh
 
+# 公式情報参照先: https://www.swift.org/install/linux/tarball/
+
 sudo apt update
 export DEBIAN_FRONTEND=noninteractive
 
+# 公式 1. Install required dependencies:
+
 ## (6.0.2) 修正箇所
 ## don't use apt!
-sudo apt-get install -y \
+sudo apt install -y \
           binutils \
           git \
           gnupg2 \
@@ -24,57 +28,25 @@ sudo apt-get install -y \
           unzip \
           zlib1g-dev
 
-## (6.0.2) 修正箇所:レビュー指摘で22を24に修正、内容については前回の内容であり、ubuntu22での記述であることに留意
-## (6.0.2) libpython3.8について、6.0.2の公式にはないものなので、apt-getに関する記述のみが有効？
-## (6.0.2) 最終版では、このコメントは消してもよさそう
-## 依存packagesの公式インストール方法だが、libpython3.8がデフォルトでubuntu24ではapt repositoryに存在しない。
-## aptだと一つでも存在しなかったらエラーで強制終了するため、apt-getにしている。libpython3.8の行を消してもいいかも。
-## libpython3.8はなくても問題ないことを確認済み。
-
-## (6.0.2) 修正箇所
-export SWIFT_PLATFORM=ubuntu24.04
-## (6.0.2) 修正箇所
-export SWIFT_VERSION_NUMBER=6.0.2
-export SWIFT_BRANCH=swift-$SWIFT_VERSION_NUMBER-release
-export SWIFT_VERSION=swift-$SWIFT_VERSION_NUMBER-RELEASE
-export SWIFT_WEBROOT=https://download.swift.org
-
-## check architecture
-## CPUなど低レイヤーの環境が不明のため。
-set -e
-ARCH_NAME="$(dpkg --print-architecture)"
-url=
-case "${ARCH_NAME##*-}" in
-'amd64')
-OS_ARCH_SUFFIX=''
-;;
-'arm64')
-OS_ARCH_SUFFIX='-aarch64'
-;;
-*)
-echo >&2 "error: unsupported architecture: '$ARCH_NAME'"
-exit 1
-;;
-esac
-
-export SWIFT_WEBDIR="$SWIFT_WEBROOT/$SWIFT_BRANCH/$(echo $SWIFT_PLATFORM | tr -d .)$OS_ARCH_SUFFIX"
-export FILE_NAME="$SWIFT_VERSION-$SWIFT_PLATFORM$OS_ARCH_SUFFIX"
-export SWIFT_BIN_URL="$SWIFT_WEBDIR/$SWIFT_VERSION/$FILE_NAME.tar.gz"
-
-# sudo apt install -y wget
-
-# wget -O - "$SWIFT_BIN_URL" | sudo tar -xzC /usr/local/ \
-# --transform=s/$FILE_NAME/swift/
-
+# 公式 2. Download the latest binary release (6.0.2).
 wget -q https://download.swift.org/swift-6.0.2-release/ubuntu2404/swift-6.0.2-RELEASE/swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
 
+# 公式 3. Import and verify the PGP signature:
+# この手順は省略します
+
+# 公式 4. Extract the archive with the following command:
 tar xzf swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
 
+# 公式 5. Add the Swift toolchain to your path as follows:
+# $ export PATH=/path/to/usr/bin:"${PATH}"
+# 前回のやり取りの中で何か問題となっていたようなので、いったん行いません
+
+# AtCoderからの要請で不要なファイルを削除するように指示があるため、削除する。
 rm swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
 
 ## echo 'export PATH=/usr/local/swift/usr/bin:$PATH' >>~/.bashrc
 
-ls ./
+# ls ./
 
 ## verify swift command.
 ## source ~/.bashrc
