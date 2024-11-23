@@ -19,7 +19,7 @@ concurrency:
 
 jobs:
     run:
-        runs-on: ${{ vars.RUNNER_IMAGE }}
+        runs-on: ubuntu-latest
 
         steps:
             - uses: actions/checkout@v4
