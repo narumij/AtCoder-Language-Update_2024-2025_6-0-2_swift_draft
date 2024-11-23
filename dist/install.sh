@@ -66,7 +66,7 @@ export SWIFT_BIN_URL="$SWIFT_WEBDIR/$SWIFT_VERSION/$FILE_NAME.tar.gz"
 # wget -O - "$SWIFT_BIN_URL" | sudo tar -xzC /usr/local/ \
 # --transform=s/$FILE_NAME/swift/
 
-wget https://download.swift.org/swift-6.0.2-release/ubuntu2404/swift-6.0.2-RELEASE/swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
+wget -q https://download.swift.org/swift-6.0.2-release/ubuntu2404/swift-6.0.2-RELEASE/swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
 
 tar xzf swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
 
