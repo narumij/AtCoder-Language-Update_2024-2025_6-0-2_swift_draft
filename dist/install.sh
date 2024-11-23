@@ -133,6 +133,9 @@ EOF
 # 依存パッケージの解決とパッケージのビルドを事前に行うため、以下のコマンドを実行します。
 ./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift build -c release --swift-sdk x86_64-swift-linux-musl
 
+ls -al .build/release
+ls -al .build/x86_64-swift-linux-musl/release
+
 ls -al .build/release/Main
 ls -al .build/x86_64-swift-linux-musl/release/Main
 
