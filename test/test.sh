@@ -9,11 +9,13 @@ import Foundation
     print("Hello, Glibc!")
 #elseif canImport(Musl)
     print("Hello, Musl!")
+#else
+    print("Hello, Anything else!")
 #endif
 EOF
 
 export PATH=/usr/local/swift/usr/bin:$PATH
-swift build -Xswiftc -O -Xlinker -lm -c release --swift-sdk x86_64-swift-linux-musl 1>&2
+swift build release --swift-sdk x86_64-swift-linux-musl 1>&2
 
 ./.build/release/Main
 
