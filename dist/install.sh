@@ -74,6 +74,8 @@ rm swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
 
 ## echo 'export PATH=/usr/local/swift/usr/bin:$PATH' >>~/.bashrc
 
+ls ./
+
 ## verify swift command.
 ## source ~/.bashrc
 # export PATH=/usr/local/swift/usr/bin:$PATH
