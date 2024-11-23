@@ -11,10 +11,8 @@ import BigInt
 import BigNum
 import SwiftGraph
 
-#if false
 let N = Int.stdin
 let A = [Int].stdin(columns: N)
-#endif
 
 print(N)
 print(A)
