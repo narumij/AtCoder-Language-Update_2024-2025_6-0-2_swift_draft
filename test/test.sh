@@ -13,7 +13,7 @@ import Foundation
 EOF
 
 export PATH=/usr/local/swift/usr/bin:$PATH
-swift build -Xswiftc -O -Xlinker -lm -c release Main 1>&2
+swift build -Xswiftc -O -Xlinker -lm -c release 1>&2
 
 ./.build/release/Main
 
