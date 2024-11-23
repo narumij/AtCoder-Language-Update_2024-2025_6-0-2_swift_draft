@@ -36,3 +36,8 @@ jobs:
               run: |
                   chmod +x ./dist/install.sh
                   ./dist/install.sh
+
+            - name: Test
+              run: |
+                  chmod +x ./test/test.sh
+                  ./test/test.sh
