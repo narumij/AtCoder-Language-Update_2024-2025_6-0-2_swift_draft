@@ -43,16 +43,16 @@ tar xzf swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
 # $ export PATH=/path/to/usr/bin:"${PATH}"
 # 前回のやり取りの中で何か問題となっていたようなので、いったん行いません
 
-# 公式のインストール手順は以上です。
+# 公式のインストール手順は以上です
 
 # インストール結果を確認します
 ./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift --version
 
-# Static Linux SDKの公式手順は、以下です。
+# Static Linux SDKの公式手順は、以下です
 # https://www.swift.org/documentation/articles/static-linux-getting-started.html
 
 # Once that is out of the way, actually installing the Static Linux SDK is easy; at a prompt, enter
-# の部分です。
+# の部分です
 
 ./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift \
  sdk install \
@@ -60,21 +60,21 @@ tar xzf swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
   --checksum aa5515476a403797223fc2aad4ca0c3bf83995d5427fb297cab1d93c68cee075
 
 # Swift will download and install the SDK on your system. You can get a list of installed SDKs with
-# の部分です。
+# の部分です
 # SDKのインストール結果を確認します
 ./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift sdk list
 
-# SDKのインストールは以上です。
-# AtCoderからの要請で不要なファイルを削除するように指示があるため、削除します。
+# SDKのインストールは以上です
+# AtCoderからの要請で不要なファイルを削除するように指示があるため、削除します
 rm swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
-# 言語環境の構築は完了しました。
+# 言語環境の構築は完了しました
 
-# 続いて、コンパイル環境の構築を行います。
+# 続いて、コンパイル環境の構築を行います
 
-# 作業パッケージの初期化を行います。パッケージ名はMain、実行可能なプログラムとして初期化します。
+# 作業パッケージの初期化を行います。パッケージ名はMain、実行可能なプログラムとして初期化します
 ./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift package init --name Main --type executable
 
-# Package.swiftを更新し、AtCoderで使用する依存パッケージを作業パッケージに追加します。
+# Package.swiftを更新し、AtCoderで使用する依存パッケージを作業パッケージに追加します
 cat << 'EOF' > Package.swift
 // swift-tools-version: 6.0
 import PackageDescription
@@ -90,6 +90,7 @@ let package = Package(
       from: "1.2.0"),
     .package(
       url: "https://github.com/apple/swift-numerics",
+      // Commit e30276b
       branch: "main"),
     .package(
       url: "https://github.com/apple/swift-atomics",
@@ -108,6 +109,7 @@ let package = Package(
       from: "3.1.0"),
     .package(
       url: "https://github.com/narumij/swift-ac-library",
+      // Commit 4cfbc16
       branch: "main"),
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
@@ -146,6 +148,6 @@ EOF
 
 # ビルド判定が正しく行われるよう、ビルド結果を削除します
 # 標準的なパスは、.build/release/Mainですが、
-# .build/release/が、Static Linux SDKの影響で、.build/x86_64-swift-linux-musl/release/へのシンボリックリンクとなっています。
-# Static Linux SDKのInstructionに載っている方を採用し、直接削除します。
+# .build/release/が、Static Linux SDKの影響で、.build/x86_64-swift-linux-musl/release/へのシンボリックリンクとなっています
+# Static Linux SDKのInstructionに載っている方を採用し、直接削除します
 rm .build/x86_64-swift-linux-musl/release/Main
