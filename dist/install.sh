@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# ちょっと確認
-ls -al
-
 export DEBIAN_FRONTEND=noninteractive
 
 # Linuxへのインストールの公式情報は以下です。
