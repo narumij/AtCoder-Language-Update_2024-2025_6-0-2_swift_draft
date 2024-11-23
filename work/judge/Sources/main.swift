@@ -11,6 +11,7 @@ import BigInt
 import BigNum
 import SwiftGraph
 
+#if false
 let N = Int.stdin
 let A = [Int].stdin(columns: N)
 
@@ -26,3 +27,14 @@ print(gcd(12, 16))
 typealias modint = modint998244353
 
 print(modint(12))
+#endif
+
+#if os(macOS) || os(iOS)
+    print("Hello, Apple platform!")
+#elseif canImport(Glibc)
+    print("Hello, Glibc!")
+#elseif canImport(Musl)
+    print("Hello, Musl!")
+#else
+    print("Hello, Anything else!")
+#endif
