@@ -75,7 +75,11 @@ swift --version
 ## 正しく表示されればswiftcも使えます。
 
 ## (6.0.2) 追加箇所
-swift sdk install https://download.swift.org/swift-6.0.2-release/static-sdk/swift-6.0.2-RELEASE/swift-6.0.2-RELEASE_static-linux-0.0.1.artifactbundle.tar.gz --checksum aa5515476a403797223fc2aad4ca0c3bf83995d5427fb297cab1d93c68cee075
+swift sdk \
+  install https://download.swift.org/swift-6.0.2-release/static-sdk/swift-6.0.2-RELEASE/swift-6.0.2-RELEASE_static-linux-0.0.1.artifactbundle.tar.gz \
+  --checksum aa5515476a403797223fc2aad4ca0c3bf83995d5427fb297cab1d93c68cee075
+
+swift sdk list
 
 ## create project
 ## mkdir swift
@@ -145,5 +149,5 @@ let package = Package(
 )
 EOF
 ## install library
-swift build -Xswiftc -O -Xlinker -lm -c release
+swift build -Xswiftc -O -Xlinker -lm -c release --swift-sdk x86_64-swift-linux-musl
 rm .build/release/Main
