@@ -6,7 +6,6 @@ export DEBIAN_FRONTEND=noninteractive
 # https://www.swift.org/install/linux/tarball/
 
 # 公式 1. Install required dependencies:
-
 sudo apt-get install -y \
              binutils \
              git \
@@ -67,6 +66,11 @@ tar xzf swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
 
 # AtCoderからの要請で不要なファイルを削除するように指示があるため、削除します。
 rm swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
+
+# SDKのインストールは以上です。
+# 言語環境の構築は完了しました。
+
+# 続いて、コンパイル環境の構築を行います。
 
 # 作業パッケージの初期化を行います。パッケージ名はMain、実行可能なプログラムとして初期化します。
 ./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift package init --name Main --type executable
