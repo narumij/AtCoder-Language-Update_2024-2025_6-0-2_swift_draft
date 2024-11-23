@@ -75,6 +75,10 @@ sudo apt-get install -y \
 curl -s -O https://download.swift.org/swift-6.0.2-release/ubuntu2404/swift-6.0.2-RELEASE/swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
 
 # 公式 3. Import and verify the PGP signature:
+# $ gpg --keyserver hkp://keyserver.ubuntu.com \
+#           --recv-keys \
+#           'A62A E125 BBBF BB96 A6E0  42EC 925C C1CC ED3D 1561'\
+#           'E813 C892 820A 6FA1 3755  B268 F167 DF1A CF9C E069'
 # この手順は省略します
 
 # 公式 4. Extract the archive with the following command:
@@ -101,7 +105,6 @@ tar xzf swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
 
 # Swift will download and install the SDK on your system. You can get a list of installed SDKs with
 # の部分です。
-
 # SDKのインストール結果を確認します
 ./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift sdk list
 
