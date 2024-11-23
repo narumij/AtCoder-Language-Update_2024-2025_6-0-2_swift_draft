@@ -78,7 +78,8 @@ sudo apt-get install -y \
           unzip \
           zlib1g-dev
 
-## 依存packagesの公式インストール方法だが、libpython3.8がデフォルトでubuntu22ではapt repositoryに存在しない。
+## (6.0.2) 修正箇所:レビュー指摘で22を24に修正
+## 依存packagesの公式インストール方法だが、libpython3.8がデフォルトでubuntu24ではapt repositoryに存在しない。
 ## aptだと一つでも存在しなかったらエラーで強制終了するため、apt-getにしている。libpython3.8の行を消してもいいかも。
 ## libpython3.8はなくても問題ないことを確認済み。
 
