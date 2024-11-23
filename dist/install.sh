@@ -9,24 +9,24 @@ export DEBIAN_FRONTEND=noninteractive
 
 # 公式 1. Install required dependencies:
 
-apt-get install -y \
-        binutils \
-        git \
-        gnupg2 \
-        libc6-dev \
-        libcurl4-openssl-dev \
-        libedit2 \
-        libgcc-13-dev \
-        libncurses-dev \
-        libpython3-dev \
-        libsqlite3-0 \
-        libstdc++-13-dev \
-        libxml2-dev \
-        libz3-dev \
-        pkg-config \
-        tzdata \
-        unzip \
-        zlib1g-dev
+sudo apt-get install -y \
+             binutils \
+             git \
+             gnupg2 \
+             libc6-dev \
+             libcurl4-openssl-dev \
+             libedit2 \
+             libgcc-13-dev \
+             libncurses-dev \
+             libpython3-dev \
+             libsqlite3-0 \
+             libstdc++-13-dev \
+             libxml2-dev \
+             libz3-dev \
+             pkg-config \
+             tzdata \
+             unzip \
+             zlib1g-dev
 
 # 公式 2. Download the latest binary release (6.0.2).
 curl -s -O https://download.swift.org/swift-6.0.2-release/ubuntu2404/swift-6.0.2-RELEASE/swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
@@ -135,4 +135,4 @@ EOF
 
 # ビルド判定が正しく行われるよう、ビルド結果を削除します
 rm .build/x86_64-swift-linux-musl/release/Main
-rm .build/release/Main
+# rm .build/release/Main
