@@ -109,10 +109,9 @@ tar xzf swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
 # SDKのインストール結果を確認します
 ./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift sdk list
 
+# SDKのインストールは以上です。
 # AtCoderからの要請で不要なファイルを削除するように指示があるため、削除します。
 rm swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
-
-# SDKのインストールは以上です。
 # 言語環境の構築は完了しました。
 
 # 続いて、コンパイル環境の構築を行います。
@@ -120,7 +119,7 @@ rm swift-6.0.2-RELEASE-ubuntu24.04.tar.gz
 # 作業パッケージの初期化を行います。パッケージ名はMain、実行可能なプログラムとして初期化します。
 ./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift package init --name Main --type executable
 
-# Package.swiftを更新し、AtCoderで使用するパッケージを追加します。
+# Package.swiftを更新し、AtCoderで使用する依存パッケージを作業パッケージに追加します。
 cat << 'EOF' > Package.swift
 // swift-tools-version: 6.0
 import PackageDescription
@@ -185,7 +184,7 @@ let package = Package(
 EOF
 
 # 念の為に、クリーニングします
-./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift clean
+./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift package clean
 
 # 依存パッケージの解決とパッケージのビルドを事前に行うため、以下のコマンドを実行します。
 ./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift build -c release --swift-sdk x86_64-swift-linux-musl
