@@ -15,7 +15,7 @@ import Foundation
 EOF
 
 export PATH=/usr/local/swift/usr/bin:$PATH
-swift build release --swift-sdk x86_64-swift-linux-musl 1>&2
+swift build -c release --swift-sdk x86_64-swift-linux-musl 1>&2
 
 ./.build/release/Main
 
