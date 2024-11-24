@@ -7,7 +7,7 @@ OS_ARCH_SUFFIX="" # arm64等の場合に指定する
 SWIFT_VERSION=swift-${LANG_VERSION}-RELEASE
 SWIFT_TAR_BALL="$SWIFT_VERSION-$PLATFORM$OS_ARCH_SUFFIX"
 
-cp main.swift Sources/main.swift
+cp test/main.swift Sources/main.swift
 
 ./${SWIFT_TAR_BALL}/usr/bin/swift \
     build \
