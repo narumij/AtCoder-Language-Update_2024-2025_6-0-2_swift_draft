@@ -44,11 +44,9 @@ filename = 'Sources/main.swift'
 
 ## インストールスクリプトの大幅な修正を行いました
 install = '''
-#!/bin/bash
 
 PLATFORM=ubuntu24.04
 LANG_VERSION=6.0.2
-SDK_VERSION=0.0.1
 OS_ARCH_SUFFIX="" # arm64等の場合に指定する
 
 SWIFT_BRANCH=swift-${LANG_VERSION}-release
@@ -136,7 +134,6 @@ let package = Package(
       from: "1.2.0"),
     .package(
       url: "https://github.com/apple/swift-numerics",
-      // Commit e30276b
       branch: "main"),
     .package(
       url: "https://github.com/apple/swift-atomics",
@@ -155,7 +152,6 @@ let package = Package(
       from: "3.1.0"),
     .package(
       url: "https://github.com/narumij/swift-ac-library",
-      // Commit 4cfbc16
       branch: "main"),
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
@@ -180,7 +176,8 @@ let package = Package(
         .product(name: "AcFoundation", package: "swift-ac-foundation"),
         .product(name: "AcCollections", package: "swift-tree"),
       ],
-      path: "Sources"
+      path: "Sources",
+      swiftSettings: [.unsafeFlags(["-O"])]
     )
   ]
 )
@@ -194,6 +191,10 @@ EOF
   -c release
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
+# 標準的なパスは、.build/release/Mainですが、
+# .build/release/が、Static Linux SDKの影響で、
+# .build/x86_64-swift-linux-musl/release/へのシンボリックリンクとなっています
+# Static Linux SDKのInstructionに載っている方を採用し、直接削除します
 rm .build/release/Main
 
 '''

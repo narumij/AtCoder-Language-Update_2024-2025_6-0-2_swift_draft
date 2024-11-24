@@ -2,7 +2,6 @@
 
 PLATFORM=ubuntu24.04
 LANG_VERSION=6.0.2
-SDK_VERSION=0.0.1
 OS_ARCH_SUFFIX="" # arm64等の場合に指定する
 
 SWIFT_BRANCH=swift-${LANG_VERSION}-release
@@ -90,7 +89,6 @@ let package = Package(
       from: "1.2.0"),
     .package(
       url: "https://github.com/apple/swift-numerics",
-      // Commit e30276b
       branch: "main"),
     .package(
       url: "https://github.com/apple/swift-atomics",
@@ -109,7 +107,6 @@ let package = Package(
       from: "3.1.0"),
     .package(
       url: "https://github.com/narumij/swift-ac-library",
-      // Commit 4cfbc16
       branch: "main"),
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
@@ -134,7 +131,8 @@ let package = Package(
         .product(name: "AcFoundation", package: "swift-ac-foundation"),
         .product(name: "AcCollections", package: "swift-tree"),
       ],
-      path: "Sources"
+      path: "Sources",
+      swiftSettings: [.unsafeFlags(["-O"])]
     )
   ]
 )
