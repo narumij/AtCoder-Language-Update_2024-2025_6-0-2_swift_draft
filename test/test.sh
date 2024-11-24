@@ -83,6 +83,8 @@ cp test/abc235_d/main.swift Sources/main.swift
     --swift-sdk x86_64-swift-linux-musl \
     1>&2
 
+.build/x86_64-swift-linux-musl/release/Main < test/abc235_d/sample-x.in
+
 time .build/x86_64-swift-linux-musl/release/Main < test/abc235_d/sample-x.in
 
 time ./.build/release/Main < test/abc235_d/sample-x.in
