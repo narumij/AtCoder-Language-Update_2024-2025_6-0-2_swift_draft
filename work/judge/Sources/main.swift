@@ -29,7 +29,7 @@ let main: () = {
             if x <= maxN {
                 if dp[x] == -1 || dp[x] > dp[n] + 1 {
                     dp[x] = dp[n] + 1
-                    Q += x
+                  Q.append(x)
                 }
             }
             if n > 10 && !n.isMultiple(of: 10) {
@@ -37,7 +37,7 @@ let main: () = {
                 if x <= maxN {
                     if dp[x] == -1 || dp[x] > dp[n] + 1 {
                         dp[x] = dp[n] + 1
-                        Q += x
+                      Q.append(x)
                     }
                 }
             }
@@ -53,7 +53,7 @@ let main: () = {
 
 
 
-
+#if false
 
 
 
@@ -743,4 +743,4 @@ func measureTimeSeconds(block: (() -> Void)) -> Double {
 
 
 
-
+#endif
