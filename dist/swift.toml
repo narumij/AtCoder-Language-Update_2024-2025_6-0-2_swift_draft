@@ -194,10 +194,6 @@ EOF
   -c release
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
-# 標準的なパスは、.build/release/Mainですが、
-# .build/release/が、Static Linux SDKの影響で、
-# .build/x86_64-swift-linux-musl/release/へのシンボリックリンクとなっています
-# Static Linux SDKのInstructionに載っている方を採用し、直接削除します
 rm .build/release/Main
 
 '''
@@ -218,10 +214,8 @@ SWIFT_TAR_BALL="$SWIFT_VERSION-$PLATFORM$OS_ARCH_SUFFIX"
 
 '''
 
-## Static Linux SDKのInstructionで指定されているパスに変更しました
-object = '.build/x86_64-swift-linux-musl/release/Main'
+object = '.build/release/Main'
 
-## Static Linux SDKのInstructionで指定されているパスに変更しました
 execution = [
-    '.build/x86_64-swift-linux-musl/release/Main',
+    '.build/release/Main',
 ]
