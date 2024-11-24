@@ -15,7 +15,7 @@ SWIFT_TAR_BALL_FILE="$FILE_NAME.tar.gz"
 
 STATIC_LINUX_SDK_URL=https://download.swift.org/swift-${LANG_VERSION}-release/static-sdk/swift-${LANG_VERSION}-RELEASE/swift-${LANG_VERSION}-RELEASE_static-linux-${SDK_VERSION}.artifactbundle.tar.gz
 STATIC_LINUX_SDK_CHECKSUM=aa5515476a403797223fc2aad4ca0c3bf83995d5427fb297cab1d93c68cee075
-SWIFT=./${$FILE_NAME}/usr/bin/swift
+SWIFT="./${$FILE_NAME}/usr/bin/swift"
 
 export DEBIAN_FRONTEND=noninteractive
 
