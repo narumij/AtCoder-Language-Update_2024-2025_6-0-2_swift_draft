@@ -82,7 +82,7 @@ cp test/abc235_d/main.1.swift Sources/main.swift
     -c release \
     1>&2
 
-time .build/x86_64-swift-linux-musl/release/Main < test/abc235_d/sample-x.in
+time .build/release/Main < test/abc235_d/sample-x.in
 
 cp test/abc235_d/main.2.swift Sources/main.swift
 
