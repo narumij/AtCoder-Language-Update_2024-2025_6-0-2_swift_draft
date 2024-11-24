@@ -80,7 +80,6 @@ cp test/abc235_d/main.1.swift Sources/main.swift
 ./${SWIFT_TAR_BALL}/usr/bin/swift \
     build \
     -c release \
-    --swift-sdk x86_64-swift-linux-musl \
     1>&2
 
 time .build/x86_64-swift-linux-musl/release/Main < test/abc235_d/sample-x.in
