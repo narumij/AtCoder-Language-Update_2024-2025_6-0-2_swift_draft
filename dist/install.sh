@@ -15,7 +15,7 @@ SWIFT_TAR_BALL_FILE="$FILE_NAME.tar.gz"
 
 STATIC_LINUX_SDK_URL=https://download.swift.org/swift-${LANG_VERSION}-release/static-sdk/swift-${LANG_VERSION}-RELEASE/swift-${LANG_VERSION}-RELEASE_static-linux-${SDK_VERSION}.artifactbundle.tar.gz
 STATIC_LINUX_SDK_CHECKSUM=aa5515476a403797223fc2aad4ca0c3bf83995d5427fb297cab1d93c68cee075
-SWIFT="./${$FILE_NAME}/usr/bin/swift"
+# SWIFT="./${$FILE_NAME}/usr/bin/swift"
 
 export DEBIAN_FRONTEND=noninteractive
 
@@ -69,7 +69,7 @@ tar xzf $SWIFT_TAR_BALL_FILE
 # 公式のインストール手順は以上です
 
 # インストール結果を確認します
-$SWIFT --version
+./${$FILE_NAME}/usr/bin/swift --version
 
 # Static Linux SDKの公式情報は、以下です
 # https://www.swift.org/documentation/articles/static-linux-getting-started.html
@@ -77,7 +77,7 @@ $SWIFT --version
 # Once that is out of the way, actually installing the Static Linux SDK is easy; at a prompt, enter
 # の部分です
 
-$SWIFT \
+./${$FILE_NAME}/usr/bin/swift \
  sdk install \
  $STATIC_LINUX_SDK_URL
   --checksum $STATIC_LINUX_SDK_CHECKSUM
@@ -85,7 +85,7 @@ $SWIFT \
 # Swift will download and install the SDK on your system. You can get a list of installed SDKs with
 # の部分です
 # SDKのインストール結果を確認します
-$SWIFT sdk list
+./${$FILE_NAME}/usr/bin/swift sdk list
 
 # SDKのインストールは以上です
 # AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
@@ -96,7 +96,7 @@ rm $SWIFT_TAR_BALL_FILE
 # コンパイル環境の構築では、AtCoderで使用するSwiftパッケージの初期化と依存パッケージの追加、そして事前ビルドを行います
 
 # ジャッジがビルドを行う作業パッケージの初期化を行います。パッケージ名はMain、実行可能なプログラムとして初期化します
-$SWIFT package init --name Main --type executable
+./${$FILE_NAME}/usr/bin/swift package init --name Main --type executable
 
 # Package.swiftを更新し、AtCoderで使用する依存パッケージを作業パッケージに追加します
 cat << 'EOF' > Package.swift
@@ -165,10 +165,10 @@ let package = Package(
 EOF
 
 # 念の為に、クリーニングします
-$SWIFT package clean
+./${$FILE_NAME}/usr/bin/swift package clean
 
 # 依存パッケージの解決とパッケージのビルドを事前に行います
-$SWIFT build -c release --swift-sdk x86_64-swift-linux-musl
+./${$FILE_NAME}/usr/bin/swift build -c release --swift-sdk x86_64-swift-linux-musl
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 # 標準的なパスは、.build/release/Mainですが、
