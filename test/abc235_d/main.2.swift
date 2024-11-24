@@ -9,14 +9,28 @@ let main: () = {
 //    printErr("Ready!")
     // let (A, N) = *listOfInt()
     let (A, N) = (Int.stdin, Int.stdin)
+  
+  func countDigits(_ number: Int) -> Int {
+      if number == 0 {
+          return 1
+      }
+      var count = 0
+      var num = abs(number)
+      while num > 0 {
+          count += 1
+          num /= 10
+      }
+      return count
+  }
+  
     func nextX(_ x: Int) -> Int {
         // let s = "\(x)"
         // let ns = s.last!.string + s.left(s.count - 1)
         // let nx = ns.int
         // return nx
-      let s = "\(x)".utf8CString.dropLast()
-      return Int(String(cString: ([s.last!] + s.dropLast() + [0])))!
+      return (x / 10) + (x % 10) * repeatElement(10, count: countDigits(x) - 1).reduce(1, *)
     }
+  
     let maxN = min(10_000_010, N * 10)
 //    var dp =  IntArray(maxN + 2) { -1 }
   var dp: [Int] = repeatElement(-1, count: maxN + 2) + []
