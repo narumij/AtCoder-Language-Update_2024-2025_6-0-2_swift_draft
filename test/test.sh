@@ -50,8 +50,11 @@ OS_ARCH_SUFFIX="" # arm64等の場合に指定する
 SWIFT_VERSION=swift-${LANG_VERSION}-RELEASE
 SWIFT_TAR_BALL="$SWIFT_VERSION-$PLATFORM$OS_ARCH_SUFFIX"
 
-# export PATH=/usr/local/swift/usr/bin:$PATH
-./${SWIFT_TAR_BALL}/usr/bin/swift build -c release --swift-sdk x86_64-swift-linux-musl 1>&2
+./${SWIFT_TAR_BALL}/usr/bin/swift \
+    build \
+    -c release \
+    --swift-sdk x86_64-swift-linux-musl \
+    1>&2
 
 # ls -al .build/release
 # ls -al .build/x86_64-swift-linux-musl/release
