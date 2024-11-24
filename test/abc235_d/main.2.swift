@@ -1,9 +1,7 @@
-// 以下のコードをお借りしています。
-// https://atcoder.jp/contests/abc235/submissions/28574875
-
 import Foundation
 
-main()
+// 以下のコードをお借りしています。
+// https://atcoder.jp/contests/abc235/submissions/28574875
 
 let main: () = {
     printErr("Ready!")
