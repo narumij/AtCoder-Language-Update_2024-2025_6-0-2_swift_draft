@@ -176,8 +176,7 @@ let package = Package(
         .product(name: "AcFoundation", package: "swift-ac-foundation"),
         .product(name: "AcCollections", package: "swift-tree"),
       ],
-      path: "Sources",
-      swiftSettings: [.unsafeFlags(["-O"])]
+      path: "Sources"
     )
   ]
 )
@@ -191,10 +190,6 @@ EOF
   -c release
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
-# 標準的なパスは、.build/release/Mainですが、
-# .build/release/が、Static Linux SDKの影響で、
-# .build/x86_64-swift-linux-musl/release/へのシンボリックリンクとなっています
-# Static Linux SDKのInstructionに載っている方を採用し、直接削除します
 rm .build/release/Main
 
 '''

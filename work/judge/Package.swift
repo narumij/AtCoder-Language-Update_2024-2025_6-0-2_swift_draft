@@ -54,8 +54,7 @@ let package = Package(
         .product(name: "AcFoundation", package: "swift-ac-foundation"),
         .product(name: "AcCollections", package: "swift-tree"),
       ],
-      path: "Sources",
-      swiftSettings: [.unsafeFlags(["-O"])]
+      path: "Sources"
     )
   ]
 )
