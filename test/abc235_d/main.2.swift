@@ -1,5 +1,6 @@
 import Foundation
 import AcFoundation
+import Algorithms
 
 // 以下のコードをお借りしています。
 // https://atcoder.jp/contests/abc235/submissions/28574875
@@ -9,10 +10,12 @@ let main: () = {
     // let (A, N) = *listOfInt()
     let (A, N) = (Int.stdin, Int.stdin)
     func nextX(_ x: Int) -> Int {
-        let s = "\(x)"
-        let ns = s.last!.string + s.left(s.count - 1)
-        let nx = ns.int
-        return nx
+        // let s = "\(x)"
+        // let ns = s.last!.string + s.left(s.count - 1)
+        // let nx = ns.int
+        // return nx
+      let s = "\(x)".utf8CString.dropLast()
+      return Int(String(cString: ([s.last!] + s.dropLast() + [0])))!
     }
     let maxN = min(10_000_010, N * 10)
     var dp = IntArray(maxN + 2) { -1 }
