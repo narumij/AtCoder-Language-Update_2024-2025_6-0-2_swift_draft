@@ -18,7 +18,8 @@ let main: () = {
       return Int(String(cString: ([s.last!] + s.dropLast() + [0])))!
     }
     let maxN = min(10_000_010, N * 10)
-    var dp = IntArray(maxN + 2) { -1 }
+//    var dp =  IntArray(maxN + 2) { -1 }
+  var dp: [Int] = repeatElement(-1, count: maxN + 2) + []
     dp[1] = 0
     var Q = [1]
     while !Q.isEmpty {
