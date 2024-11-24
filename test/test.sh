@@ -75,7 +75,7 @@ EOF
 
 pwd
 
-cp test/abc235_d/main.swift Sources/main.swift
+cp test/abc235_d/main.1.swift Sources/main.swift
 
 ./${SWIFT_TAR_BALL}/usr/bin/swift package clean
 ./${SWIFT_TAR_BALL}/usr/bin/swift \
