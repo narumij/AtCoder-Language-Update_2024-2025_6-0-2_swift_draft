@@ -1,11 +1,13 @@
 import Foundation
+import AcFoundation
 
 // 以下のコードをお借りしています。
 // https://atcoder.jp/contests/abc235/submissions/28574875
 
 let main: () = {
 //    printErr("Ready!")
-    let (A, N) = *listOfInt()
+    // let (A, N) = *listOfInt()
+    let (A, N) = (Int.stdin, Int.stdin)
     func nextX(_ x: Int) -> Int {
         let s = "\(x)"
         let ns = s.last!.string + s.left(s.count - 1)
