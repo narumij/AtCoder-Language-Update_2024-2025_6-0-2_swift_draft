@@ -87,7 +87,7 @@ cp test/abc235_d/main.swift Sources/main.swift
 
 time .build/x86_64-swift-linux-musl/release/Main < test/abc235_d/sample-x.in
 
-cp test/abc235_d/main.swift Sources/main.2.swift
+cp test/abc235_d/main.2.swift Sources/main.swift
 ./${SWIFT_TAR_BALL}/usr/bin/swift clean
 ./${SWIFT_TAR_BALL}/usr/bin/swift \
     build \
