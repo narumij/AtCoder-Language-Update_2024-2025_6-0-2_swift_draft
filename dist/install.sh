@@ -79,7 +79,7 @@ $SWIFT --version
 
 $SWIFT \
  sdk install \
- $STATIC_LINUX_SDK_URL
+ $STATIC_LINUX_SDK_URL \
   --checksum $STATIC_LINUX_SDK_CHECKSUM
 
 # Swift will download and install the SDK on your system. You can get a list of installed SDKs with
