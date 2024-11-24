@@ -4,7 +4,7 @@ import Foundation
 // https://atcoder.jp/contests/abc235/submissions/28574875
 
 let main: () = {
-    printErr("Ready!")
+//    printErr("Ready!")
     let (A, N) = *listOfInt()
     func nextX(_ x: Int) -> Int {
         let s = "\(x)"
