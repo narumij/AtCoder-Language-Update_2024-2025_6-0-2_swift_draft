@@ -28,6 +28,10 @@ let main: () = {
         // let ns = s.last!.string + s.left(s.count - 1)
         // let nx = ns.int
         // return nx
+      
+//      let s = "\(x)".utf8CString.dropLast()
+//      return Int(String(cString: ([s.last!] + s.dropLast() + [0])))!
+      
       return (x / 10) + (x % 10) * repeatElement(10, count: countDigits(x) - 1).reduce(1, *)
     }
   

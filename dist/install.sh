@@ -12,9 +12,6 @@ SWIFT_WEBDIR="$SWIFT_WEBROOT/$SWIFT_BRANCH/$(echo $PLATFORM | tr -d .)$OS_ARCH_S
 SWIFT_TAR_BALL="$SWIFT_VERSION-$PLATFORM$OS_ARCH_SUFFIX"
 SWIFT_TAR_BALL_URL="$SWIFT_WEBDIR/$SWIFT_VERSION/$SWIFT_TAR_BALL.tar.gz"
 
-STATIC_LINUX_SDK_URL=https://download.swift.org/swift-${LANG_VERSION}-release/static-sdk/swift-${LANG_VERSION}-RELEASE/swift-${LANG_VERSION}-RELEASE_static-linux-${SDK_VERSION}.artifactbundle.tar.gz
-STATIC_LINUX_SDK_CHECKSUM=aa5515476a403797223fc2aad4ca0c3bf83995d5427fb297cab1d93c68cee075
-
 export DEBIAN_FRONTEND=noninteractive
 
 sudo apt-get update
@@ -22,7 +19,7 @@ sudo apt-get update
 # このスクリプトでは、まず言語環境を構築し、その後ビルド環境を構築します。
 
 # ここから、言語環境の構築を開始します。
-# 言語環境の構築では、Swift toolchainの展開と、Static Linux SDKのインストールを行います。
+# 言語環境の構築では、Swift toolchainの展開を行います。
 # Swift toolchainの展開手順は、Swift公式サイトのGETTING STARTのINSTALL SWIFTに従います。
 
 # Linuxへのインストールの公式情報は以下です。
@@ -67,26 +64,6 @@ tar xzf $SWIFT_TAR_BALL.tar.gz
 
 # 公式のインストール手順は以上です
 
-# インストール結果を確認します
-./${SWIFT_TAR_BALL}/usr/bin/swift --version
-
-# Static Linux SDKの公式情報は、以下です
-# https://www.swift.org/documentation/articles/static-linux-getting-started.html
-
-# Once that is out of the way, actually installing the Static Linux SDK is easy; at a prompt, enter
-# の部分です
-
-./${SWIFT_TAR_BALL}/usr/bin/swift \
- sdk install \
- $STATIC_LINUX_SDK_URL \
-  --checksum $STATIC_LINUX_SDK_CHECKSUM
-
-# Swift will download and install the SDK on your system. You can get a list of installed SDKs with
-# の部分です
-# SDKのインストール結果を確認します
-./${SWIFT_TAR_BALL}/usr/bin/swift sdk list
-
-# SDKのインストールは以上です
 # AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
 rm $SWIFT_TAR_BALL.tar.gz
 # これで言語環境の構築は完了しました
@@ -168,12 +145,11 @@ EOF
 
 # 依存パッケージの解決とパッケージのビルドを事前に行います
 ./${SWIFT_TAR_BALL}/usr/bin/swift build \
-  -c release \
-  --swift-sdk x86_64-swift-linux-musl
+  -c release
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 # 標準的なパスは、.build/release/Mainですが、
 # .build/release/が、Static Linux SDKの影響で、
 # .build/x86_64-swift-linux-musl/release/へのシンボリックリンクとなっています
 # Static Linux SDKのInstructionに載っている方を採用し、直接削除します
-rm .build/x86_64-swift-linux-musl/release/Main
+rm .build/release/Main

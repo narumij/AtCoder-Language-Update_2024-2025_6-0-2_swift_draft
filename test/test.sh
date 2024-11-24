@@ -53,7 +53,6 @@ SWIFT_TAR_BALL="$SWIFT_VERSION-$PLATFORM$OS_ARCH_SUFFIX"
 ./${SWIFT_TAR_BALL}/usr/bin/swift \
     build \
     -c release \
-    --swift-sdk x86_64-swift-linux-musl \
     1>&2
 
 # ls -al .build/release
@@ -65,7 +64,7 @@ SWIFT_TAR_BALL="$SWIFT_VERSION-$PLATFORM$OS_ARCH_SUFFIX"
 # .build/release/が、Static Linux SDKの影響で、.build/x86_64-swift-linux-musl/release/へのシンボリックリンクとなっています。
 # Static Linux SDKのInstructionに載っている方を採用し、直接削除します。
 
-cat << 'EOF' | .build/x86_64-swift-linux-musl/release/Main
+cat << 'EOF' | .build/release/Main
 3
 1 2 3
 EOF
@@ -75,18 +74,7 @@ EOF
 
 # pwd
 
-# cp test/abc235_d/main.1.swift Sources/main.swift
-
-# ./${SWIFT_TAR_BALL}/usr/bin/swift package clean
-# ./${SWIFT_TAR_BALL}/usr/bin/swift \
-#     build \
-#     -c release \
-#     --swift-sdk x86_64-swift-linux-musl \
-#     1>&2
-
-# time .build/x86_64-swift-linux-musl/release/Main < test/abc235_d/sample-x.in
-
-cp test/abc235_d/main.2.swift Sources/main.swift
+cp test/abc235_d/main.1.swift Sources/main.swift
 
 ./${SWIFT_TAR_BALL}/usr/bin/swift package clean
 ./${SWIFT_TAR_BALL}/usr/bin/swift \
@@ -95,9 +83,9 @@ cp test/abc235_d/main.2.swift Sources/main.swift
     --swift-sdk x86_64-swift-linux-musl \
     1>&2
 
-echo "case: Static Linux SDK"
-.build/x86_64-swift-linux-musl/release/Main < test/abc235_d/sample-x.in
 time .build/x86_64-swift-linux-musl/release/Main < test/abc235_d/sample-x.in
+
+cp test/abc235_d/main.2.swift Sources/main.swift
 
 ./${SWIFT_TAR_BALL}/usr/bin/swift package clean
 ./${SWIFT_TAR_BALL}/usr/bin/swift \
