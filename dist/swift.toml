@@ -92,8 +92,7 @@ sudo apt-get install -y \
              zlib1g-dev
 
 # 公式 2. Download the latest binary release (6.0.2).
-curl -s -O \
-  $SWIFT_TAR_BALL_URL
+curl -s -O $SWIFT_TAR_BALL_URL
 
 # 公式 3. Import and verify the PGP signature:
 # $ gpg --keyserver hkp://keyserver.ubuntu.com \
@@ -112,7 +111,7 @@ tar xzf $SWIFT_TAR_BALL.tar.gz
 # 公式のインストール手順は以上です
 
 # インストール結果を確認します
-$SWIFT --version
+./${SWIFT_TAR_BALL}/usr/bin/swift --version
 
 # Static Linux SDKの公式情報は、以下です
 # https://www.swift.org/documentation/articles/static-linux-getting-started.html
@@ -211,7 +210,9 @@ EOF
 ./${SWIFT_TAR_BALL}/usr/bin/swift package clean
 
 # 依存パッケージの解決とパッケージのビルドを事前に行います
-./${SWIFT_TAR_BALL}/usr/bin/swift build -c release --swift-sdk x86_64-swift-linux-musl
+./${SWIFT_TAR_BALL}/usr/bin/swift build \
+  -c release \
+  --swift-sdk x86_64-swift-linux-musl
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 # 標準的なパスは、.build/release/Mainですが、
@@ -223,6 +224,7 @@ rm .build/x86_64-swift-linux-musl/release/Main
 '''
 
 compile = '''
+
 PLATFORM=ubuntu24.04
 LANG_VERSION=6.0.2
 OS_ARCH_SUFFIX="" # arm64等の場合に指定する
@@ -235,6 +237,7 @@ SWIFT_TAR_BALL="$SWIFT_VERSION-$PLATFORM$OS_ARCH_SUFFIX"
     -c release \
     --swift-sdk x86_64-swift-linux-musl \
     1>&2
+
 '''
 
 ## Static Linux SDKのInstructionで指定されているパスに変更しました

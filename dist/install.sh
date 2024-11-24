@@ -17,6 +17,8 @@ STATIC_LINUX_SDK_CHECKSUM=aa5515476a403797223fc2aad4ca0c3bf83995d5427fb297cab1d9
 
 export DEBIAN_FRONTEND=noninteractive
 
+sudo apt-get update
+
 # このスクリプトでは、まず言語環境を構築し、その後ビルド環境を構築します。
 
 # ここから、言語環境の構築を開始します。
@@ -47,8 +49,7 @@ sudo apt-get install -y \
              zlib1g-dev
 
 # 公式 2. Download the latest binary release (6.0.2).
-curl -s -O \
-  $SWIFT_TAR_BALL_URL
+curl -s -O $SWIFT_TAR_BALL_URL
 
 # 公式 3. Import and verify the PGP signature:
 # $ gpg --keyserver hkp://keyserver.ubuntu.com \
@@ -67,7 +68,7 @@ tar xzf $SWIFT_TAR_BALL.tar.gz
 # 公式のインストール手順は以上です
 
 # インストール結果を確認します
-$SWIFT --version
+./${SWIFT_TAR_BALL}/usr/bin/swift --version
 
 # Static Linux SDKの公式情報は、以下です
 # https://www.swift.org/documentation/articles/static-linux-getting-started.html
@@ -166,7 +167,9 @@ EOF
 ./${SWIFT_TAR_BALL}/usr/bin/swift package clean
 
 # 依存パッケージの解決とパッケージのビルドを事前に行います
-./${SWIFT_TAR_BALL}/usr/bin/swift build -c release --swift-sdk x86_64-swift-linux-musl
+./${SWIFT_TAR_BALL}/usr/bin/swift build \
+  -c release \
+  --swift-sdk x86_64-swift-linux-musl
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 # 標準的なパスは、.build/release/Mainですが、
