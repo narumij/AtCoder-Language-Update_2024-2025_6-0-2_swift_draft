@@ -76,7 +76,7 @@ EOF
 pwd
 
 cp test/abc235_d/main.swift Sources/main.swift
-
+./${SWIFT_TAR_BALL}/usr/bin/swift clean
 ./${SWIFT_TAR_BALL}/usr/bin/swift \
     build \
     -c release \
@@ -87,5 +87,21 @@ cp test/abc235_d/main.swift Sources/main.swift
 
 time .build/x86_64-swift-linux-musl/release/Main < test/abc235_d/sample-x.in
 
-time ./.build/release/Main < test/abc235_d/sample-x.in
+cp test/abc235_d/main.swift Sources/main.2.swift
+./${SWIFT_TAR_BALL}/usr/bin/swift clean
+./${SWIFT_TAR_BALL}/usr/bin/swift \
+    build \
+    -c release \
+    --swift-sdk x86_64-swift-linux-musl \
+    1>&2
 
+time .build/x86_64-swift-linux-musl/release/Main < test/abc235_d/sample-x.in
+
+
+./${SWIFT_TAR_BALL}/usr/bin/swift clean
+./${SWIFT_TAR_BALL}/usr/bin/swift \
+    build \
+    -c release \
+    1>&2
+
+time .build/release/Main < test/abc235_d/sample-x.in
