@@ -72,3 +72,18 @@ EOF
 
 #.build/x86_64-swift-linux-musl/release/Main
 #swift run --configuration release Main
+
+pwd
+
+cp test/abc235_d/main.swift Sources/main.swift
+
+./${SWIFT_TAR_BALL}/usr/bin/swift \
+    build \
+    -c release \
+    --swift-sdk x86_64-swift-linux-musl \
+    1>&2
+
+time .build/x86_64-swift-linux-musl/release/Main < test/abc235_d/sample-x.in
+
+time ./.build/release/Main < test/abc235_d/sample-x.in
+

@@ -62,6 +62,8 @@ STATIC_LINUX_SDK_CHECKSUM=aa5515476a403797223fc2aad4ca0c3bf83995d5427fb297cab1d9
 
 export DEBIAN_FRONTEND=noninteractive
 
+sudo apt-get update
+
 # このスクリプトでは、まず言語環境を構築し、その後ビルド環境を構築します。
 
 # ここから、言語環境の構築を開始します。
