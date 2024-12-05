@@ -27,7 +27,7 @@
 #       'C++'
 #       'Java'
 #       'Python3'
-language = 'Swift'
+language = 'lang'
 
 # キー: name
 # 型:   文字列
@@ -37,7 +37,7 @@ language = 'Swift'
 # 例:   'GCC'
 #       'Clang'
 #       'OpenJDK'
-name = 'Swift'
+name = 'compiler'
 
 # キー: version
 # 型:   文字列
@@ -47,20 +47,12 @@ name = 'Swift'
 # 例:   '14.2'
 #       '18.1.8'
 #       '23'
-version = '6.0.2'
+version = 'v1.2.3-alpha'
 
 # キー: license
 # 型:   配列
 #       配列内の各要素はテーブルで、1要素が1つのライセンス
 #       テーブルに記述するキー/値は以下の通り
-#           キー: name
-#           型:   文字列
-#           要否: 必須
-#           説明: ライセンス名
-#           例:   'GPLv3+ with GCC Runtime Library Exception'
-#                 'Apache License v2.0 with LLVM Exceptions'
-#                 'GNU General Public License, version 2, with the Classpath Exception'
-#
 #           キー: url
 #           型:   文字列
 #           要否: 必須
@@ -68,13 +60,36 @@ version = '6.0.2'
 #           例:   'https://gcc.gnu.org/git/?p=gcc.git;a=blob;f=COPYING3;hb=refs/heads/master'
 #                 'https://github.com/llvm/llvm-project/blob/main/clang/LICENSE.TXT'
 #                 'https://openjdk.org/legal/gplv2+ce.html'
+#
+#           キー: name
+#           型:   文字列
+#           要否: 必須
+#           説明: ライセンス名
+#                 https://spdx.org/licenses/ にある Identifier で記述してください
+#                 ライセンスを記述するうえで例外規定を含む場合は後述の `exception` に分けて記述してください
+#                 つまりこの項目では `WITH` を使った書き方はしないでください
+#                 上記リストにないライセンスの場合は問い合わせをしてください
+#           例:   'GPL-3.0-and-later'
+#                 'Apache-2.0'
+#                 'GPL-2.0-only'
+#
+#           キー: exception
+#           型:   文字列
+#           要否: 任意
+#           説明: ライセンスの例外規定名
+#                 ライセンスにおける例外規定を https://spdx.org/licenses/exceptions-index.html にある Identifier で記述してください
+#                 この項目は任意項目となっていますがライセンスに例外規定がある場合は必須です
+#                 任意となっているのは例外規定がない場合に書く内容がないためであり、例外規定を書かなくていいという意味ではありません
+#                 上記リストにないライセンスの場合は問い合わせをしてください
+#           例:   'GCC-exception-3.1'
+#                 'LLVM-exception'
+#                 'Classpath-exception-2.0'
 # 要否: 必須
 # 説明: コンパイラ/インタプリタのライセンス
 #       コンパイラ、インタプリタの実装のライセンスを記述してください
 #       デュアルライセンスなど、ライセンスが複数ある場合はすべて記述してください
-
 license = [
-    { name = 'Apache-2.0 license', url = 'https://github.com/swiftlang/swift/blob/main/LICENSE.txt' }
+    { name = 'GPL-3.0-only', url = 'https://example.com/compiler-license' },
 ]
 
 # キー: library
@@ -83,39 +98,40 @@ license = [
 #       ライブラリの詳細として記述できるキー/値は以下の通り
 #           キー: license
 #           型:   テーブルの配列
-#                 ここに記述する型/値は上記licenseと同様なのでそちらを参照
+#                 ここに記述する型/値は上記 `license` と同様なのでそちらを参照
 #           要否: 必須
 #           説明: ライブラリのライセンス
+#
+#           キー: indirect
+#           型:   ブール値
+#           要否: 任意
+#           説明: 間接的にインストールされるライブラリかどうか
+#                 他ライブラリから依存されてインストールされるライブラリである場合にこのキーの値に `true` を指定してください
+#                 このキー/値が設定されなかった場合のデフォルト値は `false` で、直接的にインストールするライブラリであることを表します
+#                 このキーが存在する理由は、直接インストールされるライブラリが依存しているライブラリのライセンスを明示するためにあります
+#                 つまり使用したいライブラリが依存しているライブラリもライセンス的に使用できることを明示するために存在し、これが `true` にされたライブラリはインストールされたライブラリ一覧としては表示されません
 #
 #           キー: version
 #           型:   文字列
 #           要否: 任意
 #           説明: ライブラリのバージョン番号
-#       基本的にコンパイラ/インタプリタで指定するものと同じものをライブラリでも記述すること
+#
+#       `indirect` のとおり、間接的に使用されるライブラリのライセンスもできるだけ記述してください
 #       バージョンに関してはコンパイラ/インタプリタと違い任意であるが、ユーザが確認できなくなるためどうしてもわからない場合などを除き記述すること
 # 要否: 任意
 # 説明: 追加でインストールされるライブラリ一覧
 #       ここに記述されたものは言語一覧などの表示に使用されるものでありインストールなどには影響しません
 #       そのためインストールスクリプトで記述されるものと一致するようにしてください
 # 例:   boost = { license = [ { name = 'Boost Software License', url = 'https://www.boost.org/LICENSE_1_0.txt' } ], version = '1.86.0' }
-
-library.swift-algorithms = { license = [
-    { name = 'Apache-2.0 license', url = 'https://github.com/apple/swift-algorithms/blob/main/LICENSE.txt' },
-], version = '1.2.0' }
-library.swift-collections = { license = [
-    { name = 'Apache-2.0 license', url = 'https://github.com/apple/swift-collections/blob/main/LICENSE.txt' },
-], version = '1.1.4' }
-library.swift-numerics = { license = [
-    { name = 'Apache-2.0 license', url = 'https://github.com/apple/swift-numerics/blob/main/LICENSE.txt' },
-] }
-library.swift-async-algorithms = { license = [
-    { name = 'Apache-2.0 license', url = 'https://github.com/apple/swift-async-algorithms/blob/main/LICENSE.txt' },
-] }
-library.swift-system = { license = [
-    { name = 'Apache-2.0 license', url = 'https://github.com/apple/swift-system/blob/main/LICENSE.txt' },
-] }
-library.swift-ac-library = { license = [
-    { name = 'CC0-1.0 license', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },
+library.LIB-a = { license = [
+    { name = 'Apache-2.0', url = 'https://example.com/liba-license' },
+], version = 'v0.1.2' }
+library.LIB-b = { license = [
+    { name = 'BSD-3-Clause', url = 'https://example.com/libb/license' },
+    { name = 'MIT', url = 'https://example.jp/library/c/license' },
+], indirect = true, version = 'v1.0.0' }
+library.LIB-c = { license = [
+    { name = 'LGPL-3.0-only', url = 'https://example.jp/library/c/license' },
 ] }
 
 # キー: filename
@@ -128,9 +144,7 @@ library.swift-ac-library = { license = [
 # 例:   'Main.c'
 #       'Main.cpp'
 #       'src/main.rs'
-
-## (6.0.2) パッケージ内のソースの位置に修正しています。
-filename = 'Sources/Main/Main.swift'
+filename = 'Main.ext'
 
 # キー: install
 # 型:   文字列
@@ -148,142 +162,16 @@ filename = 'Sources/Main/Main.swift'
 #
 #       またイメージを最小化するために、インストール作業には必要だが最終成果物として不要なものは /tmp においてください
 #       インストールスクリプトが終了したあとで /tmp 以下のものは削除されます
-
-## (6.0.2) 5.8.1のインストールスクリプトをコピーし、6.0.2向けに修正しています。
-
 install = '''
+sudo apt install -y COMPILER=1.2.3-alpha
+COMPILER new code
+cd code
+COMPILER add LIB-a@v0.1.2 LIB-b@v1.0.0 LIB-c
 
-## 公式手順を参考にしています。
-## 量が多いので, 可能であれば./setup.shなどで実行することをお勧めします。
-## 手元のDocker(M1 Mac上, Ubuntu(Intel CPU)上)のubuntu:22.10環境で確認済み。
-
-## References
-## https://www.swift.org/getting-started/
-## https://www.swift.org/download/
-## https://github.com/apple/swift-docker/blob/59e3cc2532e57bb75b406bb9c589b62bd12edd5c/5.7/ubuntu/22.04/Dockerfile
-
-sudo apt update
-export DEBIAN_FRONTEND=noninteractive
-
-## don't use apt!
-sudo apt-get install -y \
-          binutils \
-          git \
-          gnupg2 \
-          libc6-dev \
-          libcurl4-openssl-dev \
-          libedit2 \
-          libgcc-13-dev \
-          libncurses-dev \
-          libpython3-dev \
-          libsqlite3-0 \
-          libstdc++-13-dev \
-          libxml2-dev \
-          libz3-dev \
-          pkg-config \
-          tzdata \
-          unzip \
-          zlib1g-dev
-
-## 依存packagesの公式インストール方法だが、libpython3.8がデフォルトでubuntu22ではapt repositoryに存在しない。
-## aptだと一つでも存在しなかったらエラーで強制終了するため、apt-getにしている。libpython3.8の行を消してもいいかも。
-## libpython3.8はなくても問題ないことを確認済み。
-
-export SWIFT_PLATFORM=ubuntu24.04
-export SWIFT_VERSION_NUMBER=6.0.2
-export SWIFT_BRANCH=swift-$SWIFT_VERSION_NUMBER-release
-export SWIFT_VERSION=swift-$SWIFT_VERSION_NUMBER-RELEASE
-export SWIFT_WEBROOT=https://download.swift.org
-
-## check architecture
-## CPUなど低レイヤーの環境が不明のため。
-set -e
-ARCH_NAME="$(dpkg --print-architecture)"
-url=
-case "${ARCH_NAME##*-}" in
-'amd64')
-OS_ARCH_SUFFIX=''
-;;
-'arm64')
-OS_ARCH_SUFFIX='-aarch64'
-;;
-*)
-echo >&2 "error: unsupported architecture: '$ARCH_NAME'"
-exit 1
-;;
-esac
-
-export SWIFT_WEBDIR="$SWIFT_WEBROOT/$SWIFT_BRANCH/$(echo $SWIFT_PLATFORM | tr -d .)$OS_ARCH_SUFFIX"
-export FILE_NAME="$SWIFT_VERSION-$SWIFT_PLATFORM$OS_ARCH_SUFFIX"
-export SWIFT_BIN_URL="$SWIFT_WEBDIR/$SWIFT_VERSION/$FILE_NAME.tar.gz"
-
-sudo apt install -y wget
-
-wget -O - "$SWIFT_BIN_URL" | sudo tar -xzC /usr/local/ \
---transform=s/$FILE_NAME/swift/
-
-## echo 'export PATH=/usr/local/swift/usr/bin:$PATH' >>~/.bashrc
-
-## verify swift command.
-## source ~/.bashrc
-export PATH=/usr/local/swift/usr/bin:$PATH
-swift --version
-## 正しく表示されればswiftcも使えます。
-
-swift sdk install https://download.swift.org/swift-6.0.2-release/static-sdk/swift-6.0.2-RELEASE/swift-6.0.2-RELEASE_static-linux-0.0.1.artifactbundle.tar.gz --checksum aa5515476a403797223fc2aad4ca0c3bf83995d5427fb297cab1d93c68cee075
-
-## create project
-## mkdir swift
-## cd swift
-swift package init --name Main --type executable
-cat << 'EOF' > Package.swift
-// swift-tools-version: 6.0.2
-import PackageDescription
-
-let package = Package(
-  name: "Main",
-  dependencies: [
-    .package(
-      url: "https://github.com/apple/swift-collections.git",
-      exact: "1.1.4"
-    ),
-    .package(
-      url: "https://github.com/apple/swift-algorithms.git",
-      exact: "1.2.0"
-    ),
-    .package(
-      url: "https://github.com/apple/swift-numerics",
-      branch: "main"),
-    .package(
-      url: "https://github.com/apple/swift-async-algorithms",
-      exact: "1.0"),
-    .package(
-      url: "https://github.com/apple/swift-system",
-      exact: "1.4.0"),
-    .package(
-      url: "https://github.com/narumij/swift-ac-library",
-      branch: "main"),
-  ],
-  targets: [
-    .executableTarget(
-      name: "Main",
-      dependencies: [
-        .product(name: "Collections", package: "swift-collections"),
-        .product(name: "Algorithms", package: "swift-algorithms"),
-        .product(name: "Numerics", package: "swift-numerics"),
-        .product(name: "AsyncAlgorithms", package: "swift-async-algorithms"),
-        .product(name: "SystemPackage", package: "swift-system"),
-        .product(name: "AtCoder", package: "swift-ac-library"),
-      ],
-      path: "Sources"
-    )
-  ]
-)
-EOF
-## install library
-swift build -Xswiftc -O -Xlinker -lm -c release
-rm .build/release/Main
-
+cd /tmp
+wget -O foo.tgz https://example.com/foo
+tar xvf foo.tgz
+./foo/install
 '''
 
 # キー: compile
@@ -299,12 +187,11 @@ rm .build/release/Main
 #       コンパイルを行わない言語の場合は記述不要です
 #       ただしコンパイルを行う必要のない言語の場合でも、構文チェックなどをコンパイル代わりに行わせることが可能です
 #       成功時に後述の object で指定するファイルが生成されるようにコマンドを記述してください
-
 compile = '''
-
-export PATH=/usr/local/swift/usr/bin:$PATH
-swift build -Xswiftc -O -Xlinker -lm -c release 1>&2
-
+mv Main.ext code/src/main.ext
+cd code
+COMPILER build --arg1 --arg2 opt
+mv build/release.out ../a.out
 '''
 
 # キー: object
@@ -319,8 +206,7 @@ swift build -Xswiftc -O -Xlinker -lm -c release 1>&2
 # 例:   'a.out'
 #       'publish/Main'
 #       'target/release/main'
-
-object = '.build/release/Main'
+object = 'a.out'
 
 # キー: environment
 # 型:   テーブル
@@ -345,10 +231,9 @@ object = '.build/release/Main'
 #           {memory:kb}    問題のメモリ制限の数値（単位: KiB）
 #           {memory:mb}    問題のメモリ制限の数値（単位: MiB）
 #       インタプリタ言語など、環境変数によって実行環境の設定を行う場合に使用できます
-
-# environment.HOGE       = "fuga"
-# environment.FOO        = "bar"
-# environment.max-memory = "{memory:mb}M"
+environment.HOGE       = "fuga"
+environment.FOO        = "bar"
+environment.max-memory = "{memory:mb}M"
 
 # キー: execution
 # 型:   配列
@@ -366,7 +251,12 @@ object = '.build/release/Main'
 # 例:   [ './a.out' ]
 #       [ './target/release/main' ]
 #       [ 'java', '-Xss{memory:mb}M', 'Main' ]
-
 execution = [
-    './.build/release/Main',
+    'COMPILER',
+    '--arg1',
+    '--arg2',
+    'opt',
+    '--max-memory',
+    '{memory:kb}K',
+    'a.out',
 ]

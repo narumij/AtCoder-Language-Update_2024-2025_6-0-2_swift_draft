@@ -1,61 +1,48 @@
 language = 'Swift'
-
 name = 'Swift'
 version = '6.0.2'
-license = [ { name = 'Apache-2.0', url = 'https://github.com/swiftlang/swift/blob/main/LICENSE.txt' } ]
+license = [
+    { name = 'Apache-2.0 license', url = 'https://github.com/swiftlang/swift/blob/main/LICENSE.txt' }
+]
 
-library.swift-algorithms = {
-  license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-algorithms/blob/main/LICENSE.txt' },],
-  version = '1.2.0'
-  }
-library.swift-numerics = {
-  license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-numerics/blob/main/LICENSE.txt' },],
-  version = '1.0.0',
-  indirect = true
-  }
-library.swift-collections = {
-  license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-collections/blob/main/LICENSE.txt' },],
-  version = '1.1.4'
-  }
-library.swift-numerics = {
-  license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-numerics/blob/main/LICENSE.txt' },],
-  version = 'e30276b'
-  }
-library.swift-atomics = {
-  license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-atomics/blob/main/LICENSE.txt' },],
-  version = '1.2.0'
-  }
-library.swift-system = {
-  license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-system/blob/main/LICENSE.txt' },],
-  version = '1.4.0'
-  }
-library.BigInt = {
-  license = [ { name = 'MIT', url = 'https://github.com/attaswift/BigInt/blob/master/LICENSE.md' },],
-  version = '5.5.0'
-  }
-library.swift-bignum = {
-  license = [ { name = 'MIT', url = 'https://github.com/dankogai/swift-bignum/blob/main/LICENSE' },],
-  version = '5.4.1'
-  }
-library.SwiftGraph = {
-  license = [ { name = 'Apache-2.0', url = 'https://github.com/davecom/SwiftGraph/blob/master/LICENSE' },],
-  version = '3.1.0'
-  }
-library.swift-ac-library = {
-  license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },],
-  version = '4cfbc16'
-  }
-library.swift-ac-foundation = {
-  license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ],
-  version = '0.0.3'
-  }
-library.swift-tree = {
-  license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-tree/blob/main/LICENSE' },],
-  version = '0.0.3'
-  }
+library.swift-algorithms = { license = [
+    { name = 'Apache-2.0 license', url = 'https://github.com/apple/swift-algorithms/blob/main/LICENSE.txt' },
+], version = '1.2.0' }
+library.swift-collections = { license = [
+    { name = 'Apache-2.0 license', url = 'https://github.com/apple/swift-collections/blob/main/LICENSE.txt' },
+], version = '1.1.4' }
+library.swift-numerics = { license = [
+    { name = 'Apache-2.0 license', url = 'https://github.com/apple/swift-numerics/blob/main/LICENSE.txt' },
+] }
+library.swift-atomics = { license = [
+    { name = 'Apache-2.0 license', url = 'https://github.com/apple/swift-atomics/blob/main/LICENSE.txt' },
+] }
+library.swift-system = { license = [
+    { name = 'Apache-2.0 license', url = 'https://github.com/apple/swift-system/blob/main/LICENSE.txt' },
+] }
+library.BigInt = { license = [
+    { name = 'MIT license', url = 'https://github.com/attaswift/BigInt/blob/master/LICENSE.md' },
+] }
+library.swift-bignum = { license = [
+    { name = 'MIT license', url = 'https://github.com/dankogai/swift-bignum/blob/main/LICENSE' },
+] }
+library.SwiftGraph = { license = [
+    { name = 'Apache-2.0 license', url = 'https://github.com/davecom/SwiftGraph/blob/master/LICENSE' },
+] }
+library.swift-ac-library = { license = [
+    { name = 'CC0-1.0 license', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },
+] }
+library.swift-ac-foundation = { license = [
+    { name = 'CC0-1.0 license', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' },
+] }
+library.swift-tree = { license = [
+    { name = 'CC0-1.0 license', url = 'https://github.com/narumij/swift-tree/blob/main/LICENSE' },
+] }
 
+## パッケージ内のソースの位置に修正しました
 filename = 'Sources/main.swift'
 
+## インストールスクリプトの大幅な修正を行いました
 install = '''
 
 PLATFORM=ubuntu24.04
