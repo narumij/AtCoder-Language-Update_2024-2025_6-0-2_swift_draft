@@ -95,7 +95,7 @@ rm $SWIFT_TAR_BALL.tar.gz
 # ジャッジがビルドを行う作業パッケージの初期化を行います。パッケージ名はMain、実行可能なプログラムとして初期化します
 ./${SWIFT_TAR_BALL}/usr/bin/swift package init --name Main --type executable
 
-# Package.swiftを更新し、AtCoderで使用する依存パッケージを作業パッケージに追加します
+# Package.swiftを更新し、AtCoderジャッジで使用する依存パッケージを作業パッケージに追加します
 cat << 'EOF' > Package.swift
 // swift-tools-version: 6.0
 import PackageDescription
