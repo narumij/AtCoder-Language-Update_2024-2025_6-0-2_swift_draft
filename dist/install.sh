@@ -107,10 +107,10 @@ let package = Package(
       from: "3.1.0"),
     .package(
       url: "https://github.com/narumij/swift-ac-library",
-      branch: "main"),
+      from: "0.1.0"),
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
-      from: "0.0.3"),
+      from: "0.0.4"),
     .package(
       url: "https://github.com/narumij/swift-tree",
       from: "0.0.3"),
@@ -145,8 +145,4 @@ EOF
   -c release
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
-# 標準的なパスは、.build/release/Mainですが、
-# .build/release/が、Static Linux SDKの影響で、
-# .build/x86_64-swift-linux-musl/release/へのシンボリックリンクとなっています
-# Static Linux SDKのInstructionに載っている方を採用し、直接削除します
 rm .build/release/Main

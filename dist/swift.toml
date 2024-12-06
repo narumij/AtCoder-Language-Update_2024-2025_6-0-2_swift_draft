@@ -129,10 +129,10 @@ let package = Package(
       from: "3.1.0"),
     .package(
       url: "https://github.com/narumij/swift-ac-library",
-      branch: "main"),
+      from: "0.1.0"),
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
-      from: "0.0.3"),
+      from: "0.0.4"),
     .package(
       url: "https://github.com/narumij/swift-tree",
       from: "0.0.3"),
