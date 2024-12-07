@@ -12,7 +12,7 @@ let package = Package(
       from: "1.2.0"),
     .package(
       url: "https://github.com/apple/swift-numerics",
-      branch: "main"),
+      branch: "main"), // e30276b
     .package(
       url: "https://github.com/apple/swift-atomics",
       from: "1.2.0"),
@@ -35,8 +35,8 @@ let package = Package(
       url: "https://github.com/narumij/swift-ac-foundation",
       from: "0.0.4"),
     .package(
-      url: "https://github.com/narumij/swift-tree",
-      from: "0.0.3"),
+      url: "https://github.com/narumij/swift-ac-collections",
+      branch: "main"), // e28ecdd
   ],
   targets: [
     .executableTarget(
@@ -52,7 +52,7 @@ let package = Package(
         .product(name: "SwiftGraph", package: "SwiftGraph"),
         .product(name: "AtCoder", package: "swift-ac-library"),
         .product(name: "AcFoundation", package: "swift-ac-foundation"),
-        .product(name: "AcCollections", package: "swift-tree"),
+        .product(name: "AcCollections", package: "swift-ac-collections"),
       ],
       path: "Sources"
     )
