@@ -1,6 +1,7 @@
 // swift-tools-version: 6.0
 import PackageDescription
 
+// TODO: 最終版では、fromをexactに変更すること
 let package = Package(
   name: "Main",
   dependencies: [
