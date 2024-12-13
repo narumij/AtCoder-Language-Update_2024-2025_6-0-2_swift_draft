@@ -40,10 +40,6 @@ jobs:
             - name: Install tomlq
               run: cargo install tomlq
               
-            - name: Query TOML 'install'
-              run: |
-                tq 'install' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//"              
-
             - name: Query TOML 'version'
               id: get_toml_version
               run: |
