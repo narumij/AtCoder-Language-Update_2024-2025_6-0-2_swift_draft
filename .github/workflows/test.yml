@@ -38,7 +38,7 @@ jobs:
                   toolchain: stable
             
             - name: Install tomlq
-              run: cargo install tq
+              run: cargo install tomlq
               
             - name: Query TOML with tomlq
               run: |
@@ -46,8 +46,7 @@ jobs:
 
             - name: Install
               run: |
-                  chmod +x ./dist/install.sh
-                  ./dist/install.sh
+                tq '.scripts.install' --file dist/swift.toml | sed "1d;$d" | sh
 
             - name: Test
               run: |
