@@ -46,7 +46,7 @@ jobs:
 
             - name: Install
               run: |
-                tq '.scripts.install' --file dist/swift.toml | sed "1d;$d" | sh
+                tq 'install' --file dist/swift.toml | sed "1d;$d" | sh
 
             - name: Test
               run: |
