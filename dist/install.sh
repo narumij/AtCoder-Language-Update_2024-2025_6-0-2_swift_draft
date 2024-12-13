@@ -63,6 +63,9 @@ tar xzf $SWIFT_TAR_BALL.tar.gz
 
 # 公式のインストール手順は以上です
 
+# バージョン番号を出力し、ログでも処理系バージョンを確認する
+./${SWIFT_TAR_BALL}/usr/bin/swift --version
+
 # AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
 rm $SWIFT_TAR_BALL.tar.gz
 # これで言語環境の構築は完了しました
