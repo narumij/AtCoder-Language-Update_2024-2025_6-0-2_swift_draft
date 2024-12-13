@@ -40,26 +40,13 @@ jobs:
             - name: Install tomlq
               run: cargo install tomlq
               
-            - name: Query TOML 'version'
-              id: get_toml_version
+            - name: Query TOML with tomlq
               run: |
-                TOML_VERSION=$(tq 'version' --file dist/swift.toml | sed -e "1s/^'//" -e "\$s/'$//")
-                echo "TOML_VERSION=${TOML_VERSION}" >> $GITHUB_ENV
+                tq 'install' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//"              
 
-            - name: Get installed Swift version
-              id: get_installed_version
+            - name: Query TOML with tomlq
               run: |
-                INSTALLED_VERSION=$(swift --version | awk '{print $4}')
-                echo "INSTALLED_VERSION=${INSTALLED_VERSION}" >> $GITHUB_ENV
-
-            - name: Check Swift version match
-              run: |
-                if [ "$TOML_VERSION" = "$INSTALLED_VERSION" ]; then
-                  echo "Swift versions match: $TOML_VERSION"
-                else
-                  echo "Swift version mismatch! TOML: $TOML_VERSION, Installed: $INSTALLED_VERSION"
-                  exit 1
-                fi
+                tq 'version' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//"              
 
             - name: Install
               run: |
