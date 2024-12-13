@@ -1,6 +1,6 @@
 language = 'Swift'
 name = 'Swift'
-version = '6.0.2'
+version = '6.0.3'
 license = [ { name = 'Apache-2.0', url = 'https://github.com/swiftlang/swift/blob/main/LICENSE.txt' }, ]
 
 library.swift-algorithms = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-algorithms/blob/main/LICENSE.txt' },], version = '1.2.0' }
