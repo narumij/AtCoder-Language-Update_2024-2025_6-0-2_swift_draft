@@ -42,7 +42,7 @@ jobs:
               
             - name: Query TOML with tomlq
               run: |
-                tomlq 'install' --file dist/swift.toml                  
+                tq 'install' --file dist/swift.toml                  
 
             - name: Install
               run: |
