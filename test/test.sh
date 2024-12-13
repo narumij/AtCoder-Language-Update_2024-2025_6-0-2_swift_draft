@@ -6,7 +6,7 @@ compile() {
 
 cp test/main.swift Sources/main.swift
 
-compile()
+compile
 
 cat << 'EOF' | .build/release/Main
 3
@@ -17,14 +17,14 @@ cp test/abc235_d/main.1.swift Sources/main.swift
 
 # ./${SWIFT_TAR_BALL}/usr/bin/swift package clean
 
-compile()
+compile
 
 time .build/release/Main < test/abc235_d/sample-x.in
 
 cp test/abc235_d/main.2.swift Sources/main.swift
 # ./${SWIFT_TAR_BALL}/usr/bin/swift package clean
 
-compile()
+compile
 
 .build/release/Main < test/abc235_d/sample-x.in
 time .build/release/Main < test/abc235_d/sample-x.in
