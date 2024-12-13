@@ -1,7 +1,13 @@
 #!/bin/sh
 
-./swift-6.0.2-RELEASE-ubuntu24.04/usr/bin/swift \
+PLATFORM=ubuntu24.04
+LANG_VERSION=6.0.2
+OS_ARCH_SUFFIX="" # arm64等の場合に指定する
+
+SWIFT_VERSION=swift-${LANG_VERSION}-RELEASE
+SWIFT_TAR_BALL="$SWIFT_VERSION-$PLATFORM$OS_ARCH_SUFFIX"
+
+./${SWIFT_TAR_BALL}/usr/bin/swift \
     build \
     -c release \
-    --swift-sdk x86_64-swift-linux-musl \
     1>&2

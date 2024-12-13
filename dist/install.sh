@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PLATFORM=ubuntu24.04
-LANG_VERSION=6.0.2
+LANG_VERSION=6.0.3
 OS_ARCH_SUFFIX="" # arm64等の場合に指定する
 
 SWIFT_BRANCH=swift-${LANG_VERSION}-release
