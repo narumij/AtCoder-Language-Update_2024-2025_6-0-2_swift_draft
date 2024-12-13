@@ -135,10 +135,7 @@ let package = Package(
         .product(name: "AcFoundation", package: "swift-ac-foundation"),
         .product(name: "AcCollections", package: "swift-ac-collections"),
       ],
-      path: "Sources",
-      swiftSettings: [
-        .unsafeFlags(["-suppress-warnings"])
-      ]
+      path: "Sources"
     )
   ]
 )
