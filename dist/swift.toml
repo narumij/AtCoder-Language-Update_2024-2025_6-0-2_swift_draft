@@ -91,6 +91,8 @@ rm $SWIFT_TAR_BALL.tar.gz
 # 続いて、コンパイル環境の構築を行います
 # コンパイル環境の構築では、AtCoderで使用するSwiftパッケージの初期化と依存パッケージの追加、そして事前ビルドを行います
 
+./${SWIFT_TAR_BALL}/usr/bin/swift --version
+
 # ジャッジがビルドを行う作業パッケージの初期化を行います。パッケージ名はMain、実行可能なプログラムとして初期化します
 ./${SWIFT_TAR_BALL}/usr/bin/swift package init --name Main --type executable
 
