@@ -42,11 +42,11 @@ jobs:
               
             - name: Query TOML with tomlq
               run: |
-                tq 'install' --file dist/swift.toml                  
+                tq 'install' --file config.toml | sed -e "1s/^'''//" -e "\$s/'''$//"              
 
             - name: Install
               run: |
-                tq 'install' --file dist/swift.toml | sed "1d;$d" | sh
+                tq 'install' --file config.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | sh               
 
             - name: Test
               run: |
