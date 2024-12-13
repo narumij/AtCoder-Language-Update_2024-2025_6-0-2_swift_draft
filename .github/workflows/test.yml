@@ -44,6 +44,10 @@ jobs:
               run: |
                 tq 'install' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//"              
 
+            - name: Query TOML with tomlq
+              run: |
+                tq 'version' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//"              
+
             - name: Install
               run: |
                 tq 'install' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | sh               
