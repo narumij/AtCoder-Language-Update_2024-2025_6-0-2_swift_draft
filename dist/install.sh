@@ -136,8 +136,8 @@ let package = Package(
         .product(name: "AcCollections", package: "swift-ac-collections"),
       ],
       path: "Sources",
-      exclude: [
-        "Sources/Algorithms/Documentation.docc"
+      swiftSettings: [
+        .unsafeFlags(["-suppress-warnings"])
       ]
     )
   ]
