@@ -52,6 +52,11 @@ jobs:
               run: |
                 tq 'install' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | sh               
 
+            - name: Check Swift version
+              run: |
+                chmod +x ./test/check_version.sh
+                ./test/check_version.sh
+            
             - name: Test
               run: |
                   chmod +x ./test/test.sh
