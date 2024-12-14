@@ -41,3 +41,6 @@ tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | sh
 
 cat << 'EOF' | .build/release/Main
 EOF
+
+exit 0
+
