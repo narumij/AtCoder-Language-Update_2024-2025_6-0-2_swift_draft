@@ -34,7 +34,7 @@ let package = Package(
       from: "0.1.0"),
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
-      from: "0.0.4"),
+      from: "0.0.5"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
       branch: "main"),  // e28ecdd
