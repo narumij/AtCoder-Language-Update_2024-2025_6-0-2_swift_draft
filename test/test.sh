@@ -25,3 +25,19 @@ tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | sh
 
 .build/release/Main < test/abc235_d/sample-x.in
 time .build/release/Main < test/abc235_d/sample-x.in
+
+export SWIFT_BACKTRACE=enable
+
+cp test/crash/crash1.swift Sources/main.swift
+
+tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | sh              
+
+cat << 'EOF' | .build/release/Main
+EOF
+
+cp test/crash/crash2.swift Sources/main.swift
+
+tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | sh              
+
+cat << 'EOF' | .build/release/Main
+EOF
