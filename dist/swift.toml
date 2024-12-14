@@ -190,7 +190,7 @@ SWIFT_TAR_BALL="$SWIFT_VERSION-$PLATFORM$OS_ARCH_SUFFIX"
 
 '''
 
-environment.SWIFT_BACKTRACE = "enable"
+environment.SWIFT_BACKTRACE = "output-to=stderr"
 
 object = '.build/release/Main'
 

@@ -26,7 +26,7 @@ tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | sh
 .build/release/Main < test/abc235_d/sample-x.in
 time .build/release/Main < test/abc235_d/sample-x.in
 
-export SWIFT_BACKTRACE=enable
+export SWIFT_BACKTRACE='output-to=stderr'
 
 cp test/crash/crash1.swift Sources/main.swift
 
