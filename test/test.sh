@@ -1,7 +1,7 @@
 #!/bin/sh
 
-echo "Heap size: $(ulimit -v | grep 'max locked memory' | awk '{print $4}')"
-echo "Stack size: $(ulimit -s | grep 'stack size' | awk '{print $4}')"
+echo "Heap size: $(ulimit -v)"
+echo "Stack size: $(ulimit -s)"
 
 cp test/main.swift Sources/main.swift
 
@@ -38,6 +38,14 @@ cat << 'EOF' | .build/release/Main
 EOF
 
 cp test/crash/crash2.swift Sources/main.swift
+
+tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | sh              
+
+cat << 'EOF' | .build/release/Main
+EOF
+
+
+cp test/mainActor/main.swift Sources/main.swift
 
 tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | sh              
 
