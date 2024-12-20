@@ -84,6 +84,10 @@ import PackageDescription
 // TODO: 最終版では、fromをexactに変更すること
 let package = Package(
   name: "Main",
+  platforms: [
+      .macOS(.v10_15),  // macOS 10.15 以上
+      // Linux はプラットフォームリストには含めませんが、サポートされます
+  ],
   dependencies: [
     .package(
       url: "https://github.com/apple/swift-collections.git",
@@ -94,6 +98,7 @@ let package = Package(
     .package(
       url: "https://github.com/apple/swift-numerics",
       branch: "main"),  // e30276b
+//      revision: "e30276bff2ff5ed80566fbdca49f50aa160b0e83"),
     .package(
       url: "https://github.com/apple/swift-atomics",
       from: "1.2.0"),
@@ -117,7 +122,7 @@ let package = Package(
       from: "0.0.5"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      from: "0.0.1"),
+      from: "0.0.2"),
   ],
   targets: [
     .executableTarget(
