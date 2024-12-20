@@ -1,7 +1,19 @@
 import Foundation
 import AcFoundation
 
-@MainActor
 private let main: () = {
-    print("Hello, MainActor!")
+  do { try Answer() } catch { /* WA */  }
 }()
+
+@MainActor
+@inlinable
+public func Answer() throws {
+  print("Hello, MainActor!")
+  try Some()
+}
+
+@MainActor
+@inlinable
+public func Some() throws {
+  print("Hello, MainActor Again!")
+}
