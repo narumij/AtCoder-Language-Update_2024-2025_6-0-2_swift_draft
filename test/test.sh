@@ -1,7 +1,7 @@
 #!/bin/sh
 
-echo "Heap size: $(ulimit -a | grep 'max locked memory' | awk '{print $4}')"
-echo "Stack size: $(ulimit -a | grep 'stack size' | awk '{print $4}')"
+echo "Heap size: $(ulimit -v | grep 'max locked memory' | awk '{print $4}')"
+echo "Stack size: $(ulimit -s | grep 'stack size' | awk '{print $4}')"
 
 cp test/main.swift Sources/main.swift
 
