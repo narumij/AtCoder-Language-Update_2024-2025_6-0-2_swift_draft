@@ -8,7 +8,9 @@ private let main: () = {
 @MainActor
 @inlinable
 public func Answer() throws {
+    MainActor.assumeIsolated {
   print("Hello, MainActor!")
+    }
   try Some()
 }
 

@@ -4,6 +4,10 @@ import PackageDescription
 // TODO: 最終版では、fromをexactに変更すること
 let package = Package(
   name: "Main",
+  platforms: [
+      .macOS(.v10_15),  // macOS 10.15 以上
+      // Linux はプラットフォームリストには含めませんが、サポートされます
+  ],
   dependencies: [
     .package(
       url: "https://github.com/apple/swift-collections.git",
