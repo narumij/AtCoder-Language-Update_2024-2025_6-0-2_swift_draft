@@ -85,13 +85,16 @@ import PackageDescription
 let package = Package(
   name: "Main",
   platforms: [
-      .macOS(.v10_15),  // macOS 10.15 以上
-      // Linux はプラットフォームリストには含めませんが、サポートされます
+    // @MainActor等をローカル環境で利用するための設定値
+    .macOS(.v10_15)  // macOS 10.15 以上
+    // Linux はプラットフォームリストには含めませんが、サポートされます
   ],
   dependencies: [
     .package(
       url: "https://github.com/apple/swift-collections.git",
-      from: "1.1.4"),
+//      from: "1.1.4"),
+      branch: "main"),  // 52a1f69
+//      revision: "52a1f698d5faa632df0e1219b1bbffa07cf65260"),
     .package(
       url: "https://github.com/apple/swift-algorithms.git",
       from: "1.2.0"),
@@ -107,7 +110,7 @@ let package = Package(
       from: "1.4.0"),
     .package(
       url: "https://github.com/attaswift/BigInt.git",
-      from: "5.5.0"),
+      from: "5.5.1"),
     .package(
       url: "https://github.com/dankogai/swift-bignum.git",
       from: "5.4.1"),
@@ -119,10 +122,10 @@ let package = Package(
       from: "0.1.0"),
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
-      from: "0.0.5"),
+      from: "0.0.7"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      from: "0.0.2"),
+      from: "0.0.11"),
   ],
   targets: [
     .executableTarget(

@@ -5,44 +5,47 @@ import PackageDescription
 let package = Package(
   name: "Main",
   platforms: [
-      .macOS(.v10_15),  // macOS 10.15 以上
-      // Linux はプラットフォームリストには含めませんが、サポートされます
+    // @MainActor等をローカル環境で利用するための設定値
+    .macOS(.v10_15)  // macOS 10.15 以上
+    // Linux はプラットフォームリストには含めませんが、サポートされます
   ],
   dependencies: [
     .package(
       url: "https://github.com/apple/swift-collections.git",
-      exact: "1.1.4"),
+//      from: "1.1.4"),
+      branch: "main"),  // 52a1f69
+//      revision: "52a1f698d5faa632df0e1219b1bbffa07cf65260"),
     .package(
       url: "https://github.com/apple/swift-algorithms.git",
-      exact: "1.2.0"),
+      from: "1.2.0"),
     .package(
       url: "https://github.com/apple/swift-numerics",
-//      branch: "main"),  // e30276b
-      revision: "e30276bff2ff5ed80566fbdca49f50aa160b0e83"),
+      branch: "main"),  // e30276b
+//      revision: "e30276bff2ff5ed80566fbdca49f50aa160b0e83"),
     .package(
       url: "https://github.com/apple/swift-atomics",
-      exact: "1.2.0"),
+      from: "1.2.0"),
     .package(
       url: "https://github.com/apple/swift-system",
-      exact: "1.4.0"),
+      from: "1.4.0"),
     .package(
       url: "https://github.com/attaswift/BigInt.git",
-      exact: "5.5.0"),
+      from: "5.5.1"),
     .package(
       url: "https://github.com/dankogai/swift-bignum.git",
-      exact: "5.4.1"),
+      from: "5.4.1"),
     .package(
       url: "https://github.com/davecom/SwiftGraph",
-      exact: "3.1.0"),
+      from: "3.1.0"),
     .package(
       url: "https://github.com/narumij/swift-ac-library",
       from: "0.1.0"),
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
-      from: "0.0.5"),
+      from: "0.0.7"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      from: "0.0.2"),
+      from: "0.0.11"),
   ],
   targets: [
     .executableTarget(

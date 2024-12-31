@@ -1,13 +1,13 @@
 {
-  "originHash" : "f1b118910bcbaf68c990573e282bbeee30bb68bfc6e756f171a7016e2e3c7961",
+  "originHash" : "93a5aa2355aece3fa0cf6cf67d27e19c3f91c35fa52aed0483076c7ea327bacc",
   "pins" : [
     {
       "identity" : "bigint",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/attaswift/BigInt",
       "state" : {
-        "revision" : "a7ee11486233ba45f5ceee0b8cb3d6629ed450ef",
-        "version" : "5.5.0"
+        "revision" : "114343a705df4725dfe7ab8a2a326b8883cfd79c",
+        "version" : "5.5.1"
       }
     },
     {
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-collections",
       "state" : {
-        "revision" : "24985eb8008cebf7172380494b9c858055af79d3",
-        "version" : "0.0.2"
+        "revision" : "628cf1e376e2922b458859331d2fe94488ad7db3",
+        "version" : "0.0.11"
       }
     },
     {
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-foundation",
       "state" : {
-        "revision" : "bc476ad9fd6376d28e6304d369307195d7fc3438",
-        "version" : "0.0.5"
+        "revision" : "50e9147232c04195a047961e5c23d4dd9bf0c21e",
+        "version" : "0.0.6"
       }
     },
     {
@@ -69,8 +69,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-collections.git",
       "state" : {
-        "revision" : "671108c96644956dddcd89dd59c203dcdb36cec7",
-        "version" : "1.1.4"
+        "branch" : "main",
+        "revision" : "52a1f698d5faa632df0e1219b1bbffa07cf65260"
       }
     },
     {
@@ -78,6 +78,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-numerics",
       "state" : {
+        "branch" : "main",
         "revision" : "e30276bff2ff5ed80566fbdca49f50aa160b0e83"
       }
     },
