@@ -92,40 +92,39 @@ let package = Package(
   dependencies: [
     .package(
       url: "https://github.com/apple/swift-collections.git",
-//      from: "1.1.4"),
-      branch: "main"),  // 52a1f69
-//      revision: "52a1f698d5faa632df0e1219b1bbffa07cf65260"),
+      revision: "52a1f698d5faa632df0e1219b1bbffa07cf65260"),
+//      branch: "main"),  // 52a1f69  (after 1.1.4)
     .package(
       url: "https://github.com/apple/swift-algorithms.git",
-      from: "1.2.0"),
+      exact: "1.2.0"),
     .package(
       url: "https://github.com/apple/swift-numerics",
-      branch: "main"),  // e30276b
-//      revision: "e30276bff2ff5ed80566fbdca49f50aa160b0e83"),
+      revision: "e30276bff2ff5ed80566fbdca49f50aa160b0e83"),
+//      branch: "main"),  // e30276b (after 1.0.2)
     .package(
       url: "https://github.com/apple/swift-atomics",
-      from: "1.2.0"),
+      exact: "1.2.0"),
     .package(
       url: "https://github.com/apple/swift-system",
-      from: "1.4.0"),
+      exact: "1.4.0"),
     .package(
       url: "https://github.com/attaswift/BigInt.git",
-      from: "5.5.1"),
+      exact: "5.5.1"),
     .package(
       url: "https://github.com/dankogai/swift-bignum.git",
-      from: "5.4.1"),
+      exact: "5.4.1"),
     .package(
       url: "https://github.com/davecom/SwiftGraph",
-      from: "3.1.0"),
+      exact: "3.1.0"),
     .package(
       url: "https://github.com/narumij/swift-ac-library",
-      from: "0.1.0"),
+      exact: "0.1.1"),
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
       from: "0.0.7"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      from: "0.0.11"),
+      exact: "0.1.0"),
   ],
   targets: [
     .executableTarget(
