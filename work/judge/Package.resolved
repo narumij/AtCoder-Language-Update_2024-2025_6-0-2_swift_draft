@@ -1,10 +1,10 @@
 {
-  "originHash" : "2e556144f20df0ba584d93cb9f5af91b30d32b8c93c47c91786c5c36a6ec10e1",
+  "originHash" : "36d32ec1e3cc9e440fe6c07327d87e729d0a25743d35b68ebf46020c55ad1f32",
   "pins" : [
     {
       "identity" : "bigint",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/attaswift/BigInt",
+      "location" : "https://github.com/attaswift/BigInt.git",
       "state" : {
         "revision" : "114343a705df4725dfe7ab8a2a326b8883cfd79c",
         "version" : "5.5.1"
@@ -15,7 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-collections",
       "state" : {
-        "revision" : "ef3d61f5845f99c46f7702c22d62f56eb4593e64"
+        "revision" : "fb9b3557b0d4e82b2fd2d56b840bb5058de4a4d6",
+        "version" : "0.1.2"
       }
     },
     {
@@ -41,7 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-memoize",
       "state" : {
-        "revision" : "b839684063c5c57f897052af4881fdcbd190d284"
+        "revision" : "92d6704d13c4c5358250da7ee6c3e5dec17617fe",
+        "version" : "0.0.3"
       }
     },
     {
