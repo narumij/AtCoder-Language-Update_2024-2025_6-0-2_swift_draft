@@ -124,8 +124,7 @@ let package = Package(
       exact: "0.0.7"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-//      exact: "0.1.1"),
-      revision: "ef3d61f5845f99c46f7702c22d62f56eb4593e64"),
+      exact: "0.1.1"),
     .package(
       url: "https://github.com/narumij/swift-ac-memoize",
 //      exact: "0.0.2"),
