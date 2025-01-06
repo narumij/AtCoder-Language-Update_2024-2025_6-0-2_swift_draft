@@ -48,7 +48,8 @@ let package = Package(
       revision: "ef3d61f5845f99c46f7702c22d62f56eb4593e64"),
     .package(
       url: "https://github.com/narumij/swift-ac-memoize",
-      exact: "0.0.2"),
+//      exact: "0.0.2"),
+      revision: "b839684063c5c57f897052af4881fdcbd190d284"),
   ],
   targets: [
     .executableTarget(
