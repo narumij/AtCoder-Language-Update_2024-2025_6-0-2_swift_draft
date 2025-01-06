@@ -45,6 +45,9 @@ let package = Package(
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
       exact: "0.1.0"),
+    .package(
+      url: "https://github.com/narumij/swift-ac-memoize",
+      branch: "main")
   ],
   targets: [
     .executableTarget(
@@ -61,6 +64,7 @@ let package = Package(
         .product(name: "AtCoder", package: "swift-ac-library"),
         .product(name: "AcFoundation", package: "swift-ac-foundation"),
         .product(name: "AcCollections", package: "swift-ac-collections"),
+        .product(name: "swift-ac-memoize", package: "swift-ac-memoize"),
       ],
       path: "Sources"
     )
