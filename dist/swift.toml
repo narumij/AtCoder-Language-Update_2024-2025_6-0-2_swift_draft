@@ -10,12 +10,14 @@ library.swift-numerics = { license = [ { name = 'Apache-2.0', url = 'https://git
 # library.swift-numerics = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-numerics/blob/main/LICENSE.txt' },], version = '1.0.0', indirect = true }
 library.swift-atomics = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-atomics/blob/main/LICENSE.txt' },], version = '1.2.0' }
 library.swift-system = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-system/blob/main/LICENSE.txt' },], version = '1.4.0' }
+library.swift-syntax = { license = [ { name = 'Apache-2.0', url = 'https://github.com/swiftlang/swift-syntax/blob/main/LICENSE.txt' },], version = '600.0.1' }
 library.BigInt = { license = [ { name = 'MIT', url = 'https://github.com/attaswift/BigInt/blob/master/LICENSE.md' },], version = '5.5.1' }
 library.swift-bignum = { license = [ { name = 'MIT', url = 'https://github.com/dankogai/swift-bignum/blob/main/LICENSE' },], version = '5.4.1' }
 library.SwiftGraph = { license = [ { name = 'Apache-2.0', url = 'https://github.com/davecom/SwiftGraph/blob/master/LICENSE' },], version = '3.1.0' }
 library.swift-ac-library = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },], version = '0.1.0' }
 library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = '0.0.7' }
-library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.0.11' }
+library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.1' }
+library.swift-ac-memoize = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-memoize/blob/main/LICENSE' },], version = '0.0.2' }
 
 filename = 'Sources/main.swift'
 
@@ -145,10 +147,10 @@ let package = Package(
       exact: "0.0.7"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.0"),
+      exact: "0.1.1"),
     .package(
       url: "https://github.com/narumij/swift-ac-memoize",
-      revision: "cc64ad573a8928b2ffeaed28a0ce1a5b52d14403")
+      exact: "0.0.2"),
   ],
   targets: [
     .executableTarget(
@@ -171,18 +173,6 @@ let package = Package(
     )
   ]
 )
-EOF
-
-# 念の為に、クリーニングします
-./${SWIFT_TAR_BALL}/usr/bin/swift package clean
-
-# 依存パッケージの解決とパッケージのビルドを事前に行います
-./${SWIFT_TAR_BALL}/usr/bin/swift build \
-  -c release
-
-# ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
-rm .build/release/Main
-
 EOF
 
 # 念の為に、クリーニングします
