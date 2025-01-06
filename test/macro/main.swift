@@ -1,5 +1,5 @@
 import Foundation
-import swift_ac_memoize
+import AcMemoize
 
 
 private let main: () = {

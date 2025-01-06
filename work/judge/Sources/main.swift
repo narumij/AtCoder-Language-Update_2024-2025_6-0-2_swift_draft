@@ -2,7 +2,7 @@ import AcFoundation
 import Foundation
 import SortedCollections
 import Algorithms
-import swift_ac_memoize
+import AcMemoize
 
 
 private let main: () = {
