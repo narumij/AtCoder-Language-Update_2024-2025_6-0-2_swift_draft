@@ -6,6 +6,7 @@ private let main: () = {
   do { try Answer() } catch { /* WA */  }
 }()
 
+@inlinable
 @Memoize
 func tarai(x: Int, y: Int, z: Int) -> Int {
   if x <= y {
