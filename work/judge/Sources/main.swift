@@ -1,51 +1,28 @@
-import AcFoundation
 import Foundation
-import SortedCollections
+import Collections
 import Algorithms
-import AcMemoize
+import Numerics
+import IntegerUtilities
+import AtCoder
+import AcFoundation
+import IOReader
+import IOUtil
+import Bisect
+import AcCollections
 import RedBlackTreeModule
 import PermutationModule
+import Numerics
+import BigInt
+import BigNum
+import SwiftGraph
+import AcMemoize
 
-private let main: () = {
-  do { try Answer() } catch { /* WA */  }
-}()
-
-@MainActor
-@inlinable
-public func Answer() throws {
-  try MainActor.assumeIsolated {
-    let i: Int = .stdin
-//    let s: SortedSet<Int> = .init()
-    print("Hello, MainActor!")
-    print("Is Main Thread: \(Thread.isMainThread)")
-    try Some()
-    hoge()
-  }
-}
-
-@MainActor
-@inlinable
-public func Some() throws {
-  print("Hello, MainActor Again!")
-  print("Is Main Thread: \(Thread.isMainThread)")
-}
-
-@MainActor
-@inlinable
-public func Some2() throws {
-  var a = [1,2,3,4]
-  for p in a.permutations() {
-    
-  }
-}
-
-@usableFromInline func hoge() {
-  
-  @Memoize
-  func fibonacci(_ n: Int) -> Int {
-      if n <= 1 { return n }
-      return fibonacci(n - 1) + fibonacci(n - 2)
-  }
-
-  print(fibonacci(40)) // Output: 102_334_155
-}
+#if os(macOS) || os(iOS)
+    print("Hello, Apple platform!")
+#elseif canImport(Glibc)
+    print("Hello, Glibc!")
+#elseif canImport(Musl)
+    print("Hello, Musl!")
+#else
+    print("Hello, Anything else!")
+#endif

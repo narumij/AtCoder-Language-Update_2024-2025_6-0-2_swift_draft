@@ -121,15 +121,15 @@ let package = Package(
       exact: "3.1.0"),
     .package(
       url: "https://github.com/narumij/swift-ac-library",
-//      exact: "0.1.2"),
+      // -Ouncheckedを利用するためにrevision指定としている
       revision: "5310d9f7f7d9ba49adf4b6c75547aa00a251231e"),
+//      exact: "0.1.2"),
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
       exact: "0.0.7"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-//      exact: "0.1.2"),
-      revision: "9964a019a4f0cab01759147c938ef28cd73103f4"),
+      exact: "0.1.3"),
     .package(
       url: "https://github.com/narumij/swift-ac-memoize",
       exact: "0.0.5"),
@@ -155,6 +155,37 @@ let package = Package(
     )
   ]
 )
+EOF
+
+cat << 'EOF' > Sources/main.swift
+import Foundation
+import Collections
+import Algorithms
+import Numerics
+import IntegerUtilities
+import AtCoder
+import AcFoundation
+import IOReader
+import IOUtil
+import Bisect
+import AcCollections
+import RedBlackTreeModule
+import PermutationModule
+import Numerics
+import BigInt
+import BigNum
+import SwiftGraph
+import AcMemoize
+
+#if os(macOS) || os(iOS)
+    print("Hello, Apple platform!")
+#elseif canImport(Glibc)
+    print("Hello, Glibc!")
+#elseif canImport(Musl)
+    print("Hello, Musl!")
+#else
+    print("Hello, Anything else!")
+#endif
 EOF
 
 # 念の為に、クリーニングします
