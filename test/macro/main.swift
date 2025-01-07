@@ -19,9 +19,17 @@ func tarai(x: Int, y: Int, z: Int) -> Int {
   }
 }
 
+@usableFromInline
+@Memoize
+func fibonacci(_ n: Int) -> Int {
+    if n <= 1 { return n }
+    return fibonacci(n - 1) + fibonacci(n - 2)
+}
+
 @MainActor
 @inlinable
 public func Answer() throws {
   print("Hello, Swift Macros")
   print("Tak 20 10 0 is \(tarai(x: 20, y: 10, z: 0))")
+print(fibonacci(40)) // Output: 102_334_155
 }
