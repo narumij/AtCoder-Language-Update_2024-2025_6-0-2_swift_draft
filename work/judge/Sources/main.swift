@@ -3,7 +3,8 @@ import Foundation
 import SortedCollections
 import Algorithms
 import AcMemoize
-
+import RedBlackTreeModule
+import PermutationModule
 
 private let main: () = {
   do { try Answer() } catch { /* WA */  }
@@ -18,6 +19,7 @@ public func Answer() throws {
     print("Hello, MainActor!")
     print("Is Main Thread: \(Thread.isMainThread)")
     try Some()
+    hoge()
   }
 }
 
@@ -37,3 +39,13 @@ public func Some2() throws {
   }
 }
 
+@usableFromInline func hoge() {
+  
+  @Memoize
+  func fibonacci(_ n: Int) -> Int {
+      if n <= 1 { return n }
+      return fibonacci(n - 1) + fibonacci(n - 2)
+  }
+
+  print(fibonacci(40)) // Output: 102_334_155
+}

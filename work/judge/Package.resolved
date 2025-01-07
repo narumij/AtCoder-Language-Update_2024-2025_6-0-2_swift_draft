@@ -1,5 +1,5 @@
 {
-  "originHash" : "a617cb28bc5a0e38193f3668909b23899c61b5b6c62f0a20e5f91d82467c2234",
+  "originHash" : "ecd6ce754e18df315b6db7e4b5c34e7ebc2e4b4bc2c034fe3b2f7a8189f7f67b",
   "pins" : [
     {
       "identity" : "bigint",
@@ -42,8 +42,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-memoize",
       "state" : {
-        "revision" : "92d6704d13c4c5358250da7ee6c3e5dec17617fe",
-        "version" : "0.0.3"
+        "revision" : "e2b2be44f276a793ac35305c8ea1795af71b36e5"
       }
     },
     {
