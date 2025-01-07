@@ -39,13 +39,14 @@ let package = Package(
     .package(
       url: "https://github.com/narumij/swift-ac-library",
 //      exact: "0.1.2"),
-      revision: "27cd83686595d275bc7a95963e1ac1ce01f83c70"),
+      revision: "2206f8541429ca91bc024e5140d892dc45a505fa"),
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
       exact: "0.0.7"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.2"),
+//      exact: "0.1.2"),
+      revision: "44fd430dda13ae66df20064bcf0b1f1cf47c8526"),
     .package(
       url: "https://github.com/narumij/swift-ac-memoize",
       exact: "0.0.5"),
