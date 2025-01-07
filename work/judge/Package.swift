@@ -39,7 +39,7 @@ let package = Package(
     .package(
       url: "https://github.com/narumij/swift-ac-library",
       // -Ouncheckedを利用するためにrevision指定としている
-      revision: "5310d9f7f7d9ba49adf4b6c75547aa00a251231e"),
+      revision: "25e199b86001afb1441aa38b72d331841079ac38"),
 //      exact: "0.1.2"),
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
