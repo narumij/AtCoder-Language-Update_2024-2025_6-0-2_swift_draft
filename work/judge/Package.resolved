@@ -1,5 +1,5 @@
 {
-  "originHash" : "15ee42c58d84893b1d0b4563a6c1d18da5f0fe1ea6d188dd7e0334c296974691",
+  "originHash" : "2c0d7dbabe9c47f51133d65ed4c11a8e89e594df1ea8cebad52e0d17125d1012",
   "pins" : [
     {
       "identity" : "bigint",
@@ -15,7 +15,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-collections",
       "state" : {
-        "revision" : "44fd430dda13ae66df20064bcf0b1f1cf47c8526"
+        "revision" : "9964a019a4f0cab01759147c938ef28cd73103f4"
       }
     },
     {
@@ -32,7 +32,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-library",
       "state" : {
-        "revision" : "2206f8541429ca91bc024e5140d892dc45a505fa"
+        "revision" : "5310d9f7f7d9ba49adf4b6c75547aa00a251231e"
       }
     },
     {

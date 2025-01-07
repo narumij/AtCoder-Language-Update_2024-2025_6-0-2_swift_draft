@@ -8,7 +8,7 @@ SWIFT_VERSION=swift-${LANG_VERSION}-RELEASE
 SWIFT_TAR_BALL="$SWIFT_VERSION-$PLATFORM$OS_ARCH_SUFFIX"
 
 # 一部のパッケージで-Ouncheckedを使用するように設定します
-export SWIFT_USE_UNCHECKED=true
+export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 
 ./${SWIFT_TAR_BALL}/usr/bin/swift \
     build \

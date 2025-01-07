@@ -37,7 +37,7 @@ SWIFT_TAR_BALL_URL="$SWIFT_WEBDIR/$SWIFT_VERSION/$SWIFT_TAR_BALL.tar.gz"
 export DEBIAN_FRONTEND=noninteractive
 
 # 一部のパッケージで-Ouncheckedを使用するように設定します
-export SWIFT_USE_UNCHECKED=true
+export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 
 sudo apt-get update
 
@@ -145,18 +145,17 @@ let package = Package(
     .package(
       url: "https://github.com/narumij/swift-ac-library",
 //      exact: "0.1.2"),
-      revision: "2206f8541429ca91bc024e5140d892dc45a505fa"),
+      revision: "5310d9f7f7d9ba49adf4b6c75547aa00a251231e"),
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
       exact: "0.0.7"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
 //      exact: "0.1.2"),
-      revision: "44fd430dda13ae66df20064bcf0b1f1cf47c8526"),
+      revision: "9964a019a4f0cab01759147c938ef28cd73103f4"),
     .package(
       url: "https://github.com/narumij/swift-ac-memoize",
-//      exact: "0.0.5"),
-      revision: "862a2b53ab73ad90dd399687b456b4d0e6ac9dae"),
+      exact: "0.0.5"),
   ],
   targets: [
     .executableTarget(
@@ -203,7 +202,7 @@ SWIFT_VERSION=swift-${LANG_VERSION}-RELEASE
 SWIFT_TAR_BALL="$SWIFT_VERSION-$PLATFORM$OS_ARCH_SUFFIX"
 
 # 一部のパッケージで-Ouncheckedを使用するように設定します
-export SWIFT_USE_UNCHECKED=true
+export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 
 ./${SWIFT_TAR_BALL}/usr/bin/swift \
     build \
