@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 PLATFORM=ubuntu24.04
 LANG_VERSION=6.0.3
 OS_ARCH_SUFFIX="" # arm64等の場合に指定する
@@ -62,7 +63,7 @@ curl -s -O $SWIFT_TAR_BALL_URL
 tar xzf $SWIFT_TAR_BALL.tar.gz
 
 # 公式 5. Add the Swift toolchain to your path as follows:
-export PATH=CURRENT_DIR/${SWIFT_TAR_BALL}/usr/bin/swift:"${PATH}"
+export PATH=${CURRENT_DIR}/${SWIFT_TAR_BALL}/usr/bin/swift:"${PATH}"
 
 # 公式のインストール手順は以上です
 
