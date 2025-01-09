@@ -3,6 +3,7 @@
 PLATFORM=ubuntu24.04
 LANG_VERSION=6.0.3
 OS_ARCH_SUFFIX="" # arm64等の場合に指定する
+CURRENT_DIR=${pwd}
 
 SWIFT_BRANCH=swift-${LANG_VERSION}-release
 SWIFT_VERSION=swift-${LANG_VERSION}-RELEASE
@@ -47,7 +48,7 @@ sudo apt-get install -y \
              unzip \
              zlib1g-dev
 
-# 公式 2. Download the latest binary release (6.0.2).
+# 公式 2. Download the latest binary release.
 curl -s -O $SWIFT_TAR_BALL_URL
 
 # 公式 3. Import and verify the PGP signature:
@@ -61,13 +62,14 @@ curl -s -O $SWIFT_TAR_BALL_URL
 tar xzf $SWIFT_TAR_BALL.tar.gz
 
 # 公式 5. Add the Swift toolchain to your path as follows:
-# $ export PATH=/path/to/usr/bin:"${PATH}"
-# 他の言語環境への影響が不明な為、省略します。
+export PATH=CURRENT_DIR/${SWIFT_TAR_BALL}/usr/bin/swift:"${PATH}"
 
 # 公式のインストール手順は以上です
 
+which swift
+
 # バージョン番号を出力し、ログでも処理系バージョンを確認する
-./${SWIFT_TAR_BALL}/usr/bin/swift --version
+swift --version
 
 # AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
 rm $SWIFT_TAR_BALL.tar.gz
@@ -77,7 +79,7 @@ rm $SWIFT_TAR_BALL.tar.gz
 # コンパイル環境の構築では、AtCoderで使用するSwiftパッケージの初期化と依存パッケージの追加、そして事前ビルドを行います
 
 # ジャッジがビルドを行う作業パッケージの初期化を行います。パッケージ名はMain、実行可能なプログラムとして初期化します
-./${SWIFT_TAR_BALL}/usr/bin/swift package init --name Main --type executable
+swift package init --name Main --type executable
 
 # Package.swiftを更新し、AtCoderジャッジで使用する依存パッケージを作業パッケージに追加します
 cat << 'EOF' > Package.swift
@@ -158,11 +160,10 @@ let package = Package(
 EOF
 
 # 念の為に、クリーニングします
-./${SWIFT_TAR_BALL}/usr/bin/swift package clean
+swift package clean
 
 # 依存パッケージの解決とパッケージのビルドを事前に行います
-./${SWIFT_TAR_BALL}/usr/bin/swift build \
-  -c release
+swift build -c release -j $(nproc)
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 rm .build/release/Main
