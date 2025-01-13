@@ -22,6 +22,7 @@ library.swift-ac-memoize = { license = [ { name = 'Apache-2.0', url = 'https://g
 filename = 'Sources/main.swift'
 
 install = '''
+#!/bin/bash
 
 PLATFORM=ubuntu24.04
 LANG_VERSION=6.0.3
@@ -110,18 +111,16 @@ import PackageDescription
 // TODO: 最終版では、fromをexactに変更すること
 let package = Package(
   name: "Main",
-  platforms: [
-    // @MainActor等をローカル環境で利用するための設定値
-    .macOS(.v10_15)  // macOS 10.15 以上
-    // Linux はプラットフォームリストには含めませんが、サポートされます
-  ],
+  // @MainActor等をローカル環境で利用するための設定値
+  // Linux はプラットフォームリストには含めませんが、サポートされます
+  platforms: [.macOS(.v10_15), .iOS(.v13), .tvOS(.v13), .watchOS(.v6), .macCatalyst(.v13)],
   dependencies: [
     .package(
-      url: "https://github.com/apple/swift-collections.git",
+      url: "https://github.com/apple/swift-collections",
       revision: "52a1f698d5faa632df0e1219b1bbffa07cf65260"),
 //      branch: "main"),  // 52a1f69  (after 1.1.4)
     .package(
-      url: "https://github.com/apple/swift-algorithms.git",
+      url: "https://github.com/apple/swift-algorithms",
       exact: "1.2.0"),
     .package(
       url: "https://github.com/apple/swift-numerics",
@@ -152,10 +151,10 @@ let package = Package(
       exact: "0.0.7"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.4"),
+      exact: "0.1.5"),
     .package(
       url: "https://github.com/narumij/swift-ac-memoize",
-      exact: "0.0.6"),
+      exact: "0.0.7"),
   ],
   targets: [
     .executableTarget(

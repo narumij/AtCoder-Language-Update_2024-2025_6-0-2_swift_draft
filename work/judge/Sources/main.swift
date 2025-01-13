@@ -26,3 +26,10 @@ import AcMemoize
 #else
     print("Hello, Anything else!")
 #endif
+
+@Memoize
+func fib(_ n: Int) -> Int {
+  n<2 ? n : fib(n-1) + fib(n-2)
+}
+
+print((0..<16).map { fib($0) })
