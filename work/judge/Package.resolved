@@ -1,5 +1,5 @@
 {
-  "originHash" : "abba840e1b6e581cc4aa2804961bf18004cf2760aebda9822d364bd5c4953090",
+  "originHash" : "d642424176d9a10015591974baa1033a1070461a1e43e24e5515c7be69f42e08",
   "pins" : [
     {
       "identity" : "bigint",
@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-memoize",
       "state" : {
-        "revision" : "8683dd4fa3c03347f4e5b83d313d7178a3738e13",
-        "version" : "0.0.7"
+        "revision" : "0f89a1f7a480aac2fe95c7437addf7baf70bd3cf",
+        "version" : "0.0.8"
       }
     },
     {
@@ -75,7 +75,7 @@
     {
       "identity" : "swift-collections",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-collections.git",
+      "location" : "https://github.com/apple/swift-collections",
       "state" : {
         "revision" : "52a1f698d5faa632df0e1219b1bbffa07cf65260"
       }

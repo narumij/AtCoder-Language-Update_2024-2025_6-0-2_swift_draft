@@ -16,13 +16,12 @@ library.swift-bignum = { license = [ { name = 'MIT', url = 'https://github.com/d
 library.SwiftGraph = { license = [ { name = 'Apache-2.0', url = 'https://github.com/davecom/SwiftGraph/blob/master/LICENSE' },], version = '3.1.0' }
 library.swift-ac-library = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },], version = '25e199b' }
 library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = '0.0.7' }
-library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.4' }
-library.swift-ac-memoize = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-memoize/blob/main/LICENSE' },], version = '0.0.6' }
+library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.5' }
+library.swift-ac-memoize = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-memoize/blob/main/LICENSE' },], version = '0.0.8' }
 
 filename = 'Sources/main.swift'
 
 install = '''
-#!/bin/bash
 
 PLATFORM=ubuntu24.04
 LANG_VERSION=6.0.3
@@ -154,7 +153,7 @@ let package = Package(
       exact: "0.1.5"),
     .package(
       url: "https://github.com/narumij/swift-ac-memoize",
-      exact: "0.0.7"),
+      exact: "0.0.8"),
   ],
   targets: [
     .executableTarget(
