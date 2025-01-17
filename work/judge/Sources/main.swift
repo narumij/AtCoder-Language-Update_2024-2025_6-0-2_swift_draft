@@ -1,4 +1,4 @@
-import Foundation
+@preconcurrency import Foundation
 import Collections
 import Algorithms
 import Numerics
@@ -32,3 +32,5 @@ func fib(_ n: Int) -> Int {
   n<2 ? n : fib(n-1) + fib(n-2)
 }
 print((1..<16).map { fib($0) })
+
+print("test", to: &stderr)

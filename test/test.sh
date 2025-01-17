@@ -65,3 +65,11 @@ cat << 'EOF' | .build/release/Main
 EOF
 
 
+rm .build/release/Main
+cp test/stdio/main.swift Sources/main.swift
+
+tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | sh              
+
+cat << 'EOF' | .build/release/Main
+EOF
+
