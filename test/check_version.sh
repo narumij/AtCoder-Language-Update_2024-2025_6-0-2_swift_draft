@@ -18,7 +18,7 @@ TOML_VERSION=$(tq "$TOML_KEY" --file "$TOML_FILE" | sed -e "s/^'//" -e "s/'$//")
 INSTALLED_VERSION=$(./${SWIFT_TAR_BALL}/usr/bin/swift --version | awk '/Swift version/ {print $3}')
 
 # バージョンの比較
-if [ $TOML_VERSION = "$INSTALLED_VERSION" ]; then
+if [ "$TOML_VERSION" = "$INSTALLED_VERSION" ]; then
     echo "Swift versions match: $TOML_VERSION"
     exit 0
 else
