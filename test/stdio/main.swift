@@ -8,5 +8,5 @@ private let main: () = {
 @MainActor
 @inlinable
 public func Answer() throws {
-    print("Hello, STDERRO!", to: &stderr)
+    print("Hello, STDERR!", to: &stderr)
 }

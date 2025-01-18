@@ -1,12 +1,12 @@
 // swift-tools-version: 6.0
 import PackageDescription
 
-// TODO: 最終版では、fromをexactに変更すること
 let package = Package(
   name: "Main",
-  // @MainActor等をローカル環境で利用するための設定値
-  // Linux はプラットフォームリストには含めませんが、サポートされます
+  
+  // @MainActorとSwift MacrosをmacOSローカルでパッケージを利用する場合に必要な設定値
   platforms: [.macOS(.v10_15), .iOS(.v13), .tvOS(.v13), .watchOS(.v6), .macCatalyst(.v13)],
+  
   dependencies: [
     .package(
       url: "https://github.com/apple/swift-collections",
@@ -26,10 +26,10 @@ let package = Package(
       url: "https://github.com/apple/swift-system",
       exact: "1.4.0"),
     .package(
-      url: "https://github.com/attaswift/BigInt.git",
+      url: "https://github.com/attaswift/BigInt",
       exact: "5.5.1"),
     .package(
-      url: "https://github.com/dankogai/swift-bignum.git",
+      url: "https://github.com/dankogai/swift-bignum",
       exact: "5.4.1"),
     .package(
       url: "https://github.com/davecom/SwiftGraph",
@@ -38,16 +38,16 @@ let package = Package(
       url: "https://github.com/narumij/swift-ac-library",
       // -Ouncheckedを利用するためにrevision指定としている
       revision: "25e199b86001afb1441aa38b72d331841079ac38"),
-//      exact: "0.1.3"),
+//      exact: "0.1.4"),
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
-      exact: "0.0.9"),
+      exact: "0.1.0"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
       exact: "0.1.6"),
     .package(
       url: "https://github.com/narumij/swift-ac-memoize",
-      exact: "0.0.9"),
+      exact: "0.1.0"),
   ],
   targets: [
     .executableTarget(
