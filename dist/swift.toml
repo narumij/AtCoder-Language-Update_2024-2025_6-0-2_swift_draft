@@ -16,8 +16,8 @@ library.swift-bignum = { license = [ { name = 'MIT', url = 'https://github.com/d
 library.SwiftGraph = { license = [ { name = 'Apache-2.0', url = 'https://github.com/davecom/SwiftGraph/blob/master/LICENSE' },], version = '3.1.0' }
 library.swift-ac-library = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },], version = '25e199b' }
 library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = '0.1.0' }
-library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.6' }
-library.swift-ac-memoize = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-memoize/blob/main/LICENSE' },], version = '0.1.0' }
+library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.7' }
+library.swift-ac-memoize = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-memoize/blob/main/LICENSE' },], version = '0.1.1' }
 
 filename = 'Sources/main.swift'
 
@@ -150,10 +150,10 @@ let package = Package(
       exact: "0.1.0"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.6"),
+      exact: "0.1.7"),
     .package(
       url: "https://github.com/narumij/swift-ac-memoize",
-      exact: "0.1.0"),
+      exact: "0.1.1"),
   ],
   targets: [
     .executableTarget(

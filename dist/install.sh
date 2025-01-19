@@ -127,10 +127,10 @@ let package = Package(
       exact: "0.1.0"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.6"),
+      exact: "0.1.7"),
     .package(
       url: "https://github.com/narumij/swift-ac-memoize",
-      exact: "0.1.0"),
+      exact: "0.1.1"),
   ],
   targets: [
     .executableTarget(
