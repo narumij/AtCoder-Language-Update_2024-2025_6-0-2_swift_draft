@@ -160,7 +160,8 @@ EOF
 
 # 依存パッケージの解決とパッケージのビルドを事前に行います
 ./${SWIFT_TAR_BALL}/usr/bin/swift build \
-  -c release
+  -c release \
+  1>&2
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 rm .build/release/Main
