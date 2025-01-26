@@ -1,5 +1,5 @@
 {
-  "originHash" : "f60aa090f8a0e6fb91fbc4878b8c498db80a2ca8de4ff7e37532b49167d12431",
+  "originHash" : "64cc567f6e5e5f48b95e6d6591178cf5da8e1d69868f04f6cd71cb069bafaf29",
   "pins" : [
     {
       "identity" : "bigint",
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-foundation",
       "state" : {
-        "revision" : "023983c22e8929f4d40a70162217e652110273d1",
-        "version" : "0.1.0"
+        "revision" : "1cbd2f8c23f61ac540fc33de19dc633686f41aea",
+        "version" : "0.1.1"
       }
     },
     {
