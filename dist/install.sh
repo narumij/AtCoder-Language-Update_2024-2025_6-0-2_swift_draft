@@ -159,7 +159,7 @@ EOF
 ./${SWIFT_TAR_BALL}/usr/bin/swift package clean
 
 # 依存パッケージの解決とパッケージのビルドを事前に行います
-./${SWIFT_TAR_BALL}/usr/bin/swift build -v \
+./${SWIFT_TAR_BALL}/usr/bin/swift build \
   -c release
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
