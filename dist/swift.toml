@@ -15,7 +15,7 @@ library.BigInt = { license = [ { name = 'MIT', url = 'https://github.com/attaswi
 library.swift-bignum = { license = [ { name = 'MIT', url = 'https://github.com/dankogai/swift-bignum/blob/main/LICENSE' },], version = '5.4.1' }
 library.SwiftGraph = { license = [ { name = 'Apache-2.0', url = 'https://github.com/davecom/SwiftGraph/blob/master/LICENSE' },], version = '3.1.0' }
 library.swift-ac-library = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },], version = '25e199b' }
-library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = '0.1.0' }
+library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = '0.1.1' }
 library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.10' }
 library.swift-ac-memoize = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-memoize/blob/main/LICENSE' },], version = '0.1.2' }
 
@@ -189,9 +189,11 @@ EOF
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 rm .build/release/Main
 
+env
 '''
 
 compile = '''
+env
 
 PLATFORM=ubuntu24.04
 LANG_VERSION=6.0.3
