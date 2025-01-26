@@ -127,10 +127,10 @@ let package = Package(
       exact: "0.1.0"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.7"),
+      exact: "0.1.10"),
     .package(
       url: "https://github.com/narumij/swift-ac-memoize",
-      exact: "0.1.1"),
+      exact: "0.1.2"),
   ],
   targets: [
     .executableTarget(
@@ -159,7 +159,7 @@ EOF
 ./${SWIFT_TAR_BALL}/usr/bin/swift package clean
 
 # 依存パッケージの解決とパッケージのビルドを事前に行います
-./${SWIFT_TAR_BALL}/usr/bin/swift build \
+./${SWIFT_TAR_BALL}/usr/bin/swift build -v \
   -c release
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します

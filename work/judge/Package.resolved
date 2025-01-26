@@ -1,5 +1,5 @@
 {
-  "originHash" : "ce65187f069d014a55e4a33aa73bbbed8324e035862e114c710c9c01643e9ac9",
+  "originHash" : "f60aa090f8a0e6fb91fbc4878b8c498db80a2ca8de4ff7e37532b49167d12431",
   "pins" : [
     {
       "identity" : "bigint",
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-collections",
       "state" : {
-        "revision" : "2fda3afb32814720e83be2554074de03fd1ff142",
-        "version" : "0.1.7"
+        "revision" : "76b6f119565b2a2073c44968d99dd55b7e6d30fd",
+        "version" : "0.1.10"
       }
     },
     {
@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-memoize",
       "state" : {
-        "revision" : "af4e0ce0ac04cf55aaae2224febf95a3c3c290a6",
-        "version" : "0.1.1"
+        "revision" : "9658550e16792a67439ae94118bc883290b20f39",
+        "version" : "0.1.2"
       }
     },
     {
