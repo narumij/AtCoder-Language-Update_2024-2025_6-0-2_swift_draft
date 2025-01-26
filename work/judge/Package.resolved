@@ -1,5 +1,5 @@
 {
-  "originHash" : "64cc567f6e5e5f48b95e6d6591178cf5da8e1d69868f04f6cd71cb069bafaf29",
+  "originHash" : "7148255d1dc0587d929d248e36e056980975857fa0d3eed277c968c0ab3b805e",
   "pins" : [
     {
       "identity" : "bigint",
@@ -34,15 +34,6 @@
       "location" : "https://github.com/narumij/swift-ac-library",
       "state" : {
         "revision" : "c9aa78bd18d5a3f2608c0583187344334d7a1652"
-      }
-    },
-    {
-      "identity" : "swift-ac-memoize",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/narumij/swift-ac-memoize",
-      "state" : {
-        "revision" : "9658550e16792a67439ae94118bc883290b20f39",
-        "version" : "0.1.2"
       }
     },
     {
@@ -86,15 +77,6 @@
       "location" : "https://github.com/apple/swift-numerics",
       "state" : {
         "revision" : "e30276bff2ff5ed80566fbdca49f50aa160b0e83"
-      }
-    },
-    {
-      "identity" : "swift-syntax",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/swiftlang/swift-syntax.git",
-      "state" : {
-        "revision" : "0687f71944021d616d34d922343dcef086855920",
-        "version" : "600.0.1"
       }
     },
     {

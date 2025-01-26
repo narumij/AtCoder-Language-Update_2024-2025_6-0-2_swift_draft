@@ -18,6 +18,8 @@ cp test/abc235_d/main.1.swift Sources/main.swift
 
 # ./${SWIFT_TAR_BALL}/usr/bin/swift package clean
 
+date > dummy.log
+
 tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | sh              
 
 time .build/release/Main < test/abc235_d/sample-x.in
