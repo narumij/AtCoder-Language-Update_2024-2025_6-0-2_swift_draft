@@ -42,7 +42,7 @@ jobs:
               
             - name: Install
               run: |
-                tq 'install' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | sh               
+                tq 'install' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | bash               
 
             # - name: Check Swift version
             #   run: |
