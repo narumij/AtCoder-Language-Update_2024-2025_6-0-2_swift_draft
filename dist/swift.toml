@@ -17,7 +17,7 @@ library.SwiftGraph = { license = [ { name = 'Apache-2.0', url = 'https://github.
 library.swift-ac-library = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },], version = '25e199b' }
 library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = '0.1.1' }
 library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.11' }
-library.swift-ac-memoize = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-memoize/blob/main/LICENSE' },], version = '0.1.2' }
+library.swift-ac-memoize = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-memoize/blob/main/LICENSE' },], version = '0.1.3' }
 
 filename = 'Sources/main.swift'
 
@@ -206,7 +206,7 @@ export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 ./${SWIFT_TAR_BALL}/usr/bin/swift \
     build \
     -c release \
-    1>&2
+    1>&2 |& tee /dev/null
 
 '''
 
