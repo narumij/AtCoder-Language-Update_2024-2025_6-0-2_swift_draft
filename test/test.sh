@@ -88,4 +88,6 @@ sed -i 's/Hello/Hallo/' Sources/main.swift
 sw./${SWIFT_TAR_BALL}/usr/bin/swiftift build -c release -v > build.log
 grep /bin/ build.log | sed 's/ -v / /g' | tail -n +2 > build.sh
 
+cat build.sh
+
 bash build.sh
