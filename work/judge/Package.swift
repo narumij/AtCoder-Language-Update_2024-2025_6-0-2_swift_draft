@@ -16,7 +16,7 @@ let package = Package(
       url: "https://github.com/apple/swift-algorithms",
       exact: "1.2.0"),
     .package(
-      url: "https://github.com/apple/swift-numerics",
+      url: "https://github.com/apple/swift-numerics.git",
       revision: "e30276bff2ff5ed80566fbdca49f50aa160b0e83"),
 //      branch: "main"),  // e30276b (after 1.0.2)
     .package(

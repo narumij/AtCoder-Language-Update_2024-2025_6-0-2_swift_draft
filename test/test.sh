@@ -90,4 +90,4 @@ grep /bin/ build.log | sed 's/ -v / /g' | tail -n +2 > build.sh
 
 cat build.sh
 
-bash build.sh
+time bash build.sh
