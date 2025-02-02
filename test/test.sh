@@ -85,9 +85,15 @@ export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 
 ./${SWIFT_TAR_BALL}/usr/bin/swift build -c release -v > build0.log
 sed -i 's/Hello/Hallo/' Sources/main.swift
-sw./${SWIFT_TAR_BALL}/usr/bin/swiftift build -c release -v > build.log
+./${SWIFT_TAR_BALL}/usr/bin/swift build -c release -v > build.log
 grep /bin/ build.log | sed 's/ -v / /g' | tail -n +2 > build.sh
+
+echo '########################'
 
 cat build.sh
 
+echo '########################'
+
 time bash build.sh
+
+echo '########################'
