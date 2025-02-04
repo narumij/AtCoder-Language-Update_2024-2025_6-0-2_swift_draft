@@ -90,6 +90,10 @@ grep /bin/ build.log | sed 's/ -v / /g' | tail -n +2 > build.sh
 
 echo '########################'
 
+cat build.log
+
+echo '########################'
+
 cat build.sh
 
 echo '########################'
