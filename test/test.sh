@@ -102,3 +102,12 @@ time bash build.sh
 
 echo '########################'
 
+rm .build/release/Main
+cp test/main.swift Sources/main.swift
+
+time bash build.sh
+
+cat << 'EOF' | .build/release/Main
+3
+1 2 3
+EOF
