@@ -94,7 +94,7 @@ sed -n '/swiftc/{
     p
 }' build.log > build.sh
 
-bash build.sh
+time bash build.sh
 
 cat << 'EOF' | .build/release/Main
 EOF
