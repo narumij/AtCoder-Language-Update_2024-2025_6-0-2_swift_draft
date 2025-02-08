@@ -102,6 +102,11 @@ time bash build.sh
 
 echo '########################'
 
+cat << 'EOF' | .build/release/Main
+EOF
+
+echo '########################'
+
 rm .build/release/Main
 cp test/main.swift Sources/main.swift
 
