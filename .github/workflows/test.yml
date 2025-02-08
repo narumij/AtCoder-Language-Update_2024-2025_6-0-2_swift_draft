@@ -63,6 +63,6 @@ jobs:
             - name: Upload build.log artifact
               uses: actions/upload-artifact@v4
               with:
-                name: build-script
+                name: build-log
                 path: build.log
 
