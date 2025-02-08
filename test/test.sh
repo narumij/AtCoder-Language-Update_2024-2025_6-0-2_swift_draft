@@ -86,7 +86,13 @@ export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 ./${SWIFT_TAR_BALL}/usr/bin/swift build -c release -v > build0.log
 sed -i 's/Hello/Hallo/' Sources/main.swift
 ./${SWIFT_TAR_BALL}/usr/bin/swift build -c release -v > build.log
-sed -n '/swiftc/{s/ -v / /;s/-parseable-output//;p}' build.log > build.sh
+sed -n '/swiftc/{
+    s/ -v / /;
+    s/-parseable-output//;
+    s/ -j[0-9][0-9]*//g;
+    s/ -num-threads [0-9][0-9]*//g;
+    p
+}' build.log > build.sh
 
 echo '########################'
 
