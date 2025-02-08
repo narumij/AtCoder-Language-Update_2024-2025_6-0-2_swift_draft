@@ -53,3 +53,10 @@ jobs:
               run: |
                   chmod +x ./test/test.sh
                   ./test/test.sh
+            # 生成された build.sh をアーティファクトとしてアップロード
+            - name: Upload build.sh artifact
+              uses: actions/upload-artifact@v3
+              with:
+                name: build-script
+                path: build.sh
+                
