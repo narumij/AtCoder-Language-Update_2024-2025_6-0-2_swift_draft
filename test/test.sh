@@ -92,19 +92,7 @@ sed -n '/swiftc/{
     p
 }' build.log > build.sh
 
-echo '########################'
-
-cat build.log
-
-echo '########################'
-
-cat build.sh
-
-echo '########################'
-
-time bash build.sh
-
-echo '########################'
+bash build.sh
 
 cat << 'EOF' | .build/release/Main
 EOF
@@ -114,7 +102,7 @@ echo '########################'
 rm .build/release/Main
 cp test/main.swift Sources/main.swift
 
-time bash build.sh
+bash build.sh
 
 cat << 'EOF' | .build/release/Main
 3
