@@ -89,6 +89,8 @@ sed -i 's/Hello/Hallo/' Sources/main.swift
 sed -n '/swiftc/{
     s/ -v / /;
     s/-parseable-output//;
+    s/ -j[0-9][0-9]*//g;
+    s/ -num-threads [0-9][0-9]*//g;
     p
 }' build.log > build.sh
 
