@@ -6,7 +6,7 @@ echo "Stack size: $(ulimit -s)"
 rm .build/release/Main
 cp test/main.swift Sources/main.swift
 
-echo `tq 'compile' --file dist/swift.toml
+echo `tq 'compile' --file dist/swift.toml`
 
 #tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | bash              
 
