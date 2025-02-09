@@ -13,12 +13,11 @@ echo $(tq 'compile' --file dist/swift.toml)
 echo 'check 4) ############'
 echo $(tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//")
 echo 'check 5) ############'
-echo "$(tq 'compile' --file dist/swift.toml | sed -e '1s/^"""//' -e '$s/"""$//')"
+echo $(tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//")
 echo '0) ############'
 
 rm .build/release/Main
 cp test/main.swift Sources/main.swift
-
 
 #tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | bash              
 # bash Script/build.sh
@@ -40,7 +39,7 @@ echo '1) ############'
 rm .build/release/Main
 cp test/abc235_d/main.1.swift Sources/main.swift
 # ./${SWIFT_TAR_BALL}/usr/bin/swift package clean
-tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | bash              
+tq tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash              
 .build/release/Main < test/abc235_d/sample-x.in
 
 echo '2) ############'
