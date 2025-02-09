@@ -151,9 +151,9 @@ let package = Package(
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
       exact: "0.1.13"),
-//    .package(
-//      url: "https://github.com/narumij/swift-ac-memoize",
-//      exact: "0.1.5"),
+    .package(
+      url: "https://github.com/narumij/swift-ac-memoize",
+      exact: "0.1.5"),
   ],
   targets: [
     .executableTarget(
@@ -170,7 +170,7 @@ let package = Package(
         .product(name: "AtCoder", package: "swift-ac-library"),
         .product(name: "AcFoundation", package: "swift-ac-foundation"),
         .product(name: "AcCollections", package: "swift-ac-collections"),
-//        .product(name: "AcMemoize", package: "swift-ac-memoize"),
+        .product(name: "AcMemoize", package: "swift-ac-memoize"),
       ],
       path: "Sources"
     )
@@ -208,20 +208,14 @@ sed -n '/swiftc/{
     p
 }' build.log > Script/build.sh
 
-chmod +x Script/build.sh
-
 # ビルドログを削除します
 rm build.log
 
-echo '############'
+# 差分ビルドスクリプトを実行します
+bash Script/build.sh
 
-rm .build/release/Main
-
-bash ./Script/build.sh
-
+# Hello, world!を出力するプログラムを実行します
 .build/release/Main
-
-echo '############'
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 rm .build/release/Main

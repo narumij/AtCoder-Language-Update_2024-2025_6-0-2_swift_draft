@@ -188,8 +188,10 @@ sed -n '/swiftc/{
 # ビルドログを削除します
 rm build.log
 
+# 差分ビルドスクリプトを実行します
 bash Script/build.sh
 
+# Hello, world!を出力するプログラムを実行します
 .build/release/Main
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
