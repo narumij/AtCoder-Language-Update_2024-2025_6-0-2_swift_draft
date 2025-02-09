@@ -10,7 +10,7 @@ cp test/main.swift Sources/main.swift
 
 #tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | bash              
 
-bash Script\build.sh
+bash Script/build.sh
 
 cat << 'EOF' | .build/release/Main
 3

@@ -1,2 +1,2 @@
 
-bash Script\build.sh
+bash Script/build.sh
