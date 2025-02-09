@@ -49,10 +49,6 @@ jobs:
             #     chmod +x ./test/check_version.sh
             #     ./test/check_version.sh
             
-            - name: Test
-              run: |
-                  chmod +x ./test/test.sh
-                  ./test/test.sh
             # 生成された build.sh をアーティファクトとしてアップロード
             - name: Upload build.sh artifact
               uses: actions/upload-artifact@v4
@@ -60,3 +56,8 @@ jobs:
                 name: build-script
                 path: Script/build.sh
 
+            - name: Test
+              run: |
+                  chmod +x ./test/test.sh
+                  ./test/test.sh
+                  
