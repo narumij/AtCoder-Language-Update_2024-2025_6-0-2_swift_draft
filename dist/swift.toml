@@ -211,6 +211,12 @@ sed -n '/swiftc/{
 # ビルドログを削除します
 rm build.log
 
+echo '############'
+
+bash Script/build.sh
+
+echo '############'
+
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 rm .build/release/Main
 
@@ -218,7 +224,7 @@ rm .build/release/Main
 
 compile = '''
 
-bash build.sh
+bash Script/build.sh
 
 '''
 
