@@ -232,7 +232,7 @@ compile = '''
 
 echo `pwd`
 
-bash ./Script/build.sh
+bash `pwd`/Script/build.sh
 
 '''
 
