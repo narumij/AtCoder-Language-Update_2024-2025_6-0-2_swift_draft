@@ -4,12 +4,21 @@ echo "Heap size: $(ulimit -v)"
 echo "Stack size: $(ulimit -s)"
 
 rm .build/release/Main
+echo 'check 1) ############'
+echo 'cat ./Script/build.sh' | bash
+echo 'check 2) ############'
+echo 'cat ./Script/build.sh | bash' | bash
+echo 'check 3) ############'
+echo `tq 'compile' --file dist/swift.toml`
+echo 'check 4) ############'
+echo `tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//"`
+echo '0) ############'
+
+rm .build/release/Main
 cp test/main.swift Sources/main.swift
 
-echo `tq 'compile' --file dist/swift.toml`
 
 #tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | bash              
-
 # bash Script/build.sh
 
 echo `pwd`
@@ -28,28 +37,17 @@ echo '1) ############'
 
 rm .build/release/Main
 cp test/abc235_d/main.1.swift Sources/main.swift
-
 # ./${SWIFT_TAR_BALL}/usr/bin/swift package clean
+tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | bash              
+.build/release/Main < test/abc235_d/sample-x.in
 
-# tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | bash              
-
-bash ./Script/build.sh
-
-time .build/release/Main < test/abc235_d/sample-x.in
-
-echo 'check 1) ############'
-echo 'cat ./Script/build.sh' | bash
-echo 'check 2) ############'
-echo 'cat ./Script/build.sh | bash' | bash
 echo '2) ############'
 
 rm .build/release/Main
 cp test/abc235_d/main.2.swift Sources/main.swift
 # ./${SWIFT_TAR_BALL}/usr/bin/swift package clean
-
 tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | bash              
 
-.build/release/Main < test/abc235_d/sample-x.in
 time .build/release/Main < test/abc235_d/sample-x.in
 
 export SWIFT_BACKTRACE='enable=yes,output-to=stderr,interactive=no'
