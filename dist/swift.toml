@@ -215,6 +215,8 @@ echo '############'
 
 bash Script/build.sh
 
+.build/release/Main
+
 echo '############'
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します

@@ -11,6 +11,7 @@ echo `tq 'compile' --file dist/swift.toml
 #tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | bash              
 
 bash Script/build.sh
+
 echo Script/build.sh | bash
 
 cat << 'EOF' | .build/release/Main

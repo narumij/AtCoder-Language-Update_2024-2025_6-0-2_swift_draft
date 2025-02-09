@@ -128,9 +128,9 @@ let package = Package(
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
       exact: "0.1.13"),
-    # .package(
-    #   url: "https://github.com/narumij/swift-ac-memoize",
-    #   exact: "0.1.5"),
+    .package(
+      url: "https://github.com/narumij/swift-ac-memoize",
+      exact: "0.1.5"),
   ],
   targets: [
     .executableTarget(
@@ -187,6 +187,10 @@ sed -n '/swiftc/{
 
 # ビルドログを削除します
 rm build.log
+
+bash Script/build.sh
+
+.build/release/Main
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 rm .build/release/Main
