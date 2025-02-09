@@ -37,13 +37,15 @@ bash ./Script/build.sh
 
 time .build/release/Main < test/abc235_d/sample-x.in
 
+echo 'check 1) ############'
+echo 'cat ./Script/build.sh' | bash
+echo 'check 2) ############'
+echo 'cat ./Script/build.sh | bash' | bash
 echo '2) ############'
 
 rm .build/release/Main
 cp test/abc235_d/main.2.swift Sources/main.swift
 # ./${SWIFT_TAR_BALL}/usr/bin/swift package clean
-
-echo 'cat ./Script/build.sh' | bash
 
 tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | bash              
 
