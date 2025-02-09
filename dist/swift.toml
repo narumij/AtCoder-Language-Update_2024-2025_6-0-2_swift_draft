@@ -230,7 +230,7 @@ rm .build/release/Main
 
 compile = '''
 
-echo `pwd`
+echo pwd | bash
 
 bash `pwd`/Script/build.sh
 
