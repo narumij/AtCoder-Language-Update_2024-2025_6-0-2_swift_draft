@@ -12,10 +12,10 @@ echo `tq 'compile' --file dist/swift.toml`
 
 # bash Script/build.sh
 
-ls -al Script/build.sh
-ls -al work/compile.sh
+ls -al ./Script/build.sh
+ls -al ./work/compile.sh
 
-echo Script/build.sh | bash
+echo ./Script/build.sh | bash
 
 cat << 'EOF' | .build/release/Main
 3
@@ -29,7 +29,7 @@ cp test/abc235_d/main.1.swift Sources/main.swift
 
 # tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | bash              
 
-echo work/compile.sh | bash
+bash ./Script/build.sh
 
 time .build/release/Main < test/abc235_d/sample-x.in
 

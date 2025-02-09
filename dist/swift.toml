@@ -208,12 +208,16 @@ sed -n '/swiftc/{
     p
 }' build.log > Script/build.sh
 
+chmod +x Script/build.sh
+
 # ビルドログを削除します
 rm build.log
 
 echo '############'
 
-bash Script/build.sh
+rm .build/release/Main
+
+bash ./Script/build.sh
 
 .build/release/Main
 
