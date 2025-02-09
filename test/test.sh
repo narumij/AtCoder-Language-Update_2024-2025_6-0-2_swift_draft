@@ -17,7 +17,7 @@ ls -al ./Script/build.sh
 ls -al /home/runner/work/AtCoder-Language-Update_2024-2025_6-0-2_swift_draft/AtCoder-Language-Update_2024-2025_6-0-2_swift_draft/Script/build.sh
 ls -al ./work/compile.sh
 
-echo ./Script/build.sh | bash
+cat ./Script/build.sh | bash
 
 cat << 'EOF' | .build/release/Main
 3
@@ -43,7 +43,7 @@ rm .build/release/Main
 cp test/abc235_d/main.2.swift Sources/main.swift
 # ./${SWIFT_TAR_BALL}/usr/bin/swift package clean
 
-echo 'echo `pwd`/Script/build.sh' | bash
+echo 'cat `pwd`/Script/build.sh' | bash
 
 tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | bash              
 

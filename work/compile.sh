@@ -1,2 +1,2 @@
 
-echo ./Script/build.sh | bash
+cat ./Script/build.sh | bash
