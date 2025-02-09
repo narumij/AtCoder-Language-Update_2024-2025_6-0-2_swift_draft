@@ -155,8 +155,8 @@ let package = Package(
 )
 EOF
 
+# ビルドスクリプトを配置するフォルダを作成
 mkdir Script
-touch Script/build.sh
 
 # 念の為に、クリーニングします
 ./${SWIFT_TAR_BALL}/usr/bin/swift package clean
@@ -192,7 +192,7 @@ rm build.log
 rm .build/release/Main
 
 # 差分ビルドスクリプトを実行します
-bash Script/build.sh
+bash ./Script/build.sh
 
 # Hello, world!を出力するプログラムを実行します
 .build/release/Main
