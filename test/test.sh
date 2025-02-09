@@ -13,6 +13,7 @@ echo `tq 'compile' --file dist/swift.toml`
 # bash Script/build.sh
 
 ls -al Script/build.sh
+ls -al work/compile.sh
 
 echo Script/build.sh | bash
 
