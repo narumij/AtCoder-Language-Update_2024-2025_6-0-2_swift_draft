@@ -43,7 +43,7 @@ rm .build/release/Main
 cp test/abc235_d/main.2.swift Sources/main.swift
 # ./${SWIFT_TAR_BALL}/usr/bin/swift package clean
 
-echo 'cat `pwd`/Script/build.sh' | bash
+echo 'cat ./Script/build.sh' | bash
 
 tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | bash              
 
