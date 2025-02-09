@@ -19,6 +19,7 @@ echo '0) ############'
 rm .build/release/Main
 cp test/main.swift Sources/main.swift
 
+tq tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash              
 #tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | bash              
 # bash Script/build.sh
 
