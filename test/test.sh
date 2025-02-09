@@ -9,9 +9,9 @@ echo 'cat ./Script/build.sh' | bash
 echo 'check 2) ############'
 echo 'cat ./Script/build.sh | bash' | bash
 echo 'check 3) ############'
-echo `tq 'compile' --file dist/swift.toml`
+echo $(tq 'compile' --file dist/swift.toml)
 echo 'check 4) ############'
-echo `tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//"`
+echo $(tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//")
 echo '0) ############'
 
 rm .build/release/Main
