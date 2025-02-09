@@ -12,6 +12,7 @@ echo `tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//"`
 
 # bash Script/build.sh
 
+echo `pwd`
 ls -al ./Script/build.sh
 ls -al ./work/compile.sh
 
