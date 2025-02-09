@@ -6,11 +6,12 @@ echo "Stack size: $(ulimit -s)"
 rm .build/release/Main
 cp test/main.swift Sources/main.swift
 
-#echo `tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//"`
+echo `tq 'compile' --file dist/swift.toml
 
 #tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | bash              
 
 bash Script/build.sh
+echo Script/build.sh | bash
 
 cat << 'EOF' | .build/release/Main
 3
@@ -24,7 +25,7 @@ cp test/abc235_d/main.1.swift Sources/main.swift
 
 # tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | bash              
 
-echo compile.sh | bash
+echo work/compile.sh | bash
 
 time .build/release/Main < test/abc235_d/sample-x.in
 
