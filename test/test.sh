@@ -6,7 +6,7 @@ echo "Stack size: $(ulimit -s)"
 rm .build/release/Main
 cp test/main.swift Sources/main.swift
 
-echo `tq 'compile' --file dist/swift.toml`
+echo `tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//"`
 
 #tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | bash              
 
@@ -22,6 +22,8 @@ cat << 'EOF' | .build/release/Main
 1 2 3
 EOF
 
+echo '1) ############'
+
 rm .build/release/Main
 cp test/abc235_d/main.1.swift Sources/main.swift
 
@@ -33,6 +35,8 @@ bash ./Script/build.sh
 
 time .build/release/Main < test/abc235_d/sample-x.in
 
+echo '2) ############'
+
 rm .build/release/Main
 cp test/abc235_d/main.2.swift Sources/main.swift
 # ./${SWIFT_TAR_BALL}/usr/bin/swift package clean
@@ -43,6 +47,8 @@ tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | bash
 time .build/release/Main < test/abc235_d/sample-x.in
 
 export SWIFT_BACKTRACE='enable=yes,output-to=stderr,interactive=no'
+
+echo '3) ############'
 
 rm .build/release/Main
 cp test/crash/crash1.swift Sources/main.swift
@@ -59,6 +65,8 @@ tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | bash
 cat << 'EOF' | .build/release/Main
 EOF
 
+echo '4) ############'
+
 rm .build/release/Main
 cp test/mainActor/main.swift Sources/main.swift
 
@@ -66,6 +74,8 @@ tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | bash
 
 cat << 'EOF' | .build/release/Main
 EOF
+
+echo '5) ############'
 
 rm .build/release/Main
 cp test/macro/main.swift Sources/main.swift
@@ -75,6 +85,7 @@ tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | bash
 cat << 'EOF' | .build/release/Main
 EOF
 
+echo '6) ############'
 
 rm .build/release/Main
 cp test/stdio/main.swift Sources/main.swift
