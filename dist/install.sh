@@ -155,6 +155,9 @@ let package = Package(
 )
 EOF
 
+mkdir Script
+touch Script/build.sh
+
 # 念の為に、クリーニングします
 ./${SWIFT_TAR_BALL}/usr/bin/swift package clean
 
@@ -162,8 +165,7 @@ EOF
 ./${SWIFT_TAR_BALL}/usr/bin/swift \
   build \
   -c release \
-  -v
-  1>&2 |& tee /dev/null
+  -v 1>&2 |& tee /dev/null
 
 # 差分コンパイルが行われるよう、ソースコードを変更します
 sed -i 's/Hello/Hallo/' Sources/main.swift
@@ -181,8 +183,9 @@ sed -n '/swiftc/{
     s/ -j[0-9][0-9]*/ -j1/g;
     s/ -num-threads [0-9][0-9]*/ -num-threads 1/g;
     p
-}' build.log > build.sh
+}' build.log > Script/build.sh
 
+# ビルドログを削除します
 rm build.log
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
