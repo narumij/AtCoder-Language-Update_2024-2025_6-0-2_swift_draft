@@ -22,6 +22,7 @@ library.swift-ac-memoize = { license = [ { name = 'Apache-2.0', url = 'https://g
 filename = 'Sources/main.swift'
 
 install = '''
+#!/bin/bash
 
 PLATFORM=ubuntu24.04
 LANG_VERSION=6.0.3
@@ -185,7 +186,28 @@ EOF
 ./${SWIFT_TAR_BALL}/usr/bin/swift \
   build \
   -c release \
+  -v
   1>&2 |& tee /dev/null
+
+# 差分コンパイルが行われるよう、ソースコードを変更します
+sed -i 's/Hello/Hallo/' Sources/main.swift
+
+# 差分コンパイルを実施し、ビルドログを取得します
+./${SWIFT_TAR_BALL}/usr/bin/swift \
+  build \
+  -c release \
+  -v > build.log
+
+# ビルドログからビルドコマンドを抽出し、差分ビルドスクリプトを作成します
+sed -n '/swiftc/{
+    s/ -v / /;
+    s/-parseable-output//;
+    s/ -j[0-9][0-9]*/ -j1/g;
+    s/ -num-threads [0-9][0-9]*/ -num-threads 1/g;
+    p
+}' build.log > build.sh
+
+rm build.log
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 rm .build/release/Main
@@ -194,20 +216,7 @@ rm .build/release/Main
 
 compile = '''
 
-PLATFORM=ubuntu24.04
-LANG_VERSION=6.0.3
-OS_ARCH_SUFFIX="" # arm64等の場合に指定する
-
-SWIFT_VERSION=swift-${LANG_VERSION}-RELEASE
-SWIFT_TAR_BALL="$SWIFT_VERSION-$PLATFORM$OS_ARCH_SUFFIX"
-
-# 一部のパッケージで-Ouncheckedを使用するように設定します
-export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
-
-./${SWIFT_TAR_BALL}/usr/bin/swift \
-    build \
-    -c release \
-    1>&2 |& tee /dev/null
+bash build.sh
 
 '''
 

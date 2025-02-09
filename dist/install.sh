@@ -162,7 +162,28 @@ EOF
 ./${SWIFT_TAR_BALL}/usr/bin/swift \
   build \
   -c release \
+  -v
   1>&2 |& tee /dev/null
+
+# 差分コンパイルが行われるよう、ソースコードを変更します
+sed -i 's/Hello/Hallo/' Sources/main.swift
+
+# 差分コンパイルを実施し、ビルドログを取得します
+./${SWIFT_TAR_BALL}/usr/bin/swift \
+  build \
+  -c release \
+  -v > build.log
+
+# ビルドログからビルドコマンドを抽出し、差分ビルドスクリプトを作成します
+sed -n '/swiftc/{
+    s/ -v / /;
+    s/-parseable-output//;
+    s/ -j[0-9][0-9]*/ -j1/g;
+    s/ -num-threads [0-9][0-9]*/ -num-threads 1/g;
+    p
+}' build.log > build.sh
+
+rm build.log
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 rm .build/release/Main
