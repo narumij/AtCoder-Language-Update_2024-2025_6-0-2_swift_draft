@@ -15,7 +15,7 @@ echo `tq 'compile' --file dist/swift.toml`
 ls -al ./Script/build.sh
 ls -al ./work/compile.sh
 
-echo ./Script/build.sh | bash
+echo ./work/compile.sh | bash
 
 cat << 'EOF' | .build/release/Main
 3
