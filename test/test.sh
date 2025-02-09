@@ -6,7 +6,7 @@ echo "Stack size: $(ulimit -s)"
 rm .build/release/Main
 cp test/main.swift Sources/main.swift
 
-echo `tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//"`
+echo `tq 'compile' --file dist/swift.toml`
 
 #tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | bash              
 
@@ -14,6 +14,7 @@ echo `tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//"`
 
 echo `pwd`
 ls -al ./Script/build.sh
+ls -al /home/runner/work/AtCoder-Language-Update_2024-2025_6-0-2_swift_draft/AtCoder-Language-Update_2024-2025_6-0-2_swift_draft/Script/build.sh
 ls -al ./work/compile.sh
 
 echo ./Script/build.sh | bash
