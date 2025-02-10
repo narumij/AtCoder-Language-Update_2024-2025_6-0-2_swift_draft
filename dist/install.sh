@@ -163,7 +163,7 @@ EOF
   build \
   -c release \
   -j 1 -Xswiftc -num-threads -Xswiftc 1 \
-  -v 1>&2 |& tee /dev/null
+  1>&2 |& tee /dev/null
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 rm .build/release/Main
