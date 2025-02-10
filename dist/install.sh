@@ -162,7 +162,7 @@ EOF
 ./${SWIFT_TAR_BALL}/usr/bin/swift \
   build \
   -c release \
-  --Xswiftc -num-threads --Xswiftc 1 --Xswiftc -j1 \
+  --Xswiftc -num-threads --Xswiftc 1 --Xswiftc -j --Xswiftc 1 \
   -v 1>&2 |& tee /dev/null
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
