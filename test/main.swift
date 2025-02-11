@@ -3,17 +3,6 @@ import Collections
 import Algorithms
 import Numerics
 import IntegerUtilities
-import AtCoder
-import AcFoundation
-import IOReader
-import IOUtil
-import Bisect
-import AcCollections
-import RedBlackTreeModule
-import PermutationModule
-import Numerics
-import BigInt
-import BigNum
 
 let N = Int.stdin
 let A = [Int].stdin(columns: N)
