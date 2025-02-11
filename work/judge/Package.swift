@@ -20,20 +20,6 @@ let package = Package(
       revision: "e30276bff2ff5ed80566fbdca49f50aa160b0e83"),
 //      branch: "main"),  // e30276b (after 1.0.2)
     .package(
-      url: "https://github.com/attaswift/BigInt",
-      exact: "5.5.1"),
-    .package(
-      url: "https://github.com/dankogai/swift-bignum",
-      exact: "5.4.1"),
-    .package(
-      url: "https://github.com/narumij/swift-ac-library",
-      // -Ouncheckedを利用するためにrevision指定としている
-      revision: "c9aa78bd18d5a3f2608c0583187344334d7a1652"),
-//      exact: "0.1.4"),
-    .package(
-      url: "https://github.com/narumij/swift-ac-foundation",
-      exact: "0.1.1"),
-    .package(
       url: "https://github.com/narumij/swift-ac-collections",
       exact: "0.1.13"),
   ],
@@ -44,10 +30,6 @@ let package = Package(
         .product(name: "Collections", package: "swift-collections"),
         .product(name: "Algorithms", package: "swift-algorithms"),
         .product(name: "Numerics", package: "swift-numerics"),
-        .product(name: "BigInt", package: "BigInt"),
-        .product(name: "BigNum", package: "swift-bignum"),
-        .product(name: "AtCoder", package: "swift-ac-library"),
-        .product(name: "AcFoundation", package: "swift-ac-foundation"),
         .product(name: "AcCollections", package: "swift-ac-collections"),
       ],
       path: "Sources"

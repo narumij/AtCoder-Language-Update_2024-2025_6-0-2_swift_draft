@@ -2,19 +2,6 @@
 import Collections
 import Algorithms
 import Numerics
-import IntegerUtilities
-import AtCoder
-import AcFoundation
-import IOReader
-import IOUtil
-import Bisect
-import AcCollections
-import RedBlackTreeModule
-import PermutationModule
-import Numerics
-import BigInt
-import BigNum
-import SwiftGraph
 
 #if os(macOS) || os(iOS)
     print("Hello, Apple platform!")
@@ -26,4 +13,4 @@ import SwiftGraph
     print("Hello, Anything else!")
 #endif
 
-print("test", to: &stderr)
+//print("test", to: &stderr)

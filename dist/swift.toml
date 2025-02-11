@@ -8,10 +8,6 @@ library.swift-collections = { license = [ { name = 'Apache-2.0', url = 'https://
 library.swift-numerics = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-numerics/blob/main/LICENSE.txt' },], version = 'e30276b' }
 # swift-numericsは、他ライブラリからは1.0.2が用いられていますが、tomlがキーの重複を受け付けないため、コメントアウト
 # library.swift-numerics = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-numerics/blob/main/LICENSE.txt' },], version = '1.0.0', indirect = true }
-library.BigInt = { license = [ { name = 'MIT', url = 'https://github.com/attaswift/BigInt/blob/master/LICENSE.md' },], version = '5.5.1' }
-library.swift-bignum = { license = [ { name = 'MIT', url = 'https://github.com/dankogai/swift-bignum/blob/main/LICENSE' },], version = '5.4.1' }
-library.swift-ac-library = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },], version = '25e199b' }
-library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = '0.1.1' }
 library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.13' }
 
 filename = 'Sources/main.swift'
@@ -120,6 +116,9 @@ let package = Package(
       url: "https://github.com/apple/swift-numerics.git",
       revision: "e30276bff2ff5ed80566fbdca49f50aa160b0e83"),
 //      branch: "main"),  // e30276b (after 1.0.2)
+    .package(
+      url: "https://github.com/narumij/swift-ac-collections",
+      exact: "0.1.13"),
   ],
   targets: [
     .executableTarget(
@@ -128,6 +127,7 @@ let package = Package(
         .product(name: "Collections", package: "swift-collections"),
         .product(name: "Algorithms", package: "swift-algorithms"),
         .product(name: "Numerics", package: "swift-numerics"),
+        .product(name: "AcCollections", package: "swift-ac-collections"),
       ],
       path: "Sources"
     )
