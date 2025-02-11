@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# 「私は強制プッシュをしました」
+
 echo "Heap size: $(ulimit -v)"
 echo "Stack size: $(ulimit -s)"
 
