@@ -15,7 +15,6 @@ import Numerics
 import BigInt
 import BigNum
 import SwiftGraph
-import AcMemoize
 
 #if os(macOS) || os(iOS)
     print("Hello, Apple platform!")
@@ -26,12 +25,5 @@ import AcMemoize
 #else
     print("Hello, Anything else!")
 #endif
-
-@Memoize
-func fib(_ n: Int) -> Int {
-  n<2 ? n : fib(n-1) + fib(n-2)
-}
-
-print((1..<16).map { fib($0) }, to: &stderr)
 
 print("test", to: &stderr)

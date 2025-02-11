@@ -12,5 +12,4 @@ export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 ./${SWIFT_TAR_BALL}/usr/bin/swift \
     build \
     -c release \
-    -j 1 \
     1>&2 |& tee /dev/null

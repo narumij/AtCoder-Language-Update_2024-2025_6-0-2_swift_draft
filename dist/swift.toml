@@ -8,16 +8,11 @@ library.swift-collections = { license = [ { name = 'Apache-2.0', url = 'https://
 library.swift-numerics = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-numerics/blob/main/LICENSE.txt' },], version = 'e30276b' }
 # swift-numericsは、他ライブラリからは1.0.2が用いられていますが、tomlがキーの重複を受け付けないため、コメントアウト
 # library.swift-numerics = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-numerics/blob/main/LICENSE.txt' },], version = '1.0.0', indirect = true }
-library.swift-atomics = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-atomics/blob/main/LICENSE.txt' },], version = '1.2.0' }
-library.swift-system = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-system/blob/main/LICENSE.txt' },], version = '1.4.0' }
-library.swift-syntax = { license = [ { name = 'Apache-2.0', url = 'https://github.com/swiftlang/swift-syntax/blob/main/LICENSE.txt' },], version = '600.0.1' }
 library.BigInt = { license = [ { name = 'MIT', url = 'https://github.com/attaswift/BigInt/blob/master/LICENSE.md' },], version = '5.5.1' }
 library.swift-bignum = { license = [ { name = 'MIT', url = 'https://github.com/dankogai/swift-bignum/blob/main/LICENSE' },], version = '5.4.1' }
-library.SwiftGraph = { license = [ { name = 'Apache-2.0', url = 'https://github.com/davecom/SwiftGraph/blob/master/LICENSE' },], version = '3.1.0' }
 library.swift-ac-library = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },], version = '25e199b' }
 library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = '0.1.1' }
 library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.13' }
-library.swift-ac-memoize = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-memoize/blob/main/LICENSE' },], version = '0.1.5' }
 
 filename = 'Sources/main.swift'
 
@@ -122,24 +117,15 @@ let package = Package(
       url: "https://github.com/apple/swift-algorithms",
       exact: "1.2.0"),
     .package(
-      url: "https://github.com/apple/swift-numerics",
+      url: "https://github.com/apple/swift-numerics.git",
       revision: "e30276bff2ff5ed80566fbdca49f50aa160b0e83"),
 //      branch: "main"),  // e30276b (after 1.0.2)
-    .package(
-      url: "https://github.com/apple/swift-atomics",
-      exact: "1.2.0"),
-    .package(
-      url: "https://github.com/apple/swift-system",
-      exact: "1.4.0"),
     .package(
       url: "https://github.com/attaswift/BigInt",
       exact: "5.5.1"),
     .package(
       url: "https://github.com/dankogai/swift-bignum",
       exact: "5.4.1"),
-    .package(
-      url: "https://github.com/davecom/SwiftGraph",
-      exact: "3.1.0"),
     .package(
       url: "https://github.com/narumij/swift-ac-library",
       // -Ouncheckedを利用するためにrevision指定としている
@@ -151,9 +137,6 @@ let package = Package(
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
       exact: "0.1.13"),
-    .package(
-      url: "https://github.com/narumij/swift-ac-memoize",
-      exact: "0.1.5"),
   ],
   targets: [
     .executableTarget(
@@ -162,15 +145,11 @@ let package = Package(
         .product(name: "Collections", package: "swift-collections"),
         .product(name: "Algorithms", package: "swift-algorithms"),
         .product(name: "Numerics", package: "swift-numerics"),
-        .product(name: "Atomics", package: "swift-atomics"),
-        .product(name: "SystemPackage", package: "swift-system"),
         .product(name: "BigInt", package: "BigInt"),
         .product(name: "BigNum", package: "swift-bignum"),
-        .product(name: "SwiftGraph", package: "SwiftGraph"),
         .product(name: "AtCoder", package: "swift-ac-library"),
         .product(name: "AcFoundation", package: "swift-ac-foundation"),
         .product(name: "AcCollections", package: "swift-ac-collections"),
-        .product(name: "AcMemoize", package: "swift-ac-memoize"),
       ],
       path: "Sources"
     )
@@ -185,8 +164,7 @@ EOF
 ./${SWIFT_TAR_BALL}/usr/bin/swift \
   build \
   -c release \
-  -j 1 \
-  -v 1>&2 |& tee /dev/null
+  1>&2 |& tee /dev/null
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 rm .build/release/Main
@@ -208,7 +186,6 @@ export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 ./${SWIFT_TAR_BALL}/usr/bin/swift \
     build \
     -c release \
-    -j 1 \
     1>&2 |& tee /dev/null
 
 '''
