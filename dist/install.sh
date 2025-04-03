@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PLATFORM=ubuntu24.04
-LANG_VERSION=6.0.3
+LANG_VERSION=6.1
 OS_ARCH_SUFFIX="" # arm64等の場合に指定する
 
 SWIFT_BRANCH=swift-${LANG_VERSION}-release
@@ -81,7 +81,7 @@ rm $SWIFT_TAR_BALL.tar.gz
 
 # Package.swiftを更新し、AtCoderジャッジで使用する依存パッケージを作業パッケージに追加します
 cat << 'EOF' > Package.swift
-// swift-tools-version: 6.0
+// swift-tools-version: 6.1
 import PackageDescription
 
 let package = Package(
@@ -93,21 +93,22 @@ let package = Package(
   dependencies: [
     .package(
       url: "https://github.com/apple/swift-collections",
-      revision: "52a1f698d5faa632df0e1219b1bbffa07cf65260"),
-//      branch: "main"),  // 52a1f69  (after 1.1.4)
+      revision: "78b544fbe20995ef5310337a86917c7ec40c863a"),
+//      branch: "main"),  // 78b544f  (after 1.1.4)
     .package(
       url: "https://github.com/apple/swift-algorithms",
-      exact: "1.2.0"),
+      exact: "1.2.1"),
     .package(
-      url: "https://github.com/apple/swift-numerics",
-      revision: "e30276bff2ff5ed80566fbdca49f50aa160b0e83"),
-//      branch: "main"),  // e30276b (after 1.0.2)
+      url: "https://github.com/apple/swift-numerics.git",
+      revision: "c327d04b01b4f57b08fcffbe570f3415b601fb27"),
+//      branch: "main"),  // e30276b (after 1.0.3)
+//      exact: "1.0.3"),
     .package(
       url: "https://github.com/apple/swift-atomics",
       exact: "1.2.0"),
     .package(
       url: "https://github.com/apple/swift-system",
-      exact: "1.4.0"),
+      exact: "1.4.2"),
     .package(
       url: "https://github.com/attaswift/BigInt",
       exact: "5.5.1"),
