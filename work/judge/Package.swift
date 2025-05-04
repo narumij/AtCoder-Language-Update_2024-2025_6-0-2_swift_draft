@@ -17,7 +17,7 @@ let package = Package(
       exact: "1.2.1"),
     .package(
       url: "https://github.com/apple/swift-numerics.git",
-      revision: "c327d04b01b4f57b08fcffbe570f3415b601fb27"),
+      revision: "2b458e8aeb9cf3f3a156f54ba427b9f101a4511a"),
 //      branch: "main"),  // e30276b (after 1.0.3)
 //      exact: "1.0.3"),
     .package(
@@ -38,17 +38,14 @@ let package = Package(
     .package(
       url: "https://github.com/narumij/swift-ac-library",
       // -Ouncheckedを利用するためにrevision指定としている
-      revision: "c9aa78bd18d5a3f2608c0583187344334d7a1652"),
-//      exact: "0.1.4"),
+      revision: "f0e90fc0700a6b2dda771439a2d14ec8b911e28f"),
+//      exact: "0.1.5"),
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
       exact: "0.1.1"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
       exact: "0.1.13"),
-    .package(
-      url: "https://github.com/narumij/swift-ac-memoize",
-      exact: "0.1.5"),
   ],
   targets: [
     .executableTarget(
@@ -65,7 +62,6 @@ let package = Package(
         .product(name: "AtCoder", package: "swift-ac-library"),
         .product(name: "AcFoundation", package: "swift-ac-foundation"),
         .product(name: "AcCollections", package: "swift-ac-collections"),
-        .product(name: "AcMemoize", package: "swift-ac-memoize"),
       ],
       path: "Sources"
     )
