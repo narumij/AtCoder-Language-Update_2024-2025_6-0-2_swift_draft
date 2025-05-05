@@ -42,7 +42,7 @@ let package = Package(
 //      exact: "0.1.5"),
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
-      exact: "0.1.2"),
+      exact: "0.1.3"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
       exact: "0.1.13"),

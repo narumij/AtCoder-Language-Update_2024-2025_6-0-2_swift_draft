@@ -14,7 +14,7 @@ library.BigInt = { license = [ { name = 'MIT', url = 'https://github.com/attaswi
 library.swift-bignum = { license = [ { name = 'MIT', url = 'https://github.com/dankogai/swift-bignum/blob/main/LICENSE' },], version = '5.4.1' }
 library.SwiftGraph = { license = [ { name = 'Apache-2.0', url = 'https://github.com/davecom/SwiftGraph/blob/master/LICENSE' },], version = '3.1.0' }
 library.swift-ac-library = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },], version = 'f0e90fc' }
-library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = '0.1.1' }
+library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = '0.1.3' }
 library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.13' }
 
 filename = 'Sources/main.swift'
@@ -146,7 +146,7 @@ let package = Package(
 //      exact: "0.1.5"),
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
-      exact: "0.1.2"),
+      exact: "0.1.3"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
       exact: "0.1.13"),
