@@ -16,6 +16,7 @@ import BigInt
 import BigNum
 import SwiftGraph
 //import AcMemoize
+import simd
 
 let N = Int.stdin
 let A = [Int].stdin(columns: N)
@@ -44,3 +45,6 @@ print(cos(Double.pi))
 #else
     print("Hello, Anything else!")
 #endif
+
+let vec = SIMD2<Int>(1, 2)
+print(vec)
