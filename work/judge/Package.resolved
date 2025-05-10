@@ -1,5 +1,5 @@
 {
-  "originHash" : "f319cbf39c38e5cbaa30e6705dfb5e8dcf38e5473d0b2526f013b4bd1422a119",
+  "originHash" : "ae47b6fb63152a4aa34954541eea067fb4917e1a694bba60bdc4bf7eab7e6064",
   "pins" : [
     {
       "identity" : "bigint",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "114343a705df4725dfe7ab8a2a326b8883cfd79c",
         "version" : "5.5.1"
+      }
+    },
+    {
+      "identity" : "kvsimd.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/keyvariable/kvSIMD.swift.git",
+      "state" : {
+        "revision" : "d95f3590b28ffc35c51d570a521daea1ce74e490",
+        "version" : "1.1.0"
       }
     },
     {
@@ -33,7 +42,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-library",
       "state" : {
-        "revision" : "6c9326ba7d09510b391be4cf3844085fe55364fe"
+        "revision" : "29e6cad877205045748dde7d3a8b4b23298bc93a"
       }
     },
     {
