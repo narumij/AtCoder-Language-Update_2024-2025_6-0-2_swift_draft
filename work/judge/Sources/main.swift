@@ -7,7 +7,7 @@ import BigInt
 import BigNum
 import Bisect
 import Collections
-import Foundation
+@preconcurrency import Foundation
 import IOReader
 import IOUtil
 import IntegerUtilities
