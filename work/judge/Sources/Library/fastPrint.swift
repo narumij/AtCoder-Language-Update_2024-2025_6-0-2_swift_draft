@@ -1,4 +1,4 @@
-import Foundation
+import AcFoundation
 
 @inline(__always)
 func _fastPrint<I>(_ x: I) where I: FixedWidthInteger & SignedInteger {

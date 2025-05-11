@@ -1,13 +1,17 @@
 import AtCoder
 import AcFoundation
 
-extension static_modint: @retroactive SingleReadable, @retroactive ArrayReadable {
+public protocol IntegerReadable: SingleReadable, ArrayReadable, LineReadable {
+  init(_ :Int)
+}
+
+extension IntegerReadable {
   @inlinable @inline(__always)
-  public static var stdin: Self {
-    try! read()
-  }
-  @inlinable @inline(__always)
-  public static func read() throws -> Self {
-    .init(try Int.read())
+  public static func readWithSeparator() throws -> (value: Self, separator: UInt8) {
+    let (a,b) = try Int.readWithSeparator()
+    return (.init(a),b)
   }
 }
+
+extension static_modint: IntegerReadable { }
+

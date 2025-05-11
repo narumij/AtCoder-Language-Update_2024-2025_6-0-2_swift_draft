@@ -11,15 +11,12 @@ let package = Package(
     .package(
       url: "https://github.com/apple/swift-collections",
       revision: "78b544fbe20995ef5310337a86917c7ec40c863a"),
-//      branch: "main"),  // 78b544f  (after 1.1.4)
     .package(
       url: "https://github.com/apple/swift-algorithms",
       exact: "1.2.1"),
     .package(
       url: "https://github.com/apple/swift-numerics.git",
       revision: "2b458e8aeb9cf3f3a156f54ba427b9f101a4511a"),
-//      branch: "main"),  // e30276b (after 1.0.3)
-//      exact: "1.0.3"),
     .package(
       url: "https://github.com/apple/swift-atomics",
       exact: "1.2.0"),
@@ -41,14 +38,14 @@ let package = Package(
     .package(
       url: "https://github.com/narumij/swift-ac-library",
       // -Ouncheckedを利用するためにrevision指定としている
-      revision: "29e6cad877205045748dde7d3a8b4b23298bc93a"),
-//      exact: "0.1.7"),
+      revision: "2921b6f987f5f064531e64675c8d2330949f46f4"),
+//      exact: "0.1.8"),
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
-      exact: "0.1.3"),
+      exact: "0.1.4"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.13"),
+      exact: "0.1.14"),
   ],
   targets: [
     .executableTarget(

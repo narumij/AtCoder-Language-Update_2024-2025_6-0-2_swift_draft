@@ -7,7 +7,7 @@ import BigInt
 import BigNum
 import Bisect
 import Collections
-@preconcurrency import Foundation
+import Foundation
 import IOReader
 import IOUtil
 import IntegerUtilities
@@ -62,3 +62,8 @@ while true {
     i += 1
 }
 print(ans)
+
+
+let A = readLine()!.split(separator: " ").map { Int($0)! }
+let G = readLine()!.split(separator: " ").map { $0 }
+let H: [[UInt8]] = readLine()!.split(separator: " ").map { $0.compactMap{ $0.asciiValue } }
