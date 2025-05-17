@@ -10,7 +10,7 @@ let package = Package(
   dependencies: [
     .package(
       url: "https://github.com/apple/swift-collections",
-      revision: "78b544fbe20995ef5310337a86917c7ec40c863a"),
+      revision: "66e29ece4fdd5fc6ba42dce23c26c65ad050be6c"),
     .package(
       url: "https://github.com/apple/swift-algorithms",
       exact: "1.2.1"),

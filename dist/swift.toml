@@ -4,7 +4,7 @@ version = '6.1'
 license = [ { name = 'Apache-2.0', url = 'https://github.com/swiftlang/swift/blob/main/LICENSE.txt' }, ]
 
 library.swift-algorithms = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-algorithms/blob/main/LICENSE.txt' },], version = '1.2.1' }
-library.swift-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-collections/blob/main/LICENSE.txt' },], version = '78b544f' }
+library.swift-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-collections/blob/main/LICENSE.txt' },], version = '66e29ec' }
 library.swift-numerics = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-numerics/blob/main/LICENSE.txt' },], version = 'c327d04' }
 # swift-numericsは、他ライブラリからは1.0.2が用いられていますが、tomlがキーの重複を受け付けないため、コメントアウト
 # library.swift-numerics = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-numerics/blob/main/LICENSE.txt' },], version = '1.0.2', indirect = true }
@@ -115,7 +115,7 @@ let package = Package(
   dependencies: [
     .package(
       url: "https://github.com/apple/swift-collections",
-      revision: "78b544fbe20995ef5310337a86917c7ec40c863a"),
+      revision: "66e29ece4fdd5fc6ba42dce23c26c65ad050be6c"),
     .package(
       url: "https://github.com/apple/swift-algorithms",
       exact: "1.2.1"),
