@@ -64,6 +64,25 @@ while true {
 print(ans)
 
 
-let A = readLine()!.split(separator: " ").map { Int($0)! }
-let G = readLine()!.split(separator: " ").map { $0 }
-let H: [[UInt8]] = readLine()!.split(separator: " ").map { $0.compactMap{ $0.asciiValue } }
+import AtCoder
+import AcFoundation
+
+var dsu = DSU(.N)
+for _ in 0 ..< .Q {
+    switch .t as Int {
+    case 0:
+      _ = dsu.merge(.u, .v)
+    case 1:
+      fastPrint(dsu.same(.u, .v) ? 1 : 0)
+    default:
+      fatalError()
+    }
+}
+
+extension Int {
+  static var N: Self { .stdin }
+  static var Q: Self { .stdin }
+  static var t: Self { .stdin }
+  static var u: Self { .stdin }
+  static var v: Self { .stdin }
+}
