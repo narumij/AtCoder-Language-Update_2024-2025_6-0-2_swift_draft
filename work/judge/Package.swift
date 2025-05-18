@@ -16,7 +16,7 @@ let package = Package(
       exact: "1.2.1"),
     .package(
       url: "https://github.com/apple/swift-numerics",
-      from: "1.0.3"),
+      exact: "1.0.3"),
     .package(
       url: "https://github.com/apple/swift-atomics",
       exact: "1.2.0"),
