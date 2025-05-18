@@ -16,6 +16,7 @@ import BigNum
 import SwiftGraph
 //import AcMemoize
 import simd
+import AccelerateLinux
 
 let N = Int.stdin
 let A = [Int].stdin(columns: N)

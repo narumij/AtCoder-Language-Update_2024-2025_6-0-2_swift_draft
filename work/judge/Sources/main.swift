@@ -16,6 +16,7 @@ import PermutationModule
 import RedBlackTreeModule
 import SwiftGraph
 import simd
+import AccelerateLinux
 
 #if os(macOS) || os(iOS)
   print("Hello, Apple platform!")
