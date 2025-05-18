@@ -20,7 +20,7 @@ sudo apt-get update
 
 echo "[apt-get install start]"
 
-apt-cache policy libopenblas-dev liblapacke-dev
+apt-cache policy libopenblas-dev liblapacke-dev liblapacke libopenblas-pthread-dev libopenblas0 libopenblas0-pthread libtmglib-dev libtmglib3
 
 # accelerate-linuxのビルドに必要なパッケージをインストールします
 sudo apt-get install -y "libopenblas-dev=0.3.26+ds-1" "liblapacke-dev=3.12.0-3build1.1"
