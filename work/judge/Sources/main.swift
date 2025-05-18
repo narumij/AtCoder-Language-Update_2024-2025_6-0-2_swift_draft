@@ -41,7 +41,17 @@ func div(_ r: Int, _ x: Int) -> Bool {
   [1600 ... 2999, 1200 ... 2399][x].contains(r)
 }
 
-print(Yes(div(.stdin, .stdin - 1)))
+//print(Yes(div(.stdin, .stdin - 1)))
+//
+//let N,Q: Int
+//(N,Q) = readLine()!
 
-let N,Q: Int
-(N,Q) = readLine()!
+// 'keyAndValue' is created using a regex literal
+let keyAndValue = /(.+?): (.+)/
+// 'simpleDigits' is created from a pattern in a string
+let simpleDigits = try Regex("[0-9]+")
+
+let setting = "color: 161 103 230"
+if setting.contains(simpleDigits) {
+    print("'\(setting)' contains some digits.")
+}

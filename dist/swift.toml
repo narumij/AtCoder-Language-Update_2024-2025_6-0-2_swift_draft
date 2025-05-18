@@ -39,6 +39,9 @@ export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 
 sudo apt-get update
 
+# accelerate-linuxのビルドに必要なパッケージをインストールします
+sudo apt-get install libopenblas-dev liblapacke-dev
+
 # このスクリプトでは、まず言語環境を構築し、その後ビルド環境を構築します。
 
 # ここから、言語環境の構築を開始します。

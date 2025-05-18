@@ -5,7 +5,7 @@ let package = Package(
   name: "Main",
   
   // @MainActorとSwift MacrosをmacOSローカルでパッケージを利用する場合に必要な設定値
-  platforms: [.macOS(.v10_15), .iOS(.v13), .tvOS(.v13), .watchOS(.v6), .macCatalyst(.v13)],
+  platforms: [.macOS(.v13), .iOS(.v16), .tvOS(.v16), .watchOS(.v9), .macCatalyst(.v16)],
   
   dependencies: [
     .package(

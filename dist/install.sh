@@ -18,6 +18,9 @@ export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 
 sudo apt-get update
 
+# accelerate-linuxのビルドに必要なパッケージをインストールします
+sudo apt-get install libopenblas-dev liblapacke-dev
+
 # このスクリプトでは、まず言語環境を構築し、その後ビルド環境を構築します。
 
 # ここから、言語環境の構築を開始します。
@@ -113,11 +116,11 @@ let package = Package(
       url: "https://github.com/dankogai/swift-bignum",
       exact: "5.4.1"),
     .package(
-      url: "https://github.com/keyvariable/kvSIMD.swift.git",
+      url: "https://github.com/keyvariable/kvSIMD.swift",
       exact: "1.1.0"),
     .package(
       url: "https://github.com/brokenhandsio/accelerate-linux",
-      branch: "main"),
+      revision: "d6e80e8bc924e591e3ce68080e95a8046df1515a"),
     .package(
       url: "https://github.com/davecom/SwiftGraph",
       exact: "3.1.0"),
