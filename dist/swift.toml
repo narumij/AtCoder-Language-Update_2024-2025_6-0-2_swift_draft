@@ -17,18 +17,16 @@ library.swift-ac-library = { license = [ { name = 'CC0-1.0', url = 'https://gith
 library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = '0.1.15' }
 library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.14' }
 
-library.libopenblas-dev = { license = [ { name = 'BSD-3-Clause', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.3.26+ds-1' }
-library.libopenblas0 = { license = [ { name = 'BSD-3-Clause', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], indirect = true, version = '0.3.26+ds-1' }
-library.libopenblas-pthread-dev = { license = [ { name = 'BSD-3-Clause', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], indirect = true, version = '0.3.26+ds-1' }
-library.libopenblas0-pthread = { license = [ { name = 'BSD-3-Clause', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], indirect = true, version = '0.3.26+ds-1' }
-library.liblapacke-dev = { license = [ { name = 'BSD-3-Clause', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '3.12.0-3build1.1' }
-library.liblapacke = { license = [ { name = 'BSD-3-Clause', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], indirect = true, version = '3.12.0-3build1.1' }
-library.libtmglib-dev = { license = [ { name = 'BSD-3-Clause', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], indirect = true, version = '3.12.0-3build1.1' }
-library.libtmglib3 = { license = [ { name = 'BSD-3-Clause', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], indirect = true, version = '3.12.0-3build1.1' }
+library.libopenblas-dev = { license = [ { name = 'BSD-3-Clause', url = 'https://github.com/OpenMathLib/OpenBLAS/blob/develop/LICENSE' },], version = '0.3.26+ds-1' }
+library.libopenblas0 = { license = [ { name = 'BSD-3-Clause', url = 'https://github.com/OpenMathLib/OpenBLAS/blob/develop/LICENSE' },], indirect = true, version = '0.3.26+ds-1' }
+library.libopenblas-pthread-dev = { license = [ { name = 'BSD-3-Clause', url = 'https://github.com/OpenMathLib/OpenBLAS/blob/develop/LICENSE' },], indirect = true, version = '0.3.26+ds-1' }
+library.libopenblas0-pthread = { license = [ { name = 'BSD-3-Clause', url = 'https://github.com/OpenMathLib/OpenBLAS/blob/develop/LICENSE' },], indirect = true, version = '0.3.26+ds-1' }
+library.liblapacke-dev = { license = [ { name = 'BSD-3-Clause', url = 'https://github.com/Reference-LAPACK/lapack/blob/master/LICENSE' },], version = '3.12.0-3build1.1' }
+library.liblapacke = { license = [ { name = 'BSD-3-Clause', url = 'https://github.com/Reference-LAPACK/lapack/blob/master/LICENSE' },], indirect = true, version = '3.12.0-3build1.1' }
+library.libtmglib-dev = { license = [ { name = 'BSD-3-Clause', url = 'https://github.com/Reference-LAPACK/lapack/blob/master/LICENSE' },], indirect = true, version = '3.12.0-3build1.1' }
+library.libtmglib3 = { license = [ { name = 'BSD-3-Clause', url = 'https://github.com/Reference-LAPACK/lapack/blob/master/LICENSE' },], indirect = true, version = '3.12.0-3build1.1' }
 
 filename = 'Sources/main.swift'
-
-install = '''
 
 PLATFORM=ubuntu24.04
 LANG_VERSION=6.1
@@ -48,22 +46,16 @@ export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 
 sudo apt-get update
 
-echo "[apt-get install start]"
-
-apt-cache policy libopenblas-dev liblapacke-dev liblapacke libopenblas-pthread-dev libopenblas0 libopenblas0-pthread libtmglib-dev libtmglib3
-
 # accelerate-linuxのビルドに必要なパッケージをインストールします
 sudo apt-get install -y \
   "libopenblas-dev=0.3.26+ds-1" \
-  "libopenblas-pthread-dev=0.3.26+ds-1" \
   "libopenblas0=0.3.26+ds-1" \
+  "libopenblas-pthread-dev=0.3.26+ds-1" \
   "libopenblas0-pthread=0.3.26+ds-1" \
   "liblapacke-dev=3.12.0-3build1.1" \
   "liblapacke=3.12.0-3build1.1" \
   "libtmglib-dev=3.12.0-3build1.1" \
   "libtmglib3=3.12.0-3build1.1"
-
-echo "[apt-get install done]"
 
 # このスクリプトでは、まず言語環境を構築し、その後ビルド環境を構築します。
 
