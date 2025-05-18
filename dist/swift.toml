@@ -4,10 +4,8 @@ version = '6.1'
 license = [ { name = 'Apache-2.0', url = 'https://github.com/swiftlang/swift/blob/main/LICENSE.txt' }, ]
 
 library.swift-algorithms = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-algorithms/blob/main/LICENSE.txt' },], version = '1.2.1' }
-library.swift-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-collections/blob/main/LICENSE.txt' },], version = '66e29ec' }
-library.swift-numerics = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-numerics/blob/main/LICENSE.txt' },], version = 'c327d04' }
-# swift-numericsは、他ライブラリからは1.0.2が用いられていますが、tomlがキーの重複を受け付けないため、コメントアウト
-# library.swift-numerics = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-numerics/blob/main/LICENSE.txt' },], version = '1.0.2', indirect = true }
+library.swift-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-collections/blob/main/LICENSE.txt' },], version = '1.1.4' }
+library.swift-numerics = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-numerics/blob/main/LICENSE.txt' },], version = '1.0.3' }
 library.swift-atomics = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-atomics/blob/main/LICENSE.txt' },], version = '1.2.0' }
 library.swift-system = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-system/blob/main/LICENSE.txt' },], version = '1.4.2' }
 library.BigInt = { license = [ { name = 'MIT', url = 'https://github.com/attaswift/BigInt/blob/master/LICENSE.md' },], version = '5.5.1' }
@@ -15,7 +13,7 @@ library.swift-bignum = { license = [ { name = 'MIT', url = 'https://github.com/d
 library.SwiftGraph = { license = [ { name = 'Apache-2.0', url = 'https://github.com/davecom/SwiftGraph/blob/master/LICENSE' },], version = '3.1.0' }
 library.kvSIMD.swift = { license = [ { name = 'Apache-2.0', url = 'https://github.com/keyvariable/kvSIMD.swift/blob/main/LICENSE' },], version = '1.1.0' }
 library.swift-ac-library = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },], version = '2921b6f' }
-library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = '0.1.14' }
+library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = '0.1.15' }
 library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.14' }
 
 filename = 'Sources/main.swift'
@@ -115,13 +113,13 @@ let package = Package(
   dependencies: [
     .package(
       url: "https://github.com/apple/swift-collections",
-      revision: "66e29ece4fdd5fc6ba42dce23c26c65ad050be6c"),
+      exact: "1.1.4"),
     .package(
       url: "https://github.com/apple/swift-algorithms",
       exact: "1.2.1"),
     .package(
       url: "https://github.com/apple/swift-numerics",
-      revision: "2b458e8aeb9cf3f3a156f54ba427b9f101a4511a"),
+      from: "1.0.3"),
     .package(
       url: "https://github.com/apple/swift-atomics",
       exact: "1.2.0"),
@@ -147,7 +145,7 @@ let package = Package(
 //      exact: "0.1.8"),
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
-      exact: "0.1.14"),
+      exact: "0.1.15"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
       exact: "0.1.14"),

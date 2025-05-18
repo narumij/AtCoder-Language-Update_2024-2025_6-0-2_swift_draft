@@ -42,3 +42,6 @@ func div(_ r: Int, _ x: Int) -> Bool {
 }
 
 print(Yes(div(.stdin, .stdin - 1)))
+
+let N,Q: Int
+(N,Q) = readLine()!

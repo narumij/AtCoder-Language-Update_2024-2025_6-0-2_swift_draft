@@ -10,13 +10,13 @@ let package = Package(
   dependencies: [
     .package(
       url: "https://github.com/apple/swift-collections",
-      revision: "66e29ece4fdd5fc6ba42dce23c26c65ad050be6c"),
+      exact: "1.1.4"),
     .package(
       url: "https://github.com/apple/swift-algorithms",
       exact: "1.2.1"),
     .package(
       url: "https://github.com/apple/swift-numerics",
-      revision: "2b458e8aeb9cf3f3a156f54ba427b9f101a4511a"),
+      from: "1.0.3"),
     .package(
       url: "https://github.com/apple/swift-atomics",
       exact: "1.2.0"),
@@ -42,7 +42,7 @@ let package = Package(
 //      exact: "0.1.8"),
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
-      exact: "0.1.14"),
+      exact: "0.1.15"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
       exact: "0.1.14"),
