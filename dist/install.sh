@@ -116,6 +116,9 @@ let package = Package(
       url: "https://github.com/keyvariable/kvSIMD.swift.git",
       exact: "1.1.0"),
     .package(
+      url: "https://github.com/brokenhandsio/accelerate-linux",
+      branch: "main"),
+    .package(
       url: "https://github.com/davecom/SwiftGraph",
       exact: "3.1.0"),
     .package(
@@ -144,6 +147,7 @@ let package = Package(
         .product(name: "BigNum", package: "swift-bignum"),
         .product(name: "SwiftGraph", package: "SwiftGraph"),
         .product(name: "kvSIMD", package: "kvSIMD.swift"),
+        .product(name: "AccelerateLinux", package: "accelerate-linux"),
         .product(name: "AtCoder", package: "swift-ac-library"),
         .product(name: "AcFoundation", package: "swift-ac-foundation"),
         .product(name: "AcCollections", package: "swift-ac-collections"),

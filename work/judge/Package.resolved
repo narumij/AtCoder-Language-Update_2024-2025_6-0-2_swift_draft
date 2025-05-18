@@ -1,6 +1,15 @@
 {
-  "originHash" : "ebf26b60fed8b5d4af27deb3d072d6a9727ee6b52de0aa12f1f0e248ed11419a",
+  "originHash" : "0cbce5d8273dc34dfcac7de30849fa980751939439337e2bb3b6fc85f299e155",
   "pins" : [
+    {
+      "identity" : "accelerate-linux",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/brokenhandsio/accelerate-linux.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "d6e80e8bc924e591e3ce68080e95a8046df1515a"
+      }
+    },
     {
       "identity" : "bigint",
       "kind" : "remoteSourceControl",
