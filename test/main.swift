@@ -28,8 +28,6 @@ var s = RedBlackTreeSet<Int>(A)
 
 print(s.contains(3) ? "Yes" : "No")
 
-print(gcd(12, 16))
-
 typealias modint = modint998244353
 
 print(modint(12))
@@ -48,3 +46,13 @@ print(cos(Double.pi))
 
 let vec = SIMD2<Int>(1, 2)
 print(vec)
+
+// 'keyAndValue' is created using a regex literal
+let keyAndValue = /(.+?): (.+)/
+// 'simpleDigits' is created from a pattern in a string
+let simpleDigits = try Regex("[0-9]+")
+
+let setting = "color: 161 103 230"
+if setting.contains(simpleDigits) {
+    print("'\(setting)' contains some digits.")
+}
