@@ -28,6 +28,8 @@ library.libtmglib3 = { license = [ { name = 'BSD-3-Clause', url = 'https://githu
 
 filename = 'Sources/main.swift'
 
+install = '''
+
 PLATFORM=ubuntu24.04
 LANG_VERSION=6.1
 OS_ARCH_SUFFIX="" # arm64等の場合に指定する
