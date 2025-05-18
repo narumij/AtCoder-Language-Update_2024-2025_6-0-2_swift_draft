@@ -98,7 +98,7 @@ let package = Package(
       url: "https://github.com/apple/swift-algorithms",
       exact: "1.2.1"),
     .package(
-      url: "https://github.com/apple/swift-numerics.git",
+      url: "https://github.com/apple/swift-numerics",
       revision: "2b458e8aeb9cf3f3a156f54ba427b9f101a4511a"),
     .package(
       url: "https://github.com/apple/swift-atomics",
@@ -125,7 +125,7 @@ let package = Package(
 //      exact: "0.1.8"),
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
-      exact: "0.1.10"),
+      exact: "0.1.12"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
       exact: "0.1.14"),
