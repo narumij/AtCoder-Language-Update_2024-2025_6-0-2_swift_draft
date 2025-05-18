@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
   name: "Main",
   
-  // @MainActorとSwift MacrosをmacOSローカルでパッケージを利用する場合に必要な設定値
+  // @MainActorとRegexをmacOSローカルでパッケージを利用する場合に必要な設定値
   platforms: [.macOS(.v13), .iOS(.v16), .tvOS(.v16), .watchOS(.v9), .macCatalyst(.v16)],
   
   dependencies: [
