@@ -1,12 +1,11 @@
 {
-  "originHash" : "0cbce5d8273dc34dfcac7de30849fa980751939439337e2bb3b6fc85f299e155",
+  "originHash" : "5481f8b5e4b894b2d178dd39afe91e6ca60ff7715e975e7601bd4c30f3e46afc",
   "pins" : [
     {
       "identity" : "accelerate-linux",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/brokenhandsio/accelerate-linux.git",
+      "location" : "https://github.com/brokenhandsio/accelerate-linux",
       "state" : {
-        "branch" : "main",
         "revision" : "d6e80e8bc924e591e3ce68080e95a8046df1515a"
       }
     },
@@ -33,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-collections",
       "state" : {
-        "revision" : "73c62098cdb7cf2b3c56d2766f08f224bc584f37",
-        "version" : "0.1.14"
+        "revision" : "d259accbf673b9326fdf5611a7eb686c1c5247f4",
+        "version" : "0.1.15"
       }
     },
     {

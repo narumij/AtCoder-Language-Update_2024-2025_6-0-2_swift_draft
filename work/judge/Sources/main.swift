@@ -58,3 +58,13 @@ if setting.contains(simpleDigits) {
 }
 
 print({ $0 % 2 == 0 ? $0 : nil }(1))
+
+typealias TreeDict = RedBlackTreeDictionary
+
+let treeDict: TreeDict<Int,Double> = [(0,1),(2,3),(4,5)]
+
+print(treeDict.mapValues(sqrt))
+
+let dict: Dictionary<Int,Double> = .init(uniqueKeysWithValues: treeDict.mapValues(sqrt).map{ $0 })
+
+print(dict.map { $0 })

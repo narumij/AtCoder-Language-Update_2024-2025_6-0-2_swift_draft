@@ -6,6 +6,7 @@ license = [ { name = 'Apache-2.0', url = 'https://github.com/swiftlang/swift/blo
 
 library.swift-algorithms = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-algorithms/blob/main/LICENSE.txt' },], version = '1.2.1' }
 library.swift-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-collections/blob/main/LICENSE.txt' },], version = '1.1.4' }
+
 library.swift-numerics = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-numerics/blob/main/LICENSE.txt' },], version = '1.0.3' }
 library.swift-atomics = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-atomics/blob/main/LICENSE.txt' },], version = '1.2.0' }
 library.swift-system = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-system/blob/main/LICENSE.txt' },], version = '1.4.2' }
@@ -174,7 +175,7 @@ let package = Package(
       exact: "0.1.15"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.14"),
+      exact: "0.1.15"),
   ],
   
   targets: [
@@ -242,7 +243,6 @@ bash ./Script/build.sh
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 rm .build/release/Main
-
 '''
 
 compile = '''
