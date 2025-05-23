@@ -1,6 +1,7 @@
+# SPDX-License-Identifier: CC0-1.0
+
 language = 'Swift'
-name = 'Swift'
-version = '6.1'
+display = 'Swift 6.1'
 license = [ { name = 'Apache-2.0', url = 'https://github.com/swiftlang/swift/blob/main/LICENSE.txt' }, ]
 
 library.swift-algorithms = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-algorithms/blob/main/LICENSE.txt' },], version = '1.2.1' }

@@ -56,3 +56,5 @@ let setting = "color: 161 103 230"
 if setting.contains(simpleDigits) {
     print("'\(setting)' contains some digits.")
 }
+
+print({ $0 % 2 == 0 ? $0 : nil }(1))
