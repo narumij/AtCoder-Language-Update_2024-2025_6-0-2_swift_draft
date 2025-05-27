@@ -56,7 +56,7 @@ time .build/release/Main < test/abc235_d/sample-x.in
 
 export SWIFT_BACKTRACE='enable=yes,output-to=stderr,interactive=no'
 
-echo '3) ############'
+echo '3) crash twice ############'
 
 rm .build/release/Main
 cp test/crash/crash1.swift Sources/main.swift
