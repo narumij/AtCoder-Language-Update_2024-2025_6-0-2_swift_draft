@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: CC0-1.0
 
 language = 'Swift'
-display = 'Swift 6.1.1'
+display = 'Swift 6.1.2'
 license = [ { name = 'Apache-2.0', url = 'https://github.com/swiftlang/swift/blob/main/LICENSE.txt' }, ]
 
 library.swift-algorithms = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-algorithms/blob/main/LICENSE.txt' },], version = '1.2.1' }
@@ -33,7 +33,7 @@ filename = 'Sources/main.swift'
 install = '''
 
 PLATFORM=ubuntu24.04
-LANG_VERSION=6.1.1
+LANG_VERSION=6.1.2
 OS_ARCH_SUFFIX="" # arm64等の場合に指定する
 
 SWIFT_BRANCH=swift-${LANG_VERSION}-release
