@@ -68,3 +68,5 @@ print(treeDict.mapValues(sqrt))
 let dict: Dictionary<Int,Double> = .init(uniqueKeysWithValues: treeDict.mapValues(sqrt).map{ $0 })
 
 print(dict.map { $0 })
+
+
