@@ -1,3 +1,5 @@
+#if true
+@preconcurrency import Foundation
 import AcCollections
 import AcFoundation
 //import AcMemoize
@@ -7,10 +9,8 @@ import BigInt
 import BigNum
 import Bisect
 import Collections
-@preconcurrency import Foundation
 import IOReader
 import IOUtil
-import IntegerUtilities
 import Numerics
 import PermutationModule
 import RedBlackTreeModule
@@ -69,4 +69,15 @@ let dict: Dictionary<Int,Double> = .init(uniqueKeysWithValues: treeDict.mapValue
 
 print(dict.map { $0 })
 
+#else
 
+import Foundation
+import AtCoder
+import AcFoundation
+
+let T = Int.stdin
+for i in 0 ..< T {
+    fastPrint(floor_sum(.stdin, .stdin, .stdin, .stdin))
+}
+
+#endif

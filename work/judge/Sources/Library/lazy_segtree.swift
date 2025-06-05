@@ -1,3 +1,30 @@
+//import AtCoder
+import AcFoundation
+
+
+//@usableFromInline
+//enum _Internal { }
+
+//extension _Internal {
+//
+//  /// @param n `1 <= n`
+//  /// @return same with std::bit::countr_zero
+//  @inlinable
+//  @inline(__always)
+//  static func bit_ceil<I: FixedWidthInteger>(_ n: I) -> Int {
+//    return n <= 1 ? 1 : 1 << (I.bitWidth - (n - 1).leadingZeroBitCount)
+//  }
+//
+//  /// @param n `1 <= n`
+//  /// @return same with std::bit::countr_zero
+//  @inlinable
+//  @inline(__always)
+//  static func countr_zero<I: FixedWidthInteger>(_ n: I) -> Int {
+//    assert(1 <= n)
+//    return n.trailingZeroBitCount
+//  }
+//}
+
 import Foundation
 
 // MARK: - Lazy SegTree
@@ -10,22 +37,6 @@ public protocol LazySegTreeOperator_ {
   static func mapping(_:F,_:S) -> S
   static func composition(_:F,_:F) -> F
   static var id: F { get }
-}
-
-public protocol LazySegTreeOperation: LazySegTreeOperator_ {
-  associatedtype S
-  associatedtype F
-  static var op: (S, S) -> S { get }
-  static var e: S { get }
-  static var mapping: (F, S) -> S { get }
-  static var composition: (F, F) -> F { get }
-  static var id: F { get }
-}
-
-extension LazySegTreeOperation {
-  static func op(_ x:S,_ y:S) -> S { (self.op as Op)(x, y) }
-  static func mapping(_ f:F,_ x:S) -> S { (self.mapping as Mapping)(f,x) }
-  static func composition(_ g:F,_ f:F) -> F { (self.composition as Composition)(g,f) }
 }
 
 extension LazySegTreeOperator_ {
@@ -151,9 +162,9 @@ extension LazySegTree_ {
   @inline(__always)
   mutating func ensureUnique() {
     #if !DISABLE_COPY_ON_WRITE
-      if !isKnownUniquelyReferenced(&buffer) {
-        buffer = buffer.copy()
-      }
+      // if !isKnownUniquelyReferenced(&buffer) {
+      //   buffer = buffer.copy()
+      // }
     #endif
   }
 }
@@ -444,7 +455,7 @@ extension LazySegTree_.Buffer {
       if !g(op(d[r], sm)) {
         while r < size {
           push(r)
-          r = (2 * r + 1)
+          r = (r << 1 + 1)
           if g(op(d[r], sm)) {
             sm = op(d[r], sm)
             r -= 1
@@ -460,7 +471,7 @@ extension LazySegTree_.Buffer {
   @inlinable
   @inline(__always)
   public func update(_ k: Int) {
-    d[k] = op(d[2 * k], d[2 * k + 1])
+    d[k] = op(d[k << 1], d[k << 1 + 1])
   }
 
   @inlinable
@@ -473,8 +484,9 @@ extension LazySegTree_.Buffer {
   @inlinable
   @inline(__always)
   func push(_ k: Int) {
-    all_apply(2 * k, lz[k])
-    all_apply(2 * k + 1, lz[k])
+    all_apply(k << 1, lz[k])
+    all_apply(k << 1 + 1, lz[k])
     lz[k] = id()
   }
 }
+

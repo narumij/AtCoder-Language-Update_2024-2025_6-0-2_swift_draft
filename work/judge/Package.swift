@@ -41,14 +41,14 @@ let package = Package(
     .package(
       url: "https://github.com/narumij/swift-ac-library",
       // -Ouncheckedを利用するためにrevision指定としている
-      revision: "29f52ea9b1c791f5280b82275d38e6d49ae5a3a3"),
-//      exact: "0.1.9"),
+      revision: "34c92e003a0ee0f42ced76c61c2bac6c6dac0d0d"),
+//      exact: "0.1.10"),
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
       exact: "0.1.15"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.21"),
+      exact: "0.1.22"),
   ],
   
   targets: [
