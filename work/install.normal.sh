@@ -48,7 +48,7 @@ tar -zxf swiftly-1.0.0-$(uname -m).tar.gz
 ./swiftly init --skip-install --assume-yes
 
 # swifty初期化時に利用を継続する場合、以下を実行するよう指示があるため、実行
-. "/home/runner/.local/share/swiftly/env.sh"
+. "~/.local/share/swiftly/env.sh"
 
 # swiftyのログが何か言ってくるので、以下を実行
 hash -r

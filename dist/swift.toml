@@ -80,7 +80,7 @@ tar -zxf swiftly-1.0.0-$(uname -m).tar.gz
 ./swiftly init --skip-install --assume-yes
 
 # swifty初期化時に利用を継続する場合、以下を実行するよう指示があるため、実行
-. "/home/runner/.local/share/swiftly/env.sh"
+. "~/.local/share/swiftly/env.sh"
 
 # swiftyのログが何か言ってくるので、以下を実行
 hash -r
@@ -205,6 +205,8 @@ swift \
   -c release \
   -v 1>&2 |& tee /dev/null
 
+.build/release/Main
+
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 rm .build/release/Main
 
@@ -212,7 +214,12 @@ rm .build/release/Main
 
 compile = '''
 
-bash ./Script/build.sh
+. "~/.local/share/swiftly/env.sh"
+
+swift \
+  build \
+  -c release \
+  -v 1>&2 |& tee /dev/null
 
 '''
 
