@@ -48,7 +48,7 @@ let package = Package(
       exact: "0.1.15"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.22"),
+      exact: "0.1.23"),
   ],
   
   targets: [
