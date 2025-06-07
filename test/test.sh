@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # 「私は強制プッシュをしました」
+export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 
 echo "Heap size: $(ulimit -v)"
 echo "Stack size: $(ulimit -s)"
