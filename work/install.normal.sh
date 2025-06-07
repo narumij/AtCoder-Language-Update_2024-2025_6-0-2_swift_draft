@@ -58,6 +58,7 @@ hash -r
 # 公式 ?. Or, you can install (and use) another swift release:
 
 swiftly install --use $LANG_VERSION
+which swift
 swift --version
 
 # AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
@@ -172,9 +173,7 @@ EOF
 swift package clean
 
 # 依存パッケージの解決とパッケージのビルドを事前に行います
-swift \
-  build \
-  -c release
+swift build -c release
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 rm .build/release/Main
