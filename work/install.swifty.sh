@@ -40,10 +40,14 @@ tar -zxf swiftly-1.0.0-$(uname -m).tar.gz
 
 echo '4) ############'
 
+ls -al
+
 # 公式 4. Run the following command in your terminal, to configure swiftly for your account, and automatically download the latest swift toolchain.
 ./swiftly init
 
 echo '5) ############'
+
+ls -al
 
 # 公式 5. Now that swiftly and swift are installed, you can access the swift command from the latest Swift release:
 # 公式 ?. Or, you can install (and use) another swift release:
