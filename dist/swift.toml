@@ -180,7 +180,7 @@ let package = Package(
       exact: "0.1.15"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.23"),
+      exact: "0.1.24"),
   ],
   
   targets: [
@@ -253,16 +253,7 @@ rm .build/release/Main
 
 compile = '''
 
-. "$HOME/.local/share/swiftly/env.sh"
-
-# 環境変数はtoml側で記述
-# これがないとswift-ac-libraryのコンパイルが走ってしまう
-# export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
-
-swift \
-  build \
-  -c release \
-  1>&2 |& tee /dev/null
+cat ./Script/build.sh | bash
 
 '''
 
