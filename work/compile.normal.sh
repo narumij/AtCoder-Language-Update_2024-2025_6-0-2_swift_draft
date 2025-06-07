@@ -1,6 +1,8 @@
 
+. "~/.local/share/swiftly/env.sh"
+
 swift \
   build \
   -c release \
-  -v 1>&2 |& tee /dev/null
+  1>&2 |& tee /dev/null
 

@@ -203,7 +203,7 @@ swift package clean
 swift \
   build \
   -c release \
-  -v 1>&2 |& tee /dev/null
+  1>&2 |& tee /dev/null
 
 .build/release/Main
 
@@ -219,7 +219,7 @@ compile = '''
 swift \
   build \
   -c release \
-  -v 1>&2 |& tee /dev/null
+  1>&2 |& tee /dev/null
 
 '''
 

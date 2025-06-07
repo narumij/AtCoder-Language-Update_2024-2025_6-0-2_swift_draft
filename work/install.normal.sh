@@ -171,7 +171,7 @@ swift package clean
 swift \
   build \
   -c release \
-  -v 1>&2 |& tee /dev/null
+  1>&2 |& tee /dev/null
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 rm .build/release/Main
