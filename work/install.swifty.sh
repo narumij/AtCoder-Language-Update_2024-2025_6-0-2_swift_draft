@@ -44,26 +44,24 @@ tar -zxf swiftly-1.0.0-$(uname -m).tar.gz
 
 # 公式 4. Run the following command in your terminal, to configure swiftly for your account, and automatically download the latest swift toolchain.
 # バージョン選択を後続で行うため、インストールはスキップ
-# 後続の処理が破損しないよう回避するため、assume-yesオプションを指定
+# 後続の処理が破損しないよう、assume-yesオプションを指定
 ./swiftly init --skip-install --assume-yes
 
 # swifty初期化時に利用を継続する場合、以下を実行するよう指示があり、実行します。
 . "/home/runner/.local/share/swiftly/env.sh"
 
+# swiftyのログが何か言ってくるので、以下を追加しました
+hash -r
+
 # 公式 5. Now that swiftly and swift are installed, you can access the swift command from the latest Swift release:
 # 公式 ?. Or, you can install (and use) another swift release:
+
 swiftly install --use $LANG_VERSION
 swift --version
-
-echo '6) ############'
-
-ls -al
 
 # AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
 rm swiftly-1.0.0-$(uname -m).tar.gz
 rm swiftly-1.0.0-$(uname -m).tar.gz.sig
-
-ls -al
 
 # accelerate-linuxのビルドに必要なパッケージをインストールします
 sudo apt-get install -y \
