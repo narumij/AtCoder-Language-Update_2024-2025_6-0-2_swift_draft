@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 LANG_VERSION=6.1.0
 
 export DEBIAN_FRONTEND=noninteractive
@@ -11,37 +10,24 @@ sudo apt-get update
 
 # このスクリプトでは、まず言語環境を構築し、その後ビルド環境を構築します。
 
-echo '1) ############'
-
 # 公式 1. Download swiftly for Linux (Intel), or Linux (ARM).
 curl -O https://download.swift.org/swiftly/linux/swiftly-1.0.0-$(uname -m).tar.gz
 
-echo '2) ############'
-
 # 公式 2. You can verify the integrity of the archive using the PGP signature. This will download the signature, install the swift.org signatures into your keychain, and verify the signature.
-# curl https://www.swift.org/keys/all-keys.asc | gpg --import -
-# curl -O https://download.swift.org/swiftly/linux/swiftly-1.0.0-$(uname -m).tar.gz.sig
-# gpg --verify swiftly-1.0.0-$(uname -m).tar.gz.sig swiftly-1.0.0-$(uname -m).tar.gz
-
-echo '3) ############'
+curl https://www.swift.org/keys/all-keys.asc | gpg --import -
+curl -O https://download.swift.org/swiftly/linux/swiftly-1.0.0-$(uname -m).tar.gz.sig
+gpg --verify swiftly-1.0.0-$(uname -m).tar.gz.sig swiftly-1.0.0-$(uname -m).tar.gz
 
 # 公式 3. Extract the archive with the following command:
 tar -zxf swiftly-1.0.0-$(uname -m).tar.gz
 
-echo '4) ############'
-
-ls -al
-
 # 公式 4. Run the following command in your terminal, to configure swiftly for your account, and automatically download the latest swift toolchain.
+# バージョン選択を後続で行うため、インストールはスキップ
+# 後続の処理が破損しないよう回避するため、assume-yesオプションを指定
 ./swiftly init --skip-install --assume-yes
 
-echo '4.1) ############'
-
+# swifty初期化時に利用を継続する場合、以下を実行するよう指示があり、実行します。
 . "/home/runner/.local/share/swiftly/env.sh"
-
-echo '5) ############'
-
-ls -al
 
 # 公式 5. Now that swiftly and swift are installed, you can access the swift command from the latest Swift release:
 # 公式 ?. Or, you can install (and use) another swift release:
@@ -54,6 +40,8 @@ ls -al
 
 # AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
 rm https://download.swift.org/swiftly/linux/swiftly-1.0.0-$(uname -m).tar.gz
+
+ls -al
 
 # accelerate-linuxのビルドに必要なパッケージをインストールします
 sudo apt-get install -y \
