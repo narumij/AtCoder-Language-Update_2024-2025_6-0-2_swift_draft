@@ -21,35 +21,51 @@ sudo apt-get install -y \
   "libtmglib-dev=3.12.0-3build1.1" \
   "libtmglib3=3.12.0-3build1.1"
 
+echo '1) ############'
+
 # 公式 1. Download swiftly for Linux (Intel), or Linux (ARM).
 curl -O https://download.swift.org/swiftly/linux/swiftly-1.0.0-$(uname -m).tar.gz
+
+echo '2) ############'
 
 # 公式 2. You can verify the integrity of the archive using the PGP signature. This will download the signature, install the swift.org signatures into your keychain, and verify the signature.
 # curl https://www.swift.org/keys/all-keys.asc | gpg --import -
 # curl -O https://download.swift.org/swiftly/linux/swiftly-1.0.0-$(uname -m).tar.gz.sig
 # gpg --verify swiftly-1.0.0-$(uname -m).tar.gz.sig swiftly-1.0.0-$(uname -m).tar.gz
 
+echo '3) ############'
+
 # 公式 3. Extract the archive with the following command:
 tar -zxf swiftly-1.0.0-$(uname -m).tar.gz
 
+echo '4) ############'
+
 # 公式 4. Run the following command in your terminal, to configure swiftly for your account, and automatically download the latest swift toolchain.
 ./swiftly init
+
+echo '5) ############'
 
 # 公式 5. Now that swiftly and swift are installed, you can access the swift command from the latest Swift release:
 # 公式 ?. Or, you can install (and use) another swift release:
 swiftly install --use $LANG_VERSION
 swift --version
 
+echo '6) ############'
+
 # AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
 rm https://download.swift.org/swiftly/linux/swiftly-1.0.0-$(uname -m).tar.gz
 
 # これで言語環境の構築は完了しました
+
+echo '7) ############'
 
 # 続いて、コンパイル環境の構築を行います
 # コンパイル環境の構築では、AtCoderで使用するSwiftパッケージの初期化と依存パッケージの追加、そして事前ビルドを行います
 
 # ジャッジがビルドを行う作業パッケージの初期化を行います。パッケージ名はMain、実行可能なプログラムとして初期化します
 swift package init --name Main --type executable
+
+echo '8) ############'
 
 # Package.swiftを更新し、AtCoderジャッジで使用する依存パッケージを作業パッケージに追加します
 cat << 'EOF' > Package.swift
