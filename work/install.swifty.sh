@@ -60,7 +60,8 @@ echo '6) ############'
 ls -al
 
 # AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
-rm https://download.swift.org/swiftly/linux/swiftly-1.0.0-$(uname -m).tar.gz
+rm swiftly-1.0.0-$(uname -m).tar.gz
+rm swiftly-1.0.0-$(uname -m).tar.gz.sig
 
 ls -al
 
