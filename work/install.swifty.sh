@@ -83,6 +83,7 @@ sudo apt-get install -y \
   "libtmglib3=3.12.0-3build1.1"
 
 ls -al
+which swift
 swift --version
 
 # これで言語環境の構築は完了しました
@@ -213,6 +214,9 @@ rm .build/release/Main
 
 # 差分ビルドスクリプトを実行します
 bash ./Script/build.sh
+
+# Hello, world!を出力
+.build/release/Main
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 rm .build/release/Main
