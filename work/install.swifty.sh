@@ -1,6 +1,7 @@
 #!/bin/bash
 
-LANG_VERSION=6.1.2
+
+LANG_VERSION=6.1.0
 
 export DEBIAN_FRONTEND=noninteractive
 # 一部のパッケージで-Ouncheckedを使用するように設定します
@@ -9,17 +10,6 @@ export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 sudo apt-get update
 
 # このスクリプトでは、まず言語環境を構築し、その後ビルド環境を構築します。
-
-# accelerate-linuxのビルドに必要なパッケージをインストールします
-sudo apt-get install -y \
-  "libopenblas-dev=0.3.26+ds-1" \
-  "libopenblas0=0.3.26+ds-1" \
-  "libopenblas-pthread-dev=0.3.26+ds-1" \
-  "libopenblas0-pthread=0.3.26+ds-1" \
-  "liblapacke-dev=3.12.0-3build1.1" \
-  "liblapacke=3.12.0-3build1.1" \
-  "libtmglib-dev=3.12.0-3build1.1" \
-  "libtmglib3=3.12.0-3build1.1"
 
 echo '1) ############'
 
@@ -43,7 +33,11 @@ echo '4) ############'
 ls -al
 
 # 公式 4. Run the following command in your terminal, to configure swiftly for your account, and automatically download the latest swift toolchain.
-./swiftly init --use $LANG_VERSION
+./swiftly init --skip-install --assume-yes
+
+echo '4.1) ############'
+
+. "/home/runner/.local/share/swiftly/env.sh"
 
 echo '5) ############'
 
@@ -59,7 +53,21 @@ echo '6) ############'
 ls -al
 
 # AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
-# rm https://download.swift.org/swiftly/linux/swiftly-1.0.0-$(uname -m).tar.gz
+rm https://download.swift.org/swiftly/linux/swiftly-1.0.0-$(uname -m).tar.gz
+
+# accelerate-linuxのビルドに必要なパッケージをインストールします
+sudo apt-get install -y \
+  "libopenblas-dev=0.3.26+ds-1" \
+  "libopenblas0=0.3.26+ds-1" \
+  "libopenblas-pthread-dev=0.3.26+ds-1" \
+  "libopenblas0-pthread=0.3.26+ds-1" \
+  "liblapacke-dev=3.12.0-3build1.1" \
+  "liblapacke=3.12.0-3build1.1" \
+  "libtmglib-dev=3.12.0-3build1.1" \
+  "libtmglib3=3.12.0-3build1.1"
+
+ls -al
+swift --version
 
 # これで言語環境の構築は完了しました
 
