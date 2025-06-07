@@ -47,10 +47,10 @@ tar -zxf swiftly-1.0.0-$(uname -m).tar.gz
 # 後続の処理が破損しないよう、assume-yesオプションを指定
 ./swiftly init --skip-install --assume-yes
 
-# swifty初期化時に利用を継続する場合、以下を実行するよう指示があり、実行します。
+# swifty初期化時に利用を継続する場合、以下を実行するよう指示があるため、実行
 . "/home/runner/.local/share/swiftly/env.sh"
 
-# swiftyのログが何か言ってくるので、以下を追加しました
+# swiftyのログが何か言ってくるので、以下を実行
 hash -r
 
 # 公式 5. Now that swiftly and swift are installed, you can access the swift command from the latest Swift release:
@@ -79,15 +79,11 @@ swift --version
 
 # これで言語環境の構築は完了しました
 
-echo '7) ############'
-
 # 続いて、コンパイル環境の構築を行います
 # コンパイル環境の構築では、AtCoderで使用するSwiftパッケージの初期化と依存パッケージの追加、そして事前ビルドを行います
 
 # ジャッジがビルドを行う作業パッケージの初期化を行います。パッケージ名はMain、実行可能なプログラムとして初期化します
 swift package init --name Main --type executable
-
-echo '8) ############'
 
 # Package.swiftを更新し、AtCoderジャッジで使用する依存パッケージを作業パッケージに追加します
 cat << 'EOF' > Package.swift
