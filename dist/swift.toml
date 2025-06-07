@@ -32,7 +32,7 @@ filename = 'Sources/main.swift'
 
 install = '''
 
-LANG_VERSION=6.1.0
+LANG_VERSION=6.1.2
 
 export DEBIAN_FRONTEND=noninteractive
 # 一部のパッケージで-Ouncheckedを使用するように設定します
