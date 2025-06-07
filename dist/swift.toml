@@ -87,7 +87,7 @@ ls -al
 
 # 公式 5. Now that swiftly and swift are installed, you can access the swift command from the latest Swift release:
 # 公式 ?. Or, you can install (and use) another swift release:
-./swiftly install --use $LANG_VERSION
+swiftly install --use $LANG_VERSION
 swift --version
 
 echo '6) ############'
