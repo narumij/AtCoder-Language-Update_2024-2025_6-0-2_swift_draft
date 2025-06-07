@@ -1,10 +1,15 @@
 #!/bin/bash
 
-LANG_VERSION=6.1.0
+# このインストールスクリプトはビルドシステムの結果を抽出してビルドスクリプトを生成します
+# 将来このスクリプトに問題が生じた場合、
+# 通常のインストール手順のスクリプトの以下と差し替えてください
+# https://github.com/narumij/AtCoder-Language-Update_2024-2025_6-0-2_swift_draft/blob/main/dist/swift.normal.toml
+# その場合、compileスクリプトは以下と差し替えてください
+# https://github.com/narumij/AtCoder-Language-Update_2024-2025_6-0-2_swift_draft/blob/main/work/compile.normal.sh
+
+LANG_VERSION=6.1.2
 
 export DEBIAN_FRONTEND=noninteractive
-# 一部のパッケージで-Ouncheckedを使用するように設定します
-export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 
 sudo apt-get update
 
@@ -12,6 +17,8 @@ sudo apt-get update
 
 # 新公式手順でのインストールにパッケージ不足がみられるため、
 # 旧公式手順1を実行
+# 確認してる警告は、libcurl4-openssl-devのみ。
+# この手順は、様子を見て削ることが可能です。
 sudo apt-get install -y \
              binutils \
              git \
@@ -34,7 +41,8 @@ sudo apt-get install -y \
 # 公式 1. Download swiftly for Linux (Intel), or Linux (ARM).
 curl -O https://download.swift.org/swiftly/linux/swiftly-1.0.0-$(uname -m).tar.gz
 
-# 公式 2. You can verify the integrity of the archive using the PGP signature. This will download the signature, install the swift.org signatures into your keychain, and verify the signature.
+# 公式 2. You can verify the integrity of the archive using the PGP signature.
+# This will download the signature, install the swift.org signatures into your keychain, and verify the signature.
 curl https://www.swift.org/keys/all-keys.asc | gpg --import -
 curl -O https://download.swift.org/swiftly/linux/swiftly-1.0.0-$(uname -m).tar.gz.sig
 gpg --verify swiftly-1.0.0-$(uname -m).tar.gz.sig swiftly-1.0.0-$(uname -m).tar.gz
@@ -48,7 +56,7 @@ tar -zxf swiftly-1.0.0-$(uname -m).tar.gz
 ./swiftly init --skip-install --assume-yes
 
 # swifty初期化時に利用を継続する場合、以下を実行するよう指示があるため、実行
-. "~/.local/share/swiftly/env.sh"
+. "$HOME/.local/share/swiftly/env.sh"
 
 # swiftyのログが何か言ってくるので、以下を実行
 hash -r
@@ -81,6 +89,9 @@ swift --version
 
 # 続いて、コンパイル環境の構築を行います
 # コンパイル環境の構築では、AtCoderで使用するSwiftパッケージの初期化と依存パッケージの追加、そして事前ビルドを行います
+
+# 一部のパッケージで-Ouncheckedを使用するように設定します
+export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 
 # ジャッジがビルドを行う作業パッケージの初期化を行います。パッケージ名はMain、実行可能なプログラムとして初期化します
 swift package init --name Main --type executable

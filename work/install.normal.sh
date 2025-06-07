@@ -10,6 +10,8 @@ sudo apt-get update
 
 # 新公式手順でのインストールにパッケージ不足がみられるため、
 # 旧公式手順1を実行
+# 確認してる警告は、libcurl4-openssl-devのみ。
+# この手順は、様子を見て削ることが可能です。
 sudo apt-get install -y \
              binutils \
              git \
@@ -32,7 +34,8 @@ sudo apt-get install -y \
 # 公式 1. Download swiftly for Linux (Intel), or Linux (ARM).
 curl -O https://download.swift.org/swiftly/linux/swiftly-1.0.0-$(uname -m).tar.gz
 
-# 公式 2. You can verify the integrity of the archive using the PGP signature. This will download the signature, install the swift.org signatures into your keychain, and verify the signature.
+# 公式 2. You can verify the integrity of the archive using the PGP signature.
+# This will download the signature, install the swift.org signatures into your keychain, and verify the signature.
 curl https://www.swift.org/keys/all-keys.asc | gpg --import -
 curl -O https://download.swift.org/swiftly/linux/swiftly-1.0.0-$(uname -m).tar.gz.sig
 gpg --verify swiftly-1.0.0-$(uname -m).tar.gz.sig swiftly-1.0.0-$(uname -m).tar.gz
