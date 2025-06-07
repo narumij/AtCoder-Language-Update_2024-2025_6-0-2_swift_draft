@@ -1,5 +1,5 @@
 
-. "~/.local/share/swiftly/env.sh"
+. "$HOME/.local/share/swiftly/env.sh"
 
 swift \
   build \
