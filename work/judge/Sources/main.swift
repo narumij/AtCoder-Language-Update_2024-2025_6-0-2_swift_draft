@@ -1,5 +1,6 @@
 #if true
 @preconcurrency import Foundation
+import AccelerateLinux
 import AcCollections
 import AcFoundation
 import Algorithms
@@ -13,9 +14,8 @@ import IOUtil
 import Numerics
 import PermutationModule
 import RedBlackTreeModule
-import SwiftGraph
 import simd
-import AccelerateLinux
+import SwiftGraph
 
 #if os(macOS) || os(iOS)
   print("Hello, Apple platform!")
