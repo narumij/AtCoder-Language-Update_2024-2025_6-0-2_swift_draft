@@ -42,6 +42,17 @@ sudo apt-get update
 
 # このスクリプトでは、まず言語環境を構築し、その後ビルド環境を構築します。
 
+# accelerate-linuxのビルドに必要なパッケージをインストールします
+sudo apt-get install -y \
+  "libopenblas-dev=0.3.26+ds-1" \
+  "libopenblas0=0.3.26+ds-1" \
+  "libopenblas-pthread-dev=0.3.26+ds-1" \
+  "libopenblas0-pthread=0.3.26+ds-1" \
+  "liblapacke-dev=3.12.0-3build1.1" \
+  "liblapacke=3.12.0-3build1.1" \
+  "libtmglib-dev=3.12.0-3build1.1" \
+  "libtmglib3=3.12.0-3build1.1"
+
 # 公式 1. Download swiftly for Linux (Intel), or Linux (ARM).
 curl -O https://download.swift.org/swiftly/linux/swiftly-1.0.0-$(uname -m).tar.gz
 
@@ -63,17 +74,6 @@ swift --version
 
 # AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
 rm https://download.swift.org/swiftly/linux/swiftly-1.0.0-$(uname -m).tar.gz
-
-# accelerate-linuxのビルドに必要なパッケージをインストールします
-sudo apt-get install -y \
-  "libopenblas-dev=0.3.26+ds-1" \
-  "libopenblas0=0.3.26+ds-1" \
-  "libopenblas-pthread-dev=0.3.26+ds-1" \
-  "libopenblas0-pthread=0.3.26+ds-1" \
-  "liblapacke-dev=3.12.0-3build1.1" \
-  "liblapacke=3.12.0-3build1.1" \
-  "libtmglib-dev=3.12.0-3build1.1" \
-  "libtmglib3=3.12.0-3build1.1"
 
 # これで言語環境の構築は完了しました
 
