@@ -32,13 +32,6 @@ filename = 'Sources/main.swift'
 
 install = '''
 
-# このインストールスクリプトはビルドシステムの結果を抽出してビルドスクリプトを生成します
-# 将来このスクリプトに問題が生じた場合、
-# 通常のインストール手順のスクリプトの以下と差し替えてください
-# https://github.com/narumij/AtCoder-Language-Update_2024-2025_6-0-2_swift_draft/blob/main/dist/swift.normal.toml
-# その場合、compileスクリプトは以下と差し替えてください
-# https://github.com/narumij/AtCoder-Language-Update_2024-2025_6-0-2_swift_draft/blob/main/work/compile.normal.sh
-
 LANG_VERSION=6.1.2
 
 export DEBIAN_FRONTEND=noninteractive
@@ -180,7 +173,7 @@ let package = Package(
       exact: "0.1.15"),
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.24"),
+      exact: "0.1.23"),
   ],
   
   targets: [
@@ -207,44 +200,13 @@ let package = Package(
 )
 EOF
 
-# ビルドスクリプトを配置するフォルダを作成
-mkdir Script
-
 # 念の為に、クリーニングします
 swift package clean
 
 # 依存パッケージの解決とパッケージのビルドを事前に行います
 swift \
   build \
-  -c release \
-  -v 1>&2 |& tee /dev/null
-
-# 差分コンパイルが行われるよう、ソースコードを変更します
-sed -i 's/Hello/Hallo/' Sources/main.swift
-
-# 差分コンパイルを実施し、ビルドログを取得します
-swift \
-  build \
-  -c release \
-  -v > build.log
-
-# ビルドログからビルドコマンドを抽出し、差分ビルドスクリプトを作成します
-sed -n '/swiftc/{
-    s/ -v / /;
-    s/-parseable-output//;
-    s/ -j[0-9][0-9]*/ -j1/g;
-    s/ -num-threads [0-9][0-9]*/ -num-threads 1/g;
-    p
-}' build.log > Script/build.sh
-
-# ビルドログを削除します
-rm build.log
-
-# ビルド結果を削除します
-rm .build/release/Main
-
-# 差分ビルドスクリプトを実行します
-bash ./Script/build.sh
+  -c release
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 rm .build/release/Main
@@ -253,7 +215,15 @@ rm .build/release/Main
 
 compile = '''
 
-cat ./Script/build.sh | bash
+. "$HOME/.local/share/swiftly/env.sh"
+
+# 環境変数はtoml側で記述
+# これがないとswift-ac-libraryのコンパイルが走ってしまう
+# export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
+
+swift \
+  build \
+  -c release
 
 '''
 

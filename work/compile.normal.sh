@@ -7,6 +7,5 @@
 
 swift \
   build \
-  -c release \
-  1>&2 |& tee /dev/null
+  -c release
 

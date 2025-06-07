@@ -174,8 +174,7 @@ swift package clean
 # 依存パッケージの解決とパッケージのビルドを事前に行います
 swift \
   build \
-  -c release \
-  1>&2 |& tee /dev/null
+  -c release
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 rm .build/release/Main

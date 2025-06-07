@@ -69,6 +69,8 @@ let dict: Dictionary<Int,Double> = .init(uniqueKeysWithValues: treeDict.mapValue
 
 print(dict.map { $0 })
 
+let aa: Array<Character> = Array(readLine()!)
+
 #else
 
 import Foundation

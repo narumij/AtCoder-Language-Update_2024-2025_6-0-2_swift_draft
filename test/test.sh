@@ -2,6 +2,7 @@
 
 # 「私は強制プッシュをしました」
 export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
+export SWIFT_BACKTRACE='enable=yes,output-to=stderr,interactive=no'
 
 echo "Heap size: $(ulimit -v)"
 echo "Stack size: $(ulimit -s)"
@@ -54,8 +55,6 @@ cp test/abc235_d/main.2.swift Sources/main.swift
 tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash              
 
 time .build/release/Main < test/abc235_d/sample-x.in
-
-export SWIFT_BACKTRACE='enable=yes,output-to=stderr,interactive=no'
 
 echo '3) crash twice ############'
 
