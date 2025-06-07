@@ -90,7 +90,6 @@ hash -r
 # 公式 ?. Or, you can install (and use) another swift release:
 
 swiftly install --use $LANG_VERSION
-which swift
 swift --version
 
 # AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
@@ -109,6 +108,7 @@ sudo apt-get install -y \
   "libtmglib3=3.12.0-3build1.1"
 
 ls -al
+which swift
 swift --version
 
 # これで言語環境の構築は完了しました
@@ -207,8 +207,22 @@ swift package clean
 # 依存パッケージの解決とパッケージのビルドを事前に行います
 swift build -c release
 
+# Hello, world!を出力
+.build/release/Main
+
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 rm .build/release/Main
+
+# Swift(swift 5.8.1)のジャッジでは、
+# コンパイルコマンドに余計なオプションがあったため、
+# フルビルドが毎回強制されていました。
+# 本スクリプトではこれの解消を行っています。
+
+# 併せて、条件次第でフルビルドとなることが判明しており、
+# その対策を検討しましたが、運営側判断で環境固定する方針となっています。
+
+# 将来このスクリプトをメンテナンスされる方々に於かれましては、
+# フルビルドが強制される事態とならないよう尽力されることを切に願います
 
 '''
 
