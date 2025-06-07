@@ -102,47 +102,60 @@ let package = Package(
   platforms: [.macOS(.v13), .iOS(.v16), .tvOS(.v16), .watchOS(.v9), .macCatalyst(.v16)],
   
   dependencies: [
+    // swift 5.8.1時点での既存ライブラリで、必須です
     .package(
       url: "https://github.com/apple/swift-collections",
       exact: "1.1.4"),
+    // swift 5.8.1時点での既存ライブラリで、必須です
     .package(
       url: "https://github.com/apple/swift-algorithms",
       exact: "1.2.1"),
+    // swift 5.8.1時点での既存ライブラリで、必須です
     .package(
       url: "https://github.com/apple/swift-numerics",
       exact: "1.0.3"),
+    // 吟味はしていません。将来誰かの助けになればと言う理由で搭載しています
     .package(
       url: "https://github.com/apple/swift-atomics",
       exact: "1.2.0"),
+    // 吟味はしていません。将来誰かの助けになればと言う理由で搭載しています
     .package(
       url: "https://github.com/apple/swift-system",
       exact: "1.4.2"),
+    // atcoderでswiftが通用するためには欠かせません
     .package(
       url: "https://github.com/attaswift/BigInt",
       exact: "5.5.1"),
+    // BigIntとの関連があり、浮動小数の精度不足を補えます
     .package(
       url: "https://github.com/dankogai/swift-bignum",
       exact: "5.4.1"),
+    // SIMDは他言語に対するSwiftのアドバンテージなので搭載しています
     .package(
       url: "https://github.com/keyvariable/kvSIMD.swift",
       exact: "1.1.0"),
+    // SIMDやacceralateフレームワークに馴染んでいる人が他言語と異なる解法を試せるよう搭載しています
     .package(
       url: "https://github.com/brokenhandsio/accelerate-linux",
       revision: "d6e80e8bc924e591e3ce68080e95a8046df1515a"),
+    // 提案をそのまま受け入れて搭載しており、特に吟味していません
     .package(
       url: "https://github.com/davecom/SwiftGraph",
       exact: "3.1.0"),
+    // atcoderでswiftが通用するためには欠かせません
     .package(
       url: "https://github.com/narumij/swift-ac-library",
       // -Ouncheckedを利用するためにrevision指定としている
       revision: "34c92e003a0ee0f42ced76c61c2bac6c6dac0d0d"),
 //      exact: "0.1.10"),
+    // atcoderでswiftが通用するためには欠かせません
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
       exact: "0.1.15"),
+    // atcoderでswiftが通用するためには欠かせません
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.23"),
+      exact: "0.1.24"),
   ],
   
   targets: [
