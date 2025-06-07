@@ -10,6 +10,27 @@ sudo apt-get update
 
 # このスクリプトでは、まず言語環境を構築し、その後ビルド環境を構築します。
 
+# 新公式手順でのインストールにパッケージ不足がみられるため、
+# 旧公式手順1を実行
+sudo apt-get install -y \
+             binutils \
+             git \
+             gnupg2 \
+             libc6-dev \
+             libcurl4-openssl-dev \
+             libedit2 \
+             libgcc-13-dev \
+             libncurses-dev \
+             libpython3-dev \
+             libsqlite3-0 \
+             libstdc++-13-dev \
+             libxml2-dev \
+             libz3-dev \
+             pkg-config \
+             tzdata \
+             unzip \
+             zlib1g-dev
+
 # 公式 1. Download swiftly for Linux (Intel), or Linux (ARM).
 curl -O https://download.swift.org/swiftly/linux/swiftly-1.0.0-$(uname -m).tar.gz
 
