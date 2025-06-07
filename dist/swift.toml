@@ -31,7 +31,6 @@ library.libtmglib3 = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'http
 filename = 'Sources/main.swift'
 
 install = '''
-#!/bin/bash
 
 LANG_VERSION=6.1.0
 
@@ -93,7 +92,8 @@ echo '6) ############'
 ls -al
 
 # AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
-rm https://download.swift.org/swiftly/linux/swiftly-1.0.0-$(uname -m).tar.gz
+rm swiftly-1.0.0-$(uname -m).tar.gz
+rm swiftly-1.0.0-$(uname -m).tar.gz.sig
 
 ls -al
 
