@@ -32,6 +32,8 @@ filename = 'Sources/main.swift'
 
 install = '''
 
+ls -al
+
 LANG_VERSION=6.1.2
 
 export DEBIAN_FRONTEND=noninteractive
@@ -67,10 +69,14 @@ tar -zxf swiftly-1.0.0-$(uname -m).tar.gz
 # 公式 4. Run the following command in your terminal, to configure swiftly for your account, and automatically download the latest swift toolchain.
 ./swiftly init
 
+ls -al
+
 # 公式 5. Now that swiftly and swift are installed, you can access the swift command from the latest Swift release:
 # 公式 ?. Or, you can install (and use) another swift release:
 swiftly install --use $LANG_VERSION
 swift --version
+
+ls -al
 
 # AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
 rm https://download.swift.org/swiftly/linux/swiftly-1.0.0-$(uname -m).tar.gz
@@ -203,6 +209,8 @@ bash ./Script/build.sh
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 rm .build/release/Main
+
+ls -al
 
 '''
 
