@@ -43,7 +43,7 @@ echo '4) ############'
 ls -al
 
 # 公式 4. Run the following command in your terminal, to configure swiftly for your account, and automatically download the latest swift toolchain.
-./swiftly init
+./swiftly init --use $LANG_VERSION
 
 echo '5) ############'
 
@@ -56,8 +56,10 @@ swift --version
 
 echo '6) ############'
 
+ls -al
+
 # AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
-rm https://download.swift.org/swiftly/linux/swiftly-1.0.0-$(uname -m).tar.gz
+# rm https://download.swift.org/swiftly/linux/swiftly-1.0.0-$(uname -m).tar.gz
 
 # これで言語環境の構築は完了しました
 
