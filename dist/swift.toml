@@ -35,8 +35,6 @@ install = '''
 LANG_VERSION=6.1.2
 
 export DEBIAN_FRONTEND=noninteractive
-# 一部のパッケージで-Ouncheckedを使用するように設定します
-export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 
 sudo apt-get update
 
@@ -113,6 +111,9 @@ swift --version
 
 # 続いて、コンパイル環境の構築を行います
 # コンパイル環境の構築では、AtCoderで使用するSwiftパッケージの初期化と依存パッケージの追加、そして事前ビルドを行います
+
+# 一部のパッケージで-Ouncheckedを使用するように設定します
+export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 
 # ジャッジがビルドを行う作業パッケージの初期化を行います。パッケージ名はMain、実行可能なプログラムとして初期化します
 swift package init --name Main --type executable
@@ -205,8 +206,6 @@ swift \
   -c release \
   1>&2 |& tee /dev/null
 
-.build/release/Main
-
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 rm .build/release/Main
 
@@ -215,6 +214,7 @@ rm .build/release/Main
 compile = '''
 
 . "$HOME/.local/share/swiftly/env.sh"
+export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 
 swift \
   build \
