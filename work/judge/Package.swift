@@ -44,7 +44,7 @@ let package = Package(
     .package(
       url: "https://github.com/brokenhandsio/accelerate-linux",
       revision: "d6e80e8bc924e591e3ce68080e95a8046df1515a"),
-    // 提案をそのまま受け入れて搭載しており、特に吟味していません
+    // 吟味はしていません。提案をそのまま受け入れて搭載となっています
     .package(
       url: "https://github.com/davecom/SwiftGraph",
       exact: "3.1.0"),
