@@ -31,6 +31,8 @@ sudo apt-get install -y \
              unzip \
              zlib1g-dev
 
+# https://www.swift.org/install/linux/swiftly/
+
 # 公式 1. Download swiftly for Linux (Intel), or Linux (ARM).
 curl -O https://download.swift.org/swiftly/linux/swiftly-1.0.0-$(uname -m).tar.gz
 
@@ -155,7 +157,7 @@ let package = Package(
     // atcoderでswiftが通用するためには欠かせません
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.24"),
+      exact: "0.1.25"),
   ],
   
   targets: [

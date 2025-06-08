@@ -189,7 +189,7 @@ let package = Package(
     // atcoderでswiftが通用するためには欠かせません
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.24"),
+      exact: "0.1.25"),
   ],
   
   targets: [
