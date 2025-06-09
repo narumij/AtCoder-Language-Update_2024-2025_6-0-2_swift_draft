@@ -1,18 +1,19 @@
 {
-  "originHash" : "2cab1a8d65b815454258abf4c7e9e82fa48642ccfdb4d1c390f73482d945e074",
+  "originHash" : "58b074468de7922007ea885d6ab533d73ad72db6b168397642854075ed90d550",
   "pins" : [
     {
       "identity" : "accelerate-linux",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/brokenhandsio/accelerate-linux",
       "state" : {
+        "branch" : "main",
         "revision" : "8eda308ea3129130e90e5c01fc437a4c5d2ca278"
       }
     },
     {
       "identity" : "bigint",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/attaswift/BigInt.git",
+      "location" : "https://github.com/attaswift/BigInt",
       "state" : {
         "revision" : "114343a705df4725dfe7ab8a2a326b8883cfd79c",
         "version" : "5.5.1"
@@ -21,7 +22,7 @@
     {
       "identity" : "kvsimd.swift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/keyvariable/kvSIMD.swift.git",
+      "location" : "https://github.com/keyvariable/kvSIMD.swift",
       "state" : {
         "revision" : "d95f3590b28ffc35c51d570a521daea1ce74e490",
         "version" : "1.1.0"
@@ -50,13 +51,14 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-library",
       "state" : {
-        "revision" : "fcabf5aa91e72a4c163c935cc61d57e4406abb83"
+        "revision" : "fcabf5aa91e72a4c163c935cc61d57e4406abb83",
+        "version" : "0.1.12"
       }
     },
     {
       "identity" : "swift-algorithms",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-algorithms.git",
+      "location" : "https://github.com/apple/swift-algorithms",
       "state" : {
         "revision" : "87e50f483c54e6efd60e885f7f5aa946cee68023",
         "version" : "1.2.1"
@@ -74,7 +76,7 @@
     {
       "identity" : "swift-bignum",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/dankogai/swift-bignum.git",
+      "location" : "https://github.com/dankogai/swift-bignum",
       "state" : {
         "revision" : "3200f6ba76308beaf2c6ebc3d2919ec80324f7f4",
         "version" : "5.4.1"
@@ -92,7 +94,7 @@
     {
       "identity" : "swift-numerics",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-numerics.git",
+      "location" : "https://github.com/apple/swift-numerics",
       "state" : {
         "revision" : "e0ec0f5f3af6f3e4d5e7a19d2af26b481acb6ba8",
         "version" : "1.0.3"

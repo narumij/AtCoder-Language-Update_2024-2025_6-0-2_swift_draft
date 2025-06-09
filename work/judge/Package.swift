@@ -43,7 +43,7 @@ let package = Package(
     // SIMDやacceralateフレームワークに馴染んでいる人が他言語と異なる解法を試せるよう搭載しています
     .package(
       url: "https://github.com/brokenhandsio/accelerate-linux",
-      revision: "d6e80e8bc924e591e3ce68080e95a8046df1515a"),
+      revision: "8eda308ea3129130e90e5c01fc437a4c5d2ca278"),
     // 吟味はしていません。提案をそのまま受け入れて搭載となっています
     .package(
       url: "https://github.com/davecom/SwiftGraph",
