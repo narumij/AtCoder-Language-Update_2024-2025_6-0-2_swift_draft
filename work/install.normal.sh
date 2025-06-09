@@ -140,7 +140,7 @@ let package = Package(
     .package(
       url: "https://github.com/brokenhandsio/accelerate-linux",
       revision: "d6e80e8bc924e591e3ce68080e95a8046df1515a"),
-    // 提案をそのまま受け入れて搭載しており、特に吟味していません
+    // 吟味はしていません。提案をそのまま受け入れて搭載となっています
     .package(
       url: "https://github.com/davecom/SwiftGraph",
       exact: "3.1.0"),
@@ -157,7 +157,7 @@ let package = Package(
     // atcoderでswiftが通用するためには欠かせません
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.25"),
+      exact: "0.1.26"),
   ],
   
   targets: [
@@ -197,9 +197,8 @@ swift build -c release
 rm .build/release/Main
 
 # Swift(swift 5.8.1)のジャッジでは、
-# コンパイルコマンドに余計なオプションがあったため、
-# フルビルドが毎回強制されていました。
-# 本スクリプトではこれの解消を行っています。
+# コンパイルオプションに不備があり、フルビルドが毎回強制されていました。
+# 本スクリプトではこの解消を行っています。
 
 # 併せて、条件次第でフルビルドとなることが判明しており、
 # その対策を検討しましたが、運営側判断で環境固定する方針となっています。
@@ -216,7 +215,7 @@ rm .build/release/Main
 # - 普段Swiftに関わりのある人がメンテナンス可能なこと
 #    (macとXcodeでの開発が中心で、unixにはそこまで詳しくない人を想定しています)
 
-# - スクリプト自体にバグと未定義動作が無いこと
+# - スクリプト自体にバグや未定義動作が無いこと
 #    (たまたま動くことを避け、確実に動くことを優先する)
 
 # - TLEに誘いこむ事がないこと
