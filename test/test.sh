@@ -18,6 +18,11 @@ echo 'check 4) ############'
 echo $(tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//")
 echo 'check 5) ############'
 echo $(tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//")
+
+echo '00) ############'
+
+tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash
+
 echo '0) ############'
 
 rm .build/release/Main
