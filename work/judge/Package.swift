@@ -52,8 +52,8 @@ let package = Package(
     .package(
       url: "https://github.com/narumij/swift-ac-library",
       // -Ouncheckedを利用するためにrevision指定としている
-      revision: "fcabf5aa91e72a4c163c935cc61d57e4406abb83"),
-//      exact: "0.1.12"),
+      revision: "f8568e0a2d81618894594f77725ebe093fcd2f9b"),
+//      exact: "0.1.13"),
     // atcoderでswiftが通用するためには欠かせません
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
