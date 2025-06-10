@@ -21,13 +21,12 @@ echo $(tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "
 
 echo '00) ############'
 
-swift package clean
-
 tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash
 
 echo '000) ############'
 
-swift 
+swift package clean
+
 tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash
 
 echo '0) ############'
