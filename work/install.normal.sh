@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# LANG_VERSION=6.1.2
-LANG_VERSION=6.2-snapshot-2025-06-03
+LANG_VERSION=6.1.2
+# LANG_VERSION=6.2-snapshot-2025-06-03
 
 export DEBIAN_FRONTEND=noninteractive
 
@@ -188,9 +188,11 @@ EOF
 # 念の為に、クリーニングします
 swift package clean
 
-# 依存パッケージの解決とパッケージのビルドを事前に行います
-# swift build -c release
-swift build --build-system swiftbuild -c release
+# 依存パッケージの解決を行います
+swift package resolve
+
+# 依存パッケージのビルドを行います
+swift build -c release
 
 # Hello, world!を出力
 .build/release/Main

@@ -32,8 +32,8 @@ filename = 'Sources/main.swift'
 
 install = '''
 
-# LANG_VERSION=6.1.2
-LANG_VERSION=6.2-snapshot-2025-06-03
+LANG_VERSION=6.1.2
+# LANG_VERSION=6.2-snapshot-2025-06-03
 
 export DEBIAN_FRONTEND=noninteractive
 
@@ -100,25 +100,15 @@ rm swiftly-1.0.0-$(uname -m).tar.gz
 rm swiftly-1.0.0-$(uname -m).tar.gz.sig
 
 # accelerate-linuxのビルドに必要なパッケージをインストールします
-# sudo apt-get install -y \
-#   "libopenblas-dev=0.3.26+ds-1" \
-#   "libopenblas0=0.3.26+ds-1" \
-#   "libopenblas-pthread-dev=0.3.26+ds-1" \
-#   "libopenblas0-pthread=0.3.26+ds-1" \
-#   "liblapacke-dev=3.12.0-3build1.1" \
-#   "liblapacke=3.12.0-3build1.1" \
-#   "libtmglib-dev=3.12.0-3build1.1" \
-#   "libtmglib3=3.12.0-3build1.1"
-
 sudo apt-get install -y \
-  "libopenblas-dev" \
-  "libopenblas0" \
-  "libopenblas-pthread-dev" \
-  "libopenblas0-pthread" \
-  "liblapacke-dev" \
-  "liblapacke" \
-  "libtmglib-dev" \
-  "libtmglib3"
+  "libopenblas-dev=0.3.26+ds-1" \
+  "libopenblas0=0.3.26+ds-1" \
+  "libopenblas-pthread-dev=0.3.26+ds-1" \
+  "libopenblas0-pthread=0.3.26+ds-1" \
+  "liblapacke-dev=3.12.0-3build1.1" \
+  "liblapacke=3.12.0-3build1.1" \
+  "libtmglib-dev=3.12.0-3build1.1" \
+  "libtmglib3=3.12.0-3build1.1"
 
 ls -al
 which swift
@@ -183,6 +173,10 @@ let package = Package(
     .package(
       url: "https://github.com/brokenhandsio/accelerate-linux",
       revision: "8eda308ea3129130e90e5c01fc437a4c5d2ca278"),
+    // 吟味はしていません。提案をそのまま受け入れて搭載となっています
+    .package(
+      url: "https://github.com/davecom/SwiftGraph",
+      exact: "3.1.0"),
     // atcoderでswiftが通用するためには欠かせません
     .package(
       url: "https://github.com/narumij/swift-ac-library",
@@ -210,6 +204,7 @@ let package = Package(
         .product(name: "SystemPackage", package: "swift-system"),
         .product(name: "BigInt", package: "BigInt"),
         .product(name: "BigNum", package: "swift-bignum"),
+        .product(name: "SwiftGraph", package: "SwiftGraph"),
         .product(name: "kvSIMD", package: "kvSIMD.swift"),
         .product(name: "AccelerateLinux", package: "accelerate-linux"),
         .product(name: "AtCoder", package: "swift-ac-library"),
@@ -225,9 +220,11 @@ EOF
 # 念の為に、クリーニングします
 swift package clean
 
-# 依存パッケージの解決とパッケージのビルドを事前に行います
-# swift build -c release
-swift build --build-system swiftbuild -c release
+# 依存パッケージの解決を行います
+swift package resolve
+
+# 依存パッケージのビルドを行います
+swift build -c release
 
 # Hello, world!を出力
 .build/release/Main
@@ -274,8 +271,7 @@ compile = '''
 export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 # 最終版では削ることを予定しています。
 
-# swift build -c release
-swift build --build-system swiftbuild -c release
+swift build -c release
 
 # コンパイル所要時間の目安はhello wolrdで5秒程度。
 # それを上回る場合、差分コンパイルに問題が生じている可能性があります。
