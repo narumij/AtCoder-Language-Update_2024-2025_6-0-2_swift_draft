@@ -32,7 +32,8 @@ filename = 'Sources/main.swift'
 
 install = '''
 
-LANG_VERSION=6.1.2
+# LANG_VERSION=6.1.2
+LANG_VERSION=6.2-snapshot-2025-06-03
 
 export DEBIAN_FRONTEND=noninteractive
 
@@ -220,7 +221,8 @@ EOF
 swift package clean
 
 # 依存パッケージの解決とパッケージのビルドを事前に行います
-swift build -c release
+# swift build -c release
+swift build --build-system swiftbuild -c release
 
 # Hello, world!を出力
 .build/release/Main
@@ -267,7 +269,8 @@ compile = '''
 export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 # 最終版では削ることを予定しています。
 
-swift build -c release
+# swift build -c release
+swift build --build-system swiftbuild -c release
 
 # コンパイル所要時間の目安はhello wolrdで5秒程度。
 # それを上回る場合、差分コンパイルに問題が生じている可能性があります。
