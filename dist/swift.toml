@@ -183,10 +183,6 @@ let package = Package(
     .package(
       url: "https://github.com/brokenhandsio/accelerate-linux",
       revision: "8eda308ea3129130e90e5c01fc437a4c5d2ca278"),
-    // 吟味はしていません。提案をそのまま受け入れて搭載となっています
-    .package(
-      url: "https://github.com/davecom/SwiftGraph",
-      exact: "3.1.0"),
     // atcoderでswiftが通用するためには欠かせません
     .package(
       url: "https://github.com/narumij/swift-ac-library",
@@ -214,7 +210,6 @@ let package = Package(
         .product(name: "SystemPackage", package: "swift-system"),
         .product(name: "BigInt", package: "BigInt"),
         .product(name: "BigNum", package: "swift-bignum"),
-        .product(name: "SwiftGraph", package: "SwiftGraph"),
         .product(name: "kvSIMD", package: "kvSIMD.swift"),
         .product(name: "AccelerateLinux", package: "accelerate-linux"),
         .product(name: "AtCoder", package: "swift-ac-library"),
