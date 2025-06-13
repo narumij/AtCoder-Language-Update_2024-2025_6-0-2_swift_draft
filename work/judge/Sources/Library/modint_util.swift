@@ -3,7 +3,7 @@ import AcFoundation
 import BigInt
 
 extension static_modint: @retroactive IOIntegerConversionReadable {
-  public static func convert(from: Int) -> Self { .init(from) }
+  public static func convert(from: Int) -> Self { .init(rawValue: UInt(bitPattern: from)) }
 }
 
 extension BigInt: @retroactive IOIntegerConversionReadable {

@@ -117,22 +117,10 @@ let package = Package(
     .package(
       url: "https://github.com/apple/swift-numerics",
       exact: "1.0.3"),
-    // 吟味はしていません。将来誰かの助けになればと言う理由で搭載しています
-    .package(
-      url: "https://github.com/apple/swift-atomics",
-      exact: "1.2.0"),
-    // 吟味はしていません。将来誰かの助けになればと言う理由で搭載しています
-    .package(
-      url: "https://github.com/apple/swift-system",
-      exact: "1.4.2"),
     // atcoderでswiftが通用するためには欠かせません
     .package(
       url: "https://github.com/attaswift/BigInt",
       exact: "5.5.1"),
-    // BigIntとの関連があり、浮動小数の精度不足を補えます
-    .package(
-      url: "https://github.com/dankogai/swift-bignum",
-      exact: "5.4.1"),
     // SIMDは他言語に対するSwiftのアドバンテージなので搭載しています
     .package(
       url: "https://github.com/keyvariable/kvSIMD.swift",
@@ -141,10 +129,6 @@ let package = Package(
     .package(
       url: "https://github.com/brokenhandsio/accelerate-linux",
       revision: "8eda308ea3129130e90e5c01fc437a4c5d2ca278"),
-    // 吟味はしていません。提案をそのまま受け入れて搭載となっています
-    .package(
-      url: "https://github.com/davecom/SwiftGraph",
-      exact: "3.1.0"),
     // atcoderでswiftが通用するためには欠かせません
     .package(
       url: "https://github.com/narumij/swift-ac-library",
@@ -168,11 +152,7 @@ let package = Package(
         .product(name: "Collections", package: "swift-collections"),
         .product(name: "Algorithms", package: "swift-algorithms"),
         .product(name: "Numerics", package: "swift-numerics"),
-        .product(name: "Atomics", package: "swift-atomics"),
-        .product(name: "SystemPackage", package: "swift-system"),
         .product(name: "BigInt", package: "BigInt"),
-        .product(name: "BigNum", package: "swift-bignum"),
-        .product(name: "SwiftGraph", package: "SwiftGraph"),
         .product(name: "kvSIMD", package: "kvSIMD.swift"),
         .product(name: "AccelerateLinux", package: "accelerate-linux"),
         .product(name: "AtCoder", package: "swift-ac-library"),

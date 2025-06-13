@@ -1,6 +1,5 @@
 #if true
 @preconcurrency import Foundation
-import AccelerateLinux
 import AcCollections
 import AcFoundation
 import Algorithms
@@ -16,6 +15,12 @@ import PermutationModule
 import RedBlackTreeModule
 import simd
 import SwiftGraph
+
+#if canImport(Glibc)
+import AccelerateLinux
+#else
+import Accelerate
+#endif
 
 #if os(macOS) || os(iOS)
   print("Hello, Apple platform!")
@@ -67,7 +72,11 @@ let dict: Dictionary<Int,Double> = .init(uniqueKeysWithValues: treeDict.mapValue
 
 print(dict.map { $0 })
 
-let aa: Array<Character> = Array(readLine()!)
+//let aa: Array<Character> = Array(readLine()!)
+
+var bigNum = (BigRat(1) / BigRat(2)).rounded(.down)
+
+print(bigNum)
 
 #else
 
