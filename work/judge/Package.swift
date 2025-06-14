@@ -23,7 +23,7 @@ let package = Package(
     // atcoderでswiftが通用するためには欠かせません
     .package(
       url: "https://github.com/attaswift/BigInt",
-      exact: "5.5.1"),
+      exact: "5.6.0"),
     // SIMDは他言語に対するSwiftのアドバンテージなので搭載しています
     .package(
       url: "https://github.com/keyvariable/kvSIMD.swift",
@@ -36,8 +36,8 @@ let package = Package(
     .package(
       url: "https://github.com/narumij/swift-ac-library",
       // -Ouncheckedを利用するためにrevision指定としている
-      revision: "83b8ba7bd3e8060eefaf10b0a646e309c6605135"),
-//      exact: "0.1.14"),
+      revision: "7c6b28380e95cff5545e3e59b12eaeeab3cca757"),
+//      exact: "0.1.15"),
     // atcoderでswiftが通用するためには欠かせません
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
@@ -45,7 +45,7 @@ let package = Package(
     // atcoderでswiftが通用するためには欠かせません
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.26"),
+      exact: "0.1.27"),
   ],
   
   targets: [

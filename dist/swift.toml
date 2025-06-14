@@ -6,14 +6,13 @@ license = [ { name = 'Apache-2.0', url = 'https://github.com/swiftlang/swift/blo
 
 library.swift-algorithms = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-algorithms/blob/main/LICENSE.txt' },], version = '1.2.1' }
 library.swift-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-collections/blob/main/LICENSE.txt' },], version = '1.1.4' }
-
 library.swift-numerics = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-numerics/blob/main/LICENSE.txt' },], version = '1.0.3' }
-library.BigInt = { license = [ { name = 'MIT', url = 'https://github.com/attaswift/BigInt/blob/master/LICENSE.md' },], version = '5.5.1' }
+library.BigInt = { license = [ { name = 'MIT', url = 'https://github.com/attaswift/BigInt/blob/master/LICENSE.md' },], version = '5.6.0' }
 library.'kvSIMD.swift' = { license = [ { name = 'Apache-2.0', url = 'https://github.com/keyvariable/kvSIMD.swift/blob/main/LICENSE' },], version = '1.1.0' }
 library.accelerate-linux = { license = [ { name = 'MIT', url = 'https://github.com/brokenhandsio/accelerate-linux/blob/main/LICENSE' },], version = '8eda308' }
-library.swift-ac-library = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },], version = '83b8ba7' }
+library.swift-ac-library = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },], version = '7c6b283' }
 library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = '0.1.15' }
-library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.24' }
+library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.27' }
 
 library.libopenblas-dev = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/OpenMathLib/OpenBLAS/blob/develop/LICENSE' },], version = '0.3.26+ds-1' }
 library.libopenblas0 = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/OpenMathLib/OpenBLAS/blob/develop/LICENSE' },], indirect = true, version = '0.3.26+ds-1' }
@@ -148,7 +147,7 @@ let package = Package(
     // atcoderでswiftが通用するためには欠かせません
     .package(
       url: "https://github.com/attaswift/BigInt",
-      exact: "5.5.1"),
+      exact: "5.6.0"),
     // SIMDは他言語に対するSwiftのアドバンテージなので搭載しています
     .package(
       url: "https://github.com/keyvariable/kvSIMD.swift",
@@ -161,8 +160,8 @@ let package = Package(
     .package(
       url: "https://github.com/narumij/swift-ac-library",
       // -Ouncheckedを利用するためにrevision指定としている
-      revision: "83b8ba7bd3e8060eefaf10b0a646e309c6605135"),
-//      exact: "0.1.14"),
+      revision: "7c6b28380e95cff5545e3e59b12eaeeab3cca757"),
+//      exact: "0.1.15"),
     // atcoderでswiftが通用するためには欠かせません
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
@@ -170,7 +169,7 @@ let package = Package(
     // atcoderでswiftが通用するためには欠かせません
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.26"),
+      exact: "0.1.27"),
   ],
   
   targets: [
@@ -242,10 +241,8 @@ compile = '''
 
 . "$HOME/.local/share/swiftly/env.sh"
 
-# 環境変数はtoml側で記述
 # これがないとswift-ac-libraryのコンパイルが走ってしまう
 export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
-# 最終版では削ることを予定しています。
 
 swift build -c release
 
