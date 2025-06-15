@@ -3,6 +3,7 @@ import AcFoundation
 import BigInt
 
 extension static_modint: @retroactive IOIntegerConversionReadable {
+  // 入力範囲が0からmod未満までの範囲の場合のみ利用可
   public static func convert(from: Int) -> Self { .init(rawValue: UInt(bitPattern: from)) }
 }
 
