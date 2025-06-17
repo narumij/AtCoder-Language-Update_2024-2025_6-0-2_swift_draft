@@ -39,7 +39,10 @@ curl -O https://download.swift.org/swiftly/linux/swiftly-1.0.0-$(uname -m).tar.g
 
 # 公式 2. You can verify the integrity of the archive using the PGP signature.
 # This will download the signature, install the swift.org signatures into your keychain, and verify the signature.
-curl https://www.swift.org/keys/all-keys.asc | gpg --import -
+# curl https://www.swift.org/keys/all-keys.asc | gpg --import -
+# ジャッジでのインストール失敗のご指摘があり、curl --compressedを利用するように変更しました。
+# 再度問題が起きるようであれば、以下の3行は削って問題ありません。
+curl --compressed https://www.swift.org/keys/all-keys.asc | gpg --import -
 curl -O https://download.swift.org/swiftly/linux/swiftly-1.0.0-$(uname -m).tar.gz.sig
 gpg --verify swiftly-1.0.0-$(uname -m).tar.gz.sig swiftly-1.0.0-$(uname -m).tar.gz
 
