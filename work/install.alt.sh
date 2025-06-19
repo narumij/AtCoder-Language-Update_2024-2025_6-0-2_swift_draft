@@ -8,7 +8,8 @@ VERSION="${NUMBER}-RELEASE"
 PLATFORM="ubuntu24.04"
 TAR_FILE="swift-${VERSION}-${PLATFORM}.tar.gz"
 # https://download.swift.org/swift-6.1.2-release/ubuntu2404/swift-6.1.2-RELEASE/swift-6.1.2-RELEASE-ubuntu24.04.tar.gz
-TAR_URL="https://download.swift.org/swift-${NUMBER}-release/$(echo $PLATFORM | tr -d .)/swift-${VERSION}/${TAR_FILE}"
+#TAR_URL="https://download.swift.org/swift-${NUMBER}-release/$(echo $PLATFORM | tr -d .)/swift-${VERSION}/${TAR_FILE}"
+TAR_URL="https://download.swift.org/swift-6.1.2-release/ubuntu2404/swift-6.1.2-RELEASE/swift-6.1.2-RELEASE-ubuntu24.04.tar.gz"
 EXTRACTED="swift-${VERSION}-${PLATFORM}"
 
 echo "Download URL: ${TAR_URL}"
