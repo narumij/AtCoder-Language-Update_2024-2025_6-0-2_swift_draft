@@ -8,8 +8,11 @@ VERSION="6.1.2"
 RELEASE_VERSION="${VERSION}-RELEASE"
 PLATFORM="ubuntu24.04"
 TAF_FILE="swift-${RELEASE_VERSION}-${PLATFORM}.tar.gz"
-TAR_URL="https://download.swift.org/swift-${VERSION}-release/ubuntu2404/swift-${RELEASE_VERSION}/${RELEASE_TAR}"
+TAR_URL="https://download.swift.org/swift-${VERSION}-release/$(echo $PLATFORM | tr -d .)/swift-${RELEASE_VERSION}/${TAF_FILE}"
 EXTRACTED="swift-${RELEASE_VERSION}-${PLATFORM}"
+
+echo "Installing Swift ${VERSION} (${RELEASE_VERSION}) for ${PLATFORM}..."
+echo "Download URL: ${TAR_URL}"
 
 export DEBIAN_FRONTEND=noninteractive
 
