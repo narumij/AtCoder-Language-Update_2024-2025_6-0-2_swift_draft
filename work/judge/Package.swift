@@ -13,9 +13,9 @@ var swiftSettings: [SwiftSetting] = [
 let package = Package(
   name: "Main",
   
-  // @MainActorとRegexをmacOSローカルでパッケージを利用する場合に必要な設定値
-  platforms: [.macOS(.v13), .iOS(.v16), .tvOS(.v16), .watchOS(.v9), .macCatalyst(.v16)],
-  
+  // @MainActorとRegexとType PackをmacOSローカルでパッケージを利用する場合に必要な設定値
+  platforms: [.macOS(.v14), .iOS(.v17), .tvOS(.v17), .watchOS(.v10), .macCatalyst(.v17)],
+
   dependencies: [
     // swift 5.8.1時点での既存ライブラリで、ABC必須です
     .package(
@@ -50,7 +50,7 @@ let package = Package(
     // ABCに必須です。
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
-      exact: "0.1.15"),
+      exact: "0.1.16"),
     // ABCに必須です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
