@@ -51,7 +51,7 @@ sudo apt-get install -y \
              zlib1g-dev
 
 # 公式 2. Download the latest binary release.
-curl -s -O $TAR_URL
+curl -s -O "https://download.swift.org/swift-6.1.2-release/ubuntu2404/swift-6.1.2-RELEASE/swift-6.1.2-RELEASE-ubuntu24.04.tar.gz"
 
 # 公式 3. Import and verify the PGP signature:
 # $ gpg --keyserver hkp://keyserver.ubuntu.com \
