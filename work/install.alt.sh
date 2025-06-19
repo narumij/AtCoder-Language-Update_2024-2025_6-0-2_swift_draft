@@ -3,15 +3,14 @@
 # Alternate Install Options > Tarball > Instruction
 # https://www.swift.org/install/linux/tarball/
 
-# https://download.swift.org/swift-6.1.2-release/ubuntu2404/swift-6.1.2-RELEASE/swift-6.1.2-RELEASE-ubuntu24.04.tar.gz
-VERSION="6.1.2"
-RELEASE_VERSION="${VERSION}-RELEASE"
+NUMBER="6.1.2"
+VERSION="${NUMBER}-RELEASE"
 PLATFORM="ubuntu24.04"
-TAF_FILE="swift-${RELEASE_VERSION}-${PLATFORM}.tar.gz"
-TAR_URL="https://download.swift.org/swift-${VERSION}-release/$(echo $PLATFORM | tr -d .)/swift-${RELEASE_VERSION}/${TAF_FILE}"
-EXTRACTED="swift-${RELEASE_VERSION}-${PLATFORM}"
+TAR_FILE="swift-${VERSION}-${PLATFORM}.tar.gz"
+# https://download.swift.org/swift-6.1.2-release/ubuntu2404/swift-6.1.2-RELEASE/swift-6.1.2-RELEASE-ubuntu24.04.tar.gz
+TAR_URL="https://download.swift.org/swift-${VERSION}-release/$(echo $PLATFORM | tr -d .)/swift-${VERSION}/${TAR_FILE}"
+EXTRACTED="swift-${VERSION}-${PLATFORM}"
 
-echo "Installing Swift ${VERSION} (${RELEASE_VERSION}) for ${PLATFORM}..."
 echo "Download URL: ${TAR_URL}"
 
 export DEBIAN_FRONTEND=noninteractive
@@ -61,7 +60,7 @@ curl -s -O $TAR_URL
 # この手順は省略します
 
 # 公式 4. Extract the archive with the following command:
-tar xzf $TAF_FILE
+tar xzf $TAR_FILE
 
 # 公式 5. Add the Swift toolchain to your path as follows:
 # $ export PATH=/path/to/usr/bin:"${PATH}"
@@ -73,7 +72,9 @@ tar xzf $TAF_FILE
 ./${EXTRACTED}/usr/bin/swift --version
 
 # AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
-rm $TAF_FILE
+rm $TAR_FILE
+
+ls -al
 
 # accelerate-linuxのビルドに必要なパッケージをインストールします
 sudo apt-get install -y \
