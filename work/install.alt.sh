@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# 現在の公式手順、swiftlyを利用したインストール方法に問題が生じたため、
+# 旧公式手順に従ってインストールを行います。
 # Alternate Install Options > Tarball > Instruction
 # https://www.swift.org/install/linux/tarball/
 
@@ -9,6 +11,7 @@ PLATFORM="ubuntu24.04"
 TAR_FILE="swift-${VERSION}-${PLATFORM}.tar.gz"
 # https://download.swift.org/swift-6.1.2-release/ubuntu2404/swift-6.1.2-RELEASE/swift-6.1.2-RELEASE-ubuntu24.04.tar.gz
 TAR_URL="https://download.swift.org/swift-${NUMBER}-release/$(echo $PLATFORM | tr -d .)/swift-${VERSION}/${TAR_FILE}"
+
 SWIFT_PATH="swift-${VERSION}-${PLATFORM}/usr/bin"
 
 echo "Download URL: ${TAR_URL}"
@@ -58,8 +61,6 @@ curl -s -O $TAR_URL
 #           'A62A E125 BBBF BB96 A6E0  42EC 925C C1CC ED3D 1561'\
 #           'E813 C892 820A 6FA1 3755  B268 F167 DF1A CF9C E069'
 # この手順は省略します
-
-ls -al
 
 # 公式 4. Extract the archive with the following command:
 tar xzf $TAR_FILE
