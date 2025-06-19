@@ -1,17 +1,15 @@
 #!/bin/bash
 
-echo "$(uname -m) $(uname -o) $(uname -r) $(uname -v) $(uname -s)"
+# Alternate Install Options > Tarball > Instruction
+# https://www.swift.org/install/linux/tarball/
 
-PLATFORM=ubuntu24.04
-LANG_VERSION=6.1.2
-OS_ARCH_SUFFIX="" # arm64等の場合に指定する
-
-SWIFT_BRANCH=swift-${LANG_VERSION}-release
-SWIFT_VERSION=swift-${LANG_VERSION}-RELEASE
-SWIFT_WEBROOT=https://download.swift.org
-SWIFT_WEBDIR="$SWIFT_WEBROOT/$SWIFT_BRANCH/$(echo $PLATFORM | tr -d .)$OS_ARCH_SUFFIX"
-SWIFT_TAR_BALL="$SWIFT_VERSION-$PLATFORM$OS_ARCH_SUFFIX"
-SWIFT_TAR_BALL_URL="$SWIFT_WEBDIR/$SWIFT_VERSION/$SWIFT_TAR_BALL.tar.gz"
+# https://download.swift.org/swift-6.1.2-release/ubuntu2404/swift-6.1.2-RELEASE/swift-6.1.2-RELEASE-ubuntu24.04.tar.gz
+VERSION="6.1.2"
+RELEASE_VERSION="${VERSION}-RELEASE"
+PLATFORM="ubuntu24.04"
+TAF_FILE="swift-${RELEASE_VERSION}-${PLATFORM}.tar.gz"
+TAR_URL="https://download.swift.org/swift-${VERSION}-release/ubuntu2404/swift-${RELEASE_VERSION}/${RELEASE_TAR}"
+EXTRACTED="swift-${RELEASE_VERSION}-${PLATFORM}"
 
 export DEBIAN_FRONTEND=noninteractive
 
@@ -50,7 +48,7 @@ sudo apt-get install -y \
              zlib1g-dev
 
 # 公式 2. Download the latest binary release.
-curl -s -O $SWIFT_TAR_BALL_URL
+curl -s -O $TAR_URL
 
 # 公式 3. Import and verify the PGP signature:
 # $ gpg --keyserver hkp://keyserver.ubuntu.com \
@@ -60,7 +58,7 @@ curl -s -O $SWIFT_TAR_BALL_URL
 # この手順は省略します
 
 # 公式 4. Extract the archive with the following command:
-tar xzf $SWIFT_TAR_BALL.tar.gz
+tar xzf $TAF_FILE
 
 # 公式 5. Add the Swift toolchain to your path as follows:
 # $ export PATH=/path/to/usr/bin:"${PATH}"
@@ -69,10 +67,10 @@ tar xzf $SWIFT_TAR_BALL.tar.gz
 # 公式のインストール手順は以上です
 
 # バージョン番号を出力し、ログでも処理系バージョンを確認する
-./${SWIFT_TAR_BALL}/usr/bin/swift --version
+./${EXTRACTED}/usr/bin/swift --version
 
 # AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
-rm $SWIFT_TAR_BALL.tar.gz
+rm $TAF_FILE
 
 # accelerate-linuxのビルドに必要なパッケージをインストールします
 sudo apt-get install -y \
@@ -91,7 +89,7 @@ sudo apt-get install -y \
 # コンパイル環境の構築では、AtCoderで使用するSwiftパッケージの初期化と依存パッケージの追加、そして事前ビルドを行います
 
 # ジャッジがビルドを行う作業パッケージの初期化を行います。パッケージ名はMain、実行可能なプログラムとして初期化します
-./${SWIFT_TAR_BALL}/usr/bin/swift package init --name Main --type executable
+./${EXTRACTED}/usr/bin/swift package init --name Main --type executable
 
 # Package.swiftを更新し、AtCoderジャッジで使用する依存パッケージを作業パッケージに追加します
 cat << 'EOF' > Package.swift
@@ -176,13 +174,13 @@ let package = Package(
 EOF
 
 # 念の為に、クリーニングします
-./${SWIFT_TAR_BALL}/usr/bin/swift package clean
+./${EXTRACTED}/usr/bin/swift package clean
 
 # 依存パッケージの解決を行います
-./${SWIFT_TAR_BALL}/usr/bin/swift package resolve
+./${EXTRACTED}/usr/bin/swift package resolve
 
 # 依存パッケージのビルドを行います
-./${SWIFT_TAR_BALL}/usr/bin/swift build -c release
+./${EXTRACTED}/usr/bin/swift build -c release
 
 # Hello, world!を出力
 .build/release/Main
