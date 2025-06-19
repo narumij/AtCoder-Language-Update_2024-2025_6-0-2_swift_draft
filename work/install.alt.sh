@@ -8,9 +8,8 @@ VERSION="${NUMBER}-RELEASE"
 PLATFORM="ubuntu24.04"
 TAR_FILE="swift-${VERSION}-${PLATFORM}.tar.gz"
 # https://download.swift.org/swift-6.1.2-release/ubuntu2404/swift-6.1.2-RELEASE/swift-6.1.2-RELEASE-ubuntu24.04.tar.gz
-#TAR_URL="https://download.swift.org/swift-${NUMBER}-release/$(echo $PLATFORM | tr -d .)/swift-${VERSION}/${TAR_FILE}"
-TAR_URL="https://download.swift.org/swift-6.1.2-release/ubuntu2404/swift-6.1.2-RELEASE/swift-6.1.2-RELEASE-ubuntu24.04.tar.gz"
-EXTRACTED="swift-${VERSION}-${PLATFORM}"
+TAR_URL="https://download.swift.org/swift-${NUMBER}-release/$(echo $PLATFORM | tr -d .)/swift-${VERSION}/${TAR_FILE}"
+SWIFT_PATH="swift-${VERSION}-${PLATFORM}/usr/bin"
 
 echo "Download URL: ${TAR_URL}"
 
@@ -51,7 +50,7 @@ sudo apt-get install -y \
              zlib1g-dev
 
 # 公式 2. Download the latest binary release.
-curl -s -O "https://download.swift.org/swift-6.1.2-release/ubuntu2404/swift-6.1.2-RELEASE/swift-6.1.2-RELEASE-ubuntu24.04.tar.gz"
+curl -s -O $TAR_URL
 
 # 公式 3. Import and verify the PGP signature:
 # $ gpg --keyserver hkp://keyserver.ubuntu.com \
@@ -72,7 +71,7 @@ tar xzf $TAR_FILE
 # 公式のインストール手順は以上です
 
 # バージョン番号を出力し、ログでも処理系バージョンを確認する
-./${EXTRACTED}/usr/bin/swift --version
+./${SWIFT_PATH}/swift --version
 
 # AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
 rm $TAR_FILE
@@ -96,7 +95,7 @@ sudo apt-get install -y \
 # コンパイル環境の構築では、AtCoderで使用するSwiftパッケージの初期化と依存パッケージの追加、そして事前ビルドを行います
 
 # ジャッジがビルドを行う作業パッケージの初期化を行います。パッケージ名はMain、実行可能なプログラムとして初期化します
-./${EXTRACTED}/usr/bin/swift package init --name Main --type executable
+./${SWIFT_PATH}/swift package init --name Main --type executable
 
 # Package.swiftを更新し、AtCoderジャッジで使用する依存パッケージを作業パッケージに追加します
 cat << 'EOF' > Package.swift
@@ -181,13 +180,13 @@ let package = Package(
 EOF
 
 # 念の為に、クリーニングします
-./${EXTRACTED}/usr/bin/swift package clean
+./${SWIFT_PATH}/swift package clean
 
 # 依存パッケージの解決を行います
-./${EXTRACTED}/usr/bin/swift package resolve
+./${SWIFT_PATH}/swift package resolve
 
 # 依存パッケージのビルドを行います
-./${EXTRACTED}/usr/bin/swift build -c release
+./${SWIFT_PATH}/swift build -c release
 
 # Hello, world!を出力
 .build/release/Main
