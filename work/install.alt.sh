@@ -59,6 +59,8 @@ curl -s -O $TAR_URL
 #           'E813 C892 820A 6FA1 3755  B268 F167 DF1A CF9C E069'
 # この手順は省略します
 
+ls -al
+
 # 公式 4. Extract the archive with the following command:
 tar xzf $TAR_FILE
 
