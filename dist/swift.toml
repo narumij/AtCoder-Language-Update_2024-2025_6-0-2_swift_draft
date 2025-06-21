@@ -10,8 +10,8 @@ library.swift-numerics = { license = [ { name = 'Apache-2.0', url = 'https://git
 library.BigInt = { license = [ { name = 'MIT', url = 'https://github.com/attaswift/BigInt/blob/master/LICENSE.md' },], version = '5.6.0' }
 library.'kvSIMD.swift' = { license = [ { name = 'Apache-2.0', url = 'https://github.com/keyvariable/kvSIMD.swift/blob/main/LICENSE' },], version = '1.1.0' }
 library.accelerate-linux = { license = [ { name = 'MIT', url = 'https://github.com/brokenhandsio/accelerate-linux/blob/main/LICENSE' },], version = '8eda308' }
-library.swift-ac-library = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },], version = '1b0ae46' }
-library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = '66de8fd' }
+library.swift-ac-library = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },], version = 'afc5997' }
+library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = '4adcebd' }
 library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.29' }
 
 library.libopenblas-dev = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/OpenMathLib/OpenBLAS/blob/develop/LICENSE' },], version = '0.3.26+ds-1' }
@@ -101,7 +101,7 @@ tar xzf $TAR_FILE
 # バージョン番号を出力し、ログでも処理系バージョンを確認する
 ./${SWIFT_PATH}/swift --version
 
-# AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
+# 運営からの不要なファイル削除に関する指示に従い、ダウンロードしたファイルを削除します
 rm $TAR_FILE
 
 ls -al
@@ -131,7 +131,8 @@ cat << 'EOF' > Package.swift
 import PackageDescription
 
 #if true
-var swiftSettings: [SwiftSetting] = []
+var swiftSettings: [SwiftSetting] = [
+]
 #else
 // 6.2以降でSE-0466を利用する
 var swiftSettings: [SwiftSetting] = [
@@ -174,14 +175,14 @@ let package = Package(
     .package(
       url: "https://github.com/narumij/swift-ac-library",
       // -Ouncheckedを利用するためにrevision指定としている
-      revision: "1b0ae46960078e45f03a7c3f07906b828d120258"),
-//      exact: "0.1.16"),
+      revision: "afc5997f42ee814fb5c7f4c383da25e5051c9ebd"),
+//      exact: "0.1.17"),
     // ABCに必須です。
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
       // .unsafeFlags(["-std=c++17"])に対するビルド拒否を迂回するため、revision指定としている
-      revision: "66de8fd06e003791b87c8b3a8e0172267a805bd5"),
-//      exact: "0.1.18"),
+      // 0.1.21
+      revision: "ab084b9c835c38e1f08311c6f80315ac965aa714"),
     // ABCに必須です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
@@ -215,7 +216,7 @@ EOF
 # 依存パッケージの解決を行います
 ./${SWIFT_PATH}/swift package resolve
 
-# 依存パッケージのビルドを行います
+# 実行可能パッケージのビルドを行います
 ./${SWIFT_PATH}/swift build -c release
 
 # Hello, world!を出力

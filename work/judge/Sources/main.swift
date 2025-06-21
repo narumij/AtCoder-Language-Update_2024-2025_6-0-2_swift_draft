@@ -1,10 +1,10 @@
 import AcFoundation
 
-let (_,M) = (Int.stdin, Int.stdin)
-nonisolated(unsafe) var m: [Pack<Int,Int>: Int] = [:]
-nonisolated(unsafe) var ans = 0
+let (_, M): (Int, Int) = stdin()
+var m: [Pack<Int, Int>: Int] = [:]
+var ans = 0
 for _ in 0 ..< M {
-  var (u,v) = (Int.stdin, Int.stdin)
+  var (u,v): (Int, Int) = stdin()
   if u == v {
     ans += 1
     continue
@@ -19,4 +19,4 @@ m.forEach {
 }
 print(ans)
 
-print(gcd(12,16))
+print(gcd(12, 16))

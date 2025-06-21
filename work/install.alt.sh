@@ -74,7 +74,7 @@ tar xzf $TAR_FILE
 # バージョン番号を出力し、ログでも処理系バージョンを確認する
 ./${SWIFT_PATH}/swift --version
 
-# AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
+# 運営からの不要なファイル削除に関する指示に従い、ダウンロードしたファイルを削除します
 rm $TAR_FILE
 
 ls -al
@@ -104,7 +104,8 @@ cat << 'EOF' > Package.swift
 import PackageDescription
 
 #if true
-var swiftSettings: [SwiftSetting] = []
+var swiftSettings: [SwiftSetting] = [
+]
 #else
 // 6.2以降でSE-0466を利用する
 var swiftSettings: [SwiftSetting] = [
@@ -147,14 +148,14 @@ let package = Package(
     .package(
       url: "https://github.com/narumij/swift-ac-library",
       // -Ouncheckedを利用するためにrevision指定としている
-      revision: "1b0ae46960078e45f03a7c3f07906b828d120258"),
-//      exact: "0.1.16"),
+      revision: "afc5997f42ee814fb5c7f4c383da25e5051c9ebd"),
+//      exact: "0.1.17"),
     // ABCに必須です。
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
       // .unsafeFlags(["-std=c++17"])に対するビルド拒否を迂回するため、revision指定としている
-      revision: "66de8fd06e003791b87c8b3a8e0172267a805bd5"),
-//      exact: "0.1.18"),
+      revision: "ab084b9c835c38e1f08311c6f80315ac965aa714"),
+//      exact: "0.1.21"),
     // ABCに必須です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
@@ -188,7 +189,7 @@ EOF
 # 依存パッケージの解決を行います
 ./${SWIFT_PATH}/swift package resolve
 
-# 依存パッケージのビルドを行います
+# 実行可能パッケージのビルドを行います
 ./${SWIFT_PATH}/swift build -c release
 
 # Hello, world!を出力
