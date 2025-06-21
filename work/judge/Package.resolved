@@ -1,5 +1,5 @@
 {
-  "originHash" : "1a1c2e207a7258d7c3dd9834cca359a435780aa9c22ecba884928a7a6534d1eb",
+  "originHash" : "04200678b15e8cbae84810716adfc1ea1ac5ab5920927e2e8e101c264ef089ba",
   "pins" : [
     {
       "identity" : "accelerate-linux",
@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-collections",
       "state" : {
-        "revision" : "8e497ca0a478a07dc65a300f793f7e80c9400d88",
-        "version" : "0.1.28"
+        "revision" : "a04f9ff106aa3bca8e854dd8f0509fa47794dd70",
+        "version" : "0.1.29"
       }
     },
     {
@@ -41,8 +41,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-foundation",
       "state" : {
-        "revision" : "93d4bc98f055a0165f6bc6dff6b073b299c97926",
-        "version" : "0.1.16"
+        "revision" : "66de8fd06e003791b87c8b3a8e0172267a805bd5"
       }
     },
     {
@@ -50,7 +49,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-library",
       "state" : {
-        "revision" : "7c6b28380e95cff5545e3e59b12eaeeab3cca757"
+        "revision" : "1b0ae46960078e45f03a7c3f07906b828d120258"
       }
     },
     {

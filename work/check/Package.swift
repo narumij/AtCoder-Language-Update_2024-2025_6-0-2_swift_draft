@@ -5,14 +5,14 @@ import PackageDescription
 
 let package = Package(
     name: "check",
-    
+    platforms: [.macOS(.v14), .iOS(.v17), .tvOS(.v17), .watchOS(.v10), .macCatalyst(.v17)],
+
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "check",
             targets: ["check"]),
     ],
-    
     
     dependencies: [
       // swift 5.8.1時点での既存ライブラリで、必須です
@@ -45,9 +45,9 @@ let package = Package(
         // -Ouncheckedを利用するためにrevision指定としている
         from: "0.1.12"),
       // atcoderでswiftが通用するためには欠かせません
-      .package(
-        url: "https://github.com/narumij/swift-ac-foundation",
-        from: "0.1.15"),
+//      .package(
+//        url: "https://github.com/narumij/swift-ac-foundation",
+//        from: "0.1.15"),
       // atcoderでswiftが通用するためには欠かせません
       .package(
         url: "https://github.com/narumij/swift-ac-collections",
@@ -67,7 +67,7 @@ let package = Package(
               .product(name: "kvSIMD", package: "kvSIMD.swift"),
               .product(name: "AccelerateLinux", package: "accelerate-linux"),
               .product(name: "AtCoder", package: "swift-ac-library"),
-              .product(name: "AcFoundation", package: "swift-ac-foundation"),
+//              .product(name: "AcFoundation", package: "swift-ac-foundation"),
               .product(name: "AcCollections", package: "swift-ac-collections"),
             ]),
         .testTarget(

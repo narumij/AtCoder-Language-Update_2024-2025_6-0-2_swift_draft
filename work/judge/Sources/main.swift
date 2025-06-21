@@ -1,26 +1,22 @@
-import Foundation
+import AcFoundation
 
-let N = Int(readLine()!)!
-
-var d = repeatElement(0, count: N) + []
-
-var A = readLine()!.split(separator: " ").compactMap { Int($0) }.map { $0 - 1 }
-
-for (i,a) in A.enumerated() {
-  d[a] = i
-}
-
-var ans: [(Int,Int)] = []
-for i in 0 ..< N {
-  if A[i] != i {
-    let p = d[i]
-    ans.append((i,p))
-    d.swapAt(A[i], A[p])
-    A.swapAt(i, p)
+let (_,M) = (Int.stdin, Int.stdin)
+nonisolated(unsafe) var m: [Pack<Int,Int>: Int] = [:]
+nonisolated(unsafe) var ans = 0
+for _ in 0 ..< M {
+  var (u,v) = (Int.stdin, Int.stdin)
+  if u == v {
+    ans += 1
+    continue
   }
+  if u > v {
+    swap(&u, &v)
+  }
+  m[.init(u, v), default: 0] += 1
 }
+m.forEach {
+  ans += $0.value - 1
+}
+print(ans)
 
-print(ans.count)
-ans.forEach {
-  print($0.0 + 1, $0.1 + 1)
-}
+print(gcd(12,16))
