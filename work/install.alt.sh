@@ -148,14 +148,14 @@ let package = Package(
     .package(
       url: "https://github.com/narumij/swift-ac-library",
       // -Ouncheckedを利用するためにrevision指定としている
+      // tag - 0.1.17
       revision: "afc5997f42ee814fb5c7f4c383da25e5051c9ebd"),
-//      exact: "0.1.17"),
     // ABCに必須です。
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
       // .unsafeFlags(["-std=c++17"])に対するビルド拒否を迂回するため、revision指定としている
-      revision: "ab084b9c835c38e1f08311c6f80315ac965aa714"),
-//      exact: "0.1.21"),
+      // branch main
+      revision: "c15f388d13ea3a64b2d2745013bf793aed0a2bdf"),
     // ABCに必須です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",

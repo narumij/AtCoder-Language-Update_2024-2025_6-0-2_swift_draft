@@ -52,8 +52,8 @@ let package = Package(
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
       // .unsafeFlags(["-std=c++17"])に対するビルド拒否を迂回するため、revision指定としている
-      // tag - 0.1.21
-      revision: "ab084b9c835c38e1f08311c6f80315ac965aa714"),
+      // branch - main
+      revision: "8e7decb92dc841fd4a9b7cb8cbc085db38b6bdf8"),
     // ABCに必須です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
