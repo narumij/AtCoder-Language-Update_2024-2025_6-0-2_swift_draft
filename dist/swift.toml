@@ -219,7 +219,7 @@ EOF
 # 実行可能パッケージのビルドを行います
 ./${SWIFT_PATH}/swift build -c release 1>&2 |& tee /dev/null
 
-FILE=".build/release/Main_"
+FILE=".build/release/Main"
 
 if [ ! -f "$FILE" ]; then
   echo "Error: ファイルが見つかりません: $FILE" >&2
