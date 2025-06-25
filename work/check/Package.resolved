@@ -33,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-collections",
       "state" : {
-        "revision" : "8e497ca0a478a07dc65a300f793f7e80c9400d88",
-        "version" : "0.1.28"
+        "revision" : "a04f9ff106aa3bca8e854dd8f0509fa47794dd70",
+        "version" : "0.1.29"
       }
     },
     {
@@ -43,7 +43,7 @@
       "location" : "https://github.com/narumij/swift-ac-foundation",
       "state" : {
         "branch" : "main",
-        "revision" : "d59b4651e642c0ffbe392eb8ded85713fd122f0a"
+        "revision" : "9fff582e068e1d2a4c0f92246a6143d94d40c63b"
       }
     },
     {
@@ -51,8 +51,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-library",
       "state" : {
-        "revision" : "1b0ae46960078e45f03a7c3f07906b828d120258",
-        "version" : "0.1.16"
+        "revision" : "afc5997f42ee814fb5c7f4c383da25e5051c9ebd",
+        "version" : "0.1.17"
       }
     },
     {
