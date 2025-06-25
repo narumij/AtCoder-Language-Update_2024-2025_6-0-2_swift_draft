@@ -154,8 +154,8 @@ let package = Package(
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
       // .unsafeFlags(["-std=c++17"])に対するビルド拒否を迂回するため、revision指定としている
-      // branch main
-      revision: "c15f388d13ea3a64b2d2745013bf793aed0a2bdf"),
+      // branch - main
+      revision: "9fff582e068e1d2a4c0f92246a6143d94d40c63b"),
     // ABCに必須です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
@@ -190,10 +190,17 @@ EOF
 ./${SWIFT_PATH}/swift package resolve
 
 # 実行可能パッケージのビルドを行います
-./${SWIFT_PATH}/swift build -c release
+./${SWIFT_PATH}/swift build -c release 1>&2 |& tee /dev/null
+
+FILE=".build/release/Main"
+
+if [ ! -f "$FILE" ]; then
+  echo "Error: ファイルが見つかりません: $FILE" >&2
+  exit 1
+fi
 
 # Hello, world!を出力
-.build/release/Main
+FILE
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 rm .build/release/Main
