@@ -249,6 +249,13 @@ export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 # コンパイル所要時間の目安はhello wolrdで5秒程度。
 # それを上回る場合、差分コンパイルに問題が生じている可能性があります。
 
+FILE=".build/release/Main"
+
+if [ ! -f "$FILE" ]; then
+  echo "Error: Failed to build file '$FILE'" >&2
+  exit 1
+fi
+
 '''
 
 environment.SWIFT_BACKTRACE = 'enable=yes,output-to=stderr,interactive=no'
