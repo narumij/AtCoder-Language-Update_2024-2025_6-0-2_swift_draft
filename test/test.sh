@@ -23,11 +23,15 @@ echo '00) ############'
 
 tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash
 
+echo "終了コード: $?"
+
 echo '000) ############'
 
 swift package clean
 
 tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash
+
+echo "終了コード: $?"
 
 echo '0) ############'
 
@@ -110,6 +114,8 @@ rm .build/release/Main
 cp test/stdio/main.swift Sources/main.swift
 
 tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash              
+
+echo "終了コード: $?"
 
 cat << 'EOF' | .build/release/Main
 EOF
