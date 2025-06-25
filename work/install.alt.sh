@@ -200,7 +200,7 @@ if [ ! -f "$FILE" ]; then
 fi
 
 # Hello, world!を出力
-FILE
+$FILE
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 rm .build/release/Main
