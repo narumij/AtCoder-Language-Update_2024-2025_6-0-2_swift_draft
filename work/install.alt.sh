@@ -190,12 +190,12 @@ EOF
 ./${SWIFT_PATH}/swift package resolve
 
 # 実行可能パッケージのビルドを行います
-./${SWIFT_PATH}/swift build -c release 1>&2 |& tee /dev/null
+./${SWIFT_PATH}/swift build --build-system native -c release 1>&2 |& tee /dev/null
 
-FILE=".build/release/Main_"
+FILE=".build/release/Main"
 
 if [ ! -f "$FILE" ]; then
-  echo "Error: ファイルが見つかりません: $FILE" >&2
+  echo "Error: 初回のビルドに失敗しました: $FILE" >&2
   exit 1
 fi
 

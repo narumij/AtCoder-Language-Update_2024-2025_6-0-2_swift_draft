@@ -6,7 +6,8 @@ SWIFT_PATH="swift-${VERSION}-${PLATFORM}/usr/bin"
 # これがないとswift-ac-libraryのコンパイルが走ってしまう
 export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 
-./${SWIFT_PATH}/swift build -c release
+# ./${SWIFT_PATH}/swift build -c release
+./${SWIFT_PATH}/swift build --build-system native -c release 1>&2 |& tee /dev/null
 
 # コンパイル所要時間の目安はhello wolrdで5秒程度。
 # それを上回る場合、差分コンパイルに問題が生じている可能性があります。
