@@ -96,54 +96,63 @@ cat << 'EOF' > Package.swift
 // swift-tools-version: 6.1
 import PackageDescription
 
+#if true
+var swiftSettings: [SwiftSetting] = [
+]
+#else
+// 6.2以降でSE-0466を利用する
+var swiftSettings: [SwiftSetting] = [
+  .defaultIsolation(.mainActor)
+]
+#endif
+
 let package = Package(
   name: "Main",
   
-  // @MainActorとRegexをmacOSローカルでパッケージを利用する場合に必要な設定値
-  platforms: [.macOS(.v13), .iOS(.v16), .tvOS(.v16), .watchOS(.v9), .macCatalyst(.v16)],
-  
+  // @MainActorとRegexとType PackをmacOSローカルでパッケージを利用する場合に必要な設定値
+  platforms: [.macOS(.v14), .iOS(.v17), .tvOS(.v17), .watchOS(.v10), .macCatalyst(.v17)],
+
   dependencies: [
+    // swift 5.8.1時点での既存ライブラリで、ABC必須です
     .package(
       url: "https://github.com/apple/swift-collections",
       exact: "1.1.4"),
+    // swift 5.8.1時点での既存ライブラリです。ABC必須ではないですが、まれに有用でAC実績もあります。
     .package(
       url: "https://github.com/apple/swift-algorithms",
       exact: "1.2.1"),
+    // swift 5.8.1時点での既存ライブラリですが、実数及び複素数であり、ABC必須ではありません。
     .package(
       url: "https://github.com/apple/swift-numerics",
       exact: "1.0.3"),
-    .package(
-      url: "https://github.com/apple/swift-atomics",
-      exact: "1.2.0"),
-    .package(
-      url: "https://github.com/apple/swift-system",
-      exact: "1.4.2"),
+    // 多倍長整数です。ABC必須です。
     .package(
       url: "https://github.com/attaswift/BigInt",
-      exact: "5.5.1"),
-    .package(
-      url: "https://github.com/dankogai/swift-bignum",
-      exact: "5.4.1"),
+      exact: "5.6.0"),
+    // 2次元のSIMDはABCのマス目問題で有用で、まれに3次元のSIMDでABC提出の高速化が可能な場合があります。
     .package(
       url: "https://github.com/keyvariable/kvSIMD.swift",
       exact: "1.1.0"),
+    // BLAS及びLAPACKなので、ABC必須ではありません。
     .package(
       url: "https://github.com/brokenhandsio/accelerate-linux",
-      revision: "d6e80e8bc924e591e3ce68080e95a8046df1515a"),
-    .package(
-      url: "https://github.com/davecom/SwiftGraph",
-      exact: "3.1.0"),
+      revision: "8eda308ea3129130e90e5c01fc437a4c5d2ca278"),
+    // ABCに必須です。
     .package(
       url: "https://github.com/narumij/swift-ac-library",
       // -Ouncheckedを利用するためにrevision指定としている
-      revision: "34c92e003a0ee0f42ced76c61c2bac6c6dac0d0d"),
-//      exact: "0.1.10"),
+      // tag - 0.1.17
+      revision: "afc5997f42ee814fb5c7f4c383da25e5051c9ebd"),
+    // ABCに必須です。
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
-      exact: "0.1.15"),
+      // .unsafeFlags(["-std=c++17"])に対するビルド拒否を迂回するため、revision指定としている
+      // branch - main
+      revision: "9fff582e068e1d2a4c0f92246a6143d94d40c63b"),
+    // ABCに必須です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.23"),
+      exact: "0.1.29"),
   ],
   
   targets: [
@@ -153,18 +162,15 @@ let package = Package(
         .product(name: "Collections", package: "swift-collections"),
         .product(name: "Algorithms", package: "swift-algorithms"),
         .product(name: "Numerics", package: "swift-numerics"),
-        .product(name: "Atomics", package: "swift-atomics"),
-        .product(name: "SystemPackage", package: "swift-system"),
         .product(name: "BigInt", package: "BigInt"),
-        .product(name: "BigNum", package: "swift-bignum"),
-        .product(name: "SwiftGraph", package: "SwiftGraph"),
         .product(name: "kvSIMD", package: "kvSIMD.swift"),
         .product(name: "AccelerateLinux", package: "accelerate-linux"),
         .product(name: "AtCoder", package: "swift-ac-library"),
         .product(name: "AcFoundation", package: "swift-ac-foundation"),
         .product(name: "AcCollections", package: "swift-ac-collections"),
       ],
-      path: "Sources"
+      path: "Sources",
+      swiftSettings: swiftSettings
     )
   ]
 )
@@ -179,6 +185,7 @@ mkdir Script
 # 依存パッケージの解決とパッケージのビルドを事前に行います
 ./${SWIFT_TAR_BALL}/usr/bin/swift \
   build \
+  --build-system native \
   -c release \
   -v 1>&2 |& tee /dev/null
 
@@ -188,6 +195,7 @@ sed -i 's/Hello/Hallo/' Sources/main.swift
 # 差分コンパイルを実施し、ビルドログを取得します
 ./${SWIFT_TAR_BALL}/usr/bin/swift \
   build \
+  --build-system native \
   -c release \
   -v > build.log
 
@@ -208,6 +216,16 @@ rm .build/release/Main
 
 # 差分ビルドスクリプトを実行します
 bash ./Script/build.sh
+
+FILE=".build/release/Main"
+
+if [ ! -f "$FILE" ]; then
+  echo "Error: 初回のビルドに失敗しました: $FILE" >&2
+  exit 1
+fi
+
+# Hello, world!を出力
+$FILE
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 rm .build/release/Main
