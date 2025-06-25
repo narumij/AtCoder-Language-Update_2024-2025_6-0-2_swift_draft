@@ -222,7 +222,7 @@ EOF
 FILE=".build/release/Main"
 
 if [ ! -f "$FILE" ]; then
-  echo "Error: ファイルが見つかりません: $FILE" >&2
+  echo "Error: 初回のビルドに失敗しました: $FILE" >&2
   exit 1
 fi
 
