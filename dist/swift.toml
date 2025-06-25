@@ -6,18 +6,13 @@ license = [ { name = 'Apache-2.0', url = 'https://github.com/swiftlang/swift/blo
 
 library.swift-algorithms = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-algorithms/blob/main/LICENSE.txt' },], version = '1.2.1' }
 library.swift-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-collections/blob/main/LICENSE.txt' },], version = '1.1.4' }
-
 library.swift-numerics = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-numerics/blob/main/LICENSE.txt' },], version = '1.0.3' }
-library.swift-atomics = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-atomics/blob/main/LICENSE.txt' },], version = '1.2.0' }
-library.swift-system = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-system/blob/main/LICENSE.txt' },], version = '1.4.2' }
-library.BigInt = { license = [ { name = 'MIT', url = 'https://github.com/attaswift/BigInt/blob/master/LICENSE.md' },], version = '5.5.1' }
-library.swift-bignum = { license = [ { name = 'MIT', url = 'https://github.com/dankogai/swift-bignum/blob/main/LICENSE' },], version = '5.4.1' }
-library.SwiftGraph = { license = [ { name = 'Apache-2.0', url = 'https://github.com/davecom/SwiftGraph/blob/master/LICENSE' },], version = '3.1.0' }
+library.BigInt = { license = [ { name = 'MIT', url = 'https://github.com/attaswift/BigInt/blob/master/LICENSE.md' },], version = '5.6.0' }
 library.'kvSIMD.swift' = { license = [ { name = 'Apache-2.0', url = 'https://github.com/keyvariable/kvSIMD.swift/blob/main/LICENSE' },], version = '1.1.0' }
-library.accelerate-linux = { license = [ { name = 'MIT', url = 'https://github.com/brokenhandsio/accelerate-linux/blob/main/LICENSE' },], version = 'd6e80e8' }
-library.swift-ac-library = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },], version = '29f52ea' }
-library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = '0.1.15' }
-library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.20' }
+library.accelerate-linux = { license = [ { name = 'MIT', url = 'https://github.com/brokenhandsio/accelerate-linux/blob/main/LICENSE' },], version = '8eda308' }
+library.swift-ac-library = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },], version = 'afc5997' }
+library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = '9fff582' }
+library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.29' }
 
 library.libopenblas-dev = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/OpenMathLib/OpenBLAS/blob/develop/LICENSE' },], version = '0.3.26+ds-1' }
 library.libopenblas0 = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/OpenMathLib/OpenBLAS/blob/develop/LICENSE' },], indirect = true, version = '0.3.26+ds-1' }
@@ -32,16 +27,21 @@ filename = 'Sources/main.swift'
 
 install = '''
 
-PLATFORM=ubuntu24.04
-LANG_VERSION=6.1.2
-OS_ARCH_SUFFIX="" # arm64等の場合に指定する
+# 現在の公式手順、swiftlyを利用したインストール方法に問題が生じたため、
+# 旧公式手順に従ってインストールを行います。
+# Alternate Install Options > Tarball > Instruction
+# https://www.swift.org/install/linux/tarball/
 
-SWIFT_BRANCH=swift-${LANG_VERSION}-release
-SWIFT_VERSION=swift-${LANG_VERSION}-RELEASE
-SWIFT_WEBROOT=https://download.swift.org
-SWIFT_WEBDIR="$SWIFT_WEBROOT/$SWIFT_BRANCH/$(echo $PLATFORM | tr -d .)$OS_ARCH_SUFFIX"
-SWIFT_TAR_BALL="$SWIFT_VERSION-$PLATFORM$OS_ARCH_SUFFIX"
-SWIFT_TAR_BALL_URL="$SWIFT_WEBDIR/$SWIFT_VERSION/$SWIFT_TAR_BALL.tar.gz"
+NUMBER="6.1.2"
+VERSION="${NUMBER}-RELEASE"
+PLATFORM="ubuntu24.04"
+TAR_FILE="swift-${VERSION}-${PLATFORM}.tar.gz"
+# https://download.swift.org/swift-6.1.2-release/ubuntu2404/swift-6.1.2-RELEASE/swift-6.1.2-RELEASE-ubuntu24.04.tar.gz
+TAR_URL="https://download.swift.org/swift-${NUMBER}-release/$(echo $PLATFORM | tr -d .)/swift-${VERSION}/${TAR_FILE}"
+
+SWIFT_PATH="swift-${VERSION}-${PLATFORM}/usr/bin"
+
+echo "Download URL: ${TAR_URL}"
 
 export DEBIAN_FRONTEND=noninteractive
 
@@ -80,7 +80,7 @@ sudo apt-get install -y \
              zlib1g-dev
 
 # 公式 2. Download the latest binary release.
-curl -s -O $SWIFT_TAR_BALL_URL
+curl -s -O $TAR_URL
 
 # 公式 3. Import and verify the PGP signature:
 # $ gpg --keyserver hkp://keyserver.ubuntu.com \
@@ -90,7 +90,7 @@ curl -s -O $SWIFT_TAR_BALL_URL
 # この手順は省略します
 
 # 公式 4. Extract the archive with the following command:
-tar xzf $SWIFT_TAR_BALL.tar.gz
+tar xzf $TAR_FILE
 
 # 公式 5. Add the Swift toolchain to your path as follows:
 # $ export PATH=/path/to/usr/bin:"${PATH}"
@@ -99,10 +99,12 @@ tar xzf $SWIFT_TAR_BALL.tar.gz
 # 公式のインストール手順は以上です
 
 # バージョン番号を出力し、ログでも処理系バージョンを確認する
-./${SWIFT_TAR_BALL}/usr/bin/swift --version
+./${SWIFT_PATH}/swift --version
 
-# AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
-rm $SWIFT_TAR_BALL.tar.gz
+# 運営からの不要なファイル削除に関する指示に従い、ダウンロードしたファイルを削除します
+rm $TAR_FILE
+
+ls -al
 
 # accelerate-linuxのビルドに必要なパッケージをインストールします
 sudo apt-get install -y \
@@ -121,7 +123,7 @@ sudo apt-get install -y \
 # コンパイル環境の構築では、AtCoderで使用するSwiftパッケージの初期化と依存パッケージの追加、そして事前ビルドを行います
 
 # ジャッジがビルドを行う作業パッケージの初期化を行います。パッケージ名はMain、実行可能なプログラムとして初期化します
-./${SWIFT_TAR_BALL}/usr/bin/swift package init --name Main --type executable
+./${SWIFT_PATH}/swift package init --name Main --type executable
 
 # Package.swiftを更新し、AtCoderジャッジで使用する依存パッケージを作業パッケージに追加します
 cat << 'EOF' > Package.swift
@@ -208,44 +210,24 @@ let package = Package(
 )
 EOF
 
-# ビルドスクリプトを配置するフォルダを作成
-mkdir Script
-
 # 念の為に、クリーニングします
-./${SWIFT_TAR_BALL}/usr/bin/swift package clean
+./${SWIFT_PATH}/swift package clean
 
-# 依存パッケージの解決とパッケージのビルドを事前に行います
-./${SWIFT_TAR_BALL}/usr/bin/swift \
-  build \
-  -c release \
-  -v 1>&2 |& tee /dev/null
+# 依存パッケージの解決を行います
+./${SWIFT_PATH}/swift package resolve
 
-# 差分コンパイルが行われるよう、ソースコードを変更します
-sed -i 's/Hello/Hallo/' Sources/main.swift
+# 実行可能パッケージのビルドを行います
+./${SWIFT_PATH}/swift build --build-system native -c release 1>&2 |& tee /dev/null
 
-# 差分コンパイルを実施し、ビルドログを取得します
-./${SWIFT_TAR_BALL}/usr/bin/swift \
-  build \
-  -c release \
-  -v > build.log
+FILE=".build/release/Main"
 
-# ビルドログからビルドコマンドを抽出し、差分ビルドスクリプトを作成します
-sed -n '/swiftc/{
-    s/ -v / /;
-    s/-parseable-output//;
-    s/ -j[0-9][0-9]*/ -j1/g;
-    s/ -num-threads [0-9][0-9]*/ -num-threads 1/g;
-    p
-}' build.log > Script/build.sh
+if [ ! -f "$FILE" ]; then
+  echo "Error: 初回のビルドに失敗しました: $FILE" >&2
+  exit 1
+fi
 
-# ビルドログを削除します
-rm build.log
-
-# ビルド結果を削除します
-rm .build/release/Main
-
-# 差分ビルドスクリプトを実行します
-bash ./Script/build.sh
+# Hello, world!を出力
+$FILE
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
 rm .build/release/Main
@@ -254,14 +236,33 @@ rm .build/release/Main
 
 compile = '''
 
-bash ./Script/build.sh
+NUMBER="6.1.2"
+VERSION="${NUMBER}-RELEASE"
+PLATFORM="ubuntu24.04"
+SWIFT_PATH="swift-${VERSION}-${PLATFORM}/usr/bin"
+
+# これがないとswift-ac-libraryのコンパイルが走ってしまう
+export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
+
+./${SWIFT_PATH}/swift build --build-system native -c release 1>&2 |& tee /dev/null
+
+# コンパイル所要時間の目安はhello wolrdで5秒程度。
+# それを上回る場合、差分コンパイルに問題が生じている可能性があります。
+
+FILE=".build/release/Main"
+
+if [ ! -f "$FILE" ]; then
+  echo "Error: 初回のビルドに失敗しました: $FILE" >&2
+  exit 1
+fi
 
 '''
 
 environment.SWIFT_BACKTRACE = 'enable=yes,output-to=stderr,interactive=no'
+environment.SWIFT_AC_LIBRARY_USES_O_UNCHECKED = 'true'
 
 object = '.build/release/Main'
 
 execution = [
-    '.build/release/Main',
+  '.build/release/Main',
 ]
