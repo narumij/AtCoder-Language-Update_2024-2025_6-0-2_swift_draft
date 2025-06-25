@@ -25,13 +25,15 @@ tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/(''
 
 echo "終了コード: $?"
 
-echo '000) ############'
+# cleanするとpunirun方式は壊れる
 
-swift package clean
+# echo '000) ############'
 
-tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash
+# swift package clean
 
-echo "終了コード: $?"
+# tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash
+
+# echo "終了コード: $?"
 
 echo '0) ############'
 
