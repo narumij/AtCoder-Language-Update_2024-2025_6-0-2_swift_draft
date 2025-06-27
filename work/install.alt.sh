@@ -155,7 +155,7 @@ let package = Package(
       url: "https://github.com/narumij/swift-ac-foundation",
       // .unsafeFlags(["-std=c++17"])に対するビルド拒否を迂回するため、revision指定としている
       // branch - main
-      revision: "9fff582e068e1d2a4c0f92246a6143d94d40c63b"),
+      revision: "0e091d8b2a6a546de992236627199a3ff3acf568"),
     // ABCに必須です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
@@ -190,10 +190,16 @@ EOF
 ./${SWIFT_PATH}/swift package resolve
 
 # 実行可能パッケージのビルドを行います
+# -c releaseは、リリースビルドを行うためのオプション
+# --build-system nativeは、6.2になった場合の変動を避けるために付与
+# 1>&2は、標準出力を標準エラーにリダイレクトするためのもので、既存由来
+# |& tee /dev/nullは、環境情報収集に関してSPMにバグがあり、そのワークアラウンド
+# ビルドオプションが変化するとフルビルドとなるため、コンパイルスクリプトと揃える必要がある
 ./${SWIFT_PATH}/swift build --build-system native -c release 1>&2 |& tee /dev/null
 
 FILE=".build/release/Main"
 
+# コンパイルに失敗した場合、インストール失敗とする
 if [ ! -f "$FILE" ]; then
   echo "Error: 初回のビルドに失敗しました: $FILE" >&2
   exit 1
