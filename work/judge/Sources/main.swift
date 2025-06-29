@@ -1,5 +1,6 @@
 import AcFoundation
 
+#if false
 var (N, m): (Int,Int) = stdin()
 var p_rev = (0..<N) + []
 var p = (0..<N).map { [$0] }
@@ -46,3 +47,12 @@ for _ in 0..<Q {
   }
   print(m)
 }
+#else
+
+#if ONLINE_JUDGE
+print("ONLINE_JUDGE")
+#endif
+
+#endif
+
+
