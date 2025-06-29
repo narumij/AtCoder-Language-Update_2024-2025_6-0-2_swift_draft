@@ -132,10 +132,12 @@ import PackageDescription
 
 #if true
 var swiftSettings: [SwiftSetting] = [
+  .define("ONLINE_JUDGE")
 ]
 #else
 // 6.2以降でSE-0466を利用する
 var swiftSettings: [SwiftSetting] = [
+  .define("ONLINE_JUDGE"),
   .defaultIsolation(.mainActor)
 ]
 #endif

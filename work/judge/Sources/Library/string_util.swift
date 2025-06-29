@@ -7,3 +7,6 @@ extension UInt8: ExpressibleByStringLiteral {
   }
 }
 
+#if ATCODER_JUDGE_ENV
+
+#endif
