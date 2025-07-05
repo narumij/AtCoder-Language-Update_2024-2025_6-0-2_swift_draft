@@ -1,5 +1,5 @@
 {
-  "originHash" : "46b30309c861585a9a0f4212b125418495c3afba90fb2e55105a2e749a52e9bb",
+  "originHash" : "6c4b0f446cd02e95eb196cbb04722a9ae2f2cbf83fcf0a603d437da8121e4d85",
   "pins" : [
     {
       "identity" : "accelerate-linux",
@@ -49,7 +49,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-library",
       "state" : {
-        "revision" : "afc5997f42ee814fb5c7f4c383da25e5051c9ebd"
+        "revision" : "0ff7786237a941951289afdbb3ecdeef4f28ad08"
       }
     },
     {
@@ -66,8 +66,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-collections",
       "state" : {
-        "revision" : "671108c96644956dddcd89dd59c203dcdb36cec7",
-        "version" : "1.1.4"
+        "revision" : "c1805596154bb3a265fd91b8ac0c4433b4348fb0",
+        "version" : "1.2.0"
       }
     },
     {

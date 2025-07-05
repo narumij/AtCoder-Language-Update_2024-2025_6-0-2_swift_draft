@@ -23,7 +23,7 @@ let package = Package(
     // swift 5.8.1時点での既存ライブラリで、ABC必須です
     .package(
       url: "https://github.com/apple/swift-collections",
-      exact: "1.1.4"),
+      exact: "1.2.0"),
     // swift 5.8.1時点での既存ライブラリです。ABC必須ではないですが、まれに有用でAC実績もあります。
     .package(
       url: "https://github.com/apple/swift-algorithms",
@@ -49,7 +49,7 @@ let package = Package(
       url: "https://github.com/narumij/swift-ac-library",
       // -Ouncheckedを利用するためにrevision指定としている
       // tag - 0.1.17
-      revision: "afc5997f42ee814fb5c7f4c383da25e5051c9ebd"),
+      revision: "0ff7786237a941951289afdbb3ecdeef4f28ad08"),
     // ABCに必須です。
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
