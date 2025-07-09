@@ -1,10 +1,13 @@
 import AcFoundation
 
-#if false
+#if true
+import AcFoundation
+import AcCollections
+
 var (N, m): (Int,Int) = stdin()
 var p_rev = (0..<N) + []
 var p = (0..<N).map { [$0] }
-var e = (0..<N).map { _ in Set<Int>() }
+var e = (0..<N).map { _ in RedBlackTreeSet<Int>() }
 var u: [Int] = []
 var v: [Int] = []
 for _ in 0..<m {
@@ -52,6 +55,11 @@ for _ in 0..<Q {
 #if ONLINE_JUDGE
 print("ONLINE_JUDGE")
 #endif
+
+import Convinience
+import BigInt
+
+print(factorial(10 as BigInt))
 
 #endif
 

@@ -12,6 +12,7 @@ import RedBlackTreeModule
 import PermutationModule
 import Numerics
 import BigInt
+import BigNum
 //import AcMemoize
 import simd
 import AccelerateLinux
