@@ -138,6 +138,11 @@ let package = Package(
     .package(
       url: "https://github.com/attaswift/BigInt",
       exact: "5.6.0"),
+    // 有理数です。ABC412あたりで話題だったので復活しました。
+    // インストール手順がmainブランチ指定だったので、tagではなくrevision指定にしています。
+    .package(
+      url: "https://github.com/dankogai/swift-bignum",
+      revision: "7905f4e520bb601ed02a163d3c7410aa20f39c71"),
     // 2次元のSIMDはABCのマス目問題で有用で、まれに3次元のSIMDでABC提出の高速化が可能な場合があります。
     .package(
       url: "https://github.com/keyvariable/kvSIMD.swift",
@@ -150,18 +155,18 @@ let package = Package(
     .package(
       url: "https://github.com/narumij/swift-ac-library",
       // -Ouncheckedを利用するためにrevision指定としている
-      // tag - 0.1.17
-      revision: "0ff7786237a941951289afdbb3ecdeef4f28ad08"),
+      // tag - 0.1.19
+      revision: "71368ed8f6c0d47ff5f692bcf3152eea10dd7b9e"),
     // ABCに必須です。
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
       // .unsafeFlags(["-std=c++17"])に対するビルド拒否を迂回するため、revision指定としている
       // branch - main
-      revision: "e67f755511b409da2c60bea35112f9b531bd9170"),
+      revision: "90288b4efd3ed57308071ebaccfb8cb95d8f3a2b"),
     // ABCに必須です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.30"),
+      exact: "0.1.32"),
   ],
   
   targets: [
@@ -172,6 +177,7 @@ let package = Package(
         .product(name: "Algorithms", package: "swift-algorithms"),
         .product(name: "Numerics", package: "swift-numerics"),
         .product(name: "BigInt", package: "BigInt"),
+        .product(name: "BigNum", package: "swift-bignum"),
         .product(name: "kvSIMD", package: "kvSIMD.swift"),
         .product(name: "AccelerateLinux", package: "accelerate-linux"),
         .product(name: "AtCoder", package: "swift-ac-library"),

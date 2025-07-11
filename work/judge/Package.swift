@@ -53,8 +53,8 @@ let package = Package(
     .package(
       url: "https://github.com/narumij/swift-ac-library",
       // -Ouncheckedを利用するためにrevision指定としている
-      // tag - 0.1.17
-      revision: "0ff7786237a941951289afdbb3ecdeef4f28ad08"),
+      // tag - 0.1.19
+      revision: "71368ed8f6c0d47ff5f692bcf3152eea10dd7b9e"),
     // ABCに必須です。
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
@@ -64,7 +64,7 @@ let package = Package(
     // ABCに必須です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.31"),
+      exact: "0.1.32"),
   ],
   
   targets: [
