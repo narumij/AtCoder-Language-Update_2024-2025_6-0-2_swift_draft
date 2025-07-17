@@ -13,7 +13,7 @@ library.'kvSIMD.swift' = { license = [ { name = 'Apache-2.0', url = 'https://git
 library.accelerate-linux = { license = [ { name = 'MIT', url = 'https://github.com/brokenhandsio/accelerate-linux/blob/main/LICENSE' },], version = '8eda308' }
 library.swift-ac-library = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },], version = '71368ed' }
 library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = '90288b4' }
-library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.32' }
+library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.35' }
 
 library.libopenblas-dev = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/OpenMathLib/OpenBLAS/blob/develop/LICENSE' },], version = '0.3.26+ds-1' }
 library.libopenblas0 = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/OpenMathLib/OpenBLAS/blob/develop/LICENSE' },], indirect = true, version = '0.3.26+ds-1' }
@@ -194,7 +194,7 @@ let package = Package(
     // ABCに必須です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.32"),
+      exact: "0.1.35"),
   ],
   
   targets: [

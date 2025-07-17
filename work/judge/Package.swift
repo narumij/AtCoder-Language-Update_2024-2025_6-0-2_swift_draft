@@ -64,7 +64,7 @@ let package = Package(
     // ABCに必須です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.32"),
+      exact: "0.1.35"),
   ],
   
   targets: [

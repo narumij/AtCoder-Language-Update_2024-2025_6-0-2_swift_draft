@@ -1,5 +1,5 @@
 {
-  "originHash" : "d27d49f25715aff0c67c1131be79680892be57efdf86a2fca1bf76a706f14c6f",
+  "originHash" : "3ed6f01694d3471ebc48527ba6ae327fcc3c894c7df5954af6fadfd821064b38",
   "pins" : [
     {
       "identity" : "accelerate-linux",
@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-collections",
       "state" : {
-        "revision" : "dace23a1f414fc2d3855e97a7379d1a79f110b61",
-        "version" : "0.1.32"
+        "revision" : "0830f15f3809ddb4fe1c9b98512fdd1c0da1c303",
+        "version" : "0.1.35"
       }
     },
     {
