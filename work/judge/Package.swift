@@ -20,48 +20,48 @@ let package = Package(
   platforms: [.macOS(.v14), .iOS(.v17), .tvOS(.v17), .watchOS(.v10), .macCatalyst(.v17)],
 
   dependencies: [
-    // swift 5.8.1時点での既存ライブラリで、ABC必須です
+    // swift 5.8.1時点での既存ライブラリです
     .package(
       url: "https://github.com/apple/swift-collections",
       exact: "1.2.0"),
-    // swift 5.8.1時点での既存ライブラリです。ABC必須ではないですが、まれに有用でAC実績もあります。
+    // swift 5.8.1時点での既存ライブラリです。
     .package(
       url: "https://github.com/apple/swift-algorithms",
       exact: "1.2.1"),
-    // swift 5.8.1時点での既存ライブラリですが、実数及び複素数であり、ABC必須ではありません。
+    // swift 5.8.1時点での既存ライブラリで、実数及び複素数です。
     .package(
       url: "https://github.com/apple/swift-numerics",
       exact: "1.0.3"),
-    // 多倍長整数です。ABC必須です。
+    // 多倍長整数です。
     .package(
       url: "https://github.com/attaswift/BigInt",
       exact: "5.6.0"),
-    // 有理数です。ABC412あたりで話題だったので復活しました。
+    // 有理数です。
     // インストール手順がmainブランチ指定だったので、tagではなくrevision指定にしています。
     .package(
       url: "https://github.com/dankogai/swift-bignum",
       revision: "7905f4e520bb601ed02a163d3c7410aa20f39c71"),
-    // 2次元のSIMDはABCのマス目問題で有用で、まれに3次元のSIMDでABC提出の高速化が可能な場合があります。
+    // SIMDです。
     .package(
       url: "https://github.com/keyvariable/kvSIMD.swift",
       exact: "1.1.0"),
-    // BLAS及びLAPACKなので、ABC必須ではありません。
+    // BLAS及びLAPACKです。
     .package(
       url: "https://github.com/brokenhandsio/accelerate-linux",
       revision: "8eda308ea3129130e90e5c01fc437a4c5d2ca278"),
-    // ABCに必須です。
+    // Atcoder LibraryのSwift版です。
     .package(
       url: "https://github.com/narumij/swift-ac-library",
       // -Ouncheckedを利用するためにrevision指定としている
       // tag - 0.1.22
       revision: "bb40376390ec18b0b982d90880699b71b40f7641"),
-    // ABCに必須です。
+    // 高速な入力、二分探索、その他便利関数です。
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
       // .unsafeFlags(["-std=c++17"])に対するビルド拒否を迂回するため、revision指定としている
       // branch - main
       revision: "90288b4efd3ed57308071ebaccfb8cb95d8f3a2b"),
-    // ABCに必須です。
+    // 平衡二分探索木と順列全列挙です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
       exact: "0.1.35"),
