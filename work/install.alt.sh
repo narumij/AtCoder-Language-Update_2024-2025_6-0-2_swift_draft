@@ -156,7 +156,7 @@ let package = Package(
       url: "https://github.com/narumij/swift-ac-library",
       // -Ouncheckedを利用するためにrevision指定としている
       // tag - 0.1.22
-      revision: "bb40376390ec18b0b982d90880699b71b40f7641"),
+      revision: "488e2f1cb8caf0577df59a3674b49fe9b3f827df"),
     // 高速な入力、二分探索、その他便利関数です。
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
