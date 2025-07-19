@@ -60,7 +60,7 @@ let package = Package(
       url: "https://github.com/narumij/swift-ac-foundation",
       // .unsafeFlags(["-std=c++17"])に対するビルド拒否を迂回するため、revision指定としている
       // branch - main
-      revision: "90288b4efd3ed57308071ebaccfb8cb95d8f3a2b"),
+      revision: "2fb49b59b85ddccfc347f471b613a4623afda189"),
     // 平衡二分探索木と順列全列挙です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
