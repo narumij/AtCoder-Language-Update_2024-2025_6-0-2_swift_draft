@@ -168,7 +168,6 @@ let package = Package(
       url: "https://github.com/narumij/swift-ac-collections",
       exact: "0.1.35"),
   ],
-
   targets: [
     .executableTarget(
       name: "Main",
@@ -185,21 +184,7 @@ let package = Package(
         .product(name: "AcCollections", package: "swift-ac-collections"),
       ],
       path: "Sources",
-      swiftSettings: swiftSettings + [
-        .unsafeFlags(
-          [
-            "-enforce-exclusivity=none",
-            "-cross-module-optimization",
-          ],
-          .when(configuration: .release)
-        )
-      ],
-      linkerSettings: [
-        .unsafeFlags(
-          ["-static-stdlib"],
-          .when(platforms: [.linux], configuration: .release)
-        )
-      ]
+      swiftSettings: swiftSettings
     )
   ]
 )

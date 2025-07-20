@@ -82,21 +82,7 @@ let package = Package(
         .product(name: "AcCollections", package: "swift-ac-collections"),
       ],
       path: "Sources",
-      swiftSettings: swiftSettings + [
-        .unsafeFlags(
-          [
-            "-enforce-exclusivity=none",
-            "-cross-module-optimization",
-          ],
-          .when(configuration: .release)
-        )
-      ],
-      linkerSettings: [
-        .unsafeFlags(
-          ["-static-stdlib"],
-          .when(platforms: [.linux], configuration: .release)
-        )
-      ]
+      swiftSettings: swiftSettings
     )
   ]
 )
