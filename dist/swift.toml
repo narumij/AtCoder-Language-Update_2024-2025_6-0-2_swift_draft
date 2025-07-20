@@ -220,12 +220,6 @@ let package = Package(
           ],
           .when(configuration: .release)
         )
-      ],
-      linkerSettings: [
-        .unsafeFlags(
-          ["-static-stdlib"],
-          .when(platforms: [.linux], configuration: .release)
-        )
       ]
     )
   ]
