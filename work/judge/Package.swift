@@ -2,20 +2,20 @@
 import PackageDescription
 
 #if true
-var swiftSettings: [SwiftSetting] = [
-  .define("ONLINE_JUDGE")
-]
+  var swiftSettings: [SwiftSetting] = [
+    .define("ONLINE_JUDGE")
+  ]
 #else
-// 6.2以降でSE-0466を利用する
-var swiftSettings: [SwiftSetting] = [
-  .define("ONLINE_JUDGE"),
-  .defaultIsolation(.mainActor)
-]
+  // 6.2以降でSE-0466を利用する
+  var swiftSettings: [SwiftSetting] = [
+    .define("ONLINE_JUDGE"),
+    .defaultIsolation(.mainActor),
+  ]
 #endif
 
 let package = Package(
   name: "Main",
-  
+
   // @MainActorとRegexとType PackをmacOSローカルでパッケージを利用する場合に必要な設定値
   platforms: [.macOS(.v14), .iOS(.v17), .tvOS(.v17), .watchOS(.v10), .macCatalyst(.v17)],
 
@@ -66,7 +66,6 @@ let package = Package(
       url: "https://github.com/narumij/swift-ac-collections",
       exact: "0.1.35"),
   ],
-  
   targets: [
     .executableTarget(
       name: "Main",
@@ -83,7 +82,21 @@ let package = Package(
         .product(name: "AcCollections", package: "swift-ac-collections"),
       ],
       path: "Sources",
-      swiftSettings: swiftSettings
+      swiftSettings: swiftSettings + [
+        .unsafeFlags(
+          [
+            "-enforce-exclusivity=none",
+            "-cross-module-optimization",
+          ],
+          .when(configuration: .release)
+        )
+      ],
+      linkerSettings: [
+        .unsafeFlags(
+          ["-static-stdlib"],
+          .when(platforms: [.linux], configuration: .release)
+        )
+      ]
     )
   ]
 )
