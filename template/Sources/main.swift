@@ -32,6 +32,8 @@ public func main() throws {
   //  let S = [Character].stdin
   //  let S = [Character].stdin(columns: N)
   //  let S = [[Character]].stdin(rows: H, columns: W)
+  
+  print("Hello, world! (\(N))")
 }
 
 try main()
