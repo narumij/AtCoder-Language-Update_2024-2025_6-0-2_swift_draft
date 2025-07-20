@@ -64,7 +64,7 @@ let package = Package(
     // 平衡二分探索木と順列全列挙です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.35"),
+      exact: "0.1.36"),
   ],
   targets: [
     .executableTarget(
