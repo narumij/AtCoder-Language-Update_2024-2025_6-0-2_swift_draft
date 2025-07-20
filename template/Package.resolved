@@ -1,0 +1,96 @@
+{
+  "originHash" : "35c296b317bf5d0e436023a30177a9c340b1921f876974c9911c370b3926f3bc",
+  "pins" : [
+    {
+      "identity" : "accelerate-linux",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/brokenhandsio/accelerate-linux",
+      "state" : {
+        "branch" : "main",
+        "revision" : "8eda308ea3129130e90e5c01fc437a4c5d2ca278"
+      }
+    },
+    {
+      "identity" : "bigint",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/attaswift/BigInt",
+      "state" : {
+        "revision" : "99c4b9fb0f52dc9182aee106b07c3d205583b98c",
+        "version" : "5.6.0"
+      }
+    },
+    {
+      "identity" : "kvsimd.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/keyvariable/kvSIMD.swift",
+      "state" : {
+        "revision" : "d95f3590b28ffc35c51d570a521daea1ce74e490",
+        "version" : "1.1.0"
+      }
+    },
+    {
+      "identity" : "swift-ac-collections",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/narumij/swift-ac-collections",
+      "state" : {
+        "revision" : "0830f15f3809ddb4fe1c9b98512fdd1c0da1c303",
+        "version" : "0.1.35"
+      }
+    },
+    {
+      "identity" : "swift-ac-foundation",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/narumij/swift-ac-foundation",
+      "state" : {
+        "branch" : "main",
+        "revision" : "6c804b5b19c6a04743f2c51f0cdf2eacfbe52921"
+      }
+    },
+    {
+      "identity" : "swift-ac-library",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/narumij/swift-ac-library",
+      "state" : {
+        "branch" : "main",
+        "revision" : "488e2f1cb8caf0577df59a3674b49fe9b3f827df"
+      }
+    },
+    {
+      "identity" : "swift-algorithms",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-algorithms",
+      "state" : {
+        "revision" : "87e50f483c54e6efd60e885f7f5aa946cee68023",
+        "version" : "1.2.1"
+      }
+    },
+    {
+      "identity" : "swift-bignum",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/dankogai/swift-bignum",
+      "state" : {
+        "branch" : "main",
+        "revision" : "7905f4e520bb601ed02a163d3c7410aa20f39c71"
+      }
+    },
+    {
+      "identity" : "swift-collections",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-collections",
+      "state" : {
+        "revision" : "c1805596154bb3a265fd91b8ac0c4433b4348fb0",
+        "version" : "1.2.0"
+      }
+    },
+    {
+      "identity" : "swift-numerics",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-numerics",
+      "state" : {
+        "revision" : "e0ec0f5f3af6f3e4d5e7a19d2af26b481acb6ba8",
+        "version" : "1.0.3"
+      }
+    }
+  ],
+  "version" : 3
+}
