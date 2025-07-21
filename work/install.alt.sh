@@ -108,9 +108,9 @@ import PackageDescription
     .define("ONLINE_JUDGE")
   ]
 #else
-  // 6.2以降でSE-0466を利用する
   var swiftSettings: [SwiftSetting] = [
     .define("ONLINE_JUDGE"),
+    // 6.2以降でSE-0466を利用する
     .defaultIsolation(.mainActor),
   ]
 #endif
@@ -166,7 +166,7 @@ let package = Package(
     // 平衡二分探索木と順列全列挙です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.36"),
+      exact: "0.1.38"),
   ],
   targets: [
     .executableTarget(
