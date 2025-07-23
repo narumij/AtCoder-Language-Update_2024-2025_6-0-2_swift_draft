@@ -1,12 +1,11 @@
 {
-  "originHash" : "35c296b317bf5d0e436023a30177a9c340b1921f876974c9911c370b3926f3bc",
+  "originHash" : "f6f02167ab15a3e9d6e08fb08e00b1a2bd81202245eb96f62f82a1b9766523ee",
   "pins" : [
     {
       "identity" : "accelerate-linux",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/brokenhandsio/accelerate-linux",
       "state" : {
-        "branch" : "main",
         "revision" : "8eda308ea3129130e90e5c01fc437a4c5d2ca278"
       }
     },
@@ -33,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-collections",
       "state" : {
-        "revision" : "0830f15f3809ddb4fe1c9b98512fdd1c0da1c303",
-        "version" : "0.1.35"
+        "revision" : "7db3b7b4ab06cf0ed058bd2a3c1e9e90e368f597",
+        "version" : "0.1.38"
       }
     },
     {
@@ -42,7 +41,6 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-foundation",
       "state" : {
-        "branch" : "main",
         "revision" : "6c804b5b19c6a04743f2c51f0cdf2eacfbe52921"
       }
     },
@@ -51,7 +49,6 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-library",
       "state" : {
-        "branch" : "main",
         "revision" : "488e2f1cb8caf0577df59a3674b49fe9b3f827df"
       }
     },
@@ -69,7 +66,6 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/dankogai/swift-bignum",
       "state" : {
-        "branch" : "main",
         "revision" : "7905f4e520bb601ed02a163d3c7410aa20f39c71"
       }
     },

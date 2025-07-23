@@ -1,10 +1,9 @@
 // swift-tools-version: 6.1
-// The swift-tools-version declares the minimum version of Swift required to build this package.
-
 import PackageDescription
 
 let package = Package(
   name: "Main",
+  // @MainActorとRegexとType PackをmacOSローカルでパッケージを利用する場合に必要な設定値
   platforms: [.macOS(.v14), .iOS(.v17), .tvOS(.v17), .watchOS(.v10), .macCatalyst(.v17)],
   dependencies: [
     // swift 5.8.1時点での既存ライブラリです
@@ -51,11 +50,9 @@ let package = Package(
     // 平衡二分探索木と順列全列挙です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.35"),
+      exact: "0.1.38"),
   ],
   targets: [
-    // Targets are the basic building blocks of a package, defining a module or a test suite.
-    // Targets can depend on other targets in this package and products from dependencies.
     .executableTarget(
       name: "Main",
       dependencies: [
@@ -69,6 +66,8 @@ let package = Package(
         .product(name: "AtCoder", package: "swift-ac-library"),
         .product(name: "AcFoundation", package: "swift-ac-foundation"),
         .product(name: "AcCollections", package: "swift-ac-collections"),
-      ])
+      ],
+      path: "Sources"
+    )
   ]
 )
