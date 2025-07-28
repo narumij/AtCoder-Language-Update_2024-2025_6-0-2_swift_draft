@@ -1,29 +1,15 @@
 // swift-tools-version: 6.1
 import PackageDescription
 
-#if true
-  var swiftSettings: [SwiftSetting] = [
-    .define("ONLINE_JUDGE")
-  ]
-#else
-  var swiftSettings: [SwiftSetting] = [
-    .define("ONLINE_JUDGE"),
-    // 6.2以降でSE-0466を利用する
-    .defaultIsolation(.mainActor),
-  ]
-#endif
-
 let package = Package(
   name: "Main",
-
   // @MainActorとRegexとType PackをmacOSローカルでパッケージを利用する場合に必要な設定値
   platforms: [.macOS(.v14), .iOS(.v17), .tvOS(.v17), .watchOS(.v10), .macCatalyst(.v17)],
-
   dependencies: [
     // swift 5.8.1時点での既存ライブラリです
     .package(
       url: "https://github.com/apple/swift-collections",
-      exact: "1.2.0"),
+      exact: "1.2.1"),
     // swift 5.8.1時点での既存ライブラリです。
     .package(
       url: "https://github.com/apple/swift-algorithms",
@@ -60,7 +46,7 @@ let package = Package(
       url: "https://github.com/narumij/swift-ac-foundation",
       // .unsafeFlags(["-std=c++17"])に対するビルド拒否を迂回するため、revision指定としている
       // branch - main
-      revision: "506fe472a3569e998d7795895cd5ced36870f5ca"),
+      revision: "6b5b46bcdd25a6177ecfce5a70f9e069ffe134e2"),
     // 平衡二分探索木と順列全列挙です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
@@ -82,7 +68,11 @@ let package = Package(
         .product(name: "AcCollections", package: "swift-ac-collections"),
       ],
       path: "Sources",
-      swiftSettings: swiftSettings
+      swiftSettings: [
+        .define("ONLINE_JUDGE")
+        // 6.2以降でSE-0466を利用する
+        // .defaultIsolation(.mainActor),
+      ]
     )
   ]
 )
