@@ -1,5 +1,5 @@
 {
-  "originHash" : "3cd9828b5178e4807987bb9a4fa1cf43ae321aa254dca2d4571fc4992cf627d1",
+  "originHash" : "552bfc56b5204bf2dd282b0f3b628b707d750a6b757594ac70002e0ba095ba3e",
   "pins" : [
     {
       "identity" : "accelerate-linux",
@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/attaswift/BigInt.git",
       "state" : {
-        "revision" : "99c4b9fb0f52dc9182aee106b07c3d205583b98c",
-        "version" : "5.6.0"
+        "revision" : "e07e00fa1fd435143a2dcf8b7eec9a7710b2fdfe",
+        "version" : "5.7.0"
       }
     },
     {
@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-collections",
       "state" : {
-        "revision" : "7db3b7b4ab06cf0ed058bd2a3c1e9e90e368f597",
-        "version" : "0.1.38"
+        "revision" : "db542effc3f4d38d667cdb54fd4bcc6db5620e65",
+        "version" : "0.1.39"
       }
     },
     {
@@ -49,7 +49,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-library",
       "state" : {
-        "revision" : "488e2f1cb8caf0577df59a3674b49fe9b3f827df"
+        "revision" : "de0f6db771fd4344668d2cc68f5ce4d7895e6617"
       }
     },
     {
