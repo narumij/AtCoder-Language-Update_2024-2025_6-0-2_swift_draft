@@ -123,7 +123,7 @@ let package = Package(
     // 多倍長整数です。
     .package(
       url: "https://github.com/attaswift/BigInt",
-      exact: "5.6.0"),
+      exact: "5.7.0"),
     // 有理数です。
     // インストール手順がmainブランチ指定だったので、tagではなくrevision指定にしています。
     .package(
@@ -142,7 +142,7 @@ let package = Package(
       url: "https://github.com/narumij/swift-ac-library",
       // -Ouncheckedを利用するためにrevision指定としている
       // tag - 0.1.22
-      revision: "488e2f1cb8caf0577df59a3674b49fe9b3f827df"),
+      revision: "de0f6db771fd4344668d2cc68f5ce4d7895e6617"),
     // 高速な入力、二分探索、その他便利関数です。
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
@@ -152,7 +152,7 @@ let package = Package(
     // 平衡二分探索木と順列全列挙です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.38"),
+      exact: "0.1.39"),
   ],
   targets: [
     .executableTarget(
