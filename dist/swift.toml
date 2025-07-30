@@ -12,7 +12,7 @@ library.swift-bignum = { license = [ { name = 'MIT', url = 'https://github.com/d
 library.'kvSIMD.swift' = { license = [ { name = 'Apache-2.0', url = 'https://github.com/keyvariable/kvSIMD.swift/blob/main/LICENSE' },], version = '1.1.0' }
 library.accelerate-linux = { license = [ { name = 'MIT', url = 'https://github.com/brokenhandsio/accelerate-linux/blob/main/LICENSE' },], version = '8eda308' }
 library.swift-ac-library = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },], version = 'de0f6db' }
-library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = 'dd4df05' }
+library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = 'eb94cb3' }
 library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.39' }
 
 library.libopenblas-dev = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/OpenMathLib/OpenBLAS/blob/develop/LICENSE' },], version = '0.3.26+ds-1' }
@@ -176,7 +176,7 @@ let package = Package(
       url: "https://github.com/narumij/swift-ac-foundation",
       // .unsafeFlags(["-std=c++17"])に対するビルド拒否を迂回するため、revision指定としている
       // branch - main
-      revision: "dd4df056395b5a89920eaacbe88fad5f05b4c06e"),
+      revision: "eb94cb3f5c1e5e98e36ac7521c86a66d03e225bf"),
     // 平衡二分探索木と順列全列挙です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
