@@ -1,5 +1,5 @@
 @preconcurrency import Foundation
-import AcFoundation
+import IOUtil
 
 private let main: () = {
      do { try Answer() } catch { /* WA */  }
