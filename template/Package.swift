@@ -3,8 +3,7 @@ import PackageDescription
 
 let package = Package(
   name: "Main",
-  // @MainActorとRegexとType PackをmacOSローカルでパッケージを利用する場合に必要な設定値
-  platforms: [.macOS(.v14), .iOS(.v17), .tvOS(.v17), .watchOS(.v10), .macCatalyst(.v17)],
+  platforms: [.macOS(.v15)],
   dependencies: [
     // swift 5.8.1時点での既存ライブラリです
     .package(
