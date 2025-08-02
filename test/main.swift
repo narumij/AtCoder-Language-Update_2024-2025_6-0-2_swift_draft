@@ -63,3 +63,5 @@ if setting.contains(simpleDigits) {
 
 print("gcd", gcd(12, 15))
 print("lcm", lcm(12, 15))
+
+fastPrint(Int.max)
