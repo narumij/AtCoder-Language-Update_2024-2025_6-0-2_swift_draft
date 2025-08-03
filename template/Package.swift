@@ -8,7 +8,7 @@ let package = Package(
     // swift 5.8.1時点での既存ライブラリです
     .package(
       url: "https://github.com/apple/swift-collections",
-      exact: "1.2.0"),
+      exact: "1.2.1"),
     // swift 5.8.1時点での既存ライブラリです。
     .package(
       url: "https://github.com/apple/swift-algorithms",
@@ -20,7 +20,7 @@ let package = Package(
     // 多倍長整数です。
     .package(
       url: "https://github.com/attaswift/BigInt",
-      exact: "5.6.0"),
+      exact: "5.7.0"),
     // 有理数です。
     // インストール手順がmainブランチ指定だったので、tagではなくrevision指定にしています。
     .package(
@@ -39,17 +39,17 @@ let package = Package(
       url: "https://github.com/narumij/swift-ac-library",
       // -Ouncheckedを利用するためにrevision指定としている
       // tag - 0.1.22
-      revision: "488e2f1cb8caf0577df59a3674b49fe9b3f827df"),
+      revision: "de0f6db771fd4344668d2cc68f5ce4d7895e6617"),
     // 高速な入力、二分探索、その他便利関数です。
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
       // .unsafeFlags(["-std=c++17"])に対するビルド拒否を迂回するため、revision指定としている
       // branch - main
-      revision: "6c804b5b19c6a04743f2c51f0cdf2eacfbe52921"),
+      revision: "b2904701c72491f55dc7e56f64b02b7585f9ccb8"),
     // 平衡二分探索木と順列全列挙です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.38"),
+      exact: "0.1.40"),
   ],
   targets: [
     .executableTarget(
