@@ -36,7 +36,7 @@ import simd
 
 @MainActor
 public func main() throws {
-  let N: Int = stdin()
+//  let N: Int = stdin()
   //  let (N, Q): (Int, Int) = stdin()
   //  let (N, M) = (Int.stdin, Int.stdin)
   //  let (H, W) = (Int.stdin, Int.stdin)
@@ -45,7 +45,22 @@ public func main() throws {
   //  let S = [Character].stdin(columns: N)
   //  let S = [[Character]].stdin(rows: H, columns: W)
   
-  print("Hello, world! (\(N))")
+//  print("Hello, world! (\(N))")
+  
+  let i = readLine()!.components(separatedBy: " ").compactMap{ Int($0) }
+  let (_,L,R) = (i[0],i[1] - 1,i[2] - 1)
+  let S = readLine()!
+  print((L..<R).allSatisfy{ S[$0] == "o" } ? "Yes" : "No")
+}
+
+extension String {
+
+  @inlinable
+  @inline(__always)
+  public subscript(offset: Int) -> Character {
+    self[index(startIndex, offsetBy: offset)]
+  }
 }
 
 try main()
+

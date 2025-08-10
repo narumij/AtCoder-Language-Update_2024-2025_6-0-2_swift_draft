@@ -12,8 +12,8 @@ library.swift-bignum = { license = [ { name = 'MIT', url = 'https://github.com/d
 library.'kvSIMD.swift' = { license = [ { name = 'Apache-2.0', url = 'https://github.com/keyvariable/kvSIMD.swift/blob/main/LICENSE' },], version = '1.1.0' }
 library.accelerate-linux = { license = [ { name = 'MIT', url = 'https://github.com/brokenhandsio/accelerate-linux/blob/main/LICENSE' },], version = '8eda308' }
 library.swift-ac-library = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },], version = 'de0f6db' }
-library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = 'b290470' }
-library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.40' }
+library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = 'f2f9c2a' }
+library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.41' }
 
 library.libopenblas-dev = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/OpenMathLib/OpenBLAS/blob/develop/LICENSE' },], version = '0.3.26+ds-1' }
 library.libopenblas0 = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/OpenMathLib/OpenBLAS/blob/develop/LICENSE' },], indirect = true, version = '0.3.26+ds-1' }
@@ -176,11 +176,11 @@ let package = Package(
       url: "https://github.com/narumij/swift-ac-foundation",
       // .unsafeFlags(["-std=c++17"])に対するビルド拒否を迂回するため、revision指定としている
       // branch - main
-      revision: "b2904701c72491f55dc7e56f64b02b7585f9ccb8"),
+      revision: "f2f9c2a42be3174bc30e275001458df52cc4b148"),
     // 平衡二分探索木と順列全列挙です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.40"),
+      exact: "0.1.41"),
   ],
   targets: [
     .executableTarget(
