@@ -142,13 +142,13 @@ let package = Package(
       url: "https://github.com/narumij/swift-ac-library",
       // -Ouncheckedを利用するためにrevision指定としている
       // tag - 0.1.22
-      revision: "de0f6db771fd4344668d2cc68f5ce4d7895e6617"),
+      revision: "04036f7af5bf56e86c889b9f583513f189ed774d"),
     // 高速な入力、二分探索、その他便利関数です。
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
       // .unsafeFlags(["-std=c++17"])に対するビルド拒否を迂回するため、revision指定としている
       // branch - main
-      revision: "5988b369e03c9d7c83a7224ca07c83c36b1f42e1"),
+      revision: "598f670d44b788fdf1169436aee5efadc0f6d474"),
     // 平衡二分探索木と順列全列挙です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
