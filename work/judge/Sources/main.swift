@@ -1,6 +1,6 @@
 import AcFoundation
 
-#if true
+#if false
 import AcFoundation
 import AcCollections
 
@@ -56,11 +56,14 @@ for _ in 0..<Q {
 print("ONLINE_JUDGE")
 #endif
 
-import Convinience
-import BigInt
-
-print(factorial(10 as BigInt))
+//import Convinience
+//import BigInt
+//
+//print(factorial(10 as BigInt))
 
 #endif
 
+import Foundation
+nonisolated(unsafe) var input: [Int] = readLine()!.split(separator: " ").compactMap{ Int($0) }
+print(input[0] + input[1])
 
