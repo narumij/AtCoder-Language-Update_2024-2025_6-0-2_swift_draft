@@ -119,7 +119,7 @@ let package = Package(
     // swift 5.8.1時点での既存ライブラリで、実数及び複素数です。
     .package(
       url: "https://github.com/apple/swift-numerics",
-      exact: "1.0.3"),
+      exact: "1.1.0"),
     // 多倍長整数です。
     .package(
       url: "https://github.com/attaswift/BigInt",
@@ -148,7 +148,7 @@ let package = Package(
       url: "https://github.com/narumij/swift-ac-foundation",
       // .unsafeFlags(["-std=c++17"])に対するビルド拒否を迂回するため、revision指定としている
       // branch - main
-      revision: "598f670d44b788fdf1169436aee5efadc0f6d474"),
+      revision: "01771d4dd181bc3fe2ec36854efa7558783c28c6"),
     // 平衡二分探索木と順列全列挙です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",

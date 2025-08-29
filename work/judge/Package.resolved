@@ -1,5 +1,5 @@
 {
-  "originHash" : "dda2a5156c9738157b043c12a211b6db6dd0d16485a763732356481f07d0b82f",
+  "originHash" : "77b1134c7dff5d16176b96c482b3d8924fa964eb45d9dd2eae4afe756a50f80c",
   "pins" : [
     {
       "identity" : "accelerate-linux",
@@ -41,7 +41,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-foundation",
       "state" : {
-        "revision" : "598f670d44b788fdf1169436aee5efadc0f6d474"
+        "revision" : "01771d4dd181bc3fe2ec36854efa7558783c28c6"
       }
     },
     {
@@ -83,8 +83,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-numerics.git",
       "state" : {
-        "revision" : "e0ec0f5f3af6f3e4d5e7a19d2af26b481acb6ba8",
-        "version" : "1.0.3"
+        "revision" : "bbadd4b853a33fd78c4ae977d17bb2af15eb3f2a",
+        "version" : "1.1.0"
       }
     }
   ],
