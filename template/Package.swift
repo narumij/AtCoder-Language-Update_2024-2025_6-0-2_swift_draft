@@ -16,7 +16,7 @@ let package = Package(
     // swift 5.8.1時点での既存ライブラリで、実数及び複素数です。
     .package(
       url: "https://github.com/apple/swift-numerics",
-      exact: "1.0.3"),
+      exact: "1.1.0"),
     // 多倍長整数です。
     .package(
       url: "https://github.com/attaswift/BigInt",
@@ -37,19 +37,15 @@ let package = Package(
     // Atcoder LibraryのSwift版です。
     .package(
       url: "https://github.com/narumij/swift-ac-library",
-      // -Ouncheckedを利用するためにrevision指定としている
-      // tag - 0.1.22
-      revision: "de0f6db771fd4344668d2cc68f5ce4d7895e6617"),
+      branch: "release/AtCoder/2025"),
     // 高速な入力、二分探索、その他便利関数です。
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
-      // .unsafeFlags(["-std=c++17"])に対するビルド拒否を迂回するため、revision指定としている
-      // branch - main
-      revision: "b2904701c72491f55dc7e56f64b02b7585f9ccb8"),
+      branch: "release/AtCoder/2025"),
     // 平衡二分探索木と順列全列挙です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.40"),
+      branch: "release/AtCoder/2025"),
   ],
   targets: [
     .executableTarget(

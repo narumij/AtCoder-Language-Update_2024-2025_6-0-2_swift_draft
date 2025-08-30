@@ -1,5 +1,5 @@
 {
-  "originHash" : "f6e270b7d04bbc60d39f94f0fee181ff139bef4bbe16dc25b198a13594744551",
+  "originHash" : "10b97b236ad560fa7327e93bfb1ba09e645f9138580f7e5abb566495ef9e9441",
   "pins" : [
     {
       "identity" : "accelerate-linux",
@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-collections",
       "state" : {
-        "revision" : "1cf534fb17f4758f8a6b259c20de0e30c50c0aed",
-        "version" : "0.1.40"
+        "branch" : "release/AtCoder/2025",
+        "revision" : "730d3433b47219244ef69e130970cb80f68a94a2"
       }
     },
     {
@@ -41,7 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-foundation",
       "state" : {
-        "revision" : "b2904701c72491f55dc7e56f64b02b7585f9ccb8"
+        "branch" : "release/AtCoder/2025",
+        "revision" : "1b0ae1f0d2fa3b47cfd56aaa2e262a663012f53d"
       }
     },
     {
@@ -49,7 +50,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-library",
       "state" : {
-        "revision" : "de0f6db771fd4344668d2cc68f5ce4d7895e6617"
+        "branch" : "release/AtCoder/2025",
+        "revision" : "04036f7af5bf56e86c889b9f583513f189ed774d"
       }
     },
     {
@@ -83,8 +85,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-numerics",
       "state" : {
-        "revision" : "e0ec0f5f3af6f3e4d5e7a19d2af26b481acb6ba8",
-        "version" : "1.0.3"
+        "revision" : "bbadd4b853a33fd78c4ae977d17bb2af15eb3f2a",
+        "version" : "1.1.0"
       }
     }
   ],

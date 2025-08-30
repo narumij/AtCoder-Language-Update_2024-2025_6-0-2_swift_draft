@@ -10,7 +10,6 @@ import CharacterUtil
 import Collections
 import Convenience
 import CxxWrapped
-@preconcurrency import Foundation
 import Foundation
 import IOReader
 import IOUtil
@@ -28,39 +27,20 @@ import simd
   import Accelerate
 #endif
 
-#if ONLINE_JUDGE
-// 提出した際に実行される
-#else
-// ローカル環境で実行される
-#endif
-
-@MainActor
+@MainActor // MainActorを付与すると最適化が有利になる
 public func main() throws {
-//  let N: Int = stdin()
-  //  let (N, Q): (Int, Int) = stdin()
-  //  let (N, M) = (Int.stdin, Int.stdin)
-  //  let (H, W) = (Int.stdin, Int.stdin)
-  //  let A = [Int].stdin(columns: N)
-  //  let S = [Character].stdin
-  //  let S = [Character].stdin(columns: N)
-  //  let S = [[Character]].stdin(rows: H, columns: W)
-  
-//  print("Hello, world! (\(N))")
-  
-  let i = readLine()!.components(separatedBy: " ").compactMap{ Int($0) }
-  let (_,L,R) = (i[0],i[1] - 1,i[2] - 1)
-  let S = readLine()!
-  print((L..<R).allSatisfy{ S[$0] == "o" } ? "Yes" : "No")
-}
+  let N: Int = stdin()
 
-extension String {
-
-  @inlinable
-  @inline(__always)
-  public subscript(offset: Int) -> Character {
-    self[index(startIndex, offsetBy: offset)]
-  }
+#if ONLINE_JUDGE
+  // 提出した際に実行され、標準エラーに出力され、解答出力に影響しない
+  print("Hello, AtCoder error! (\(N))", to: &FileOutputStream.standardError)
+#else
+  // ローカル環境で実行され、標準エラーに出力され、解答出力に影響しない
+  print("Hello, local error! (\(N))", to: &FileOutputStream.standardError)
+#endif
+  
+  // 解答出力の例
+  print("Hello, world! (\(N))")
 }
 
 try main()
-
