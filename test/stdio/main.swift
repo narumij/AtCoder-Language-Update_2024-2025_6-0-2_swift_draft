@@ -8,6 +8,6 @@ private let main: () = {
 @MainActor
 @inlinable
 public func Answer() throws {
-    print("Hello, STDERR!", to: &stderr)
+    print("Hello, STDERR!", to: &FileOutputStream.standardError)
     fastPrint([1,2,3])
 }
