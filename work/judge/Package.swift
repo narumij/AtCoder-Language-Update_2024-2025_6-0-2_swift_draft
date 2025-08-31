@@ -54,7 +54,7 @@ let package = Package(
     // メモ化マクロです。
     .package(
       url: "https://github.com/narumij/swift-ac-memoize",
-      branch: "main"),
+      exact: "0.1.8"),
   ],
   targets: [
     .executableTarget(

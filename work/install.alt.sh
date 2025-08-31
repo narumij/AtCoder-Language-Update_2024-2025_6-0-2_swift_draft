@@ -156,7 +156,7 @@ let package = Package(
     // メモ化マクロです。
     .package(
       url: "https://github.com/narumij/swift-ac-memoize",
-      exact: "0.1.6"),
+      exact: "0.1.8"),
   ],
   targets: [
     .executableTarget(
