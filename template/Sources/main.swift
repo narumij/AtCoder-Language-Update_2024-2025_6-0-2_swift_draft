@@ -1,5 +1,6 @@
 import AcCollections
 import AcFoundation
+import AcMemoize
 import Algorithms
 import AtCoder
 import BigInt
@@ -32,7 +33,7 @@ try main()
 
 @MainActor  // MainActorを付与すると最適化が有利になる
 public func main() throws {
-  
+
   let N: Int = stdin()
 
   #if ONLINE_JUDGE
@@ -45,4 +46,12 @@ public func main() throws {
 
   // 解答出力の例
   print("Hello, world! (\(N))")
+
+  @Memoize(maxCount: 100)
+  func fibonacci(_ n: Int) -> Int {
+    if n <= 1 { return n }
+    return fibonacci(n - 1) + fibonacci(n - 2)
+  }
+  
+  print(fibonacci(40), 102_334_155)
 }
