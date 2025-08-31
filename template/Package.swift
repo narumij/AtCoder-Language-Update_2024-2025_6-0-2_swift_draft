@@ -22,7 +22,6 @@ let package = Package(
       url: "https://github.com/attaswift/BigInt",
       exact: "5.7.0"),
     // 有理数です。
-    // インストール手順がmainブランチ指定だったので、tagではなくrevision指定にしています。
     .package(
       url: "https://github.com/dankogai/swift-bignum",
       revision: "7905f4e520bb601ed02a163d3c7410aa20f39c71"),
