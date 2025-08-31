@@ -156,7 +156,7 @@ let package = Package(
     // メモ化マクロです。
     .package(
       url: "https://github.com/narumij/swift-ac-memoize",
-      exact: "0.1.8"),
+      exact: "0.1.9"),
   ],
   targets: [
     .executableTarget(
@@ -192,6 +192,7 @@ EOF
 # 実行可能パッケージのビルドを行います
 # -c releaseは、リリースビルドを行うためのオプション
 # --build-system nativeは、6.2になった場合の変動を避けるために付与
+# --enable-experimental-prebuiltsは事前ビルド済みのswift-syntaxを利用するために付与
 # 1>&2は、標準出力を標準エラーにリダイレクトするためのもので、既存由来
 # |& tee /dev/nullは、環境情報収集に関してSPMにバグがあり、そのワークアラウンド
 # ビルドオプションが変化するとフルビルドとなるため、コンパイルスクリプトと揃える必要がある
