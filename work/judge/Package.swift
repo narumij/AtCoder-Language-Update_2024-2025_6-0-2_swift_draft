@@ -26,7 +26,7 @@ let package = Package(
     // インストール手順がmainブランチ指定だったので、tagではなくrevision指定にしています。
     .package(
       url: "https://github.com/dankogai/swift-bignum",
-      revision: "7905f4e520bb601ed02a163d3c7410aa20f39c71"),
+      revision: "a562275f0a64bc95f6e3f6c45ee652eefa820749"),
     // SIMDです。
     .package(
       url: "https://github.com/keyvariable/kvSIMD.swift",
@@ -40,21 +40,21 @@ let package = Package(
       url: "https://github.com/narumij/swift-ac-library",
       // -Ouncheckedを利用するためにrevision指定としている
       // tag - 0.1.22
-      revision: "04036f7af5bf56e86c889b9f583513f189ed774d"),
+      revision: "88c3c34dd14fcf476da5088c96480ef36f92055c"),
     // 高速な入力、二分探索、その他便利関数です。
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
       // .unsafeFlags(["-std=c++17"])に対するビルド拒否を迂回するため、revision指定としている
       // branch - main
-      revision: "1b0ae1f0d2fa3b47cfd56aaa2e262a663012f53d"),
+      revision: "3d7c910ca017fba151c61d40a4c6a383702b4b97"),
     // 平衡二分探索木と順列全列挙です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.42"),
+      exact: "0.1.44"),
     // メモ化マクロです。
     .package(
       url: "https://github.com/narumij/swift-ac-memoize",
-      exact: "0.1.9"),
+      exact: "0.1.11"),
   ],
   targets: [
     .executableTarget(

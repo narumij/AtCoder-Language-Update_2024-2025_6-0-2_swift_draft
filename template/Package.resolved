@@ -1,5 +1,5 @@
 {
-  "originHash" : "541332dab68d4cc8e363b707d2f5dc9605a154c324ab0cd0268647efc3737ecf",
+  "originHash" : "2e920f88db25d2657f8ad87330ec05fb5ca3238fcce65fe5a9c76ced2db99ca6",
   "pins" : [
     {
       "identity" : "accelerate-linux",
@@ -28,15 +28,6 @@
       }
     },
     {
-      "identity" : "swift-ac-collections",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/narumij/swift-ac-collections",
-      "state" : {
-        "branch" : "release/AtCoder/2025",
-        "revision" : "730d3433b47219244ef69e130970cb80f68a94a2"
-      }
-    },
-    {
       "identity" : "swift-ac-foundation",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-foundation",
@@ -59,8 +50,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-memoize",
       "state" : {
-        "branch" : "release/AtCoder/2025",
-        "revision" : "231763852f55b2cdce461b2068e7eef9f232f670"
+        "branch" : "main",
+        "revision" : "b33efc946754b9f1663243f602483a5c327fc849"
       }
     },
     {
