@@ -42,16 +42,16 @@ let package = Package(
       url: "https://github.com/narumij/swift-ac-foundation",
       branch: "release/AtCoder/2025"),
     // 平衡二分探索木と順列全列挙です。
-//    .package(
-//      url: "https://github.com/narumij/swift-ac-collections",
-//      branch: "release/AtCoder/2025"),
-      .package(
-        path: "/Users/narumij/Documents/GitHub/swift-ac-collections"),
+    .package(
+      url: "https://github.com/narumij/swift-ac-collections",
+      branch: "release/AtCoder/2025"),
+//      .package(
+//        path: "/Users/narumij/Documents/GitHub/swift-ac-collections"),
     // メモ化マクロです。
     .package(
       url: "https://github.com/narumij/swift-ac-memoize",
-//      branch: "release/AtCoder/2025"),
-      branch: "main"),
+      branch: "release/AtCoder/2025"),
+//      branch: "main"),
 ],
   targets: [
     .executableTarget(
