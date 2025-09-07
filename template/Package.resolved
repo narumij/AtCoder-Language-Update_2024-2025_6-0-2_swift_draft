@@ -1,5 +1,5 @@
 {
-  "originHash" : "cc8a515a152176460f8afb55419a87a10c657bd828d51f8fc69a63906697b732",
+  "originHash" : "cd47d1517fcc48a2291964916be959df8c03c892dd0e62cc0bc4ca1c51c9c0bb",
   "pins" : [
     {
       "identity" : "accelerate-linux",
@@ -51,7 +51,7 @@
       "location" : "https://github.com/narumij/swift-ac-library",
       "state" : {
         "branch" : "release/AtCoder/2025",
-        "revision" : "88c3c34dd14fcf476da5088c96480ef36f92055c"
+        "revision" : "528c893e8d9b74acbfd455781e9a4bb6c5a5a262"
       }
     },
     {
