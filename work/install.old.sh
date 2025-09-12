@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# 旧公式手順に従ってインストールを行います。
+# Alternate Install Options > Tarball > Instruction
+# https://www.swift.org/install/linux/tarball/
+
 NUMBER="6.1.3"
 VERSION="${NUMBER}-RELEASE"
 PLATFORM="ubuntu24.04"
