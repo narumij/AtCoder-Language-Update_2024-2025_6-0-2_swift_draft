@@ -30,6 +30,11 @@ filename = 'Sources/main.swift'
 
 install = '''
 
+# 現在の公式手順、swiftlyを利用したインストール方法に問題が生じたため、
+# 旧公式手順に従ってインストールを行います。
+# Alternate Install Options > Tarball > Instruction
+# https://www.swift.org/install/linux/tarball/
+
 NUMBER="6.1.3"
 VERSION="${NUMBER}-RELEASE"
 PLATFORM="ubuntu24.04"
@@ -38,8 +43,6 @@ TAR_FILE="swift-${VERSION}-${PLATFORM}.tar.gz"
 TAR_URL="https://download.swift.org/swift-${NUMBER}-release/$(echo $PLATFORM | tr -d .)/swift-${VERSION}/${TAR_FILE}"
 
 SWIFT_PATH="swift-${VERSION}-${PLATFORM}/usr/bin"
-
-FILE=".build/release/Main"
 
 echo "Download URL: ${TAR_URL}"
 
@@ -101,8 +104,10 @@ tar xzf $TAR_FILE
 # バージョン番号を出力し、ログでも処理系バージョンを確認する
 ./${SWIFT_PATH}/swift --version
 
-# AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
+# 運営からの不要なファイル削除に関する指示に従い、ダウンロードしたファイルを削除します
 rm $TAR_FILE
+
+ls -al
 
 # accelerate-linuxのビルドに必要なパッケージをインストールします
 sudo apt-get install -y \
@@ -208,53 +213,24 @@ let package = Package(
 )
 EOF
 
-# ビルドスクリプトを配置するフォルダを作成
-mkdir Script
-
 # 念の為に、クリーニングします
 ./${SWIFT_PATH}/swift package clean
 
-# 依存パッケージの解決とパッケージのビルドを事前に行います
+# 依存パッケージの解決を行います
+./${SWIFT_PATH}/swift package resolve
+
+# 実行可能パッケージのビルドを行います
 # -c releaseは、リリースビルドを行うためのオプション
 # --build-system nativeは、6.2になった場合の変動を避けるために付与
 # --enable-experimental-prebuiltsは事前ビルド済みのswift-syntaxを利用するために付与
 # 1>&2は、標準出力を標準エラーにリダイレクトするためのもので、既存由来
 # |& tee /dev/nullは、環境情報収集に関してSPMにバグがあり、そのワークアラウンド
-./${SWIFT_PATH}/swift \
-  build \
-  --build-system native \
-  -c release \
-  --enable-experimental-prebuilts \
-  -v 1>&2 |& tee /dev/null
+# ビルドオプションが変化するとフルビルドとなるため、コンパイルスクリプトと揃える必要がある
+./${SWIFT_PATH}/swift build --target Main --enable-experimental-prebuilts --build-system native -c release 1>&2 |& tee /dev/null
 
-# 差分コンパイルが行われるよう、ソースコードを変更します
-sed -i 's/Hello/Hallo/' Sources/main.swift
+FILE=".build/release/Main"
 
-# 差分コンパイルを実施し、ビルドログを取得します
-./${SWIFT_PATH}/swift \
-  build \
-  --build-system native \
-  -c release \
-  -v > build.log
-
-# ビルドログからビルドコマンドを抽出し、差分ビルドスクリプトを作成します
-sed -n '/swiftc/{
-    s/ -v / /;
-    s/-parseable-output//;
-    s/ -j[0-9][0-9]*/ -j1/g;
-    s/ -num-threads [0-9][0-9]*/ -num-threads 1/g;
-    p
-}' build.log > Script/build.sh
-
-# ビルドログを削除します
-rm build.log
-
-# ビルド結果を削除します
-rm .build/release/Main
-
-# 差分ビルドスクリプトを実行します
-bash ./Script/build.sh
-
+# コンパイルに失敗した場合、インストール失敗とする
 if [ ! -f "$FILE" ]; then
   echo "Error: 初回のビルドに失敗しました: $FILE" >&2
   exit 1
@@ -270,11 +246,21 @@ rm .build/release/Main
 
 compile = '''
 
+NUMBER="6.1.3"
+VERSION="${NUMBER}-RELEASE"
+PLATFORM="ubuntu24.04"
+SWIFT_PATH="swift-${VERSION}-${PLATFORM}/usr/bin"
+
+# これがないとswift-ac-libraryのコンパイルが走ってしまう
 export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 
-FILE=".build/release/Main"
+# ビルドオプションが変化するとフルビルドとなるため、インストールスクリプトと揃える必要がある
+./${SWIFT_PATH}/swift build --target Main --enable-experimental-prebuilts --build-system native -c release 1>&2 |& tee /dev/null
 
-bash ./Script/build.sh
+# コンパイル所要時間の目安はhello wolrdで5秒程度。
+# それを上回る場合、差分コンパイルに問題が生じている可能性があります。
+
+FILE=".build/release/Main"
 
 if [ ! -f "$FILE" ]; then
   echo "Error: Failed to build file '$FILE'" >&2
