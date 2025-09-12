@@ -196,6 +196,7 @@ mkdir Script
 # |& tee /dev/nullは、環境情報収集に関してSPMにバグがあり、そのワークアラウンド
 ./${SWIFT_PATH}/swift \
   build \
+  --product Main \
   --build-system native \
   -c release \
   --enable-experimental-prebuilts \
@@ -207,8 +208,10 @@ sed -i 's/Hello/Hallo/' Sources/main.swift
 # 差分コンパイルを実施し、ビルドログを取得します
 ./${SWIFT_PATH}/swift \
   build \
+  --product Main \
   --build-system native \
   -c release \
+  --enable-experimental-prebuilts \
   -v > build.log
 
 # ビルドログからビルドコマンドを抽出し、差分ビルドスクリプトを作成します
