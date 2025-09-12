@@ -24,6 +24,7 @@ import StringUtil
 import UInt8Util
 import simd
 
+#if false
 try main()
 
 @MainActor
@@ -84,5 +85,130 @@ extension Sequence {
       }
     }
     return result
+  }
+}
+#endif
+
+import Foundation
+
+@usableFromInline
+nonisolated(unsafe) var buffer: [Int32] = Array(repeating: 0, count: 1024)
+
+let N: Int = __readLine()
+for _ in 0..<N {
+  let (a,b) = __readLine()
+  fastPrint(a + b)
+}
+
+func __readLine_stdin(_ p: UnsafeMutablePointer<UnsafeMutablePointer<CChar>?>) -> Int {
+  var capacity = 0
+  var result = 0
+  repeat {
+    result = getline(p, &capacity, stdin)
+  } while result < 0 && errno == EINTR
+  return result
+}
+
+public func __readLine<T>(_ f: (UnsafePointer<CChar>, Int) throws -> T) throws -> T {
+  var utf8Start: UnsafeMutablePointer<CChar>?
+  let utf8Count = __readLine_stdin(&utf8Start)
+  defer {
+    free(utf8Start)
+  }
+  return try f(utf8Start!, utf8Count)
+}
+
+@inlinable
+func __read<Integer>(_ start: UnsafePointer<CChar>,_ count: Int,_ pos: inout Int) -> Integer where Integer: FixedWidthInteger & SignedInteger {
+  while pos < count, start[pos] == 0x20 {
+    pos += 1
+  }
+  var num: Integer = 0
+  var negative: Bool = false
+  var c: Integer = Integer(start[pos])
+  pos += 1
+  if c == 0x2D {
+    negative = true
+  } else {
+    num = c - 0x30
+  }
+  while true {
+    c = Integer(start[pos])
+    pos += 1
+    if (1 << c) & (1 << 0x0A | 1 << 0x20) != 0 {
+      break
+    }
+    num = num * 10 + (negative ? -(c &- 0x30) : (c &- 0x30))
+  }
+  return num
+}
+
+public func __readLine() -> Int {
+  try! __readLine { start, count in
+    var pos = 0
+    return __read(start, count, &pos)
+  }
+}
+
+public func __readLine() -> (Int, Int) {
+  try! __readLine { start, count in
+    var pos = 0
+    return (__read(start, count, &pos), __read(start, count, &pos))
+  }
+}
+
+@inlinable
+public func fastPrint<I>(_ x: I, terminater: Int32? = 0x0A)
+where I: FixedWidthInteger & SignedInteger {
+  ___print_int(x)
+  if let terminater {
+    putchar_unlocked(terminater)
+  }
+}
+
+@inlinable
+func ___print_int<I>(_ x: I) where I: FixedWidthInteger & SignedInteger {
+  if (x < 0) {
+    ___print_negative(x)
+  }
+  else {
+    ___print_positive(x)
+  }
+}
+
+@inlinable
+func ___print_positive<I>(_ x: I) where I: FixedWidthInteger {
+  var x = x
+  buffer.withUnsafeMutableBufferPointer { buffer in
+  var i = 0;
+  repeat {
+    let r: I
+    (x, r) = x.quotientAndRemainder(dividingBy: 10)
+    buffer[i] = Int32(0x30 | r);
+    i += 1;
+  } while (x > 0);
+  while (i > 0) {
+    i -= 1;
+    putchar_unlocked(buffer[i]);
+  }
+  }
+}
+
+@inlinable
+func ___print_negative<I>(_ x: I) where I: FixedWidthInteger & SignedInteger {
+  var x = x
+  buffer.withUnsafeMutableBufferPointer { buffer in
+    putchar_unlocked(0x2D);
+    var i = 0;
+    repeat {
+      let r: I
+      (x, r) = x.quotientAndRemainder(dividingBy: 10)
+      buffer[i] = Int32(0x30 | -r);
+      i += 1;
+    } while (x < 0);
+    while (i > 0) {
+      i -= 1;
+      putchar_unlocked(buffer[i]);
+    }
   }
 }

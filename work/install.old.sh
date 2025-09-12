@@ -1,15 +1,17 @@
 #!/bin/bash
 
-PLATFORM=ubuntu24.04
-LANG_VERSION=6.1.2
-OS_ARCH_SUFFIX="" # arm64等の場合に指定する
+NUMBER="6.1.3"
+VERSION="${NUMBER}-RELEASE"
+PLATFORM="ubuntu24.04"
+TAR_FILE="swift-${VERSION}-${PLATFORM}.tar.gz"
+# https://download.swift.org/swift-6.1.3-release/ubuntu2404/swift-6.1.3-RELEASE/swift-6.1.3-RELEASE-ubuntu24.04.tar.gz
+TAR_URL="https://download.swift.org/swift-${NUMBER}-release/$(echo $PLATFORM | tr -d .)/swift-${VERSION}/${TAR_FILE}"
 
-SWIFT_BRANCH=swift-${LANG_VERSION}-release
-SWIFT_VERSION=swift-${LANG_VERSION}-RELEASE
-SWIFT_WEBROOT=https://download.swift.org
-SWIFT_WEBDIR="$SWIFT_WEBROOT/$SWIFT_BRANCH/$(echo $PLATFORM | tr -d .)$OS_ARCH_SUFFIX"
-SWIFT_TAR_BALL="$SWIFT_VERSION-$PLATFORM$OS_ARCH_SUFFIX"
-SWIFT_TAR_BALL_URL="$SWIFT_WEBDIR/$SWIFT_VERSION/$SWIFT_TAR_BALL.tar.gz"
+SWIFT_PATH="swift-${VERSION}-${PLATFORM}/usr/bin"
+
+FILE=".build/release/Main"
+
+echo "Download URL: ${TAR_URL}"
 
 export DEBIAN_FRONTEND=noninteractive
 
@@ -48,7 +50,7 @@ sudo apt-get install -y \
              zlib1g-dev
 
 # 公式 2. Download the latest binary release.
-curl -s -O $SWIFT_TAR_BALL_URL
+curl -s -O $TAR_URL
 
 # 公式 3. Import and verify the PGP signature:
 # $ gpg --keyserver hkp://keyserver.ubuntu.com \
@@ -58,7 +60,7 @@ curl -s -O $SWIFT_TAR_BALL_URL
 # この手順は省略します
 
 # 公式 4. Extract the archive with the following command:
-tar xzf $SWIFT_TAR_BALL.tar.gz
+tar xzf $TAR_FILE
 
 # 公式 5. Add the Swift toolchain to your path as follows:
 # $ export PATH=/path/to/usr/bin:"${PATH}"
@@ -67,10 +69,10 @@ tar xzf $SWIFT_TAR_BALL.tar.gz
 # 公式のインストール手順は以上です
 
 # バージョン番号を出力し、ログでも処理系バージョンを確認する
-./${SWIFT_TAR_BALL}/usr/bin/swift --version
+./${SWIFT_PATH}/swift --version
 
 # AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
-rm $SWIFT_TAR_BALL.tar.gz
+rm $TAR_FILE
 
 # accelerate-linuxのビルドに必要なパッケージをインストールします
 sudo apt-get install -y \
@@ -89,72 +91,68 @@ sudo apt-get install -y \
 # コンパイル環境の構築では、AtCoderで使用するSwiftパッケージの初期化と依存パッケージの追加、そして事前ビルドを行います
 
 # ジャッジがビルドを行う作業パッケージの初期化を行います。パッケージ名はMain、実行可能なプログラムとして初期化します
-./${SWIFT_TAR_BALL}/usr/bin/swift package init --name Main --type executable
+./${SWIFT_PATH}/swift package init --name Main --type executable
 
 # Package.swiftを更新し、AtCoderジャッジで使用する依存パッケージを作業パッケージに追加します
 cat << 'EOF' > Package.swift
 // swift-tools-version: 6.1
 import PackageDescription
 
-#if true
-var swiftSettings: [SwiftSetting] = [
-]
-#else
-// 6.2以降でSE-0466を利用する
-var swiftSettings: [SwiftSetting] = [
-  .defaultIsolation(.mainActor)
-]
-#endif
-
 let package = Package(
   name: "Main",
-  
   // @MainActorとRegexとType PackをmacOSローカルでパッケージを利用する場合に必要な設定値
   platforms: [.macOS(.v14), .iOS(.v17), .tvOS(.v17), .watchOS(.v10), .macCatalyst(.v17)],
-
   dependencies: [
-    // swift 5.8.1時点での既存ライブラリで、ABC必須です
+    // swift 5.8.1時点での既存ライブラリです
     .package(
       url: "https://github.com/apple/swift-collections",
-      exact: "1.1.4"),
-    // swift 5.8.1時点での既存ライブラリです。ABC必須ではないですが、まれに有用でAC実績もあります。
+      exact: "1.2.1"),
+    // swift 5.8.1時点での既存ライブラリです。
     .package(
       url: "https://github.com/apple/swift-algorithms",
       exact: "1.2.1"),
-    // swift 5.8.1時点での既存ライブラリですが、実数及び複素数であり、ABC必須ではありません。
+    // swift 5.8.1時点での既存ライブラリで、実数及び複素数です。
     .package(
       url: "https://github.com/apple/swift-numerics",
-      exact: "1.0.3"),
-    // 多倍長整数です。ABC必須です。
+      exact: "1.1.0"),
+    // 多倍長整数です。
     .package(
       url: "https://github.com/attaswift/BigInt",
-      exact: "5.6.0"),
-    // 2次元のSIMDはABCのマス目問題で有用で、まれに3次元のSIMDでABC提出の高速化が可能な場合があります。
+      exact: "5.7.0"),
+    // 有理数です。
+    // インストール手順がmainブランチ指定だったので、tagではなくrevision指定にしています。
+    .package(
+      url: "https://github.com/dankogai/swift-bignum",
+      revision: "a562275f0a64bc95f6e3f6c45ee652eefa820749"),
+    // SIMDです。
     .package(
       url: "https://github.com/keyvariable/kvSIMD.swift",
       exact: "1.1.0"),
-    // BLAS及びLAPACKなので、ABC必須ではありません。
+    // BLAS及びLAPACKです。
     .package(
       url: "https://github.com/brokenhandsio/accelerate-linux",
       revision: "8eda308ea3129130e90e5c01fc437a4c5d2ca278"),
-    // ABCに必須です。
+    // Atcoder LibraryのSwift版です。
     .package(
       url: "https://github.com/narumij/swift-ac-library",
       // -Ouncheckedを利用するためにrevision指定としている
-      // tag - 0.1.17
-      revision: "afc5997f42ee814fb5c7f4c383da25e5051c9ebd"),
-    // ABCに必須です。
+      // tag - 0.1.29
+      revision: "528c893e8d9b74acbfd455781e9a4bb6c5a5a262"),
+    // 高速な入力、二分探索、その他便利関数です。
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
       // .unsafeFlags(["-std=c++17"])に対するビルド拒否を迂回するため、revision指定としている
       // branch - main
-      revision: "9fff582e068e1d2a4c0f92246a6143d94d40c63b"),
-    // ABCに必須です。
+      revision: "3d7c910ca017fba151c61d40a4c6a383702b4b97"),
+    // 平衡二分探索木と順列全列挙です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.29"),
+      exact: "0.1.44"),
+    // メモ化マクロです。
+    .package(
+      url: "https://github.com/narumij/swift-ac-memoize",
+      exact: "0.1.11"),
   ],
-  
   targets: [
     .executableTarget(
       name: "Main",
@@ -163,14 +161,18 @@ let package = Package(
         .product(name: "Algorithms", package: "swift-algorithms"),
         .product(name: "Numerics", package: "swift-numerics"),
         .product(name: "BigInt", package: "BigInt"),
+        .product(name: "BigNum", package: "swift-bignum"),
         .product(name: "kvSIMD", package: "kvSIMD.swift"),
         .product(name: "AccelerateLinux", package: "accelerate-linux"),
         .product(name: "AtCoder", package: "swift-ac-library"),
         .product(name: "AcFoundation", package: "swift-ac-foundation"),
         .product(name: "AcCollections", package: "swift-ac-collections"),
+        .product(name: "AcMemoize", package: "swift-ac-memoize"),
       ],
       path: "Sources",
-      swiftSettings: swiftSettings
+      swiftSettings: [
+        .define("ONLINE_JUDGE")
+      ]
     )
   ]
 )
@@ -180,20 +182,26 @@ EOF
 mkdir Script
 
 # 念の為に、クリーニングします
-./${SWIFT_TAR_BALL}/usr/bin/swift package clean
+./${SWIFT_PATH}/swift package clean
 
 # 依存パッケージの解決とパッケージのビルドを事前に行います
-./${SWIFT_TAR_BALL}/usr/bin/swift \
+# -c releaseは、リリースビルドを行うためのオプション
+# --build-system nativeは、6.2になった場合の変動を避けるために付与
+# --enable-experimental-prebuiltsは事前ビルド済みのswift-syntaxを利用するために付与
+# 1>&2は、標準出力を標準エラーにリダイレクトするためのもので、既存由来
+# |& tee /dev/nullは、環境情報収集に関してSPMにバグがあり、そのワークアラウンド
+./${SWIFT_PATH}/swift \
   build \
   --build-system native \
   -c release \
+  --enable-experimental-prebuilts \
   -v 1>&2 |& tee /dev/null
 
 # 差分コンパイルが行われるよう、ソースコードを変更します
 sed -i 's/Hello/Hallo/' Sources/main.swift
 
 # 差分コンパイルを実施し、ビルドログを取得します
-./${SWIFT_TAR_BALL}/usr/bin/swift \
+./${SWIFT_PATH}/swift \
   build \
   --build-system native \
   -c release \
@@ -216,8 +224,6 @@ rm .build/release/Main
 
 # 差分ビルドスクリプトを実行します
 bash ./Script/build.sh
-
-FILE=".build/release/Main"
 
 if [ ! -f "$FILE" ]; then
   echo "Error: 初回のビルドに失敗しました: $FILE" >&2

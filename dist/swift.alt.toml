@@ -1,18 +1,21 @@
 # SPDX-License-Identifier: CC0-1.0
 
 language = 'Swift'
-display = 'Swift 6.1.2'
+display = 'Swift 6.1.3'
 license = [ { name = 'Apache-2.0', url = 'https://github.com/swiftlang/swift/blob/main/LICENSE.txt' }, ]
 
 library.swift-algorithms = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-algorithms/blob/main/LICENSE.txt' },], version = '1.2.1' }
-library.swift-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-collections/blob/main/LICENSE.txt' },], version = '1.1.4' }
-library.swift-numerics = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-numerics/blob/main/LICENSE.txt' },], version = '1.0.3' }
-library.BigInt = { license = [ { name = 'MIT', url = 'https://github.com/attaswift/BigInt/blob/master/LICENSE.md' },], version = '5.6.0' }
+library.swift-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-collections/blob/main/LICENSE.txt' },], version = '1.2.1' }
+library.swift-numerics = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-numerics/blob/main/LICENSE.txt' },], version = '1.1.0' }
+library.swift-syntax = { license = [ { name = 'Apache-2.0', url = 'https://github.com/swiftlang/swift-syntax/blob/main/LICENSE.txt' },], indirect = true, version = '601.0.1' }
+library.BigInt = { license = [ { name = 'MIT', url = 'https://github.com/attaswift/BigInt/blob/master/LICENSE.md' },], version = '5.7.0' }
+library.swift-bignum = { license = [ { name = 'MIT', url = 'https://github.com/dankogai/swift-bignum/blob/main/LICENSE' },], version = 'a562275' }
 library.'kvSIMD.swift' = { license = [ { name = 'Apache-2.0', url = 'https://github.com/keyvariable/kvSIMD.swift/blob/main/LICENSE' },], version = '1.1.0' }
 library.accelerate-linux = { license = [ { name = 'MIT', url = 'https://github.com/brokenhandsio/accelerate-linux/blob/main/LICENSE' },], version = '8eda308' }
-library.swift-ac-library = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },], version = 'afc5997' }
-library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = 'f772797' }
-library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.29' }
+library.swift-ac-library = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },], version = '528c893' }
+library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = '3d7c910' }
+library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.44' }
+library.swift-ac-memoize = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-memoize/blob/main/LICENSE' },], version = '0.1.11' }
 
 library.libopenblas-dev = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/OpenMathLib/OpenBLAS/blob/develop/LICENSE' },], version = '0.3.26+ds-1' }
 library.libopenblas0 = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/OpenMathLib/OpenBLAS/blob/develop/LICENSE' },], indirect = true, version = '0.3.26+ds-1' }
@@ -32,11 +35,11 @@ install = '''
 # Alternate Install Options > Tarball > Instruction
 # https://www.swift.org/install/linux/tarball/
 
-NUMBER="6.1.2"
+NUMBER="6.1.3"
 VERSION="${NUMBER}-RELEASE"
 PLATFORM="ubuntu24.04"
 TAR_FILE="swift-${VERSION}-${PLATFORM}.tar.gz"
-# https://download.swift.org/swift-6.1.2-release/ubuntu2404/swift-6.1.2-RELEASE/swift-6.1.2-RELEASE-ubuntu24.04.tar.gz
+# https://download.swift.org/swift-6.1.3-release/ubuntu2404/swift-6.1.3-RELEASE/swift-6.1.3-RELEASE-ubuntu24.04.tar.gz
 TAR_URL="https://download.swift.org/swift-${NUMBER}-release/$(echo $PLATFORM | tr -d .)/swift-${VERSION}/${TAR_FILE}"
 
 SWIFT_PATH="swift-${VERSION}-${PLATFORM}/usr/bin"
@@ -130,65 +133,61 @@ cat << 'EOF' > Package.swift
 // swift-tools-version: 6.1
 import PackageDescription
 
-#if true
-var swiftSettings: [SwiftSetting] = [
-]
-#else
-// 6.2以降でSE-0466を利用する
-var swiftSettings: [SwiftSetting] = [
-  .defaultIsolation(.mainActor)
-]
-#endif
-
 let package = Package(
   name: "Main",
-  
   // @MainActorとRegexとType PackをmacOSローカルでパッケージを利用する場合に必要な設定値
   platforms: [.macOS(.v14), .iOS(.v17), .tvOS(.v17), .watchOS(.v10), .macCatalyst(.v17)],
-
   dependencies: [
-    // swift 5.8.1時点での既存ライブラリで、ABC必須です
+    // swift 5.8.1時点での既存ライブラリです
     .package(
       url: "https://github.com/apple/swift-collections",
-      exact: "1.1.4"),
-    // swift 5.8.1時点での既存ライブラリです。ABC必須ではないですが、まれに有用でAC実績もあります。
+      exact: "1.2.1"),
+    // swift 5.8.1時点での既存ライブラリです。
     .package(
       url: "https://github.com/apple/swift-algorithms",
       exact: "1.2.1"),
-    // swift 5.8.1時点での既存ライブラリですが、実数及び複素数であり、ABC必須ではありません。
+    // swift 5.8.1時点での既存ライブラリで、実数及び複素数です。
     .package(
       url: "https://github.com/apple/swift-numerics",
-      exact: "1.0.3"),
-    // 多倍長整数です。ABC必須です。
+      exact: "1.1.0"),
+    // 多倍長整数です。
     .package(
       url: "https://github.com/attaswift/BigInt",
-      exact: "5.6.0"),
-    // 2次元のSIMDはABCのマス目問題で有用で、まれに3次元のSIMDでABC提出の高速化が可能な場合があります。
+      exact: "5.7.0"),
+    // 有理数です。
+    // インストール手順がmainブランチ指定だったので、tagではなくrevision指定にしています。
+    .package(
+      url: "https://github.com/dankogai/swift-bignum",
+      revision: "a562275f0a64bc95f6e3f6c45ee652eefa820749"),
+    // SIMDです。
     .package(
       url: "https://github.com/keyvariable/kvSIMD.swift",
       exact: "1.1.0"),
-    // BLAS及びLAPACKなので、ABC必須ではありません。
+    // BLAS及びLAPACKです。
     .package(
       url: "https://github.com/brokenhandsio/accelerate-linux",
       revision: "8eda308ea3129130e90e5c01fc437a4c5d2ca278"),
-    // ABCに必須です。
+    // Atcoder LibraryのSwift版です。
     .package(
       url: "https://github.com/narumij/swift-ac-library",
       // -Ouncheckedを利用するためにrevision指定としている
-      // tag - 0.1.17
-      revision: "afc5997f42ee814fb5c7f4c383da25e5051c9ebd"),
-    // ABCに必須です。
+      // tag - 0.1.29
+      revision: "528c893e8d9b74acbfd455781e9a4bb6c5a5a262"),
+    // 高速な入力、二分探索、その他便利関数です。
     .package(
       url: "https://github.com/narumij/swift-ac-foundation",
       // .unsafeFlags(["-std=c++17"])に対するビルド拒否を迂回するため、revision指定としている
       // branch - main
-      revision: "f77279740925341740f5dde683d21d81c09a95ec"),
-    // ABCに必須です。
+      revision: "3d7c910ca017fba151c61d40a4c6a383702b4b97"),
+    // 平衡二分探索木と順列全列挙です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
-      exact: "0.1.29"),
+      exact: "0.1.44"),
+    // メモ化マクロです。
+    .package(
+      url: "https://github.com/narumij/swift-ac-memoize",
+      exact: "0.1.11"),
   ],
-  
   targets: [
     .executableTarget(
       name: "Main",
@@ -197,14 +196,18 @@ let package = Package(
         .product(name: "Algorithms", package: "swift-algorithms"),
         .product(name: "Numerics", package: "swift-numerics"),
         .product(name: "BigInt", package: "BigInt"),
+        .product(name: "BigNum", package: "swift-bignum"),
         .product(name: "kvSIMD", package: "kvSIMD.swift"),
         .product(name: "AccelerateLinux", package: "accelerate-linux"),
         .product(name: "AtCoder", package: "swift-ac-library"),
         .product(name: "AcFoundation", package: "swift-ac-foundation"),
         .product(name: "AcCollections", package: "swift-ac-collections"),
+        .product(name: "AcMemoize", package: "swift-ac-memoize"),
       ],
       path: "Sources",
-      swiftSettings: swiftSettings
+      swiftSettings: [
+        .define("ONLINE_JUDGE")
+      ]
     )
   ]
 )
@@ -219,10 +222,11 @@ EOF
 # 実行可能パッケージのビルドを行います
 # -c releaseは、リリースビルドを行うためのオプション
 # --build-system nativeは、6.2になった場合の変動を避けるために付与
+# --enable-experimental-prebuiltsは事前ビルド済みのswift-syntaxを利用するために付与
 # 1>&2は、標準出力を標準エラーにリダイレクトするためのもので、既存由来
 # |& tee /dev/nullは、環境情報収集に関してSPMにバグがあり、そのワークアラウンド
 # ビルドオプションが変化するとフルビルドとなるため、コンパイルスクリプトと揃える必要がある
-./${SWIFT_PATH}/swift build --build-system native -c release 1>&2 |& tee /dev/null
+./${SWIFT_PATH}/swift build --enable-experimental-prebuilts --build-system native -c release 1>&2 |& tee /dev/null
 
 FILE=".build/release/Main"
 
@@ -242,7 +246,7 @@ rm .build/release/Main
 
 compile = '''
 
-NUMBER="6.1.2"
+NUMBER="6.1.3"
 VERSION="${NUMBER}-RELEASE"
 PLATFORM="ubuntu24.04"
 SWIFT_PATH="swift-${VERSION}-${PLATFORM}/usr/bin"
@@ -251,7 +255,7 @@ SWIFT_PATH="swift-${VERSION}-${PLATFORM}/usr/bin"
 export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 
 # ビルドオプションが変化するとフルビルドとなるため、インストールスクリプトと揃える必要がある
-./${SWIFT_PATH}/swift build --build-system native -c release 1>&2 |& tee /dev/null
+./${SWIFT_PATH}/swift build --enable-experimental-prebuilts --build-system native -c release 1>&2 |& tee /dev/null
 
 # コンパイル所要時間の目安はhello wolrdで5秒程度。
 # それを上回る場合、差分コンパイルに問題が生じている可能性があります。
