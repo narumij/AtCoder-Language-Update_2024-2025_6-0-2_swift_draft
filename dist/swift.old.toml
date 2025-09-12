@@ -30,6 +30,10 @@ filename = 'Sources/main.swift'
 
 install = '''
 
+# 旧公式手順に従ってインストールを行います。
+# Alternate Install Options > Tarball > Instruction
+# https://www.swift.org/install/linux/tarball/
+
 NUMBER="6.1.3"
 VERSION="${NUMBER}-RELEASE"
 PLATFORM="ubuntu24.04"
@@ -101,7 +105,7 @@ tar xzf $TAR_FILE
 # バージョン番号を出力し、ログでも処理系バージョンを確認する
 ./${SWIFT_PATH}/swift --version
 
-# AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
+# 運営からの不要なファイル削除に関する指示に従い、ダウンロードしたファイルを削除します
 rm $TAR_FILE
 
 # accelerate-linuxのビルドに必要なパッケージをインストールします
@@ -222,6 +226,7 @@ mkdir Script
 # |& tee /dev/nullは、環境情報収集に関してSPMにバグがあり、そのワークアラウンド
 ./${SWIFT_PATH}/swift \
   build \
+  --product Main \
   --build-system native \
   -c release \
   --enable-experimental-prebuilts \
@@ -233,8 +238,10 @@ sed -i 's/Hello/Hallo/' Sources/main.swift
 # 差分コンパイルを実施し、ビルドログを取得します
 ./${SWIFT_PATH}/swift \
   build \
+  --product Main \
   --build-system native \
   -c release \
+  --enable-experimental-prebuilts \
   -v > build.log
 
 # ビルドログからビルドコマンドを抽出し、差分ビルドスクリプトを作成します
