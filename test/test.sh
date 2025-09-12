@@ -47,7 +47,7 @@ tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/(''
 echo `pwd`
 ls -al ./Script/build.sh
 ls -al /home/runner/work/AtCoder-Language-Update_2024-2025_6-0-2_swift_draft/AtCoder-Language-Update_2024-2025_6-0-2_swift_draft/Script/build.sh
-ls -al ./work/compile.sh
+# ls -al ./work/compile.sh
 
 cat ./Script/build.sh | bash
 
