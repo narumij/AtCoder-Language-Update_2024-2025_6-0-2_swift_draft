@@ -296,7 +296,9 @@ fi
 
 '''
 
+environment.DEBIAN_FRONTEND = 'noninteractive'
 environment.SWIFT_BACKTRACE = 'enable=yes,output-to=stderr,interactive=no'
+environment.SWIFTPM_MAX_CONCURRENT_OPERATIONS = '1'
 environment.SWIFT_AC_LIBRARY_USES_O_UNCHECKED = 'true'
 
 object = '.build/release/Main'
