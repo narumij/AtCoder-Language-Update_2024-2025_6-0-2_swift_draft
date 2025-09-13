@@ -9,6 +9,9 @@ PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
 SOURCE_PATH="${PACKAGE_PATH}/Sources/main.swift"
 FILE="${PACKAGE_PATH}/.build/release/Main"
 
+echo "Current directory: $(pwd)"
+echo "Executable File Path: ${FILE}"
+
 echo "Heap size: $(ulimit -v)"
 echo "Stack size: $(ulimit -s)"
 
