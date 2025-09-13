@@ -133,11 +133,13 @@ sudo apt-get install -y \
 
 mkdir -p $PACKAGE_NAME
 
+cd $PACKAGE_NAME
+
 # ジャッジがビルドを行う作業パッケージの初期化を行います。パッケージ名はMain、実行可能なプログラムとして初期化します
-./${SWIFT_PATH}/swift package init --name Main --type executable --package-path $PACKAGE_PATH
+./${SWIFT_PATH}/swift package init --name Main --type executable
 
 # Package.swiftを更新し、AtCoderジャッジで使用する依存パッケージを作業パッケージに追加します
-cat << 'EOF' > $PACKAGE_PATH/Package.swift
+cat << 'EOF' > Package.swift
 // swift-tools-version: 6.1
 import PackageDescription
 
@@ -222,10 +224,10 @@ let package = Package(
 EOF
 
 # 念の為に、クリーニングします
-./${SWIFT_PATH}/swift package clean --package-path $PACKAGE_PATH
+./${SWIFT_PATH}/swift package clean
 
 # 依存パッケージの解決を行います
-./${SWIFT_PATH}/swift package resolve --package-path $PACKAGE_PATH
+./${SWIFT_PATH}/swift package resolve
 
 # 実行可能パッケージのビルドを行います
 # --product Mainは、observabilityScope制限の為に付与
@@ -249,7 +251,9 @@ EOF
   1>&2 \
   |& tee /dev/null
 
-# tar czf build-cache.tgz .build
+cd ../
+
+# tar czf build-cache.tgz $PACKAGE_PATH/.build
 
 # コンパイルに失敗した場合、インストール失敗とする
 if [ ! -f "$FILE" ]; then
@@ -261,7 +265,7 @@ fi
 $FILE
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
-rm ${PACKAGE_PATH}/.build/release/Main
+rm $FILE
 
 '''
 
@@ -284,7 +288,9 @@ PACKAGE_PATH="${pwd}/${PACKAGE_NAME}"
 
 FILE="${PACKAGE_PATH}/.build/release/Main"
 
-# tar xzf build-cache.tgz
+# tar xzf build-cache.tgz -C "$PACKAGE_PATH"
+
+cd $PACKAGE_PATH
 
 # ビルドオプションが変化するとフルビルドとなるため、インストールスクリプトと揃える必要がある
 ./${SWIFT_PATH}/swift \
@@ -295,7 +301,6 @@ FILE="${PACKAGE_PATH}/.build/release/Main"
   --build-system native \
   --jobs 1 \
   --configuration release \
-  --package-path $PACKAGE_PATH \
   1>&2 \
   |& tee /dev/null
 

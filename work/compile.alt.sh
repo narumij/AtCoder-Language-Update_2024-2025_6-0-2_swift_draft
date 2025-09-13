@@ -15,7 +15,9 @@ PACKAGE_PATH="${pwd}/${PACKAGE_NAME}"
 
 FILE="${PACKAGE_PATH}/.build/release/Main"
 
-# tar xzf build-cache.tgz
+# tar xzf build-cache.tgz -C "$PACKAGE_PATH"
+
+cd $PACKAGE_PATH
 
 # ビルドオプションが変化するとフルビルドとなるため、インストールスクリプトと揃える必要がある
 ./${SWIFT_PATH}/swift \
@@ -26,7 +28,6 @@ FILE="${PACKAGE_PATH}/.build/release/Main"
   --build-system native \
   --jobs 1 \
   --configuration release \
-  --package-path $PACKAGE_PATH \
   1>&2 \
   |& tee /dev/null
 
