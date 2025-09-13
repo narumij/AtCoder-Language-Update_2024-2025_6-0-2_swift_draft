@@ -105,7 +105,7 @@ tar xzf $TAR_FILE
 # バージョン番号を出力し、ログでも処理系バージョンを確認する
 ./${SWIFT_PATH}/swift --version
 
-# 運営からの不要なファイル削除に関する指示に従い、ダウンロードしたファイルを削除します
+# AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
 rm $TAR_FILE
 
 # accelerate-linuxのビルドに必要なパッケージをインストールします
@@ -228,7 +228,8 @@ mkdir Script
   build \
   --product Main \
   --build-system native \
-  -c release \
+  --static-swift-stdlib \
+  --configuration release \
   --enable-experimental-prebuilts \
   -v 1>&2 |& tee /dev/null
 
@@ -240,7 +241,8 @@ sed -i 's/Hello/Hallo/' Sources/main.swift
   build \
   --product Main \
   --build-system native \
-  -c release \
+  --static-swift-stdlib \
+  --configuration release \
   --enable-experimental-prebuilts \
   -v > build.log
 
