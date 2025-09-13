@@ -27,11 +27,6 @@ jobs:
                   ref: ${{ github.head_ref || github.ref_name }}
                   fetch-depth: 0
 
-            - name: Use ccache
-              uses: hendrikmuhs/ccache-action@v1.2
-              with:
-                  create-symlink: true
-                  
             - name: Install Rust
               uses: actions-rs/toolchain@v1
               with:
