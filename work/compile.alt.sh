@@ -15,7 +15,8 @@ PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
 
 FILE="${PACKAGE_PATH}/.build/release/Main"
 
-tar xzf build-cache.tgz
+# .build ディレクトリを $PACKAGE_PATH に展開します。アーカイブ時と同じ -C オプションで相対パス .build を復元します。
+tar xzf build-cache.tgz -C "$PACKAGE_PATH"
 
 ls -al
 
