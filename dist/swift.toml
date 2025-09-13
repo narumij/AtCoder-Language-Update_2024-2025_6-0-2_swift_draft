@@ -26,7 +26,7 @@ library.liblapacke = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'http
 library.libtmglib-dev = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/Reference-LAPACK/lapack/blob/master/LICENSE' },], indirect = true, version = '3.12.0-3build1.1' }
 library.libtmglib3 = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/Reference-LAPACK/lapack/blob/master/LICENSE' },], indirect = true, version = '3.12.0-3build1.1' }
 
-filename = 'Sources/main.swift'
+filename = 'Executable/Sources/main.swift'
 
 install = '''
 

@@ -11,10 +11,10 @@ TAR_FILE="swift-${VERSION}-${PLATFORM}.tar.gz"
 # https://download.swift.org/swift-6.1.3-release/ubuntu2404/swift-6.1.3-RELEASE/swift-6.1.3-RELEASE-ubuntu24.04.tar.gz
 TAR_URL="https://download.swift.org/swift-${NUMBER}-release/$(echo $PLATFORM | tr -d .)/swift-${VERSION}/${TAR_FILE}"
 
-SWIFT_PATH="${pwd}/swift-${VERSION}-${PLATFORM}/usr/bin"
+SWIFT_PATH="$(pwd)/swift-${VERSION}-${PLATFORM}/usr/bin"
 
 PACKAGE_NAME="Executable"
-PACKAGE_PATH="${pwd}/${PACKAGE_NAME}"
+PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
 FILE="${PACKAGE_PATH}/.build/release/Main"
 
 echo "Current directory: $(pwd)"
