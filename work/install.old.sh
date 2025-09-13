@@ -1,4 +1,3 @@
-#!/bin/bash
 
 # 旧公式手順に従ってインストールを行います。
 # Alternate Install Options > Tarball > Instruction
@@ -11,16 +10,22 @@ TAR_FILE="swift-${VERSION}-${PLATFORM}.tar.gz"
 # https://download.swift.org/swift-6.1.3-release/ubuntu2404/swift-6.1.3-RELEASE/swift-6.1.3-RELEASE-ubuntu24.04.tar.gz
 TAR_URL="https://download.swift.org/swift-${NUMBER}-release/$(echo $PLATFORM | tr -d .)/swift-${VERSION}/${TAR_FILE}"
 
-SWIFT_PATH="swift-${VERSION}-${PLATFORM}/usr/bin"
+SWIFT_COMMAND_PATH="$(pwd)/swift-${VERSION}-${PLATFORM}/usr/bin/swift"
 
-FILE=".build/release/Main"
+PACKAGE_NAME="Executable"
+PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
+FILE="${PACKAGE_PATH}/.build/release/Main"
 
+echo "Current directory: $(pwd)"
+echo "Swift Command Path: ${SWIFT_COMMAND_PATH}"
 echo "Download URL: ${TAR_URL}"
 
 export DEBIAN_FRONTEND=noninteractive
 
 # 一部のパッケージで-Ouncheckedを使用するように設定します
 export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
+export SWIFTPM_MAX_CONCURRENT_OPERATIONS=1
+export SWIFT_BACKTRACE='enable=yes,output-to=stderr,interactive=no'
 
 sudo apt-get update
 
@@ -73,7 +78,7 @@ tar xzf $TAR_FILE
 # 公式のインストール手順は以上です
 
 # バージョン番号を出力し、ログでも処理系バージョンを確認する
-./${SWIFT_PATH}/swift --version
+${SWIFT_COMMAND_PATH} --version
 
 # AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
 rm $TAR_FILE
@@ -94,8 +99,15 @@ sudo apt-get install -y \
 # 続いて、コンパイル環境の構築を行います
 # コンパイル環境の構築では、AtCoderで使用するSwiftパッケージの初期化と依存パッケージの追加、そして事前ビルドを行います
 
+# ビルドスクリプトを配置するフォルダを作成
+mkdir Script
+
+mkdir -p $PACKAGE_NAME
+
+cd $PACKAGE_NAME
+
 # ジャッジがビルドを行う作業パッケージの初期化を行います。パッケージ名はMain、実行可能なプログラムとして初期化します
-./${SWIFT_PATH}/swift package init --name Main --type executable
+${SWIFT_COMMAND_PATH} package init --name Main --type executable
 
 # Package.swiftを更新し、AtCoderジャッジで使用する依存パッケージを作業パッケージに追加します
 cat << 'EOF' > Package.swift
@@ -182,11 +194,13 @@ let package = Package(
 )
 EOF
 
-# ビルドスクリプトを配置するフォルダを作成
-mkdir Script
-
 # 念の為に、クリーニングします
-./${SWIFT_PATH}/swift package clean
+${SWIFT_COMMAND_PATH} package clean
+
+# 依存パッケージの解決を行います
+${SWIFT_COMMAND_PATH} package resolve
+
+cd ../
 
 # 依存パッケージの解決とパッケージのビルドを事前に行います
 # -c releaseは、リリースビルドを行うためのオプション
@@ -194,26 +208,28 @@ mkdir Script
 # --enable-experimental-prebuiltsは事前ビルド済みのswift-syntaxを利用するために付与
 # 1>&2は、標準出力を標準エラーにリダイレクトするためのもので、既存由来
 # |& tee /dev/nullは、環境情報収集に関してSPMにバグがあり、そのワークアラウンド
-./${SWIFT_PATH}/swift \
+${SWIFT_COMMAND_PATH} \
   build \
   --product Main \
-  --build-system native \
-  --static-swift-stdlib \
-  --configuration release \
   --enable-experimental-prebuilts \
+  --build-system native \
+  --jobs 1 \
+  --configuration release \
+  --package-path $PACKAGE_PATH \
   -v 1>&2 |& tee /dev/null
 
 # 差分コンパイルが行われるよう、ソースコードを変更します
-sed -i 's/Hello/Hallo/' Sources/main.swift
+sed -i 's/Hello/Hallo/' $PACKAGE_PATH/Sources/main.swift
 
 # 差分コンパイルを実施し、ビルドログを取得します
-./${SWIFT_PATH}/swift \
+${SWIFT_COMMAND_PATH} \
   build \
   --product Main \
-  --build-system native \
-  --static-swift-stdlib \
-  --configuration release \
   --enable-experimental-prebuilts \
+  --build-system native \
+  --jobs 1 \
+  --configuration release \
+  --package-path $PACKAGE_PATH \
   -v > build.log
 
 # ビルドログからビルドコマンドを抽出し、差分ビルドスクリプトを作成します
@@ -229,7 +245,7 @@ sed -n '/swiftc/{
 rm build.log
 
 # ビルド結果を削除します
-rm .build/release/Main
+rm $FILE
 
 # 差分ビルドスクリプトを実行します
 bash ./Script/build.sh
@@ -243,4 +259,4 @@ fi
 $FILE
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
-rm .build/release/Main
+rm $FILE

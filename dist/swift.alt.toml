@@ -26,7 +26,7 @@ library.liblapacke = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'http
 library.libtmglib-dev = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/Reference-LAPACK/lapack/blob/master/LICENSE' },], indirect = true, version = '3.12.0-3build1.1' }
 library.libtmglib3 = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/Reference-LAPACK/lapack/blob/master/LICENSE' },], indirect = true, version = '3.12.0-3build1.1' }
 
-filename = 'Sources/main.swift'
+filename = 'Executable/Sources/main.swift'
 
 install = '''
 
@@ -42,8 +42,14 @@ TAR_FILE="swift-${VERSION}-${PLATFORM}.tar.gz"
 # https://download.swift.org/swift-6.1.3-release/ubuntu2404/swift-6.1.3-RELEASE/swift-6.1.3-RELEASE-ubuntu24.04.tar.gz
 TAR_URL="https://download.swift.org/swift-${NUMBER}-release/$(echo $PLATFORM | tr -d .)/swift-${VERSION}/${TAR_FILE}"
 
-SWIFT_PATH="swift-${VERSION}-${PLATFORM}/usr/bin"
+SWIFT_COMMAND_PATH="$(pwd)/swift-${VERSION}-${PLATFORM}/usr/bin/swift"
 
+PACKAGE_NAME="Executable"
+PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
+FILE="${PACKAGE_PATH}/.build/release/Main"
+
+echo "Current directory: $(pwd)"
+echo "Swift Command Path: ${SWIFT_COMMAND_PATH}"
 echo "Download URL: ${TAR_URL}"
 
 export DEBIAN_FRONTEND=noninteractive
@@ -104,7 +110,7 @@ tar xzf $TAR_FILE
 # 公式のインストール手順は以上です
 
 # バージョン番号を出力し、ログでも処理系バージョンを確認する
-./${SWIFT_PATH}/swift --version
+${SWIFT_PATH}/swift --version
 
 # 運営からの不要なファイル削除に関する指示に従い、ダウンロードしたファイルを削除します
 rm $TAR_FILE
@@ -127,8 +133,12 @@ sudo apt-get install -y \
 # 続いて、コンパイル環境の構築を行います
 # コンパイル環境の構築では、AtCoderで使用するSwiftパッケージの初期化と依存パッケージの追加、そして事前ビルドを行います
 
+mkdir -p $PACKAGE_NAME
+
+cd $PACKAGE_NAME
+
 # ジャッジがビルドを行う作業パッケージの初期化を行います。パッケージ名はMain、実行可能なプログラムとして初期化します
-./${SWIFT_PATH}/swift package init --name Main --type executable
+${SWIFT_COMMAND_PATH} package init --name Main --type executable
 
 # Package.swiftを更新し、AtCoderジャッジで使用する依存パッケージを作業パッケージに追加します
 cat << 'EOF' > Package.swift
@@ -216,10 +226,12 @@ let package = Package(
 EOF
 
 # 念の為に、クリーニングします
-./${SWIFT_PATH}/swift package clean
+${SWIFT_COMMAND_PATH} package clean
 
 # 依存パッケージの解決を行います
-./${SWIFT_PATH}/swift package resolve
+${SWIFT_COMMAND_PATH} package resolve --enable-experimental-prebuilts
+
+cd ../
 
 # 実行可能パッケージのビルドを行います
 # --product Mainは、observabilityScope制限の為に付与
@@ -227,22 +239,20 @@ EOF
 # --enable-experimental-prebuiltsは事前ビルド済みのswift-syntaxを利用するために付与, 6.2以降でデフォルトになる
 # --build-system nativeは、6.2になった場合の変動を避けるために付与
 # --jobs 1は、CPU数の変動によるフルビルドを迂回するために付与
-# -c releaseは、リリースビルドを行うためのオプション
+# --configuration releaseは、リリースビルドを行うためのオプション
 # 1>&2は、標準出力を標準エラーにリダイレクトするためのもので、既存由来
 # |& tee /dev/nullは、環境情報収集に関してSPMにバグがあり、そのワークアラウンド
 # ビルドオプションが変化するとフルビルドとなるため、コンパイルスクリプトと揃える必要がある
-./${SWIFT_PATH}/swift \
+${SWIFT_COMMAND_PATH} \
   build \
   --product Main \
-  --static-swift-stdlib \
   --enable-experimental-prebuilts \
   --build-system native \
   --jobs 1 \
-  -c release \
+  --configuration release \
+  --package-path $PACKAGE_PATH \
   1>&2 \
   |& tee /dev/null
-
-FILE=".build/release/Main"
 
 # コンパイルに失敗した場合、インストール失敗とする
 if [ ! -f "$FILE" ]; then
@@ -254,7 +264,7 @@ fi
 $FILE
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
-rm .build/release/Main
+rm $FILE
 
 '''
 
@@ -263,7 +273,7 @@ compile = '''
 NUMBER="6.1.3"
 VERSION="${NUMBER}-RELEASE"
 PLATFORM="ubuntu24.04"
-SWIFT_PATH="swift-${VERSION}-${PLATFORM}/usr/bin"
+SWIFT_COMMAND_PATH="$(pwd)/swift-${VERSION}-${PLATFORM}/usr/bin/swift"
 
 export DEBIAN_FRONTEND=noninteractive
 
@@ -272,22 +282,25 @@ export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 export SWIFTPM_MAX_CONCURRENT_OPERATIONS=1
 export SWIFT_BACKTRACE='enable=yes,output-to=stderr,interactive=no'
 
+PACKAGE_NAME="Executable"
+PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
+
+FILE="${PACKAGE_PATH}/.build/release/Main"
+
 # ビルドオプションが変化するとフルビルドとなるため、インストールスクリプトと揃える必要がある
-./${SWIFT_PATH}/swift \
+${SWIFT_COMMAND_PATH} \
   build \
   --product Main \
-  --static-swift-stdlib \
   --enable-experimental-prebuilts \
   --build-system native \
   --jobs 1 \
-  -c release \
+  --configuration release \
+  --package-path $PACKAGE_PATH \
   1>&2 \
   |& tee /dev/null
 
 # コンパイル所要時間の目安はhello wolrdで5秒程度。
 # それを上回る場合、差分コンパイルに問題が生じている可能性があります。
-
-FILE=".build/release/Main"
 
 if [ ! -f "$FILE" ]; then
   echo "Error: Failed to build file '$FILE'" >&2
@@ -301,8 +314,8 @@ environment.SWIFT_BACKTRACE = 'enable=yes,output-to=stderr,interactive=no'
 environment.SWIFTPM_MAX_CONCURRENT_OPERATIONS = '1'
 environment.SWIFT_AC_LIBRARY_USES_O_UNCHECKED = 'true'
 
-object = '.build/release/Main'
+object = 'Executable/.build/release/Main'
 
 execution = [
-  '.build/release/Main',
+  'Executable/.build/release/Main',
 ]
