@@ -15,7 +15,9 @@ PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
 
 FILE="${PACKAGE_PATH}/.build/release/Main"
 
-tar xzf build-cache.tgz -C "$PACKAGE_PATH"
+tar xzf build-cache.tgz
+
+ls -al
 
 cd $PACKAGE_PATH
 
