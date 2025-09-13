@@ -13,6 +13,10 @@ TAR_URL="https://download.swift.org/swift-${NUMBER}-release/$(echo $PLATFORM | t
 
 SWIFT_PATH="swift-${VERSION}-${PLATFORM}/usr/bin"
 
+PACKAGE_NAME="Executable"
+PACKAGE_PATH="${pwd}/${PACKAGE_NAME}"
+FILE="${PACKAGE_PATH}/.build/release/Main"
+
 echo "Download URL: ${TAR_URL}"
 
 export DEBIAN_FRONTEND=noninteractive
@@ -96,11 +100,13 @@ sudo apt-get install -y \
 # 続いて、コンパイル環境の構築を行います
 # コンパイル環境の構築では、AtCoderで使用するSwiftパッケージの初期化と依存パッケージの追加、そして事前ビルドを行います
 
+mkdir -p $PACKAGE_NAME
+
 # ジャッジがビルドを行う作業パッケージの初期化を行います。パッケージ名はMain、実行可能なプログラムとして初期化します
-./${SWIFT_PATH}/swift package init --name Main --type executable
+./${SWIFT_PATH}/swift package init --name Main --type executable --package-path $PACKAGE_PATH
 
 # Package.swiftを更新し、AtCoderジャッジで使用する依存パッケージを作業パッケージに追加します
-cat << 'EOF' > Package.swift
+cat << 'EOF' > $PACKAGE_PATH/Package.swift
 // swift-tools-version: 6.1
 import PackageDescription
 
@@ -185,10 +191,10 @@ let package = Package(
 EOF
 
 # 念の為に、クリーニングします
-./${SWIFT_PATH}/swift package clean
+./${SWIFT_PATH}/swift package clean --package-path $PACKAGE_PATH
 
 # 依存パッケージの解決を行います
-./${SWIFT_PATH}/swift package resolve
+./${SWIFT_PATH}/swift package resolve --package-path $PACKAGE_PATH
 
 # 実行可能パッケージのビルドを行います
 # --product Mainは、observabilityScope制限の為に付与
@@ -208,10 +214,11 @@ EOF
   --build-system native \
   --jobs 1 \
   --configuration release \
+  --package-path $PACKAGE_PATH \
   1>&2 \
   |& tee /dev/null
 
-FILE=".build/release/Main"
+# tar czf build-cache.tgz .build
 
 # コンパイルに失敗した場合、インストール失敗とする
 if [ ! -f "$FILE" ]; then
@@ -223,4 +230,4 @@ fi
 $FILE
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
-rm .build/release/Main
+rm ${PACKAGE_PATH}/.build/release/Main

@@ -4,6 +4,10 @@
 export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 export SWIFT_BACKTRACE='enable=yes,output-to=stderr,interactive=no'
 
+PACKAGE_NAME="Executable"
+PACKAGE_PATH="${pwd}/${PACKAGE_NAME}"
+FILE="${PACKAGE_PATH}/.build/release/Main"
+
 echo "Heap size: $(ulimit -v)"
 echo "Stack size: $(ulimit -s)"
 
@@ -51,7 +55,7 @@ ls -al /home/runner/work/AtCoder-Language-Update_2024-2025_6-0-2_swift_draft/AtC
 
 cat ./Script/build.sh | bash
 
-cat << 'EOF' | .build/release/Main
+cat << 'EOF' | $FILE
 3
 1 2 3
 EOF
@@ -62,7 +66,7 @@ rm .build/release/Main
 cp test/abc235_d/main.1.swift Sources/main.swift
 # ./${SWIFT_TAR_BALL}/usr/bin/swift package clean
 tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash              
-.build/release/Main < test/abc235_d/sample-x.in
+$FILE < test/abc235_d/sample-x.in
 
 echo '2) ############'
 
@@ -71,7 +75,7 @@ cp test/abc235_d/main.2.swift Sources/main.swift
 # ./${SWIFT_TAR_BALL}/usr/bin/swift package clean
 tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash              
 
-time .build/release/Main < test/abc235_d/sample-x.in
+time $FILE < test/abc235_d/sample-x.in
 
 echo '3) crash twice ############'
 
@@ -80,14 +84,14 @@ cp test/crash/crash1.swift Sources/main.swift
 
 tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash              
 
-cat << 'EOF' | .build/release/Main
+cat << 'EOF' | $FILE
 EOF
 
 cp test/crash/crash2.swift Sources/main.swift
 
 tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash              
 
-cat << 'EOF' | .build/release/Main
+cat << 'EOF' | $FILE
 EOF
 
 echo '4) compile error ############'
@@ -97,7 +101,7 @@ cp test/compileError/main.swift Sources/main.swift
 
 tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash              
 
-cat << 'EOF' | .build/release/Main
+cat << 'EOF' | $FILE
 EOF
 
 echo '5) ############'
@@ -107,7 +111,7 @@ cp test/mainActor/main.swift Sources/main.swift
 
 tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash              
 
-cat << 'EOF' | .build/release/Main
+cat << 'EOF' | $FILE
 EOF
 
 echo '6) ############'
@@ -117,7 +121,7 @@ cp test/macro/main.swift Sources/main.swift
 
 tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash              
 
-cat << 'EOF' | .build/release/Main
+cat << 'EOF' | $FILE
 EOF
 
 echo '7) ############'
@@ -129,5 +133,5 @@ tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/(''
 
 echo "終了コード: $?"
 
-cat << 'EOF' | .build/release/Main
+cat << 'EOF' | $FILE
 EOF

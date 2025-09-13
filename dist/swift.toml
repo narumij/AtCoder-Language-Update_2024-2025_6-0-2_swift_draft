@@ -44,6 +44,10 @@ TAR_URL="https://download.swift.org/swift-${NUMBER}-release/$(echo $PLATFORM | t
 
 SWIFT_PATH="swift-${VERSION}-${PLATFORM}/usr/bin"
 
+PACKAGE_NAME="Executable"
+PACKAGE_PATH="${pwd}/${PACKAGE_NAME}"
+FILE="${PACKAGE_PATH}/.build/release/Main"
+
 echo "Download URL: ${TAR_URL}"
 
 export DEBIAN_FRONTEND=noninteractive
@@ -52,8 +56,6 @@ export DEBIAN_FRONTEND=noninteractive
 export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 export SWIFTPM_MAX_CONCURRENT_OPERATIONS=1
 export SWIFT_BACKTRACE='enable=yes,output-to=stderr,interactive=no'
-
-FILE=".build/release/Main"
 
 sudo apt-get update
 
@@ -129,11 +131,13 @@ sudo apt-get install -y \
 # 続いて、コンパイル環境の構築を行います
 # コンパイル環境の構築では、AtCoderで使用するSwiftパッケージの初期化と依存パッケージの追加、そして事前ビルドを行います
 
+mkdir -p $PACKAGE_NAME
+
 # ジャッジがビルドを行う作業パッケージの初期化を行います。パッケージ名はMain、実行可能なプログラムとして初期化します
-./${SWIFT_PATH}/swift package init --name Main --type executable
+./${SWIFT_PATH}/swift package init --name Main --type executable --package-path $PACKAGE_PATH
 
 # Package.swiftを更新し、AtCoderジャッジで使用する依存パッケージを作業パッケージに追加します
-cat << 'EOF' > Package.swift
+cat << 'EOF' > $PACKAGE_PATH/Package.swift
 // swift-tools-version: 6.1
 import PackageDescription
 
@@ -218,10 +222,10 @@ let package = Package(
 EOF
 
 # 念の為に、クリーニングします
-./${SWIFT_PATH}/swift package clean
+./${SWIFT_PATH}/swift package clean --package-path $PACKAGE_PATH
 
 # 依存パッケージの解決を行います
-./${SWIFT_PATH}/swift package resolve
+./${SWIFT_PATH}/swift package resolve --package-path $PACKAGE_PATH
 
 # 実行可能パッケージのビルドを行います
 # --product Mainは、observabilityScope制限の為に付与
@@ -229,7 +233,7 @@ EOF
 # --enable-experimental-prebuiltsは事前ビルド済みのswift-syntaxを利用するために付与, 6.2以降でデフォルトになる
 # --build-system nativeは、6.2になった場合の変動を避けるために付与
 # --jobs 1は、CPU数の変動によるフルビルドを迂回するために付与
-# -c releaseは、リリースビルドを行うためのオプション
+# --configuration releaseは、リリースビルドを行うためのオプション
 # 1>&2は、標準出力を標準エラーにリダイレクトするためのもので、既存由来
 # |& tee /dev/nullは、環境情報収集に関してSPMにバグがあり、そのワークアラウンド
 # ビルドオプションが変化するとフルビルドとなるため、コンパイルスクリプトと揃える必要がある
@@ -241,10 +245,11 @@ EOF
   --build-system native \
   --jobs 1 \
   --configuration release \
+  --package-path $PACKAGE_PATH \
   1>&2 \
   |& tee /dev/null
 
-tar czf build-cache.tgz .build
+# tar czf build-cache.tgz .build
 
 # コンパイルに失敗した場合、インストール失敗とする
 if [ ! -f "$FILE" ]; then
@@ -256,7 +261,7 @@ fi
 $FILE
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
-rm .build/release/Main
+rm ${PACKAGE_PATH}/.build/release/Main
 
 '''
 
@@ -273,9 +278,13 @@ export DEBIAN_FRONTEND=noninteractive
 export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 export SWIFTPM_MAX_CONCURRENT_OPERATIONS=1
 export SWIFT_BACKTRACE='enable=yes,output-to=stderr,interactive=no'
-export FILE=".build/release/Main"
 
-tar xzf build-cache.tgz
+PACKAGE_NAME="Executable"
+PACKAGE_PATH="${pwd}/${PACKAGE_NAME}"
+
+FILE="${PACKAGE_PATH}/.build/release/Main"
+
+# tar xzf build-cache.tgz
 
 # ビルドオプションが変化するとフルビルドとなるため、インストールスクリプトと揃える必要がある
 ./${SWIFT_PATH}/swift \
@@ -286,6 +295,7 @@ tar xzf build-cache.tgz
   --build-system native \
   --jobs 1 \
   --configuration release \
+  --package-path $PACKAGE_PATH \
   1>&2 \
   |& tee /dev/null
 
