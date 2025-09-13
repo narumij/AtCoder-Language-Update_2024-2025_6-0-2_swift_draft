@@ -3,10 +3,11 @@ VERSION="${NUMBER}-RELEASE"
 PLATFORM="ubuntu24.04"
 SWIFT_PATH="swift-${VERSION}-${PLATFORM}/usr/bin"
 
+export DEBIAN_FRONTEND=noninteractive
+
 # これがないとswift-ac-libraryのコンパイルが走ってしまう
 export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
-
-export DUMMY_ENV_KEY="DUMMY_ENV_VALUE"
+export SWIFT_BACKTRACE='enable=yes,output-to=stderr,interactive=no'
 
 # ビルドオプションが変化するとフルビルドとなるため、インストールスクリプトと揃える必要がある
 ./${SWIFT_PATH}/swift \

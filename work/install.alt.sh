@@ -21,6 +21,8 @@ export DEBIAN_FRONTEND=noninteractive
 # 一部のパッケージで-Ouncheckedを使用するように設定します
 export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 
+export SWIFT_BACKTRACE='enable=yes,output-to=stderr,interactive=no'
+
 sudo apt-get update
 
 # このスクリプトでは、まず言語環境を構築し、その後ビルド環境を構築します。
