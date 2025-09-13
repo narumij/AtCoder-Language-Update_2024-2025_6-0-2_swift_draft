@@ -48,6 +48,8 @@ PACKAGE_NAME="Executable"
 PACKAGE_PATH="${pwd}/${PACKAGE_NAME}"
 FILE="${PACKAGE_PATH}/.build/release/Main"
 
+echo "Current directory: $(pwd)"
+echo "Swift Path: ${SWIFT_PATH}"
 echo "Download URL: ${TAR_URL}"
 
 export DEBIAN_FRONTEND=noninteractive
