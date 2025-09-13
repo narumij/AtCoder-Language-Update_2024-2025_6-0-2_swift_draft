@@ -122,3 +122,12 @@ echo "終了コード: $?"
 cat << 'EOF' | .build/release/Main
 EOF
 
+echo '7) コンパイルエラー ############'
+
+rm .build/release/Main
+cp test/compileError/main.swift Sources/main.swift
+
+tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash              
+
+cat << 'EOF' | .build/release/Main
+EOF
