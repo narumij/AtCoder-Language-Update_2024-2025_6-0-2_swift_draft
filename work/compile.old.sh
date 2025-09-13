@@ -1,17 +1,15 @@
 
-export DEBIAN_FRONTEND=noninteractive
-export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
-export SWIFTPM_MAX_CONCURRENT_OPERATIONS=1
-export SWIFT_BACKTRACE='enable=yes,output-to=stderr,interactive=no'
-
 PACKAGE_NAME="Executable"
 PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
+EXECUTABLE_PATH="${PACKAGE_PATH}/.build/release/Main"
 
-FILE="${PACKAGE_PATH}/.build/release/Main"
+SCRIPT_DIRECTORY="Script"
+SCRIPT_DIRECTORY_PATH="$(pwd)/${SCRIPT_DIRECTORY}"
+SCRIPT_PATH="${SCRIPT_DIRECTORY_PATH}/build.sh"
 
-bash ./Script/build.sh
+bash $SCRIPT_PATH
 
-if [ ! -f "$FILE" ]; then
-  echo "Error: Failed to build file '$FILE'" >&2
+if [ ! -f "$EXECUTABLE_PATH" ]; then
+  echo "Error: Failed to build file '$EXECUTABLE_PATH'" >&2
   exit 1
 fi

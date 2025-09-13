@@ -45,7 +45,11 @@ SWIFT_COMMAND_PATH="$(pwd)/swift-${VERSION}-${PLATFORM}/usr/bin/swift"
 
 PACKAGE_NAME="Executable"
 PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
-FILE="${PACKAGE_PATH}/.build/release/Main"
+EXECUTABLE_PATH="${PACKAGE_PATH}/.build/release/Main"
+
+SCRIPT_DIRECTORY="Script"
+SCRIPT_DIRECTORY_PATH="$(pwd)/${SCRIPT_DIRECTORY}"
+SCRIPT_PATH="${SCRIPT_DIRECTORY_PATH}/build.sh"
 
 echo "Current directory: $(pwd)"
 echo "Swift Command Path: ${SWIFT_COMMAND_PATH}"
@@ -131,9 +135,9 @@ sudo apt-get install -y \
 # コンパイル環境の構築では、AtCoderで使用するSwiftパッケージの初期化と依存パッケージの追加、そして事前ビルドを行います
 
 # ビルドスクリプトを配置するフォルダを作成
-mkdir Script
-
-mkdir -p $PACKAGE_NAME
+mkdir $SCRIPT_DIRECTORY
+# パッケージを配置するフォルダを作成
+mkdir $PACKAGE_NAME
 
 cd $PACKAGE_NAME
 
@@ -233,10 +237,13 @@ ${SWIFT_COMMAND_PATH} package resolve
 
 cd ../
 
-# 依存パッケージの解決とパッケージのビルドを事前に行います
-# -c releaseは、リリースビルドを行うためのオプション
+# 実行可能パッケージのビルドを行います
+# --product Mainは、observabilityScope制限の為に付与
+# --static-swift-stdlibは、Swift stdlibで静的リンクを行うオプション
+# --enable-experimental-prebuiltsは事前ビルド済みのswift-syntaxを利用するために付与, 6.2以降でデフォルトになる
 # --build-system nativeは、6.2になった場合の変動を避けるために付与
-# --enable-experimental-prebuiltsは事前ビルド済みのswift-syntaxを利用するために付与
+# --jobs 1は、CPU数の変動によるフルビルドを迂回するために付与
+# --configuration releaseは、リリースビルドを行うためのオプション
 # 1>&2は、標準出力を標準エラーにリダイレクトするためのもので、既存由来
 # |& tee /dev/nullは、環境情報収集に関してSPMにバグがあり、そのワークアラウンド
 ${SWIFT_COMMAND_PATH} \
@@ -270,41 +277,46 @@ sed -n '/swiftc/{
     s/ -j[0-9][0-9]*/ -j1/g;
     s/ -num-threads [0-9][0-9]*/ -num-threads 1/g;
     p
-}' build.log > Script/build.sh
+}' build.log > $SCRIPT_PATH
 
 # ビルドログを削除します
 rm build.log
 
 # ビルド結果を削除します
-rm $FILE
+rm $EXECUTABLE_PATH
 
 # 差分ビルドスクリプトを実行します
-bash ./Script/build.sh
+bash $SCRIPT_PATH
 
-if [ ! -f "$FILE" ]; then
-  echo "Error: 初回のビルドに失敗しました: $FILE" >&2
+if [ ! -f "$EXECUTABLE_PATH" ]; then
+  echo "Error: 初回のビルドに失敗しました: $EXECUTABLE_PATH" >&2
   exit 1
 fi
 
 # Hello, world!を出力
-$FILE
+$EXECUTABLE_PATH
 
 # ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
-rm $FILE
+rm $EXECUTABLE_PATH
 
 '''
 
 compile = '''
 
-FILE="${PACKAGE_PATH}/.build/release/Main"
+PACKAGE_NAME="Executable"
+PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
+EXECUTABLE_PATH="${PACKAGE_PATH}/.build/release/Main"
 
-bash ./Script/build.sh
+SCRIPT_DIRECTORY="Script"
+SCRIPT_DIRECTORY_PATH="$(pwd)/${SCRIPT_DIRECTORY}"
+SCRIPT_PATH="${SCRIPT_DIRECTORY_PATH}/build.sh"
 
-if [ ! -f "$FILE" ]; then
-  echo "Error: Failed to build file '$FILE'" >&2
+bash $SCRIPT_PATH
+
+if [ ! -f "$EXECUTABLE_PATH" ]; then
+  echo "Error: Failed to build file '$EXECUTABLE_PATH'" >&2
   exit 1
 fi
-
 
 '''
 
