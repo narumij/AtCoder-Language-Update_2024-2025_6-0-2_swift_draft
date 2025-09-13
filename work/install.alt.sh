@@ -206,6 +206,7 @@ EOF
   --enable-experimental-prebuilts \
   --build-system native \
   --jobs 1 \
+  --skip-update \
   -c release \
   1>&2 \
   |& tee /dev/null
