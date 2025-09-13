@@ -1,7 +1,7 @@
 NUMBER="6.1.3"
 VERSION="${NUMBER}-RELEASE"
 PLATFORM="ubuntu24.04"
-SWIFT_PATH="${pwd}/swift-${VERSION}-${PLATFORM}/usr/bin"
+SWIFT_COMMAND_PATH="$(pwd)/swift-${VERSION}-${PLATFORM}/usr/bin/swift"
 
 export DEBIAN_FRONTEND=noninteractive
 
@@ -15,12 +15,12 @@ PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
 
 FILE="${PACKAGE_PATH}/.build/release/Main"
 
-# tar xzf build-cache.tgz -C "$PACKAGE_PATH"
+tar xzf build-cache.tgz -C "$PACKAGE_PATH"
 
 cd $PACKAGE_PATH
 
 # ビルドオプションが変化するとフルビルドとなるため、インストールスクリプトと揃える必要がある
-${SWIFT_PATH}/swift \
+${SWIFT_COMMAND_PATH} \
   build \
   --product Main \
   --static-swift-stdlib \

@@ -11,14 +11,14 @@ TAR_FILE="swift-${VERSION}-${PLATFORM}.tar.gz"
 # https://download.swift.org/swift-6.1.3-release/ubuntu2404/swift-6.1.3-RELEASE/swift-6.1.3-RELEASE-ubuntu24.04.tar.gz
 TAR_URL="https://download.swift.org/swift-${NUMBER}-release/$(echo $PLATFORM | tr -d .)/swift-${VERSION}/${TAR_FILE}"
 
-SWIFT_PATH="$(pwd)/swift-${VERSION}-${PLATFORM}/usr/bin"
+SWIFT_COMMAND_PATH="$(pwd)/swift-${VERSION}-${PLATFORM}/usr/bin/swift"
 
 PACKAGE_NAME="Executable"
 PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
 FILE="${PACKAGE_PATH}/.build/release/Main"
 
 echo "Current directory: $(pwd)"
-echo "Swift Path: ${SWIFT_PATH}"
+echo "Swift Command Path: ${SWIFT_COMMAND_PATH}"
 echo "Download URL: ${TAR_URL}"
 
 export DEBIAN_FRONTEND=noninteractive
@@ -107,7 +107,7 @@ mkdir -p $PACKAGE_NAME
 cd $PACKAGE_NAME
 
 # ジャッジがビルドを行う作業パッケージの初期化を行います。パッケージ名はMain、実行可能なプログラムとして初期化します
-${SWIFT_PATH}/swift package init --name Main --type executable
+${SWIFT_COMMAND_PATH} package init --name Main --type executable
 
 # Package.swiftを更新し、AtCoderジャッジで使用する依存パッケージを作業パッケージに追加します
 cat << 'EOF' > Package.swift
@@ -195,10 +195,10 @@ let package = Package(
 EOF
 
 # 念の為に、クリーニングします
-${SWIFT_PATH}/swift package clean
+${SWIFT_COMMAND_PATH} package clean
 
 # 依存パッケージの解決を行います
-${SWIFT_PATH}/swift package resolve
+${SWIFT_COMMAND_PATH} package resolve
 
 # 実行可能パッケージのビルドを行います
 # --product Mainは、observabilityScope制限の為に付与
@@ -210,7 +210,7 @@ ${SWIFT_PATH}/swift package resolve
 # 1>&2は、標準出力を標準エラーにリダイレクトするためのもので、既存由来
 # |& tee /dev/nullは、環境情報収集に関してSPMにバグがあり、そのワークアラウンド
 # ビルドオプションが変化するとフルビルドとなるため、コンパイルスクリプトと揃える必要がある
-${SWIFT_PATH}/swift \
+${SWIFT_COMMAND_PATH} \
   build \
   --product Main \
   --static-swift-stdlib \
@@ -223,7 +223,7 @@ ${SWIFT_PATH}/swift \
 
 cd ../
 
-# tar czf build-cache.tgz $PACKAGE_PATH/.build
+tar czf build-cache.tgz $PACKAGE_PATH/.build
 
 # コンパイルに失敗した場合、インストール失敗とする
 if [ ! -f "$FILE" ]; then
