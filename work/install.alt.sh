@@ -1,4 +1,3 @@
-#!/bin/bash
 
 # 現在の公式手順、swiftlyを利用したインストール方法に問題が生じたため、
 # 旧公式手順に従ってインストールを行います。
@@ -20,7 +19,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 # 一部のパッケージで-Ouncheckedを使用するように設定します
 export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
-
+export SWIFTPM_MAX_CONCURRENT_OPERATIONS=1
 export SWIFT_BACKTRACE='enable=yes,output-to=stderr,interactive=no'
 
 sudo apt-get update
