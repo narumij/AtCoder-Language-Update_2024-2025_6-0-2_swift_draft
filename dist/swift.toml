@@ -255,9 +255,18 @@ ${SWIFT_COMMAND_PATH} \
   1>&2 \
   |& tee /dev/null
 
+echo '------------- before unarchive ------------- '
+
+ls -al $PACKAGE_PATH/.build/release/
 
 # .build ディレクトリをアーカイブします。展開時に `tar xzf build-cache.tgz -C "$PACKAGE_PATH"` で元に戻せるよう、-C でルートを切り替えて .build を相対パスで保存します。
 tar czf build-cache.tgz -C "$PACKAGE_PATH" .build
+
+tar xzf build-cache.tgz -C "$PACKAGE_PATH"
+
+echo '------------- after unarchive ------------- '
+
+ls -al $PACKAGE_PATH/.build/release/
 
 # コンパイルに失敗した場合、インストール失敗とする
 if [ ! -f "$FILE" ]; then
@@ -292,13 +301,6 @@ PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
 
 FILE="${PACKAGE_PATH}/.build/release/Main"
 
-# .build ディレクトリを $PACKAGE_PATH に展開します。アーカイブ時と同じ -C オプションで相対パス .build を復元します。
-tar xzf build-cache.tgz -C "$PACKAGE_PATH"
-
-ls -al
-
-cd $PACKAGE_PATH
-
 # ビルドオプションが変化するとフルビルドとなるため、インストールスクリプトと揃える必要がある
 ${SWIFT_COMMAND_PATH} \
   build \
@@ -308,6 +310,7 @@ ${SWIFT_COMMAND_PATH} \
   --build-system native \
   --jobs 1 \
   --configuration release \
+  --package-path $PACKAGE_PATH \
   1>&2 \
   |& tee /dev/null
 

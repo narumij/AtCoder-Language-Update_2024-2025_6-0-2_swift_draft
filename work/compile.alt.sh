@@ -15,13 +15,6 @@ PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
 
 FILE="${PACKAGE_PATH}/.build/release/Main"
 
-# .build ディレクトリを $PACKAGE_PATH に展開します。アーカイブ時と同じ -C オプションで相対パス .build を復元します。
-tar xzf build-cache.tgz -C "$PACKAGE_PATH"
-
-ls -al
-
-cd $PACKAGE_PATH
-
 # ビルドオプションが変化するとフルビルドとなるため、インストールスクリプトと揃える必要がある
 ${SWIFT_COMMAND_PATH} \
   build \
@@ -31,6 +24,7 @@ ${SWIFT_COMMAND_PATH} \
   --build-system native \
   --jobs 1 \
   --configuration release \
+  --package-path $PACKAGE_PATH \
   1>&2 \
   |& tee /dev/null
 
