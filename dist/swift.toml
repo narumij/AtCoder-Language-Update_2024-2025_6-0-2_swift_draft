@@ -50,6 +50,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 # 一部のパッケージで-Ouncheckedを使用するように設定します
 export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
+export SWIFT_BACKTRACE='enable=yes,output-to=stderr,interactive=no'
 
 sudo apt-get update
 
@@ -235,7 +236,6 @@ EOF
   --static-swift-stdlib \
   --enable-experimental-prebuilts \
   --build-system native \
-  --jobs 1 \
   -c release \
   1>&2 \
   |& tee /dev/null
@@ -263,8 +263,12 @@ VERSION="${NUMBER}-RELEASE"
 PLATFORM="ubuntu24.04"
 SWIFT_PATH="swift-${VERSION}-${PLATFORM}/usr/bin"
 
+export DEBIAN_FRONTEND=noninteractive
 # これがないとswift-ac-libraryのコンパイルが走ってしまう
 export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
+export SWIFT_BACKTRACE='enable=yes,output-to=stderr,interactive=no'
+
+export DUMMY_ENV_KEY="DUMMY_ENV_VALUE"
 
 # ビルドオプションが変化するとフルビルドとなるため、インストールスクリプトと揃える必要がある
 ./${SWIFT_PATH}/swift \
@@ -274,7 +278,6 @@ export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
   --enable-experimental-prebuilts \
   --build-system native \
   --jobs 1 \
-  --skip-update \
   -c release \
   1>&2 \
   |& tee /dev/null

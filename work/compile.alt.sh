@@ -6,6 +6,8 @@ SWIFT_PATH="swift-${VERSION}-${PLATFORM}/usr/bin"
 # これがないとswift-ac-libraryのコンパイルが走ってしまう
 export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 
+export DUMMY_ENV_KEY="DUMMY_ENV_VALUE"
+
 # ビルドオプションが変化するとフルビルドとなるため、インストールスクリプトと揃える必要がある
 ./${SWIFT_PATH}/swift \
   build \
@@ -14,7 +16,6 @@ export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
   --enable-experimental-prebuilts \
   --build-system native \
   --jobs 1 \
-  --skip-update \
   -c release \
   1>&2 \
   |& tee /dev/null
