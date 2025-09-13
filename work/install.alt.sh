@@ -196,7 +196,7 @@ EOF
 # 1>&2は、標準出力を標準エラーにリダイレクトするためのもので、既存由来
 # |& tee /dev/nullは、環境情報収集に関してSPMにバグがあり、そのワークアラウンド
 # ビルドオプションが変化するとフルビルドとなるため、コンパイルスクリプトと揃える必要がある
-./${SWIFT_PATH}/swift build --product Main --enable-experimental-prebuilts --build-system native -c release 1>&2 |& tee /dev/null
+./${SWIFT_PATH}/swift build --product Main --static-swift-stdlib --enable-experimental-prebuilts --build-system native -c release 1>&2 |& tee /dev/null
 
 FILE=".build/release/Main"
 
