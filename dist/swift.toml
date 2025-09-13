@@ -254,6 +254,17 @@ ${SWIFT_COMMAND_PATH} \
   1>&2 \
   |& tee /dev/null
 
+${SWIFT_COMMAND_PATH} \
+  build \
+  --product Main \
+  --enable-experimental-prebuilts \
+  --build-system native \
+  --jobs 1 \
+  --configuration release \
+  --package-path $PACKAGE_PATH \
+  1>&2 \
+  |& tee /dev/null
+
 # コンパイルに失敗した場合、インストール失敗とする
 if [ ! -f "$FILE" ]; then
   echo "Error: 初回のビルドに失敗しました: $FILE" >&2
