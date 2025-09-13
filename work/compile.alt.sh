@@ -34,6 +34,8 @@ cd $PACKAGE_PATH
 # コンパイル所要時間の目安はhello wolrdで5秒程度。
 # それを上回る場合、差分コンパイルに問題が生じている可能性があります。
 
+cd ../
+
 if [ ! -f "$FILE" ]; then
   echo "Error: Failed to build file '$FILE'" >&2
   exit 1

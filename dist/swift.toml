@@ -247,7 +247,6 @@ EOF
   --build-system native \
   --jobs 1 \
   --configuration release \
-  --package-path $PACKAGE_PATH \
   1>&2 \
   |& tee /dev/null
 
