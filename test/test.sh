@@ -12,7 +12,7 @@ FILE="${PACKAGE_PATH}/.build/release/Main"
 echo "Heap size: $(ulimit -v)"
 echo "Stack size: $(ulimit -s)"
 
-rm .build/release/Main
+rm $FILE
 echo 'check 1) ############'
 echo 'cat ./Script/build.sh' | bash
 echo 'check 2) ############'
@@ -42,8 +42,8 @@ echo "終了コード: $?"
 
 echo '0) ############'
 
-rm .build/release/Main
-cp test/main.swift Sources/main.swift
+rm $FILE
+cp test/main.swift $SOURCE_PATH
 
 tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash              
 #tq 'compile' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | bash              
@@ -63,16 +63,16 @@ EOF
 
 echo '1) ############'
 
-rm .build/release/Main
-cp test/abc235_d/main.1.swift Sources/main.swift
+rm $FILE
+cp test/abc235_d/main.1.swift $SOURCE_PATH
 # ./${SWIFT_TAR_BALL}/usr/bin/swift package clean
 tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash              
 $FILE < test/abc235_d/sample-x.in
 
 echo '2) ############'
 
-rm .build/release/Main
-cp test/abc235_d/main.2.swift Sources/main.swift
+rm $FILE
+cp test/abc235_d/main.2.swift $SOURCE_PATH
 # ./${SWIFT_TAR_BALL}/usr/bin/swift package clean
 tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash              
 
@@ -80,15 +80,15 @@ time $FILE < test/abc235_d/sample-x.in
 
 echo '3) crash twice ############'
 
-rm .build/release/Main
-cp test/crash/crash1.swift Sources/main.swift
+rm $FILE
+cp test/crash/crash1.swift $SOURCE_PATH
 
 tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash              
 
 cat << 'EOF' | $FILE
 EOF
 
-cp test/crash/crash2.swift Sources/main.swift
+cp test/crash/crash2.swift $SOURCE_PATH
 
 tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash              
 
@@ -97,8 +97,8 @@ EOF
 
 echo '4) compile error ############'
 
-rm .build/release/Main
-cp test/compileError/main.swift Sources/main.swift
+rm $FILE
+cp test/compileError/main.swift $SOURCE_PATH
 
 tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash              
 
@@ -107,8 +107,8 @@ EOF
 
 echo '5) ############'
 
-rm .build/release/Main
-cp test/mainActor/main.swift Sources/main.swift
+rm $FILE
+cp test/mainActor/main.swift $SOURCE_PATH
 
 tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash              
 
@@ -117,8 +117,8 @@ EOF
 
 echo '6) ############'
 
-rm .build/release/Main
-cp test/macro/main.swift Sources/main.swift
+rm $FILE
+cp test/macro/main.swift $SOURCE_PATH
 
 tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash              
 
@@ -127,8 +127,8 @@ EOF
 
 echo '7) ############'
 
-rm .build/release/Main
-cp test/stdio/main.swift Sources/main.swift
+rm $FILE
+cp test/stdio/main.swift $SOURCE_PATH
 
 tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash              
 
