@@ -90,10 +90,10 @@ tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/(''
 cat << 'EOF' | .build/release/Main
 EOF
 
-echo '4) ############'
+echo '4) compile error ############'
 
 rm .build/release/Main
-cp test/mainActor/main.swift Sources/main.swift
+cp test/compileError/main.swift Sources/main.swift
 
 tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash              
 
@@ -103,7 +103,7 @@ EOF
 echo '5) ############'
 
 rm .build/release/Main
-cp test/macro/main.swift Sources/main.swift
+cp test/mainActor/main.swift Sources/main.swift
 
 tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash              
 
@@ -113,21 +113,21 @@ EOF
 echo '6) ############'
 
 rm .build/release/Main
+cp test/macro/main.swift Sources/main.swift
+
+tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash              
+
+cat << 'EOF' | .build/release/Main
+EOF
+
+echo '7) ############'
+
+rm .build/release/Main
 cp test/stdio/main.swift Sources/main.swift
 
 tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash              
 
 echo "終了コード: $?"
-
-cat << 'EOF' | .build/release/Main
-EOF
-
-echo '7) コンパイルエラー ############'
-
-rm .build/release/Main
-cp test/compileError/main.swift Sources/main.swift
-
-tq 'compile' --file dist/swift.toml | sed -E -e "1s/^('''|\"\"\")//" -e "\$s/('''|\"\"\")\$//" | bash              
 
 cat << 'EOF' | .build/release/Main
 EOF
