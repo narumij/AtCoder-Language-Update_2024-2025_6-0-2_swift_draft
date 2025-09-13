@@ -1,7 +1,7 @@
 NUMBER="6.1.3"
 VERSION="${NUMBER}-RELEASE"
 PLATFORM="ubuntu24.04"
-SWIFT_PATH="swift-${VERSION}-${PLATFORM}/usr/bin"
+SWIFT_PATH="${pwd}/swift-${VERSION}-${PLATFORM}/usr/bin"
 
 export DEBIAN_FRONTEND=noninteractive
 
@@ -20,7 +20,7 @@ FILE="${PACKAGE_PATH}/.build/release/Main"
 cd $PACKAGE_PATH
 
 # ビルドオプションが変化するとフルビルドとなるため、インストールスクリプトと揃える必要がある
-./${SWIFT_PATH}/swift \
+${SWIFT_PATH}/swift \
   build \
   --product Main \
   --static-swift-stdlib \
