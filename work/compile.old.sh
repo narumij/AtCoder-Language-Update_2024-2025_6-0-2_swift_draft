@@ -1,5 +1,5 @@
 
-PACKAGE_NAME="Executable"
+PACKAGE_NAME="Package"
 PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
 EXECUTABLE_PATH="${PACKAGE_PATH}/.build/release/Main"
 

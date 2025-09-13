@@ -26,7 +26,7 @@ library.liblapacke = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'http
 library.libtmglib-dev = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/Reference-LAPACK/lapack/blob/master/LICENSE' },], indirect = true, version = '3.12.0-3build1.1' }
 library.libtmglib3 = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/Reference-LAPACK/lapack/blob/master/LICENSE' },], indirect = true, version = '3.12.0-3build1.1' }
 
-filename = 'Executable/Sources/main.swift'
+filename = 'Package/Sources/main.swift'
 
 install = '''
 
@@ -43,7 +43,7 @@ TAR_URL="https://download.swift.org/swift-${NUMBER}-release/$(echo $PLATFORM | t
 
 SWIFT_COMMAND_PATH="$(pwd)/swift-${VERSION}-${PLATFORM}/usr/bin/swift"
 
-PACKAGE_NAME="Executable"
+PACKAGE_NAME="Package"
 PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
 EXECUTABLE_PATH="${PACKAGE_PATH}/.build/release/Main"
 
@@ -303,7 +303,7 @@ rm $EXECUTABLE_PATH
 
 compile = '''
 
-PACKAGE_NAME="Executable"
+PACKAGE_NAME="Package"
 PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
 EXECUTABLE_PATH="${PACKAGE_PATH}/.build/release/Main"
 
@@ -325,8 +325,8 @@ environment.SWIFT_BACKTRACE = 'enable=yes,output-to=stderr,interactive=no'
 environment.SWIFTPM_MAX_CONCURRENT_OPERATIONS = '1'
 environment.SWIFT_AC_LIBRARY_USES_O_UNCHECKED = 'true'
 
-object = 'Executable/.build/release/Main'
+object = 'Package/.build/release/Main'
 
 execution = [
-  'Executable/.build/release/Main',
+  'Package/.build/release/Main',
 ]
