@@ -18,7 +18,7 @@ export SWIFT_BACKTRACE='enable=yes,output-to=stderr,interactive=no'
   --enable-experimental-prebuilts \
   --build-system native \
   --jobs 1 \
-  -c release \
+  --configuration release \
   1>&2 \
   |& tee /dev/null
 
