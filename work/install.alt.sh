@@ -198,7 +198,7 @@ EOF
 ${SWIFT_COMMAND_PATH} package clean
 
 # 依存パッケージの解決を行います
-${SWIFT_COMMAND_PATH} package resolve --enable-experimental-prebuilts
+${SWIFT_COMMAND_PATH} package resolve
 
 cd ../
 
@@ -215,7 +215,6 @@ cd ../
 ${SWIFT_COMMAND_PATH} \
   build \
   --product Main \
-  --static-swift-stdlib \
   --enable-experimental-prebuilts \
   --build-system native \
   --jobs 1 \
@@ -223,19 +222,6 @@ ${SWIFT_COMMAND_PATH} \
   --package-path $PACKAGE_PATH \
   1>&2 \
   |& tee /dev/null
-
-echo '------------- before unarchive ------------- '
-
-ls -al $PACKAGE_PATH/.build/
-
-# .build ディレクトリをアーカイブします。展開時に `tar xzf build-cache.tgz -C "$PACKAGE_PATH"` で元に戻せるよう、-C でルートを切り替えて .build を相対パスで保存します。
-tar czf build-cache.tgz -C "$PACKAGE_PATH" .build
-
-tar xzf build-cache.tgz -C "$PACKAGE_PATH"
-
-echo '------------- after unarchive ------------- '
-
-ls -al $PACKAGE_PATH/.build/
 
 # コンパイルに失敗した場合、インストール失敗とする
 if [ ! -f "$FILE" ]; then

@@ -4,7 +4,6 @@ PLATFORM="ubuntu24.04"
 SWIFT_COMMAND_PATH="$(pwd)/swift-${VERSION}-${PLATFORM}/usr/bin/swift"
 
 export DEBIAN_FRONTEND=noninteractive
-
 # これがないとswift-ac-libraryのコンパイルが走ってしまう
 export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 export SWIFTPM_MAX_CONCURRENT_OPERATIONS=1
@@ -19,7 +18,6 @@ FILE="${PACKAGE_PATH}/.build/release/Main"
 ${SWIFT_COMMAND_PATH} \
   build \
   --product Main \
-  --static-swift-stdlib \
   --enable-experimental-prebuilts \
   --build-system native \
   --jobs 1 \
