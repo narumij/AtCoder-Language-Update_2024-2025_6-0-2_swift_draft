@@ -5,8 +5,8 @@ export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 export SWIFT_BACKTRACE='enable=yes,output-to=stderr,interactive=no'
 
 PACKAGE_NAME="Executable"
-PACKAGE_PATH="${pwd}/${PACKAGE_NAME}"
-SOURCE_PATH="${pwd}/${PACKAGE_NAME}/Sources/main.swift"
+PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
+SOURCE_PATH="$(pwd)/${PACKAGE_NAME}/Sources/main.swift"
 FILE="${PACKAGE_PATH}/.build/release/Main"
 
 echo "Heap size: $(ulimit -v)"
