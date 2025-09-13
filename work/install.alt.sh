@@ -194,6 +194,7 @@ EOF
 # --static-swift-stdlibは、Swift stdlibで静的リンクを行うオプション
 # --enable-experimental-prebuiltsは事前ビルド済みのswift-syntaxを利用するために付与, 6.2以降でデフォルトになる
 # --build-system nativeは、6.2になった場合の変動を避けるために付与
+# --jobs 1は、CPU数の変動によるフルビルドを迂回するために付与
 # -c releaseは、リリースビルドを行うためのオプション
 # 1>&2は、標準出力を標準エラーにリダイレクトするためのもので、既存由来
 # |& tee /dev/nullは、環境情報収集に関してSPMにバグがあり、そのワークアラウンド
