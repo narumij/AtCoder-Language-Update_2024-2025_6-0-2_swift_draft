@@ -204,6 +204,7 @@ EOF
   --static-swift-stdlib \
   --enable-experimental-prebuilts \
   --build-system native \
+  --jobs 1 \
   -c release \
   1>&2 \
   |& tee /dev/null

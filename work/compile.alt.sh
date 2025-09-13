@@ -13,6 +13,7 @@ export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
   --static-swift-stdlib \
   --enable-experimental-prebuilts \
   --build-system native \
+  --jobs 1 \
   -c release \
   1>&2 \
   |& tee /dev/null
