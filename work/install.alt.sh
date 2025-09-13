@@ -200,6 +200,8 @@ ${SWIFT_COMMAND_PATH} package clean
 # 依存パッケージの解決を行います
 ${SWIFT_COMMAND_PATH} package resolve
 
+cd ../
+
 # 実行可能パッケージのビルドを行います
 # --product Mainは、observabilityScope制限の為に付与
 # --static-swift-stdlibは、Swift stdlibで静的リンクを行うオプション
@@ -218,10 +220,10 @@ ${SWIFT_COMMAND_PATH} \
   --build-system native \
   --jobs 1 \
   --configuration release \
+  --package-path $PACKAGE_PATH \
   1>&2 \
   |& tee /dev/null
 
-cd ../
 
 tar czf build-cache.tgz $PACKAGE_PATH/.build
 
