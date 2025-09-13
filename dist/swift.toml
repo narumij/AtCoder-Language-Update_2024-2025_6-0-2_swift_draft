@@ -272,6 +272,8 @@ export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
 export SWIFTPM_MAX_CONCURRENT_OPERATIONS=1
 export SWIFT_BACKTRACE='enable=yes,output-to=stderr,interactive=no'
 
+export DUMMY_ENV_KEY="DUMMY_ENV_VALUE"
+
 # ビルドオプションが変化するとフルビルドとなるため、インストールスクリプトと揃える必要がある
 ./${SWIFT_PATH}/swift \
   build \
