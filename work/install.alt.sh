@@ -191,12 +191,21 @@ EOF
 
 # 実行可能パッケージのビルドを行います
 # -c releaseは、リリースビルドを行うためのオプション
+# --static-swift-stdlibは、Swift stdlibで静的リンクを行うオプション
+# --enable-experimental-prebuiltsは事前ビルド済みのswift-syntaxを利用するために付与, 6.2以降でデフォルトになる
 # --build-system nativeは、6.2になった場合の変動を避けるために付与
-# --enable-experimental-prebuiltsは事前ビルド済みのswift-syntaxを利用するために付与
 # 1>&2は、標準出力を標準エラーにリダイレクトするためのもので、既存由来
 # |& tee /dev/nullは、環境情報収集に関してSPMにバグがあり、そのワークアラウンド
 # ビルドオプションが変化するとフルビルドとなるため、コンパイルスクリプトと揃える必要がある
-./${SWIFT_PATH}/swift build --product Main --static-swift-stdlib --enable-experimental-prebuilts --build-system native -c release 1>&2 |& tee /dev/null
+./${SWIFT_PATH}/swift \
+  build \
+  --product Main \
+  --static-swift-stdlib \
+  --enable-experimental-prebuilts \
+  --build-system native \
+  -c release \
+  1>&2 \
+  |& tee /dev/null
 
 FILE=".build/release/Main"
 
