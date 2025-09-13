@@ -198,7 +198,8 @@ mkdir Script
   build \
   --product Main \
   --build-system native \
-  -c release \
+  --static-swift-stdlib \
+  --configuration release \
   --enable-experimental-prebuilts \
   -v 1>&2 |& tee /dev/null
 
@@ -210,7 +211,8 @@ sed -i 's/Hello/Hallo/' Sources/main.swift
   build \
   --product Main \
   --build-system native \
-  -c release \
+  --static-swift-stdlib \
+  --configuration release \
   --enable-experimental-prebuilts \
   -v > build.log
 
