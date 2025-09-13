@@ -1,4 +1,4 @@
-NUMBER="6.1.2"
+NUMBER="6.1.3"
 VERSION="${NUMBER}-RELEASE"
 PLATFORM="ubuntu24.04"
 SWIFT_PATH="swift-${VERSION}-${PLATFORM}/usr/bin"
@@ -16,6 +16,7 @@ export DUMMY_ENV_KEY="DUMMY_ENV_VALUE"
   --enable-experimental-prebuilts \
   --build-system native \
   --jobs 1 \
+  --skip-update \
   -c release \
   1>&2 \
   |& tee /dev/null
