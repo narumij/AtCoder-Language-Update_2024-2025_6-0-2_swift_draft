@@ -234,7 +234,6 @@ EOF
 ./${SWIFT_PATH}/swift \
   build \
   --product Main \
-  --static-swift-stdlib \
   --enable-experimental-prebuilts \
   --build-system native \
   --jobs 1 \
@@ -276,7 +275,6 @@ export SWIFT_BACKTRACE='enable=yes,output-to=stderr,interactive=no'
 ./${SWIFT_PATH}/swift \
   build \
   --product Main \
-  --static-swift-stdlib \
   --enable-experimental-prebuilts \
   --build-system native \
   --jobs 1 \
