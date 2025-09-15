@@ -268,7 +268,7 @@ ${SWIFT_COMMAND_PATH} \
   --jobs 1 \
   --configuration release \
   --package-path $PACKAGE_PATH \
-  -v > build.log
+  --very-verbose > build.log
 
 # ビルドログからビルドコマンドを抽出し、差分ビルドスクリプトを作成します
 # sed -n '/swiftc/{
