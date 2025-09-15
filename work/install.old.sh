@@ -294,7 +294,7 @@ swiftc \
     -Xcc -fPIC \
     -Xcc -g -package-name package \
     -Xfrontend -load-plugin-executable \
-    -Xfrontend ${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/swift-ac-memoizeMacros-tool#swift_ac_memoizeMacros \
+    -Xfrontend "${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/swift-ac-memoizeMacros-tool#swift_ac_memoizeMacros" \
     -Xcc -fno-omit-frame-pointer
 
 swiftc \

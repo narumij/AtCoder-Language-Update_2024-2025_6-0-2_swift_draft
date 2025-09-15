@@ -257,33 +257,95 @@ ${SWIFT_COMMAND_PATH} \
   -v 1>&2 |& tee /dev/null
 
 # 差分コンパイルが行われるよう、ソースコードを変更します
-sed -i 's/Hello/Hallo/' $PACKAGE_PATH/Sources/main.swift
+# sed -i 's/Hello/Hallo/' $PACKAGE_PATH/Sources/main.swift
 
 # 差分コンパイルを実施し、ビルドログを取得します
-${SWIFT_COMMAND_PATH} \
-  build \
-  --product Main \
-  --enable-experimental-prebuilts \
-  --build-system native \
-  --jobs 1 \
-  --configuration release \
-  --package-path $PACKAGE_PATH \
-  -v > build.log
+# ${SWIFT_COMMAND_PATH} \
+#   build \
+#   --product Main \
+#   --enable-experimental-prebuilts \
+#   --build-system native \
+#   --jobs 1 \
+#   --configuration release \
+#   --package-path $PACKAGE_PATH \
+#   -v > build.log
 
 # ビルドログからビルドコマンドを抽出し、差分ビルドスクリプトを作成します
-sed -n '/swiftc/{
-    s/ -v / /;
-    s/-parseable-output//;
-    s/ -j[0-9][0-9]*/ -j1/g;
-    s/ -num-threads [0-9][0-9]*/ -num-threads 1/g;
-    p
-}' build.log > $SCRIPT_PATH
+# sed -n '/swiftc/{
+#     s/ -v / /;
+#     s/-parseable-output//;
+#     s/ -j[0-9][0-9]*/ -j1/g;
+#     s/ -num-threads [0-9][0-9]*/ -num-threads 1/g;
+#     p
+# }' build.log > $SCRIPT_PATH
 
 # ビルドログを削除します
-rm build.log
+# rm build.log
 
 # ビルド結果を削除します
 rm $EXECUTABLE_PATH
+
+cat << 'EOF' > $SCRIPT_PATH
+PACKAGE_NAME="Package"
+PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
+
+swiftc \
+    -module-name Main \
+    -emit-dependencies \
+    -emit-module \
+    -emit-module-path ${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/Modules/Main.swiftmodule \
+    -output-file-map ${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/Main.build/output-file-map.json \
+    -whole-module-optimization \
+    -num-threads 1 \
+    -c @${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/Main.build/sources \
+    -I ${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/Modules \
+    -target x86_64-unknown-linux-gnu \
+    -O \
+    -j1 \
+    -DSWIFT_PACKAGE \
+    -Xcc -fmodule-map-file=${PACKAGE_PATH}/.build/checkouts/swift-numerics/Sources/_NumericsShims/include/module.modulemap \
+    -Xcc -I -Xcc ${PACKAGE_PATH}/.build/checkouts/swift-numerics/Sources/_NumericsShims/include \
+    -Xcc -fmodule-map-file=${PACKAGE_PATH}/.build/checkouts/accelerate-linux/Sources/CLAPACK/module.modulemap \
+    -I/usr/include/x86_64-linux-gnu \
+    -Xcc -fmodule-map-file=${PACKAGE_PATH}/.build/checkouts/accelerate-linux/Sources/CBLAS/module.modulemap \
+    -I/usr/include/x86_64-linux-gnu/openblas-pthread \
+    -Xcc -fmodule-map-file=${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/_MT19937.build/module.modulemap \
+    -Xcc -I \
+    -Xcc ${PACKAGE_PATH}/.build/checkouts/swift-ac-foundation/Sources/_MT19937/include \
+    -Xcc -fmodule-map-file=${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/_cxx.build/module.modulemap \
+    -Xcc -I -Xcc ${PACKAGE_PATH}/.build/checkouts/swift-ac-foundation/Sources/_cxx/include \
+    -Xcc -fmodule-map-file=${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/_FastIO.build/module.modulemap \
+    -Xcc -I -Xcc ${PACKAGE_PATH}/.build/checkouts/swift-ac-foundation/Sources/_FastIO/include \
+    -module-cache-path ${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/ModuleCache  \
+    -Xfrontend -entry-point-function-name \
+    -Xfrontend Main_main \
+    -swift-version 6 \
+    -DONLINE_JUDGE \
+    -g \
+    -Xcc -fPIC \
+    -Xcc -g -package-name package \
+    -Xfrontend -load-plugin-executable \
+    -Xfrontend "${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/swift-ac-memoizeMacros-tool#swift_ac_memoizeMacros" \
+    -Xcc -fno-omit-frame-pointer
+
+swiftc \
+    -L/usr/lib/x86_64-linux-gnu \
+    -llapacke \
+    -L/usr/lib/x86_64-linux-gnu/openblas-pthread \
+    -lopenblas \
+    -lstdc++ \
+    -L ${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release \
+    -o ${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/Main \
+    -module-name Main \
+    -emit-executable \
+    -Xlinker --gc-sections \
+    -Xlinker --defsym \
+    -Xlinker main=Main_main \
+    -Xlinker '-rpath=$ORIGIN' \
+    @${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/Main.product/Objects.LinkFileList \
+    -target x86_64-unknown-linux-gnu \
+    -lm -g
+EOF
 
 # 差分ビルドスクリプトを実行します
 bash $SCRIPT_PATH
