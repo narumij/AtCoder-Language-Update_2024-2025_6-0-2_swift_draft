@@ -7,7 +7,7 @@ SCRIPT_DIRECTORY="Script"
 SCRIPT_DIRECTORY_PATH="$(pwd)/${SCRIPT_DIRECTORY}"
 SCRIPT_PATH="${SCRIPT_DIRECTORY_PATH}/build.sh"
 
-bash $SCRIPT_PATH
+bash $SCRIPT_PATH 1>&2
 
 if [ ! -f "$EXECUTABLE_PATH" ]; then
   echo "Error: Failed to build file '$EXECUTABLE_PATH'" >&2
