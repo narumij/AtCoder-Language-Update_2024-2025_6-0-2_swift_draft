@@ -254,7 +254,7 @@ ${SWIFT_COMMAND_PATH} \
 # ビルド結果を削除します
 rm $EXECUTABLE_PATH
 
-cat << 'EOF' > Package.swift
+cat << 'EOF' > $SCRIPT_PATH
 PACKAGE_NAME="Package"
 PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
 
