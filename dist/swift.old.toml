@@ -13,7 +13,7 @@ library.swift-bignum = { license = [ { name = 'MIT', url = 'https://github.com/d
 library.'kvSIMD.swift' = { license = [ { name = 'Apache-2.0', url = 'https://github.com/keyvariable/kvSIMD.swift/blob/main/LICENSE' },], version = '1.1.0' }
 library.accelerate-linux = { license = [ { name = 'MIT', url = 'https://github.com/brokenhandsio/accelerate-linux/blob/main/LICENSE' },], version = '8eda308' }
 library.swift-ac-library = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },], version = '528c893' }
-library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = '3d7c910' }
+library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = '5632172' }
 library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.44' }
 library.swift-ac-memoize = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-memoize/blob/main/LICENSE' },], version = '0.1.11' }
 
@@ -26,7 +26,7 @@ library.liblapacke = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'http
 library.libtmglib-dev = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/Reference-LAPACK/lapack/blob/master/LICENSE' },], indirect = true, version = '3.12.0-3build1.1' }
 library.libtmglib3 = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/Reference-LAPACK/lapack/blob/master/LICENSE' },], indirect = true, version = '3.12.0-3build1.1' }
 
-filename = 'Executable/Sources/main.swift'
+filename = 'Package/Sources/main.swift'
 
 install = '''
 
@@ -43,7 +43,7 @@ TAR_URL="https://download.swift.org/swift-${NUMBER}-release/$(echo $PLATFORM | t
 
 SWIFT_COMMAND_PATH="$(pwd)/swift-${VERSION}-${PLATFORM}/usr/bin/swift"
 
-PACKAGE_NAME="Executable"
+PACKAGE_NAME="Package"
 PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
 EXECUTABLE_PATH="${PACKAGE_PATH}/.build/release/Main"
 
@@ -194,7 +194,7 @@ let package = Package(
       url: "https://github.com/narumij/swift-ac-foundation",
       // .unsafeFlags(["-std=c++17"])に対するビルド拒否を迂回するため、revision指定としている
       // branch - main
-      revision: "3d7c910ca017fba151c61d40a4c6a383702b4b97"),
+      revision: "5632172f5c57455fbc65c1c3ef394f69c4ea1d69"),
     // 平衡二分探索木と順列全列挙です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
@@ -244,8 +244,8 @@ cd ../
 # --build-system nativeは、6.2になった場合の変動を避けるために付与
 # --jobs 1は、CPU数の変動によるフルビルドを迂回するために付与
 # --configuration releaseは、リリースビルドを行うためのオプション
-# 1>&2は、標準出力を標準エラーにリダイレクトするためのもので、既存由来
 # |& tee /dev/nullは、環境情報収集に関してSPMにバグがあり、そのワークアラウンド
+# 1>&2は、頻繁にみかけるが、SPMの差分ビルド不具合を誘発する可能性が高いため付与しない
 ${SWIFT_COMMAND_PATH} \
   build \
   --product Main \
@@ -254,7 +254,7 @@ ${SWIFT_COMMAND_PATH} \
   --jobs 1 \
   --configuration release \
   --package-path $PACKAGE_PATH \
-  -v 1>&2 |& tee /dev/null
+  -v |& tee /dev/null
 
 # 差分コンパイルが行われるよう、ソースコードを変更します
 sed -i 's/Hello/Hallo/' $PACKAGE_PATH/Sources/main.swift
@@ -303,7 +303,7 @@ rm $EXECUTABLE_PATH
 
 compile = '''
 
-PACKAGE_NAME="Executable"
+PACKAGE_NAME="Package"
 PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
 EXECUTABLE_PATH="${PACKAGE_PATH}/.build/release/Main"
 
@@ -311,7 +311,7 @@ SCRIPT_DIRECTORY="Script"
 SCRIPT_DIRECTORY_PATH="$(pwd)/${SCRIPT_DIRECTORY}"
 SCRIPT_PATH="${SCRIPT_DIRECTORY_PATH}/build.sh"
 
-bash $SCRIPT_PATH
+bash $SCRIPT_PATH 1>&2
 
 if [ ! -f "$EXECUTABLE_PATH" ]; then
   echo "Error: Failed to build file '$EXECUTABLE_PATH'" >&2
@@ -325,8 +325,8 @@ environment.SWIFT_BACKTRACE = 'enable=yes,output-to=stderr,interactive=no'
 environment.SWIFTPM_MAX_CONCURRENT_OPERATIONS = '1'
 environment.SWIFT_AC_LIBRARY_USES_O_UNCHECKED = 'true'
 
-object = 'Executable/.build/release/Main'
+object = 'Package/.build/release/Main'
 
 execution = [
-  'Executable/.build/release/Main',
+  'Package/.build/release/Main',
 ]
