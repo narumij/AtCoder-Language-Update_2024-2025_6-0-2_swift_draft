@@ -209,9 +209,9 @@ cd ../
 # --build-system nativeは、6.2になった場合の変動を避けるために付与
 # --jobs 1は、CPU数の変動によるフルビルドを迂回するために付与
 # --configuration releaseは、リリースビルドを行うためのオプション
-# 1>&2は、標準出力を標準エラーにリダイレクトするためのもので、既存由来
 # |& tee /dev/nullは、環境情報収集に関してSPMにバグがあり、そのワークアラウンド
 # ビルドオプションが変化するとフルビルドとなるため、コンパイルスクリプトと揃える必要がある
+# 1>&2は、頻繁にみかけるが、SPMの差分ビルド不具合を誘発する可能性が高いため付与しない
 ${SWIFT_COMMAND_PATH} \
   build \
   --product Main \
@@ -220,7 +220,6 @@ ${SWIFT_COMMAND_PATH} \
   --jobs 1 \
   --configuration release \
   --package-path $PACKAGE_PATH \
-  1>&2 \
   |& tee /dev/null
 
 # コンパイルに失敗した場合、インストール失敗とする
