@@ -264,6 +264,8 @@ SWIFTC_COMMAND_PATH="$(pwd)/swift-${VERSION}-${PLATFORM}/usr/bin/swiftc"
 PACKAGE_NAME="Package"
 PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
 
+${SWIFTC_COMMAND_PATH} --version
+
 ${SWIFTC_COMMAND_PATH} \
     -module-name Main \
     -emit-dependencies \

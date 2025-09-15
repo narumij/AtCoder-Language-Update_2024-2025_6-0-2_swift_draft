@@ -286,10 +286,18 @@ ${SWIFT_COMMAND_PATH} \
 rm $EXECUTABLE_PATH
 
 cat << 'EOF' > $SCRIPT_PATH
+NUMBER="6.1.3"
+VERSION="${NUMBER}-RELEASE"
+PLATFORM="ubuntu24.04"
+
+SWIFTC_COMMAND_PATH="$(pwd)/swift-${VERSION}-${PLATFORM}/usr/bin/swiftc"
+
 PACKAGE_NAME="Package"
 PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
 
-swiftc \
+${SWIFTC_COMMAND_PATH} --version
+
+${SWIFTC_COMMAND_PATH} \
     -module-name Main \
     -emit-dependencies \
     -emit-module \
@@ -325,10 +333,10 @@ swiftc \
     -Xcc -fPIC \
     -Xcc -g -package-name package \
     -Xfrontend -load-plugin-executable \
-    -Xfrontend "${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/swift-ac-memoizeMacros-tool#swift_ac_memoizeMacros" \
+    -Xfrontend ${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/swift-ac-memoizeMacros-tool#swift_ac_memoizeMacros \
     -Xcc -fno-omit-frame-pointer
 
-swiftc \
+${SWIFTC_COMMAND_PATH} \
     -L/usr/lib/x86_64-linux-gnu \
     -llapacke \
     -L/usr/lib/x86_64-linux-gnu/openblas-pthread \
