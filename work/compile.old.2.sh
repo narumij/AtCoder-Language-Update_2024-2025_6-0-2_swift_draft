@@ -3,6 +3,7 @@ NUMBER="6.1.3"
 VERSION="${NUMBER}-RELEASE"
 PLATFORM="ubuntu24.04"
 SWIFTC_COMMAND_PATH="$(pwd)/swift-${VERSION}-${PLATFORM}/usr/bin/swiftc"
+SWIFT_COMMAND_PATH="$(pwd)/swift-${VERSION}-${PLATFORM}/usr/bin/swift"
 
 PACKAGE_NAME="Package"
 PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"

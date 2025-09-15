@@ -271,13 +271,14 @@ ${SWIFT_COMMAND_PATH} \
   -v > build.log
 
 # ビルドログからビルドコマンドを抽出し、差分ビルドスクリプトを作成します
-sed -n '/swiftc/{
-    s/ -v / /;
-    s/-parseable-output//;
-    s/ -j[0-9][0-9]*/ -j1/g;
-    s/ -num-threads [0-9][0-9]*/ -num-threads 1/g;
-    p
-}' build.log > $SCRIPT_PATH
+# sed -n '/swiftc/{
+#     s/ -v / /;
+#     s/-parseable-output//;
+#     s/ -j[0-9][0-9]*/ -j1/g;
+#     s/ -num-threads [0-9][0-9]*/ -num-threads 1/g;
+#     p
+# }' build.log > $SCRIPT_PATH
+cp build.log $SCRIPT_PATH
 
 # ビルドログを削除します
 rm build.log
@@ -303,6 +304,7 @@ NUMBER="6.2"
 VERSION="${NUMBER}-RELEASE"
 PLATFORM="ubuntu24.04"
 SWIFTC_COMMAND_PATH="$(pwd)/swift-${VERSION}-${PLATFORM}/usr/bin/swiftc"
+SWIFT_COMMAND_PATH="$(pwd)/swift-${VERSION}-${PLATFORM}/usr/bin/swift"
 
 PACKAGE_NAME="Package"
 PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
