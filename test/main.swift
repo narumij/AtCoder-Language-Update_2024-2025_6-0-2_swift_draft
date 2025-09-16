@@ -49,7 +49,11 @@ print(cos(Double.pi))
 #endif
 
 let vec = SIMD2<Int>(1, 2)
-print(vec)
+func hoge() {
+    print(vec)
+}
+
+hoge()
 
 // 'keyAndValue' is created using a regex literal
 let keyAndValue = /(.+?): (.+)/
