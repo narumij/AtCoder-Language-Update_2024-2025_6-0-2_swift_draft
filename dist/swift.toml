@@ -249,7 +249,8 @@ ${SWIFT_COMMAND_PATH} \
   --jobs 1 \
   --configuration release \
   --package-path $PACKAGE_PATH \
-  --very-verbose |& tee /dev/null
+  --verbose \
+  |& tee /dev/null
 
 # 差分コンパイルが行われるよう、ソースコードを変更します
 sed -i 's/Hello/Hallo/' $PACKAGE_PATH/Sources/Main/Main.swift
@@ -261,7 +262,7 @@ ${SWIFT_COMMAND_PATH} \
   --jobs 1 \
   --configuration release \
   --package-path $PACKAGE_PATH \
-  --very-verbose > build.log
+  --verbose > build.log
 
 # ビルドログからビルドコマンドを抽出し、差分ビルドスクリプトを作成します
 # sed -n '/swiftc/{
@@ -319,11 +320,10 @@ SCRIPT_PATH="${SCRIPT_DIRECTORY_PATH}/build.sh"
 ${SWIFT_COMMAND_PATH} \
   build \
   --product Main \
-  --enable-experimental-prebuilts \
-  --build-system native \
   --jobs 1 \
   --configuration release \
   --package-path $PACKAGE_PATH \
+  --verbose \
   |& tee /dev/null
 
 if [ ! -f "$EXECUTABLE_PATH" ]; then
