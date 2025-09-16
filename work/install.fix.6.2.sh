@@ -200,9 +200,13 @@ let package = Package(
 EOF
 
 # packageの構成が6.2で変わりました。今回は以前と同じ配置にします
-# 6.2で、トップレベルに式が書けるファイル名がmain.swiftからMain.swiftに変更されました
-mv Sources/Main/Main.swift Sources/Main.swift
+# Main.swiftとmain.swiftで挙動が異なり、main.swiftが向いているので、main.swiftにします
+# Main.swiftのままだと、後続の挙動がmain.swiftで動かなくなる
+rm Sources/Main/Main.swift
 rmdir Sources/Main
+cat << 'EOF' > Sources/main.swift
+print("Hello, world!")
+EOF
 
 # 念の為に、クリーニングします
 ${SWIFT_COMMAND_PATH} package clean
