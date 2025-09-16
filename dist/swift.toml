@@ -262,36 +262,36 @@ ${SWIFT_COMMAND_PATH} \
   -v |& tee /dev/null
 
 # 差分コンパイルが行われるよう、ソースコードを変更します
-# sed -i 's/Hello/Hallo/' $PACKAGE_PATH/Sources/main.swift
+sed -i 's/Hello/Hallo/' $PACKAGE_PATH/Sources/main.swift
 
 # 差分コンパイルを実施し、ビルドログを取得します
-# ${SWIFT_COMMAND_PATH} \
-#   build \
-#   --product Main \
-#   --enable-experimental-prebuilts \
-#   --build-system native \
-#   --jobs 1 \
-#   --configuration release \
-#   --package-path $PACKAGE_PATH \
-#   -v > build.log
+${SWIFT_COMMAND_PATH} \
+  build \
+  --product Main \
+  --enable-experimental-prebuilts \
+  --build-system native \
+  --jobs 1 \
+  --configuration release \
+  --package-path $PACKAGE_PATH \
+  -v > build.log
 
 # ビルドログからビルドコマンドを抽出し、差分ビルドスクリプトを作成します
-# sed -n '/swiftc/{
-#     s/ -v / /;
-#     s/-parseable-output//;
-#     s/ -j[0-9][0-9]*/ -j1/g;
-#     s/ -num-threads [0-9][0-9]*/ -num-threads 1/g;
-#     p
-# }' build.log > $SCRIPT_PATH
+sed -n '/swiftc/{
+    s/ -v / /;
+    s/-parseable-output//;
+    s/ -j[0-9][0-9]*/ -j1/g;
+    s/ -num-threads [0-9][0-9]*/ -num-threads 1/g;
+    p
+}' build.log > $SCRIPT_PATH
 
 # ビルドログを削除します
-# rm build.log
+rm build.log
 
 # ビルド結果を削除します
-# rm $EXECUTABLE_PATH
+rm $EXECUTABLE_PATH
 
 # 差分ビルドスクリプトを実行します
-# bash $SCRIPT_PATH
+bash $SCRIPT_PATH
 
 # 差分コンパイルの不具合にさらに見舞われたため、抽出したスクリプトを元にコンパイルスクリプトを再度作成しました。
 
