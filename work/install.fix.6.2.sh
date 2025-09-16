@@ -222,7 +222,6 @@ cd ../
 # 実行可能パッケージのビルドを行います
 # --product Mainは、observabilityScope制限の為に付与
 # --static-swift-stdlibは、Swift stdlibで静的リンクを行うオプション
-# --enable-experimental-prebuiltsは事前ビルド済みのswift-syntaxを利用するために付与, 6.2以降でデフォルトになる
 # --build-system nativeは、6.2になった場合の変動を避けるために付与
 # --jobs 1は、CPU数の変動によるフルビルドを迂回するために付与
 # --configuration releaseは、リリースビルドを行うためのオプション
@@ -231,7 +230,6 @@ cd ../
 ${SWIFT_COMMAND_PATH} \
   build \
   --product Main \
-  --enable-experimental-prebuilts \
   --build-system native \
   --jobs 1 \
   --configuration release \
@@ -245,7 +243,6 @@ ${SWIFT_COMMAND_PATH} \
 # ${SWIFT_COMMAND_PATH} \
 #   build \
 #   --product Main \
-#   --enable-experimental-prebuilts \
 #   --build-system native \
 #   --jobs 1 \
 #   --configuration release \

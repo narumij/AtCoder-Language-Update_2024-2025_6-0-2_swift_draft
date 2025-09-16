@@ -31,7 +31,6 @@ ${SWIFTC_COMMAND_PATH} -L/usr/lib/x86_64-linux-gnu -llapacke -L/usr/lib/x86_64-l
 # ${SWIFT_COMMAND_PATH} \
 #   build \
 #   --product Main \
-#   --enable-experimental-prebuilts \
 #   --build-system native \
 #   --jobs 1 \
 #   --configuration release \
