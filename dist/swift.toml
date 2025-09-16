@@ -26,7 +26,7 @@ library.liblapacke = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'http
 library.libtmglib-dev = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/Reference-LAPACK/lapack/blob/master/LICENSE' },], indirect = true, version = '3.12.0-3build1.1' }
 library.libtmglib3 = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/Reference-LAPACK/lapack/blob/master/LICENSE' },], indirect = true, version = '3.12.0-3build1.1' }
 
-filename = 'Package/Sources/Main/Main.swift'
+filename = 'Package/Sources/main.swift'
 
 install = '''
 
@@ -213,9 +213,8 @@ let package = Package(
         .product(name: "AtCoder", package: "swift-ac-library"),
         .product(name: "AcFoundation", package: "swift-ac-foundation"),
         .product(name: "AcCollections", package: "swift-ac-collections"),
-        .product(name: "AcMemoize", package: "swift-ac-memoize"),
       ],
-      path: "Sources/Main",
+      path: "Sources",
       swiftSettings: [
         .define("ONLINE_JUDGE")
       ]
@@ -223,6 +222,10 @@ let package = Package(
   ]
 )
 EOF
+
+# packageの構成が6.2で変わりました。今回は以前と同じ配置にします
+mv Sources/Main/Main.swift Sources/Main.swift
+rmdir Sources/Main
 
 # 念の為に、クリーニングします
 ${SWIFT_COMMAND_PATH} package clean
@@ -252,7 +255,7 @@ ${SWIFT_COMMAND_PATH} \
   -v |& tee /dev/null
 
 # 差分コンパイルが行われるよう、ソースコードを変更します
-sed -i 's/Hello/Hallo/' $PACKAGE_PATH/Sources/Main/Main.swift
+sed -i 's/Hello/Hallo/' $PACKAGE_PATH/Sources/Main.swift
 
 # 差分コンパイルを実施し、ビルドログを取得します
 ${SWIFT_COMMAND_PATH} \

@@ -21,7 +21,6 @@ ${SWIFT_COMMAND_PATH} \
   --jobs 1 \
   --configuration release \
   --package-path $PACKAGE_PATH \
-  1>&2 \
   |& tee /dev/null
 
 # コンパイル所要時間の目安はhello wolrdで5秒程度。
