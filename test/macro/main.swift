@@ -1,7 +1,6 @@
 import Foundation
 import AcMemoize
 
-
 private let main: () = {
   do { try Answer() } catch { /* WA */  }
 }()
@@ -26,7 +25,6 @@ func fibonacci(_ n: Int) -> Int {
     return fibonacci(n - 1) + fibonacci(n - 2)
 }
 
-@MainActor
 @inlinable
 public func Answer() throws {
   print("Hello, Swift Macros")

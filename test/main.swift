@@ -10,7 +10,7 @@ import CharacterUtil
 import Collections
 import Convenience
 import CxxWrapped
-@preconcurrency import Foundation
+import Foundation
 import Foundation
 import IOReader
 import IOUtil
