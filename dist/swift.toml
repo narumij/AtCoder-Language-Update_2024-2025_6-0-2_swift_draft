@@ -220,7 +220,7 @@ let package = Package(
         .product(name: "AcCollections", package: "swift-ac-collections"),
         .product(name: "AcMemoize", package: "swift-ac-memoize"),
       ],
-      path: "Sources/",
+      path: "Sources/Main",
       swiftSettings: [
         .define("ONLINE_JUDGE")
       ]
@@ -257,7 +257,7 @@ ${SWIFT_COMMAND_PATH} \
   --very-verbose |& tee /dev/null
 
 # 差分コンパイルが行われるよう、ソースコードを変更します
-sed -i 's/Hello/Hallo/' $PACKAGE_PATH/Sources/main.swift
+sed -i 's/Hello/Hallo/' $PACKAGE_PATH/Sources/Main/Main.swift
 
 # 差分コンパイルを実施し、ビルドログを取得します
 ${SWIFT_COMMAND_PATH} \
