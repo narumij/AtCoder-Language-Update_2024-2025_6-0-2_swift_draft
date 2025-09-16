@@ -251,6 +251,12 @@ ${SWIFT_COMMAND_PATH} \
 # ビルドログを削除します
 # rm build.log
 
+# ビルド結果を削除します
+# rm $EXECUTABLE_PATH
+
+# 差分ビルドスクリプトを実行します
+# bash $SCRIPT_PATH
+
 # 差分コンパイルの不具合にさらに見舞われたため、抽出したスクリプトを元にコンパイルスクリプトを再度作成しました。
 
 if [ ! -f "$EXECUTABLE_PATH" ]; then
