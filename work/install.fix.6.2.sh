@@ -202,6 +202,7 @@ EOF
 # packageの構成が6.2で変わりました。今回は以前と同じ配置にします
 # Main.swiftとmain.swiftで挙動が異なり、main.swiftが向いているので、main.swiftにします
 # Main.swiftのままだと、後続の挙動がmain.swiftで動かなくなる
+# 具体的には、コンパイルコマンドの-parse-as-libraryの有無で動作が変わる
 rm Sources/Main/Main.swift
 rmdir Sources/Main
 cat << 'EOF' > Sources/main.swift
