@@ -169,9 +169,11 @@ let package = Package(
       url: "https://github.com/narumij/swift-ac-collections",
       exact: "0.1.44"),
     // メモ化マクロです。
+    // 事前ビルドが効かないことに対する暫定対処なため、revision指定としている
+    // branch - swift-6.2
     .package(
       url: "https://github.com/narumij/swift-ac-memoize",
-      exact: "0.1.11"),
+      revision: "b99737071fd3cc156d66d972a6c72b89fc7150af"),
   ],
   targets: [
     .executableTarget(
