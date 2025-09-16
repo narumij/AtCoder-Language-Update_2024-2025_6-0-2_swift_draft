@@ -194,7 +194,7 @@ let package = Package(
       path: "Sources",
       swiftSettings: [
         .define("ONLINE_JUDGE"),
-        .defaultIsolation(MainActor.self)
+        .defaultIsolation(nil)
       ]
     )
   ]
