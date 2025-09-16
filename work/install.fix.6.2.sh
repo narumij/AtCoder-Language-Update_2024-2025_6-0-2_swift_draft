@@ -234,8 +234,18 @@ ${SWIFT_COMMAND_PATH} \
   --jobs 1 \
   --configuration release \
   --package-path $PACKAGE_PATH \
- # -v \
   |& tee /dev/null
+
+# コマンド抽出用
+# ${SWIFT_COMMAND_PATH} \
+#   build \
+#   --product Main \
+#   --build-system native \
+#   --jobs 1 \
+#   --configuration release \
+#   --package-path $PACKAGE_PATH \
+#   -v \
+#   |& tee /dev/null
 
 # 差分コンパイルが行われるよう、ソースコードを変更します
 # sed -i 's/Hello/Hallo/' $PACKAGE_PATH/Sources/main.swift
