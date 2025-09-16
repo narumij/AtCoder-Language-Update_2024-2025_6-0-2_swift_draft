@@ -42,3 +42,4 @@ if [ ! -f "$EXECUTABLE_PATH" ]; then
   echo "Error: Failed to build file '$EXECUTABLE_PATH'" >&2
   exit 1
 fi
+
