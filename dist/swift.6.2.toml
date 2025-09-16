@@ -7,7 +7,7 @@ license = [ { name = 'Apache-2.0', url = 'https://github.com/swiftlang/swift/blo
 library.swift-algorithms = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-algorithms/blob/main/LICENSE.txt' },], version = '1.2.1' }
 library.swift-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-collections/blob/main/LICENSE.txt' },], version = '1.2.1' }
 library.swift-numerics = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-numerics/blob/main/LICENSE.txt' },], version = '1.1.0' }
-library.swift-syntax = { license = [ { name = 'Apache-2.0', url = 'https://github.com/swiftlang/swift-syntax/blob/main/LICENSE.txt' },], indirect = true, version = '601.0.1' }
+library.swift-syntax = { license = [ { name = 'Apache-2.0', url = 'https://github.com/swiftlang/swift-syntax/blob/main/LICENSE.txt' },], indirect = true, version = '602.0.0' }
 library.BigInt = { license = [ { name = 'MIT', url = 'https://github.com/attaswift/BigInt/blob/master/LICENSE.md' },], version = '5.7.0' }
 library.swift-bignum = { license = [ { name = 'MIT', url = 'https://github.com/dankogai/swift-bignum/blob/main/LICENSE' },], version = 'a562275' }
 library.'kvSIMD.swift' = { license = [ { name = 'Apache-2.0', url = 'https://github.com/keyvariable/kvSIMD.swift/blob/main/LICENSE' },], version = '1.1.0' }
@@ -15,7 +15,7 @@ library.accelerate-linux = { license = [ { name = 'MIT', url = 'https://github.c
 library.swift-ac-library = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },], version = '528c893' }
 library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = '5632172' }
 library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.44' }
-library.swift-ac-memoize = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-memoize/blob/main/LICENSE' },], version = '0.1.11' }
+library.swift-ac-memoize = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-memoize/blob/main/LICENSE' },], version = 'b997370' }
 
 library.libopenblas-dev = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/OpenMathLib/OpenBLAS/blob/develop/LICENSE' },], version = '0.3.26+ds-1' }
 library.libopenblas0 = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/OpenMathLib/OpenBLAS/blob/develop/LICENSE' },], indirect = true, version = '0.3.26+ds-1' }
@@ -200,9 +200,11 @@ let package = Package(
       url: "https://github.com/narumij/swift-ac-collections",
       exact: "0.1.44"),
     // メモ化マクロです。
+    // 事前ビルドが効かないことに対する暫定対処なため、revision指定としている
+    // branch - swift-6.2
     .package(
       url: "https://github.com/narumij/swift-ac-memoize",
-      exact: "0.1.11"),
+      revision: "b99737071fd3cc156d66d972a6c72b89fc7150af"),
   ],
   targets: [
     .executableTarget(
@@ -223,7 +225,7 @@ let package = Package(
       path: "Sources",
       swiftSettings: [
         .define("ONLINE_JUDGE"),
-        .defaultIsolation(MainActor.self)
+        .defaultIsolation(nil)
       ]
     )
   ]
@@ -251,7 +253,6 @@ cd ../
 # 実行可能パッケージのビルドを行います
 # --product Mainは、observabilityScope制限の為に付与
 # --static-swift-stdlibは、Swift stdlibで静的リンクを行うオプション
-# --enable-experimental-prebuiltsは事前ビルド済みのswift-syntaxを利用するために付与, 6.2以降でデフォルトになる
 # --build-system nativeは、6.2になった場合の変動を避けるために付与
 # --jobs 1は、CPU数の変動によるフルビルドを迂回するために付与
 # --configuration releaseは、リリースビルドを行うためのオプション
@@ -260,12 +261,22 @@ cd ../
 ${SWIFT_COMMAND_PATH} \
   build \
   --product Main \
-  --enable-experimental-prebuilts \
   --build-system native \
   --jobs 1 \
   --configuration release \
   --package-path $PACKAGE_PATH \
-  -v |& tee /dev/null
+  |& tee /dev/null
+
+# コマンド抽出用
+# ${SWIFT_COMMAND_PATH} \
+#   build \
+#   --product Main \
+#   --build-system native \
+#   --jobs 1 \
+#   --configuration release \
+#   --package-path $PACKAGE_PATH \
+#   -v \
+#   |& tee /dev/null
 
 # 差分コンパイルが行われるよう、ソースコードを変更します
 # sed -i 's/Hello/Hallo/' $PACKAGE_PATH/Sources/main.swift
@@ -274,7 +285,6 @@ ${SWIFT_COMMAND_PATH} \
 # ${SWIFT_COMMAND_PATH} \
 #   build \
 #   --product Main \
-#   --enable-experimental-prebuilts \
 #   --build-system native \
 #   --jobs 1 \
 #   --configuration release \
@@ -337,7 +347,7 @@ SCRIPT_DIRECTORY_PATH="$(pwd)/${SCRIPT_DIRECTORY}"
 SCRIPT_PATH="${SCRIPT_DIRECTORY_PATH}/build.sh"
 
 # 差分コンパイルのログから抽出したコンパイルコマンドを実行します
-${SWIFTC_COMMAND_PATH} -module-name Main -emit-dependencies -emit-module -emit-module-path ${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/Modules/Main.swiftmodule -output-file-map ${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/Main.build/output-file-map.json -whole-module-optimization -num-threads 1 -c @${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/Main.build/sources -I ${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/Modules -target x86_64-unknown-linux-gnu -whole-module-optimization -num-threads 1 -serialize-diagnostics -O -j1 -DSWIFT_PACKAGE -DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -Xcc -fmodule-map-file=${PACKAGE_PATH}/.build/checkouts/swift-numerics/Sources/_NumericsShims/include/module.modulemap -Xcc -I -Xcc ${PACKAGE_PATH}/.build/checkouts/swift-numerics/Sources/_NumericsShims/include -Xcc -fmodule-map-file=${PACKAGE_PATH}/.build/checkouts/accelerate-linux/Sources/CLAPACK/module.modulemap -I/usr/include/x86_64-linux-gnu -Xcc -fmodule-map-file=${PACKAGE_PATH}/.build/checkouts/accelerate-linux/Sources/CBLAS/module.modulemap -I/usr/include/x86_64-linux-gnu/openblas-pthread -Xcc -fmodule-map-file=${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/_MT19937.build/module.modulemap -Xcc -I -Xcc ${PACKAGE_PATH}/.build/checkouts/swift-ac-foundation/Sources/_MT19937/include -Xcc -fmodule-map-file=${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/_cxx.build/module.modulemap -Xcc -I -Xcc ${PACKAGE_PATH}/.build/checkouts/swift-ac-foundation/Sources/_cxx/include -Xcc -fmodule-map-file=${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/_FastIO.build/module.modulemap -Xcc -I -Xcc ${PACKAGE_PATH}/.build/checkouts/swift-ac-foundation/Sources/_FastIO/include -module-cache-path ${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/ModuleCache  -Xfrontend -entry-point-function-name -Xfrontend Main_main -swift-version 6 -DONLINE_JUDGE -default-isolation MainActor -g -Xcc -fPIC -Xcc -g -package-name package -Xfrontend -load-plugin-executable -Xfrontend ${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/swift-ac-memoizeMacros-tool#swift_ac_memoizeMacros -Xcc -fno-omit-frame-pointer
+${SWIFTC_COMMAND_PATH} -module-name Main -emit-dependencies -emit-module -emit-module-path ${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/Modules/Main.swiftmodule -output-file-map ${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/Main.build/output-file-map.json -whole-module-optimization -num-threads 1 -c @${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/Main.build/sources -I ${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/Modules -target x86_64-unknown-linux-gnu -whole-module-optimization -num-threads 1 -serialize-diagnostics -O -j1 -DSWIFT_PACKAGE -DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -Xcc -fmodule-map-file=${PACKAGE_PATH}/.build/checkouts/swift-numerics/Sources/_NumericsShims/include/module.modulemap -Xcc -I -Xcc ${PACKAGE_PATH}/.build/checkouts/swift-numerics/Sources/_NumericsShims/include -Xcc -fmodule-map-file=${PACKAGE_PATH}/.build/checkouts/accelerate-linux/Sources/CLAPACK/module.modulemap -I/usr/include/x86_64-linux-gnu -Xcc -fmodule-map-file=${PACKAGE_PATH}/.build/checkouts/accelerate-linux/Sources/CBLAS/module.modulemap -I/usr/include/x86_64-linux-gnu/openblas-pthread -Xcc -fmodule-map-file=${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/_MT19937.build/module.modulemap -Xcc -I -Xcc ${PACKAGE_PATH}/.build/checkouts/swift-ac-foundation/Sources/_MT19937/include -Xcc -fmodule-map-file=${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/_cxx.build/module.modulemap -Xcc -I -Xcc ${PACKAGE_PATH}/.build/checkouts/swift-ac-foundation/Sources/_cxx/include -Xcc -fmodule-map-file=${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/_FastIO.build/module.modulemap -Xcc -I -Xcc ${PACKAGE_PATH}/.build/checkouts/swift-ac-foundation/Sources/_FastIO/include -module-cache-path ${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/ModuleCache  -Xfrontend -entry-point-function-name -Xfrontend Main_main -swift-version 6 -DONLINE_JUDGE -default-isolation nonisolated -g -Xcc -fPIC -Xcc -g -package-name package -Xfrontend -load-plugin-executable -Xfrontend ${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/swift-ac-memoizeMacros-tool#swift_ac_memoizeMacros -Xcc -fno-omit-frame-pointer
 ${SWIFTC_COMMAND_PATH} -L/usr/lib/x86_64-linux-gnu -llapacke -L/usr/lib/x86_64-linux-gnu/openblas-pthread -lopenblas -lstdc++ -L ${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release -o ${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/Main -module-name Main -emit-executable -Xlinker --gc-sections -Xlinker --defsym -Xlinker main=Main_main -Xlinker '-rpath=$ORIGIN' @${PACKAGE_PATH}/.build/x86_64-unknown-linux-gnu/release/Main.product/Objects.LinkFileList -target x86_64-unknown-linux-gnu -lm -g
 
 # (抽出スクリプトでビルドする場合)
@@ -348,7 +358,6 @@ ${SWIFTC_COMMAND_PATH} -L/usr/lib/x86_64-linux-gnu -llapacke -L/usr/lib/x86_64-l
 # ${SWIFT_COMMAND_PATH} \
 #   build \
 #   --product Main \
-#   --enable-experimental-prebuilts \
 #   --build-system native \
 #   --jobs 1 \
 #   --configuration release \
