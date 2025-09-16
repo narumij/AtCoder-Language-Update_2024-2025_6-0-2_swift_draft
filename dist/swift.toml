@@ -222,7 +222,8 @@ let package = Package(
       ],
       path: "Sources",
       swiftSettings: [
-        .define("ONLINE_JUDGE")
+        .define("ONLINE_JUDGE"),
+        .defaultIsolation(MainActor.self)
       ]
     )
   ]
@@ -230,8 +231,7 @@ let package = Package(
 EOF
 
 # packageの構成が6.2で変わりました。今回は以前と同じ配置にします
-# 6.2で、トップレベルに式が書けるファイル名がmain.swiftからMain.swiftに変更されました
-mv Sources/Main/Main.swift Sources/Main.swift
+mv Sources/Main/Main.swift Sources/main.swift
 rmdir Sources/Main
 
 # 念の為に、クリーニングします
