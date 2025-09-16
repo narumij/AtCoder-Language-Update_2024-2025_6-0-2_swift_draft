@@ -1,55 +1,21 @@
-# SPDX-License-Identifier: CC0-1.0
 
-language = 'Swift'
-display = 'Swift 6.2'
-license = [ { name = 'Apache-2.0', url = 'https://github.com/swiftlang/swift/blob/main/LICENSE.txt' }, ]
-
-library.swift-algorithms = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-algorithms/blob/main/LICENSE.txt' },], version = '1.2.1' }
-library.swift-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-collections/blob/main/LICENSE.txt' },], version = '1.2.1' }
-library.swift-numerics = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-numerics/blob/main/LICENSE.txt' },], version = '1.1.0' }
-library.swift-syntax = { license = [ { name = 'Apache-2.0', url = 'https://github.com/swiftlang/swift-syntax/blob/main/LICENSE.txt' },], indirect = true, version = '601.0.1' }
-library.BigInt = { license = [ { name = 'MIT', url = 'https://github.com/attaswift/BigInt/blob/master/LICENSE.md' },], version = '5.7.0' }
-library.swift-bignum = { license = [ { name = 'MIT', url = 'https://github.com/dankogai/swift-bignum/blob/main/LICENSE' },], version = 'a562275' }
-library.'kvSIMD.swift' = { license = [ { name = 'Apache-2.0', url = 'https://github.com/keyvariable/kvSIMD.swift/blob/main/LICENSE' },], version = '1.1.0' }
-library.accelerate-linux = { license = [ { name = 'MIT', url = 'https://github.com/brokenhandsio/accelerate-linux/blob/main/LICENSE' },], version = '8eda308' }
-library.swift-ac-library = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },], version = '528c893' }
-library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = '5632172' }
-library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.44' }
-library.swift-ac-memoize = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-memoize/blob/main/LICENSE' },], version = '0.1.11' }
-
-library.libopenblas-dev = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/OpenMathLib/OpenBLAS/blob/develop/LICENSE' },], version = '0.3.26+ds-1' }
-library.libopenblas0 = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/OpenMathLib/OpenBLAS/blob/develop/LICENSE' },], indirect = true, version = '0.3.26+ds-1' }
-library.libopenblas-pthread-dev = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/OpenMathLib/OpenBLAS/blob/develop/LICENSE' },], indirect = true, version = '0.3.26+ds-1' }
-library.libopenblas0-pthread = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/OpenMathLib/OpenBLAS/blob/develop/LICENSE' },], indirect = true, version = '0.3.26+ds-1' }
-library.liblapacke-dev = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/Reference-LAPACK/lapack/blob/master/LICENSE' },], version = '3.12.0-3build1.1' }
-library.liblapacke = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/Reference-LAPACK/lapack/blob/master/LICENSE' },], indirect = true, version = '3.12.0-3build1.1' }
-library.libtmglib-dev = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/Reference-LAPACK/lapack/blob/master/LICENSE' },], indirect = true, version = '3.12.0-3build1.1' }
-library.libtmglib3 = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/Reference-LAPACK/lapack/blob/master/LICENSE' },], indirect = true, version = '3.12.0-3build1.1' }
-
-filename = 'Package/Sources/Main/Main.swift'
-
-install = '''
-
+# 現在の公式手順、swiftlyを利用したインストール方法に問題が生じたため、
 # 旧公式手順に従ってインストールを行います。
 # Alternate Install Options > Tarball > Instruction
 # https://www.swift.org/install/linux/tarball/
 
-NUMBER="6.1.3"
+NUMBER="6.2"
 VERSION="${NUMBER}-RELEASE"
 PLATFORM="ubuntu24.04"
 TAR_FILE="swift-${VERSION}-${PLATFORM}.tar.gz"
-# https://download.swift.org/swift-6.1.3-release/ubuntu2404/swift-6.1.3-RELEASE/swift-6.1.3-RELEASE-ubuntu24.04.tar.gz
+# https://download.swift.org/swift-6.2-release/ubuntu2404/swift-6.2-RELEASE/swift-6.2-RELEASE-ubuntu24.04.tar.gz
 TAR_URL="https://download.swift.org/swift-${NUMBER}-release/$(echo $PLATFORM | tr -d .)/swift-${VERSION}/${TAR_FILE}"
 
 SWIFT_COMMAND_PATH="$(pwd)/swift-${VERSION}-${PLATFORM}/usr/bin/swift"
 
 PACKAGE_NAME="Package"
 PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
-EXECUTABLE_PATH="${PACKAGE_PATH}/.build/release/Main"
-
-SCRIPT_DIRECTORY="Script"
-SCRIPT_DIRECTORY_PATH="$(pwd)/${SCRIPT_DIRECTORY}"
-SCRIPT_PATH="${SCRIPT_DIRECTORY_PATH}/build.sh"
+FILE="${PACKAGE_PATH}/.build/release/Main"
 
 echo "Current directory: $(pwd)"
 echo "Swift Command Path: ${SWIFT_COMMAND_PATH}"
@@ -113,10 +79,12 @@ tar xzf $TAR_FILE
 # 公式のインストール手順は以上です
 
 # バージョン番号を出力し、ログでも処理系バージョンを確認する
-${SWIFT_COMMAND_PATH} --version
+${SWIFT_PATH}/swift --version
 
-# AtCoderからの要請で不要なファイルを削除するよう指示があるため、ダウンロードしたファイルを削除します
+# 運営からの不要なファイル削除に関する指示に従い、ダウンロードしたファイルを削除します
 rm $TAR_FILE
+
+ls -al
 
 # accelerate-linuxのビルドに必要なパッケージをインストールします
 sudo apt-get install -y \
@@ -134,10 +102,7 @@ sudo apt-get install -y \
 # 続いて、コンパイル環境の構築を行います
 # コンパイル環境の構築では、AtCoderで使用するSwiftパッケージの初期化と依存パッケージの追加、そして事前ビルドを行います
 
-# ビルドスクリプトを配置するフォルダを作成
-mkdir $SCRIPT_DIRECTORY
-# パッケージを配置するフォルダを作成
-mkdir $PACKAGE_NAME
+mkdir -p $PACKAGE_NAME
 
 cd $PACKAGE_NAME
 
@@ -245,81 +210,8 @@ cd ../
 # --jobs 1は、CPU数の変動によるフルビルドを迂回するために付与
 # --configuration releaseは、リリースビルドを行うためのオプション
 # |& tee /dev/nullは、環境情報収集に関してSPMにバグがあり、そのワークアラウンド
+# ビルドオプションが変化するとフルビルドとなるため、コンパイルスクリプトと揃える必要がある
 # 1>&2は、頻繁にみかけるが、SPMの差分ビルド不具合を誘発する可能性が高いため付与しない
-${SWIFT_COMMAND_PATH} \
-  build \
-  --product Main \
-  --enable-experimental-prebuilts \
-  --build-system native \
-  --jobs 1 \
-  --configuration release \
-  --package-path $PACKAGE_PATH \
-  -v |& tee /dev/null
-
-# 差分コンパイルが行われるよう、ソースコードを変更します
-sed -i 's/Hello/Hallo/' $PACKAGE_PATH/Sources/Main/Main.swift
-
-# 差分コンパイルを実施し、ビルドログを取得します
-${SWIFT_COMMAND_PATH} \
-  build \
-  --product Main \
-  --enable-experimental-prebuilts \
-  --build-system native \
-  --jobs 1 \
-  --configuration release \
-  --package-path $PACKAGE_PATH \
-  -v > build.log
-
-# ビルドログからビルドコマンドを抽出し、差分ビルドスクリプトを作成します
-sed -n '/swiftc/{
-    s/ -v / /;
-    s/-parseable-output//;
-    s/ -j[0-9][0-9]*/ -j1/g;
-    s/ -num-threads [0-9][0-9]*/ -num-threads 1/g;
-    p
-}' build.log > $SCRIPT_PATH
-
-# ビルドログを削除します
-rm build.log
-
-# ビルド結果を削除します
-rm $EXECUTABLE_PATH
-
-# 差分ビルドスクリプトを実行します
-bash $SCRIPT_PATH
-
-if [ ! -f "$EXECUTABLE_PATH" ]; then
-  echo "Error: 初回のビルドに失敗しました: $EXECUTABLE_PATH" >&2
-  exit 1
-fi
-
-# Hello, world!を出力
-$EXECUTABLE_PATH
-
-# ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
-rm $EXECUTABLE_PATH
-
-'''
-
-compile = '''
-
-NUMBER="6.2"
-VERSION="${NUMBER}-RELEASE"
-PLATFORM="ubuntu24.04"
-SWIFT_COMMAND_PATH="$(pwd)/swift-${VERSION}-${PLATFORM}/usr/bin/swift"
-
-export DEBIAN_FRONTEND=noninteractive
-# これがないとswift-ac-libraryのコンパイルが走ってしまう
-export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
-export SWIFTPM_MAX_CONCURRENT_OPERATIONS=1
-export SWIFT_BACKTRACE='enable=yes,output-to=stderr,interactive=no'
-
-PACKAGE_NAME="Package"
-PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
-
-FILE="${PACKAGE_PATH}/.build/release/Main"
-
-# ビルドオプションが変化するとフルビルドとなるため、インストールスクリプトと揃える必要がある
 ${SWIFT_COMMAND_PATH} \
   build \
   --product Main \
@@ -328,23 +220,14 @@ ${SWIFT_COMMAND_PATH} \
   --package-path $PACKAGE_PATH \
   |& tee /dev/null
 
-# コンパイル所要時間の目安はhello wolrdで5秒程度。
-# それを上回る場合、差分コンパイルに問題が生じている可能性があります。
-
+# コンパイルに失敗した場合、インストール失敗とする
 if [ ! -f "$FILE" ]; then
-  echo "Error: Failed to build file '$FILE'" >&2
+  echo "Error: 初回のビルドに失敗しました: $FILE" >&2
   exit 1
 fi
 
-'''
+# Hello, world!を出力
+$FILE
 
-environment.DEBIAN_FRONTEND = 'noninteractive'
-environment.SWIFT_BACKTRACE = 'enable=yes,output-to=stderr,interactive=no'
-environment.SWIFTPM_MAX_CONCURRENT_OPERATIONS = '1'
-environment.SWIFT_AC_LIBRARY_USES_O_UNCHECKED = 'true'
-
-object = 'Package/.build/release/Main'
-
-execution = [
-  'Package/.build/release/Main',
-]
+# ジャッジによるビルド判定が正しく行われるよう、ビルド結果を削除します
+rm $FILE

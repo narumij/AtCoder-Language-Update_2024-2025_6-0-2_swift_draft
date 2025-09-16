@@ -5,6 +5,12 @@ PLATFORM="ubuntu24.04"
 SWIFTC_COMMAND_PATH="$(pwd)/swift-${VERSION}-${PLATFORM}/usr/bin/swiftc"
 SWIFT_COMMAND_PATH="$(pwd)/swift-${VERSION}-${PLATFORM}/usr/bin/swift"
 
+export DEBIAN_FRONTEND=noninteractive
+# これがないとswift-ac-libraryのコンパイルが走ってしまう
+export SWIFT_AC_LIBRARY_USES_O_UNCHECKED=true
+export SWIFTPM_MAX_CONCURRENT_OPERATIONS=1
+export SWIFT_BACKTRACE='enable=yes,output-to=stderr,interactive=no'
+
 PACKAGE_NAME="Package"
 PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
 EXECUTABLE_PATH="${PACKAGE_PATH}/.build/release/Main"
