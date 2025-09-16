@@ -6,7 +6,7 @@ export SWIFT_BACKTRACE='enable=yes,output-to=stderr,interactive=no'
 
 PACKAGE_NAME="Package"
 PACKAGE_PATH="$(pwd)/${PACKAGE_NAME}"
-SOURCE_PATH="${PACKAGE_PATH}/Sources/main.swift"
+SOURCE_PATH="${PACKAGE_PATH}/Sources/Main.swift"
 FILE="${PACKAGE_PATH}/.build/release/Main"
 
 echo "Current directory: $(pwd)"
