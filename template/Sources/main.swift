@@ -1,3 +1,4 @@
+#if false
 // 更新成功したら通るはずのコード
 import AcCollections
 import AcFoundation
@@ -23,6 +24,7 @@ import RedBlackTreeModule
 import StringUtil
 import UInt8Util
 import simd
+#endif
 
 #if false
 try main()
@@ -89,6 +91,7 @@ extension Sequence {
 }
 #endif
 
+#if false
 import Foundation
 
 @usableFromInline
@@ -212,3 +215,38 @@ func ___print_negative<I>(_ x: I) where I: FixedWidthInteger & SignedInteger {
     }
   }
 }
+#endif
+
+import AcFoundation
+import Collections
+import IOUtil
+
+let n: Int = .stdin
+var v: [Pack<Int,Int>]
+v = (0 ..< n)
+  .map{ _ in (Int.stdin, Int.stdin) }
+  .map { t,d in .init(t, t + d) }
+  .sorted()
+
+var pq = Heap<Int>()
+var it = 0
+var ans = 0
+var i = 0
+while true {
+    if pq.isEmpty {
+        if it == n { break }
+      i = v[it].rawValue.0
+    }
+    while it < n, v[it].rawValue.0 == i {
+        pq.insert(v[it].rawValue.1)
+        it += 1
+    }
+    while !pq.isEmpty, pq.min! < i { _ = pq.popMin() }
+    if !pq.isEmpty {
+        _ = pq.popMin()
+        ans += 1
+    }
+    i += 1
+}
+
+fastPrint(ans)
