@@ -1,4 +1,4 @@
-// swift-tools-version: 6.1
+// swift-tools-version: 6.2
 import PackageDescription
 
 let package = Package(
@@ -46,15 +46,17 @@ let package = Package(
       url: "https://github.com/narumij/swift-ac-foundation",
       // .unsafeFlags(["-std=c++17"])に対するビルド拒否を迂回するため、revision指定としている
       // branch - main
-      revision: "5632172f5c57455fbc65c1c3ef394f69c4ea1d69"),
+      revision: "9affe451d311e3c82c7eb3aefd06b22565cf1508"),
     // 平衡二分探索木と順列全列挙です。
     .package(
       url: "https://github.com/narumij/swift-ac-collections",
       exact: "0.1.44"),
     // メモ化マクロです。
+    // 事前ビルドが効かないことに対する暫定対処なため、revision指定としている
+    // branch - swift-6.2
     .package(
       url: "https://github.com/narumij/swift-ac-memoize",
-      exact: "0.1.11"),
+      revision: "b99737071fd3cc156d66d972a6c72b89fc7150af"),
   ],
   targets: [
     .executableTarget(
@@ -74,7 +76,8 @@ let package = Package(
       ],
       path: "Sources",
       swiftSettings: [
-        .define("ONLINE_JUDGE")
+        .define("ONLINE_JUDGE"),
+        .defaultIsolation(nil)
       ]
     )
   ]

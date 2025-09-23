@@ -1,5 +1,5 @@
 {
-  "originHash" : "ffb2df7340a5b1c7cadc05da797ad40dba62f13a3d4568041e3dbae497c0cdbf",
+  "originHash" : "21519e9ec39b938de583de06acd96f15b8ef440ad643166e4b7f0c727e215273",
   "pins" : [
     {
       "identity" : "accelerate-linux",
@@ -41,7 +41,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-foundation",
       "state" : {
-        "revision" : "5632172f5c57455fbc65c1c3ef394f69c4ea1d69"
+        "revision" : "9affe451d311e3c82c7eb3aefd06b22565cf1508"
       }
     },
     {
@@ -57,8 +57,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/narumij/swift-ac-memoize",
       "state" : {
-        "revision" : "b33efc946754b9f1663243f602483a5c327fc849",
-        "version" : "0.1.11"
+        "revision" : "b99737071fd3cc156d66d972a6c72b89fc7150af"
       }
     },
     {
@@ -101,8 +100,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/swiftlang/swift-syntax",
       "state" : {
-        "revision" : "f99ae8aa18f0cf0d53481901f88a0991dc3bd4a2",
-        "version" : "601.0.1"
+        "revision" : "4799286537280063c85a32f09884cfbca301b1a1",
+        "version" : "602.0.0"
       }
     }
   ],
