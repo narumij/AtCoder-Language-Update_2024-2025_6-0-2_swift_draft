@@ -26,6 +26,8 @@ while read -r name relative; do
   module_map="$source_dir/module.modulemap"
   if [[ ! -f "$module_map" ]]; then
     module_map="$bin_path/$name.build/module.modulemap"
+  else
+    chmod u+w "$destination/module.modulemap"
   fi
   SOURCE_DIR="$source_dir" DESTINATION="$destination" awk '
     BEGIN { from = ENVIRON["SOURCE_DIR"]; to = ENVIRON["DESTINATION"] }
