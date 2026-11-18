@@ -10,7 +10,7 @@ fi
 sudo_cmd=()
 if [[ $(id -u) != 0 ]]; then sudo_cmd=(sudo); fi
 "${sudo_cmd[@]}" apt-get update
-"${sudo_cmd[@]}" apt-get install -y curl ca-certificates git binutils libc6-dev libcurl4-openssl-dev libedit2 libgcc-13-dev libncurses-dev libpython3-dev libsqlite3-0 libstdc++-13-dev libxml2-dev libz3-dev pkg-config tzdata unzip zlib1g-dev libopenblas-dev liblapacke-dev python3
+"${sudo_cmd[@]}" apt-get install -y curl ca-certificates git binutils libc6-dev libcurl4-openssl-dev libedit2 libgcc-13-dev libncurses-dev libpython3-dev libsqlite3-0 libstdc++-13-dev libxml2-dev libz3-dev pkg-config tzdata unzip zlib1g-dev libopenblas-dev liblapacke-dev
 if [[ -z ${SWIFT:-} ]]; then
   archive=swift-6.2-RELEASE-ubuntu24.04
   toolchain="$root/$archive"
@@ -22,4 +22,4 @@ if [[ -z ${SWIFT:-} ]]; then
   export SWIFT="$toolchain/usr/bin/swift"
 fi
 "$SWIFT" --version
-python3 "$root/prebuilt/build.py" "$root/prebuilt" "$prefix"
+bash "$root/prebuilt/build.sh" "$root/prebuilt" "$prefix"

@@ -10,7 +10,7 @@ template/とwork/の過去の試行は、新しい構築には使用しません
    SwiftLibraries/にはSwiftモジュール、Cヘッダとmodule map、
    マクロ実行ファイル、ライセンス、依存ロックを配置します。
 
-2. python3 SwiftLibraries/compile.py main.swift main
+2. bash SwiftLibraries/compile.sh main.swift main
    提出コードをswiftcで直接コンパイルしてリンクします。
    提出時にSwiftPM、ネットワーク、prebuilt/.buildは使用しません。
    コンパイル失敗時には前の実行ファイルを残しません。
@@ -23,7 +23,7 @@ template/とwork/の過去の試行は、新しい構築には使用しません
    CIではprebuilt/.buildとマニフェストを外してから検証します。
 
 Package.swift / Package.resolvedは採用する依存バージョンの正本です。
-変更後はpython3 prebuilt/render.pyで配布用dist/swift.tomlを更新します。
+変更後はbash prebuilt/render.shで配布用dist/swift.tomlを更新します。
 CIは配布用TOMLのinstall・compile・executionも実際に使用します。
 SwiftLibraries/は同一ツールチェーン・同一設置先で使う成果物です。
 異なるSwift版や設置先への移設時には再構築してください。
