@@ -1,58 +1,63 @@
-name: Run test
-run-name: ${{ github.workflow }} (${{ github.ref_name }})
-
+name: Prebuilt Swift libraries
 on:
-    push:
-        branches:
-            - main
-            - test/**
-    pull_request:
-    workflow_dispatch:
-
+  push:
+    branches: [main, 'test/**', 'develop/**']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
 concurrency:
-    group: |
-        test-${{
-            startsWith(github.ref_name, 'test') && github.ref_name ||
-            github.run_id
-        }}
-    cancel-in-progress: true
-
+  group: prebuilt-swift-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
-    run:
-        runs-on: ubuntu-24.04
-
-        steps:
-            - uses: actions/checkout@v4
-              with:
-                  ref: ${{ github.head_ref || github.ref_name }}
-                  fetch-depth: 0
-
-            - name: Install Rust
-              uses: actions-rs/toolchain@v1
-              with:
-                  toolchain: stable
-            
-            - name: Install tomlq
-              run: cargo install tomlq
-              
-            - name: Install
-              run: |
-                tq 'install' --file dist/swift.toml | sed -e "1s/^'''//" -e "\$s/'''$//" | bash               
-
-            # - name: Check Swift version
-            #   run: |
-            #     chmod +x ./test/check_version.sh
-            #     ./test/check_version.sh
-            
-            # 生成された build.sh をアーティファクトとしてアップロード
-            - name: Upload build.sh artifact
-              uses: actions/upload-artifact@v4
-              with:
-                name: build-script
-                path: Script/build.sh
-
-            - name: Test
-              run: |
-                  chmod +x ./test/test.sh
-                  ./test/test.sh
-                  
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      BUILD_JOBS: '2'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check generated judge definition
+        run: |
+          python3 prebuilt/render.py --check
+          python3 -m py_compile prebuilt/*.py test/prebuilt_test.py
+          bash -n dist/install.sh
+      - name: Install from judge definition
+        run: |
+          set -o pipefail
+          mkdir -p diagnostics
+          python3 - <<'PY' > diagnostics/install.sh
+          import pathlib, tomllib
+          print(tomllib.loads(pathlib.Path('dist/swift.toml').read_text())['install'])
+          PY
+          bash diagnostics/install.sh 2>&1 | tee diagnostics/install.log
+      - name: Record compiler and dependency versions
+        run: |
+          bash test/check_version.sh | tee diagnostics/compiler.txt
+          cp SwiftLibraries/config.json SwiftLibraries/Package.resolved diagnostics/
+          dpkg-query -W 'libopenblas*' 'liblapacke*' > diagnostics/system-libraries.txt
+      - name: Remove build inputs before compiling submissions
+        run: |
+          rm -rf prebuilt/.build
+          mkdir -p diagnostics/hidden
+          mv prebuilt/Package.swift prebuilt/Package.resolved diagnostics/hidden/
+      - name: Verify isolated submission compilation and execution
+        run: |
+          set -o pipefail
+          python3 test/prebuilt_test.py SwiftLibraries 2>&1 | tee diagnostics/test.log
+      - name: Verify judge compile and execution commands
+        run: |
+          python3 - <<'PY'
+          import pathlib, subprocess, tomllib
+          config = tomllib.loads(pathlib.Path('dist/swift.toml').read_text())
+          pathlib.Path(config['filename']).write_text('import Collections\nprint(Deque([42]).first!)\n')
+          subprocess.run(['bash', '-euc', config['compile']], check=True)
+          result = subprocess.check_output(['./' + config['execution'][0]], text=True)
+          assert result == '42\n', result
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: swift-prebuilt-diagnostics
+          path: diagnostics/
+          if-no-files-found: warn

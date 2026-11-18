@@ -1,0 +1,29 @@
+# SPDX-License-Identifier: CC0-1.0
+
+language = 'Swift'
+display = 'Swift 6.2'
+license = [ { name = 'Apache-2.0', url = 'https://github.com/swiftlang/swift/blob/main/LICENSE.txt' }, ]
+
+library.swift-algorithms = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-algorithms/blob/main/LICENSE.txt' },], version = '1.2.1' }
+library.swift-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-collections/blob/main/LICENSE.txt' },], version = '1.2.1' }
+library.swift-numerics = { license = [ { name = 'Apache-2.0', url = 'https://github.com/apple/swift-numerics/blob/main/LICENSE.txt' },], version = '1.1.0' }
+library.swift-syntax = { license = [ { name = 'Apache-2.0', url = 'https://github.com/swiftlang/swift-syntax/blob/main/LICENSE.txt' },], indirect = true, version = '602.0.0' }
+library.BigInt = { license = [ { name = 'MIT', url = 'https://github.com/attaswift/BigInt/blob/master/LICENSE.md' },], version = '5.7.0' }
+library.swift-bignum = { license = [ { name = 'MIT', url = 'https://github.com/dankogai/swift-bignum/blob/main/LICENSE' },], version = 'a562275' }
+library.'kvSIMD.swift' = { license = [ { name = 'Apache-2.0', url = 'https://github.com/keyvariable/kvSIMD.swift/blob/main/LICENSE' },], version = '1.1.0' }
+library.accelerate-linux = { license = [ { name = 'MIT', url = 'https://github.com/brokenhandsio/accelerate-linux/blob/main/LICENSE' },], version = '8eda308' }
+library.swift-ac-library = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-library/blob/main/LICENSE' },], version = '528c893' }
+library.swift-ac-foundation = { license = [ { name = 'CC0-1.0', url = 'https://github.com/narumij/swift-ac-foundation/blob/main/LICENSE' }, ], version = '9affe45' }
+library.swift-ac-collections = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-collections/blob/main/LICENSE' },], version = '0.1.44' }
+library.swift-ac-memoize = { license = [ { name = 'Apache-2.0', url = 'https://github.com/narumij/swift-ac-memoize/blob/main/LICENSE' },], version = 'b997370' }
+
+library.libopenblas-dev = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/OpenMathLib/OpenBLAS/blob/develop/LICENSE' },] }
+library.libopenblas0 = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/OpenMathLib/OpenBLAS/blob/develop/LICENSE' },], indirect = true }
+library.libopenblas-pthread-dev = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/OpenMathLib/OpenBLAS/blob/develop/LICENSE' },], indirect = true }
+library.libopenblas0-pthread = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/OpenMathLib/OpenBLAS/blob/develop/LICENSE' },], indirect = true }
+library.liblapacke-dev = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/Reference-LAPACK/lapack/blob/master/LICENSE' },] }
+library.liblapacke = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/Reference-LAPACK/lapack/blob/master/LICENSE' },], indirect = true }
+library.libtmglib-dev = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/Reference-LAPACK/lapack/blob/master/LICENSE' },], indirect = true }
+library.libtmglib3 = { license = [ { name = 'BSD-3-Clause-Open-MPI', url = 'https://github.com/Reference-LAPACK/lapack/blob/master/LICENSE' },], indirect = true }
+
+
